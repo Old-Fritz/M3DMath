@@ -11,14 +11,21 @@
 #endif
 
 #include "M3DMAth.h"
+#include "DirectXMath.h"
+#include <iostream>
 
 using namespace M3DM;
 
 
 int main()
 {
-	Vector2 a = {1, 4};
-	Vector3 b = {5, 4,1};
+	Vector2 c(3, 5);
+	Vector2 d;
+	VectorF a(4, 2, 3, 4);
+	VectorF b(c);
 
-	a = static_cast<Vector2>(a + b)/7;
+	a += b;
+	a.store(c, d);
+
+	std::cout << c.x << " " << c.y << " " << d.x << " " << d.y;
 }

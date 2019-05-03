@@ -14,6 +14,16 @@ Vector3::Vector3(const Vector4& vector)
 	z = vector.z;
 }
 
+Vector3::operator float*()
+{
+	return reinterpret_cast<float*>(this);
+}
+
+Vector3::operator float const*() const
+{
+	return reinterpret_cast<float const*>(this);
+}
+
 // Operators
 Vector3 Vector3::operator+(const Vector3& vector) const
 {

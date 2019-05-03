@@ -6,6 +6,17 @@
 
 using namespace M3DM;
 
+// Conversions
+Vector4::operator float*()
+{
+	return reinterpret_cast<float*>(this);
+}
+
+Vector4::operator float const*() const
+{
+	return reinterpret_cast<float const*>(this);
+}
+
 // Operators
 Vector4 Vector4::operator+(const Vector4& vector) const
 {
@@ -72,6 +83,7 @@ Vector4 Vector4::operator/(float scale) const
 
 	return vectorRes;
 }
+
 Vector4& Vector4::operator+=(const Vector4& vector)
 {
 	this->x += vector.x;

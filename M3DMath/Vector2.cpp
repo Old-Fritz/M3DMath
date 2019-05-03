@@ -19,6 +19,16 @@ Vector2::Vector2(const Vector4& vector)
 	y = vector.y;
 }
 
+Vector2::operator float*()
+{
+	return reinterpret_cast<float*>(this);
+}
+
+Vector2::operator float const*() const
+{
+	return reinterpret_cast<float const*>(this);
+}
+
 // Operators
 Vector2 Vector2::operator+(const Vector2& vector) const
 {

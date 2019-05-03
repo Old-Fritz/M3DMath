@@ -13,22 +13,31 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы исходного кода\BaseVectors">
+      <UniqueIdentifier>{0ff9736f-0d3e-47f9-94a7-0efa08a6d2af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\SIMDVectors">
+      <UniqueIdentifier>{66a6cfee-5ab3-445c-924f-80d825de6d96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="VectorOperations.cpp">
+      <Filter>Файлы исходного кода\BaseVectors</Filter>
+    </ClCompile>
     <ClCompile Include="Vector2.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\BaseVectors</Filter>
     </ClCompile>
     <ClCompile Include="Vector3.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\BaseVectors</Filter>
     </ClCompile>
     <ClCompile Include="Vector4.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\BaseVectors</Filter>
     </ClCompile>
-    <ClCompile Include="VectorOperations.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="VectorF.cpp">
+      <Filter>Файлы исходного кода\SIMDVectors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
