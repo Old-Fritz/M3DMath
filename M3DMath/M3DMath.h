@@ -18,7 +18,7 @@ namespace M3DM
 		Vector2(float _x, float _y) : x(_x), y(_y) {}
 		Vector2& operator=(const Vector2& vector) = default;
 
-		// Convertions
+		// Conversions
 		explicit Vector2(const float* pArray) : x(pArray[0]), y(pArray[1]) {}
 		explicit Vector2(const Vector3& vector);
 		explicit Vector2(const Vector4& vector);
@@ -36,7 +36,7 @@ namespace M3DM
 		Vector2& operator/=(const Vector2& vector);
 		Vector2& operator*=(float scale);
 		Vector2& operator/=(float scale);
-		bool operator==(const Vector2& vector);
+		bool operator==(const Vector2& vector) const;
 	};
 
 	struct Vector3
@@ -49,7 +49,7 @@ namespace M3DM
 		Vector3(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
 		Vector3& operator=(const Vector3& vector) = default;
 
-		// Convertions
+		// Conversions
 		explicit Vector3(const Vector2& vector) : x(vector.x), y(vector.y), z(0) {}
 		explicit Vector3(const float* pArray) : x(pArray[0]), y(pArray[1]), z(pArray[2]) {}
 		explicit Vector3(const Vector4& vector);
@@ -68,7 +68,7 @@ namespace M3DM
 		Vector3& operator/=(const Vector3& vector);
 		Vector3& operator*=(float scale);
 		Vector3& operator/=(float scale);
-		bool operator==(const Vector3& vector);
+		bool operator==(const Vector3& vector) const;
 	};
 
 	struct Vector4
@@ -81,7 +81,7 @@ namespace M3DM
 		Vector4(float _x, float _y, float _z, float _w) : x(_x), y(_y), z(_z), w(_w) {}
 		Vector4& operator=(const Vector4& vector) = default;
 
-		// Convertions
+		// Conversions
 		explicit Vector4(const Vector2& vector) : x(vector.x), y(vector.y), z(0), w(0) {}
 		explicit Vector4(const Vector3& vector) : x(vector.x), y(vector.y), z(vector.z), w(0) {}
 		explicit Vector4(const float* pArray) : x(pArray[0]), y(pArray[1]), z(pArray[2]), w(pArray[3]) {}
@@ -99,7 +99,7 @@ namespace M3DM
 		Vector4& operator/=(const Vector4& vector);
 		Vector4& operator*=(float scale);
 		Vector4& operator/=(float scale);
-		bool operator==(const Vector4& vector);
+		bool operator==(const Vector4& vector) const;
 	};
 
 	/// Different operator combinations

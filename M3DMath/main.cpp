@@ -1,5 +1,5 @@
 /// Flobal defines and tests
-
+#include <ctime>
 #define DIRECTX12MATH
 
 #ifdef DIRECTX12MATH
@@ -12,13 +12,13 @@
 
 #include "M3DMAth.h"
 
-using namespace M3DMath;
+using namespace M3DM;
+
 
 int main()
 {
-	Vector4 a;
-	Vector2 b;
+	Vector2 a = {1, 4};
+	Vector3 b = {5, 4,1};
 
-	Vector4 c = b+a;
-
+	a = static_cast<Vector2>(a + b)/7;
 }
