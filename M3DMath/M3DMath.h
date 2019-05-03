@@ -36,6 +36,7 @@ namespace M3DM
 		Vector2& operator/=(const Vector2& vector);
 		Vector2& operator*=(float scale);
 		Vector2& operator/=(float scale);
+		bool operator==(const Vector2& vector);
 	};
 
 	struct Vector3
@@ -67,6 +68,7 @@ namespace M3DM
 		Vector3& operator/=(const Vector3& vector);
 		Vector3& operator*=(float scale);
 		Vector3& operator/=(float scale);
+		bool operator==(const Vector3& vector);
 	};
 
 	struct Vector4
