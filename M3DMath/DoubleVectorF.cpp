@@ -167,12 +167,12 @@ void DoubleVectorF::load(const VectorF& vector)
 }
 void DoubleVectorF::load(const VectorF& vector1, const VectorF& vector2)
 {
-    m_data =  _mm256_insertf128_ps(_mm256_castps128_ps256(vector1), (vector2), 0x1);
+    m_data = _mm256_insertf128_ps(_mm256_castps128_ps256(vector1), (vector2), 0x1);
 }
 
 void DoubleVectorF::store(float& x1, float& y1, float& z1, float& w1, float& x2, float& y2, float& z2, float& w2) const
 {
-	float vector[8];
+	alignas(32) float vector[8];
 	_mm256_store_ps(vector, m_data);
 	x1 = vector[0];
 	y1 = vector[1];
@@ -189,32 +189,32 @@ void DoubleVectorF::store(float* pArray) const
 }
 void DoubleVectorF::store(Vector2& vector) const
 {
-	float vectorData[8];
+	alignas(32) float vectorData[8];
 	_mm256_store_ps(vectorData, m_data);
 	vector = Vector2(vectorData);
 }
 void DoubleVectorF::store(Vector3& vector) const
 {
-	float vectorData[8];
+	alignas(32) float vectorData[8];
 	_mm256_store_ps(vectorData, m_data);
 	vector = Vector3(vectorData);
 }
 void DoubleVectorF::store(Vector4& vector) const
 {
-	float vectorData[8];
+	alignas(32) float vectorData[8];
 	_mm256_store_ps(vectorData, m_data);
 	vector = Vector4(vectorData);
 }
 void DoubleVectorF::store(Vector2& vector1, Vector2& vector2) const
 {
-	float vectorData[8];
+	alignas(32) float vectorData[8];
 	_mm256_store_ps(vectorData, m_data);
 	vector1 = Vector2(vectorData);
 	vector2 = Vector2(vectorData+4);
 }
 void DoubleVectorF::store(Vector3& vector1, Vector3& vector2) const
 {
-	float vectorData[8];
+	alignas(32) float vectorData[8];
 	_mm256_store_ps(vectorData, m_data);
 	vector1 = Vector3(vectorData);
 	vector2 = Vector3(vectorData + 4);
@@ -228,7 +228,7 @@ void DoubleVectorF::store(Vector4& vector1, Vector4& vector2) const
 }
 void DoubleVectorF::store(Vector2& vector1, Vector2& vector2, Vector2& vector3, Vector2& vector4) const
 {
-	float vectorData[8];
+	alignas(32) float vectorData[8];
 	_mm256_store_ps(vectorData, m_data);
 	vector1 = Vector2(vectorData);
 	vector2 = Vector2(vectorData + 2);

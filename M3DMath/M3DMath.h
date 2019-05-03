@@ -74,7 +74,7 @@ namespace M3DM
 		bool operator==(const Vector3& vector) const;
 	};
 
-	struct Vector4
+	struct alignas(16) Vector4
 	{
 		float x, y, z, w;
 
@@ -149,7 +149,7 @@ namespace M3DM
 #pragma endregion operators
 
 	/// SSE vector
-	class VectorF
+	class alignas(16) VectorF
 	{
 	public:
 		// Constructors
@@ -201,7 +201,7 @@ namespace M3DM
 	};
 
 	/// AVX vector
-	class DoubleVectorF
+	class alignas(32) DoubleVectorF
 	{
 	public:
 		// Constructors

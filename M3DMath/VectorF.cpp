@@ -129,7 +129,7 @@ void VectorF::load(const Vector2& vector1, const Vector2& vector2)
 
 void VectorF::store(float& x, float& y, float& z, float& w) const
 {
-	float vector[4];
+	alignas(16) float vector[4];
 	_mm_store_ps(vector, m_data);
 	x = vector[0];
 	y = vector[1];
@@ -142,13 +142,13 @@ void VectorF::store(float* pArray) const
 }
 void VectorF::store(Vector2& vector) const
 {
-	float vectorData[4];
+	alignas(16) float vectorData[4];
 	_mm_store_ps(vectorData, m_data);
 	vector = Vector2(vectorData);
 }
 void VectorF::store(Vector3& vector) const
 {
-	float vectorData[4];
+	alignas(16) float vectorData[4];
 	_mm_store_ps(vectorData, m_data);
 	vector = Vector3(vectorData);
 }
@@ -158,7 +158,7 @@ void VectorF::store(Vector4& vector) const
 }
 void VectorF::store(Vector2& vector1, Vector2& vector2) const
 {
-	float vectorData[4];
+	alignas(16) float vectorData[4];
 	_mm_store_ps(vectorData, m_data);
 	vector1 = Vector2(vectorData);
 	vector2 = Vector2(vectorData + 2);
