@@ -164,7 +164,7 @@ namespace M3DM
 		explicit VectorF(const Vector3& vector);
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
-		explicit operator union __m128() const;
+		explicit operator __m128() const;
 
 		// Base operations
 		VectorF operator+(const VectorF& vector) const;

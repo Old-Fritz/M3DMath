@@ -11,7 +11,6 @@
 #endif
 
 #include "M3DMAth.h"
-#include "DirectXMath.h"
 #include <iostream>
 
 using namespace M3DM;
@@ -23,9 +22,10 @@ int main()
 	Vector2 d;
 	VectorF a(4, 2, 3, 4);
 	VectorF b(c);
+	VectorF e(7, 7, 3, 4);
 
 	a += b;
 	a.store(c, d);
 
-	std::cout << c.x << " " << c.y << " " << d.x << " " << d.y;
+	std::cout << (a == e);
 }

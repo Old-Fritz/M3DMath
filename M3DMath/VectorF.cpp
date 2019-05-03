@@ -32,7 +32,7 @@ VectorF::VectorF(const Vector2& vector1, const Vector2& vector2)
 {
 	load(vector1, vector2);
 }
-VectorF::operator union __m128() const
+VectorF::operator __m128() const
 {
 	return m_data;
 }
@@ -100,9 +100,9 @@ VectorF& VectorF::operator/=(float scale)
 bool VectorF::operator==(const VectorF& vector) const
 {
 	__m128 dataEqual = _mm_cmpeq_ps(m_data, vector.m_data);
-	float vectorEqual[4];
-	_mm_store_ps(vectorEqual, dataEqual);
-	return 1 == vectorEqual[0] == vectorEqual[1] == vectorEqual[2] == vectorEqual[3];
+	int vectorEqual[4];
+	_mm_store_ps(reinterpret_cast<float*>(vectorEqual), dataEqual);
+	return  vectorEqual[0] & vectorEqual[1] & vectorEqual[2] & vectorEqual[3];
 }
 
 void VectorF::load(float x, float y, float z, float w)
