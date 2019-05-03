@@ -55,12 +55,12 @@ VectorF VectorF::operator/(const VectorF& vector) const
 }
 VectorF VectorF::operator*(float scale) const
 {
-	__m128 data2 = _mm_load_ps1(&scale);
+	__m128 data2 = _mm_set_ps1(scale);
 	return _mm_mul_ps(m_data, data2);
 }
 VectorF VectorF::operator/(float scale) const
 {
-	__m128 data2 = _mm_load_ps1(&scale);
+	__m128 data2 = _mm_set_ps1(scale);
 	return _mm_div_ps(m_data, data2);
 }
 VectorF& VectorF::operator+=(const VectorF& vector)
@@ -85,13 +85,13 @@ VectorF& VectorF::operator/=(const VectorF& vector)
 }
 VectorF& VectorF::operator*=(float scale)
 {
-	__m128 data2 = _mm_load_ps1(&scale);
+	__m128 data2 = _mm_set_ps1(scale);
 	m_data = _mm_mul_ps(m_data, data2);
 	return *this;
 }
 VectorF& VectorF::operator/=(float scale)
 {
-	__m128 data2 = _mm_load_ps1(&scale);
+	__m128 data2 = _mm_set_ps1(scale);
 	m_data = _mm_div_ps(m_data, data2);
 	return *this;
 }
@@ -104,7 +104,7 @@ bool VectorF::operator==(const VectorF& vector) const
 // Load/store
 void VectorF::load(float x, float y, float z, float w)
 {
-	m_data = _mm_set_ps(x, y, z, w);
+	m_data = _mm_setr_ps(x, y, z, w);
 }
 void VectorF::load(const float* pArray)
 {

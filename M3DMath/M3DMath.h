@@ -165,7 +165,7 @@ namespace M3DM
 		explicit VectorF(const Vector3& vector);
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
-		explicit operator __m128() const;
+		operator __m128() const;
 
 		// Base operations
 		VectorF operator+(const VectorF& vector) const;
@@ -222,7 +222,7 @@ namespace M3DM
 		explicit DoubleVectorF(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4);
 		explicit DoubleVectorF(const VectorF& vector);
 		explicit DoubleVectorF(const VectorF& vector1, const VectorF& vector2);
-		explicit operator __m256() const;
+		operator __m256() const;
 
 		// Base operations
 		DoubleVectorF operator+(const DoubleVectorF& vector) const;
@@ -240,7 +240,7 @@ namespace M3DM
 		bool operator==(const DoubleVectorF& vector) const;
 
 		// load/store
-		void load(float x = 0, float y = 0, float z = 0, float w = 0);
+		void load(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
 		void load(const float* pArray);
 		void load(const Vector2& vector);
 		void load(const Vector3& vector);
@@ -252,7 +252,7 @@ namespace M3DM
 		void load(const VectorF& vector);
 		void load(const VectorF& vector1, const VectorF& vector2);
 
-		void store(float& x, float& y, float& z, float& w) const;
+		void store(float& x1, float& y1, float& z1, float& w1, float& x2, float& y2, float& z2, float& w2) const;
 		void store(float* pArray) const;
 		void store(Vector2& vector) const;
 		void store(Vector3& vector) const;
@@ -265,6 +265,6 @@ namespace M3DM
 		void store(VectorF& vector1, VectorF& vector2) const;
 
 	private:
-		__m256 m_data;
+		__m256 m_data{};
 	};
 }

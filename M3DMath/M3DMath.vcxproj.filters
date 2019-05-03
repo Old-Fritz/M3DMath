@@ -39,6 +39,9 @@
     <ClCompile Include="VectorF.cpp">
       <Filter>Файлы исходного кода\SIMDVectors</Filter>
     </ClCompile>
+    <ClCompile Include="DoubleVectorF.cpp">
+      <Filter>Файлы исходного кода\SIMDVectors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="M3DMath.h">
