@@ -1,5 +1,6 @@
 #pragma once
 #include <emmintrin.h>
+#include <immintrin.h>
 
 namespace M3DM
 {
@@ -197,5 +198,73 @@ namespace M3DM
 		void store(Vector2& vector1, Vector2& vector2) const;
 	private:
 		__m128 m_data{};
+	};
+
+	/// AVX vector
+	class DoubleVectorF
+	{
+	public:
+		// Constructors
+		DoubleVectorF() : m_data() {}
+		DoubleVectorF(const DoubleVectorF& vector) = default;
+		DoubleVectorF(__m256 data) : m_data(data) {}
+		DoubleVectorF& operator=(const DoubleVectorF& vector) = default;
+
+		// Conversions
+		explicit DoubleVectorF(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
+		explicit DoubleVectorF(float* pArray);
+		explicit DoubleVectorF(const Vector2& vector);
+		explicit DoubleVectorF(const Vector3& vector);
+		explicit DoubleVectorF(const Vector4& vector);
+		explicit DoubleVectorF(const Vector2& vector1, const Vector2& vector2);
+		explicit DoubleVectorF(const Vector3& vector1, const Vector3& vector2);
+		explicit DoubleVectorF(const Vector4& vector1, const Vector4& vector2);
+		explicit DoubleVectorF(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4);
+		explicit DoubleVectorF(const VectorF& vector);
+		explicit DoubleVectorF(const VectorF& vector1, const VectorF& vector2);
+		explicit operator __m256() const;
+
+		// Base operations
+		DoubleVectorF operator+(const DoubleVectorF& vector) const;
+		DoubleVectorF operator-(const DoubleVectorF& vector) const;
+		DoubleVectorF operator*(const DoubleVectorF& vector) const;
+		DoubleVectorF operator/(const DoubleVectorF& vector) const;
+		DoubleVectorF operator*(float scale) const;
+		DoubleVectorF operator/(float scale) const;
+		DoubleVectorF& operator+=(const DoubleVectorF& vector);
+		DoubleVectorF& operator-=(const DoubleVectorF& vector);
+		DoubleVectorF& operator*=(const DoubleVectorF& vector);
+		DoubleVectorF& operator/=(const DoubleVectorF& vector);
+		DoubleVectorF& operator*=(float scale);
+		DoubleVectorF& operator/=(float scale);
+		bool operator==(const DoubleVectorF& vector) const;
+
+		// load/store
+		void load(float x = 0, float y = 0, float z = 0, float w = 0);
+		void load(const float* pArray);
+		void load(const Vector2& vector);
+		void load(const Vector3& vector);
+		void load(const Vector4& vector);
+		void load(const Vector2& vector1, const Vector2& vector2);
+		void load(const Vector3& vector1, const Vector3& vector2);
+		void load(const Vector4& vector1, const Vector4& vector2);
+		void load(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4);
+		void load(const VectorF& vector);
+		void load(const VectorF& vector1, const VectorF& vector2);
+
+		void store(float& x, float& y, float& z, float& w) const;
+		void store(float* pArray) const;
+		void store(Vector2& vector) const;
+		void store(Vector3& vector) const;
+		void store(Vector4& vector) const;
+		void store(Vector2& vector1, Vector2& vector2) const;
+		void store(Vector3& vector1, Vector3& vector2) const;
+		void store(Vector4& vector1, Vector4& vector2) const;
+		void store(Vector2& vector1, Vector2& vector2, Vector2& vector3, Vector2& vector4) const;
+		void store(VectorF& vector) const;
+		void store(VectorF& vector1, VectorF& vector2) const;
+
+	private:
+		__m256 m_data;
 	};
 }
