@@ -9,7 +9,7 @@ namespace M3DM
 	struct Vector3;
 	struct Vector4;
 
-
+#pragma pack (push, 4)
 	struct Vector2
 	{
 		float x, y;

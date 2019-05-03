@@ -120,7 +120,7 @@ DoubleVectorF& DoubleVectorF::operator/=(float scale)
 bool DoubleVectorF::operator==(const DoubleVectorF& vector) const
 {
 	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, 0);
-	return _mm256_test_all_ones(_mm256_castps_si256(dataEqual));
+    return _mm256_testc_si256(_mm256_castps_si256(dataEqual), _mm256_castps_si256(_mm256_cmp_ps(dataEqual,dataEqual, 0)));
 }
 
 
@@ -167,7 +167,7 @@ void DoubleVectorF::load(const VectorF& vector)
 }
 void DoubleVectorF::load(const VectorF& vector1, const VectorF& vector2)
 {
-	m_data = _mm256_set_m128(vector2, vector1);
+    m_data =  _mm256_insertf128_ps(_mm256_castps128_ps256(vector1), (vector2), 0x1);
 }
 
 void DoubleVectorF::store(float& x1, float& y1, float& z1, float& w1, float& x2, float& y2, float& z2, float& w2) const
@@ -221,7 +221,7 @@ void DoubleVectorF::store(Vector3& vector1, Vector3& vector2) const
 }
 void DoubleVectorF::store(Vector4& vector1, Vector4& vector2) const
 {
-	float vectorData[8];
+    alignas(32) float vectorData[8];
 	_mm256_store_ps(vectorData, m_data);
 	vector1 = Vector4(vectorData);
 	vector2 = Vector4(vectorData + 4);

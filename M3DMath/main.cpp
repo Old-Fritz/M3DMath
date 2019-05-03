@@ -10,7 +10,7 @@
 
 #endif
 
-#include "M3DMAth.h"
+#include "M3DMath.h"
 #include <iostream>
 
 using namespace M3DM;
