@@ -1,7 +1,6 @@
 #pragma once
 
 #include "M3DMath.h"
-#include <vector>
 
 /// Implementation of VectorF
 
@@ -96,19 +95,16 @@ VectorF& VectorF::operator/=(float scale)
 	m_data = _mm_div_ps(m_data, data2);
 	return *this;
 }
-
 bool VectorF::operator==(const VectorF& vector) const
 {
 	__m128 dataEqual = _mm_cmpeq_ps(m_data, vector.m_data);
-	int vectorEqual[4];
-	_mm_store_ps(reinterpret_cast<float*>(vectorEqual), dataEqual);
-	return  vectorEqual[0] & vectorEqual[1] & vectorEqual[2] & vectorEqual[3];
+	return _mm_test_all_ones(_mm_castps_si128(dataEqual));
 }
 
+// Load/store
 void VectorF::load(float x, float y, float z, float w)
 {
-	float vector[4] = { x, y, z , w };
-	m_data = _mm_load_ps(vector);
+	m_data = _mm_set_ps(x, y, z, w);
 }
 void VectorF::load(const float* pArray)
 {
