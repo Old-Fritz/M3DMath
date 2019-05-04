@@ -9,7 +9,6 @@ namespace M3DM
 	struct Vector3;
 	struct Vector4;
 
-#pragma pack (push, 4)
 	struct Vector2
 	{
 		float x, y;
@@ -263,7 +262,6 @@ namespace M3DM
 		void store(Vector2& vector1, Vector2& vector2, Vector2& vector3, Vector2& vector4) const;
 		void store(VectorF& vector) const;
 		void store(VectorF& vector1, VectorF& vector2) const;
-
 	private:
 		__m256 m_data{};
 	};
