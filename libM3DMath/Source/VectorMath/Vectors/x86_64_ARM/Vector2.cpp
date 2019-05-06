@@ -1,4 +1,5 @@
 #include "M3DMath.h"
+#include <cmath>
 
 /// Implementation of Vector2
 
@@ -132,4 +133,50 @@ Vector2& Vector2::operator/=(float scale)
 bool Vector2::operator==(const Vector2& vector) const
 {
 	return x == vector.x && y == vector.y;
+}
+
+bool Vector2::operator<(const Vector2& vector) const
+{
+	return x < vector.x&& y < vector.y;
+}
+
+bool Vector2::operator>(const Vector2& vector) const
+{
+	return vector < *this;
+}
+
+bool Vector2::operator<=(const Vector2& vector) const
+{
+	return x <= vector.x && y <= vector.y;
+}
+
+bool Vector2::operator>=(const Vector2& vector) const
+{
+	return vector <= *this;
+}
+
+bool Vector2::isEqualPrec(const Vector2& vector, float precision) const
+{
+	return fabsf(vector.x - x) <= precision && fabsf(vector.y - y) <= precision;
+}
+
+bool Vector2::isEqualPrec(const Vector2& vector, const Vector2& precision) const
+{
+	return fabsf(vector.x - x) <= precision.x && fabsf(vector.y - y) <= precision.y;
+}
+
+Vector2 Vector2::isEqualVec(const Vector2& vector) const
+{
+	Vector2 result;
+	result.x = vector.x == x;
+	result.y = vector.y == y;
+	return result;
+}
+
+Vector2 Vector2::isEqualPrecVec(const Vector2& vector, const Vector2& precision) const
+{
+	Vector2 result;
+	result.x = fabsf(vector.x - x) <= precision.x;
+	result.y = fabsf(vector.y - y) <= precision.y;
+	return result;
 }

@@ -146,3 +146,53 @@ bool Vector4::operator==(const Vector4& vector) const
 {
 	return x == vector.x && y == vector.y && z == vector.z && w == vector.w;
 }
+
+bool Vector4::operator<(const Vector4& vector) const
+{
+	return x < vector.x&& y < vector.y&& z < vector.z;
+}
+
+bool Vector4::operator>(const Vector4& vector) const
+{
+	return vector < *this;
+}
+
+bool Vector4::operator<=(const Vector4& vector) const
+{
+	return x <= vector.x&& y <= vector.y&& z <= vector.z;
+}
+
+bool Vector4::operator>=(const Vector4& vector) const
+{
+	return vector <= *this;
+}
+
+bool Vector4::isEqualPrec(const Vector4& vector, float precision) const
+{
+	return fabsf(vector.x - x) <= precision && fabsf(vector.y - y) <= precision && fabsf(vector.z - z) <= precision && fabsf(vector.w - w) <= precision;
+}
+
+bool Vector4::isEqualPrec(const Vector4& vector, const Vector4& precision) const
+{
+	return fabsf(vector.x - x) <= precision.x && fabsf(vector.y - y) <= precision.y && fabsf(vector.z - z) <= precision.z && fabsf(vector.w - w) <= precision.w;
+}
+
+Vector4 Vector4::isEqualVec(const Vector4& vector) const
+{
+	Vector4 result;
+	result.x = vector.x == x;
+	result.y = vector.y == y;
+	result.z = vector.z == z;
+	result.w = vector.w == w;
+	return result;
+}
+
+Vector4 Vector4::isEqualPrecVec(const Vector4& vector, const Vector4& precision) const
+{
+	Vector4 result;
+	result.x = fabsf(vector.x - x) <= precision.x;
+	result.y = fabsf(vector.y - y) <= precision.y;
+	result.z = fabsf(vector.z - z) <= precision.z;
+	result.w = fabsf(vector.w - w) <= precision.w;
+	return result;
+}
