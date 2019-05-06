@@ -1,5 +1,3 @@
-#pragma once
-
 #include "M3DMath.h"
 
 /// Implementation of Vector4

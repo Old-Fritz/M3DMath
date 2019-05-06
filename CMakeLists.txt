@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.8)
 
 SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
@@ -8,19 +8,25 @@ SET(ANDROID_ABI armeabi-v7a)
 # Global defines
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# Include dir
+SET(LIB_HEADER_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 PROJECT(M3DMath)
 
-# for android arm support (for implement in the future)
+# For android arm support (for implement in the future)
 IF(ANDROID)
 	SET(CLANG_TOOLCHAIN_VERSION 8.0.2)
 	SET(ANDROID_TOOLCHAIN_INCLUDE_DIR ${ANDROID_TOOLCHAIN_ROOT}\\lib64\\clang\\${CLANG_TOOLCHAIN_VERSION}\\include)
-	#SET(ANDROID_TOOLCHAIN_LIB_PATH ${CMAKE_ANDROID_STANDALONE_TOOLCHAIN}\\lib64\\clang\\5.0\\lib\\linux\\libclang_rt.profile-aarch64-android.a)
 	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffreestanding -march=armv7-a -mfpu=neon -mfloat-abi=softfp" )
 ELSE()
-# for x86_64
+# For x86_64
 	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx" )
 ENDIF()
 
+# Targets
+SET(M3DMATH_LIB_TARGET libM3DMath)
+SET(MATH_TESTS_TARGET Math3DTests)
 
+# Directories
 ADD_SUBDIRECTORY("libM3DMath")
+ADD_SUBDIRECTORY("MathTests")
