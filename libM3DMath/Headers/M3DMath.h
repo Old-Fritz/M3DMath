@@ -1,6 +1,33 @@
 #pragma once
-#include <emmintrin.h>
-#include <immintrin.h>
+#ifdef WIN32
+#include <DirectXMath.h>
+#endif
+
+// x86_64 platform
+#if defined(__x86_64__) || defined(__i386__) || defined(WIN32)
+# include <xmmintrin.h>
+# include <emmintrin.h>
+# include <pmmintrin.h>
+# include <smmintrin.h>
+# include <immintrin.h>
+# define M128 __m128
+# define M256 __m256
+#endif
+// arm_platform
+#ifdef __ARM_NEON
+#define __ARM_FEATURE_FP16_VECTOR_ARITHMETIC 1
+#include <arm_neon.h>
+#define M128 float64x1x2_t
+#define M256 float64x2x2_t
+#define NO_ALIGNS
+#define ALIGN(N) 
+#endif
+
+#ifndef NO_ALIGNS
+#define ALIGN(N) alignas((N))
+#endif
+
+
 
 namespace M3DM
 {
@@ -8,7 +35,6 @@ namespace M3DM
 	struct Vector2;
 	struct Vector3;
 	struct Vector4;
-
 	struct Vector2
 	{
 		float x, y;
@@ -72,8 +98,8 @@ namespace M3DM
 		Vector3& operator/=(float scale);
 		bool operator==(const Vector3& vector) const;
 	};
-
-	struct alignas(16) Vector4
+	
+	struct ALIGN(16) Vector4
 	{
 		float x, y, z, w;
 
@@ -146,15 +172,15 @@ namespace M3DM
 	Vector3 operator/(float scale, const Vector3& vector);
 	Vector4 operator/(float scale, const Vector4& vector);
 #pragma endregion operators
-
+	
 	/// SSE vector
-	class alignas(16) VectorF
+	class ALIGN(16) VectorF
 	{
 	public:
 		// Constructors
 		VectorF() : m_data() {}
 		VectorF(const VectorF& vector) = default;
-		VectorF(__m128 data) : m_data(data) {}
+		VectorF(M128 data) : m_data(data) {}
 		VectorF& operator=(const VectorF& vector) = default;
 		
 		// Conversions
@@ -164,7 +190,7 @@ namespace M3DM
 		explicit VectorF(const Vector3& vector);
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
-		operator __m128() const;
+		operator M128() const;
 
 		// Base operations
 		VectorF operator+(const VectorF& vector) const;
@@ -196,17 +222,17 @@ namespace M3DM
 		void store(Vector4& vector) const;
 		void store(Vector2& vector1, Vector2& vector2) const;
 	private:
-		__m128 m_data{};
+		M128 m_data{};
 	};
 
 	/// AVX vector
-	class alignas(32) DoubleVectorF
+	class ALIGN(32) DoubleVectorF
 	{
 	public:
 		// Constructors
 		DoubleVectorF() : m_data() {}
 		DoubleVectorF(const DoubleVectorF& vector) = default;
-		DoubleVectorF(__m256 data) : m_data(data) {}
+		DoubleVectorF(M256 data) : m_data(data) {}
 		DoubleVectorF& operator=(const DoubleVectorF& vector) = default;
 
 		// Conversions
@@ -221,7 +247,7 @@ namespace M3DM
 		explicit DoubleVectorF(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4);
 		explicit DoubleVectorF(const VectorF& vector);
 		explicit DoubleVectorF(const VectorF& vector1, const VectorF& vector2);
-		operator __m256() const;
+		operator M256() const;
 
 		// Base operations
 		DoubleVectorF operator+(const DoubleVectorF& vector) const;
@@ -263,6 +289,7 @@ namespace M3DM
 		void store(VectorF& vector) const;
 		void store(VectorF& vector1, VectorF& vector2) const;
 	private:
-		__m256 m_data{};
+		M256 m_data{};
 	};
+	
 }

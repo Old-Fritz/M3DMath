@@ -1,5 +1,4 @@
 /// Flobal defines and tests
-#include <ctime>
 #define DIRECTX12MATH
 
 #ifdef DIRECTX12MATH
@@ -11,7 +10,6 @@
 #endif
 
 #include "M3DMath.h"
-#include <iostream>
 
 using namespace M3DM;
 
@@ -20,6 +18,9 @@ int main()
 {
 	Vector2 c(3, 5);
 	Vector2 d;
+
+	d = c + c;
+	/*
 	VectorF a(4, 2, 3, 4);
 	VectorF b(c);
 	VectorF e(7, 7, 3, 4);
@@ -31,4 +32,5 @@ int main()
 	j.store(a1, a2);
 
 	std::cout << a1.x << " " << a1.y << " " << a1.z << " " << a1.w << " " << a2.x << " " << a2.y << " " << a2.z << " " << a2.w << std::endl << (t==j);
+	*/
 }
