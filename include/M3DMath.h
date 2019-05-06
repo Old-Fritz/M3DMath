@@ -65,7 +65,15 @@ namespace M3DM
 		Vector2& operator/=(const Vector2& vector);
 		Vector2& operator*=(float scale);
 		Vector2& operator/=(float scale);
+		
+
+		// Compare functions
 		bool operator==(const Vector2& vector) const;
+		bool operator<(const Vector2& vector) const;
+		bool operator>(const Vector2& vector) const;
+		bool operator<=(const Vector2& vector) const;
+		bool operator>=(const Vector2& vector) const;
+		bool isEqual(const Vector2& vector, float precision = 0) const;
 	};
 
 	struct Vector3
@@ -97,7 +105,14 @@ namespace M3DM
 		Vector3& operator/=(const Vector3& vector);
 		Vector3& operator*=(float scale);
 		Vector3& operator/=(float scale);
+
+		// Compare functions
 		bool operator==(const Vector3& vector) const;
+		bool operator<(const Vector3& vector) const;
+		bool operator>(const Vector3& vector) const;
+		bool operator<=(const Vector3& vector) const;
+		bool operator>=(const Vector3& vector) const;
+		bool isEqual(const Vector3& vector, float precision = 0) const;
 	};
 	
 	struct ALIGN(16) Vector4
@@ -130,7 +145,14 @@ namespace M3DM
 		Vector4& operator/=(const Vector4& vector);
 		Vector4& operator*=(float scale);
 		Vector4& operator/=(float scale);
+
+		// Compare functions
 		bool operator==(const Vector4& vector) const;
+		bool operator<(const Vector4& vector) const;
+		bool operator>(const Vector4& vector) const;
+		bool operator<=(const Vector4& vector) const;
+		bool operator>=(const Vector4& vector) const;
+		bool isEqual(const Vector4& vector, float precision = 0) const;
 	};
 
 	/// Different operator combinations
@@ -206,7 +228,14 @@ namespace M3DM
 		VectorF& operator/=(const VectorF& vector);
 		VectorF& operator*=(float scale);
 		VectorF& operator/=(float scale);
+
+		// Compare functions
 		bool operator==(const VectorF& vector) const;
+		bool operator<(const VectorF& vector) const;
+		bool operator>(const VectorF& vector) const;
+		bool operator<=(const VectorF& vector) const;
+		bool operator>=(const VectorF& vector) const;
+		bool isEqual(const VectorF& vector, float precision = 0) const;
 
 		// load/store
 		void load(float x = 0, float y = 0, float z = 0, float w = 0);
@@ -222,6 +251,7 @@ namespace M3DM
 		void store(Vector3& vector) const;
 		void store(Vector4& vector) const;
 		void store(Vector2& vector1, Vector2& vector2) const;
+
 	private:
 		M128 m_data{};
 	};
@@ -263,7 +293,14 @@ namespace M3DM
 		DoubleVectorF& operator/=(const DoubleVectorF& vector);
 		DoubleVectorF& operator*=(float scale);
 		DoubleVectorF& operator/=(float scale);
+
+		// Compare functions
 		bool operator==(const DoubleVectorF& vector) const;
+		bool operator<(const DoubleVectorF& vector) const;
+		bool operator>(const DoubleVectorF& vector) const;
+		bool operator<=(const DoubleVectorF& vector) const;
+		bool operator>=(const DoubleVectorF& vector) const;
+		bool isEqual(const DoubleVectorF& vector, float precision = 0) const;
 
 		// load/store
 		void load(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
