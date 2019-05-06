@@ -10,7 +10,7 @@
 #endif
 
 #include <iostream>
-#include "M3DMath.h"
+#include "MathTests.h"
 
 using namespace M3DM;
 

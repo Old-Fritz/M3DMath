@@ -35,6 +35,7 @@ namespace M3DM
 	struct Vector2;
 	struct Vector3;
 	struct Vector4;
+
 	struct Vector2
 	{
 		float x, y;
