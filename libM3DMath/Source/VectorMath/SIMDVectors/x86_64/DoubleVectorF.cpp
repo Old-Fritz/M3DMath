@@ -4,6 +4,19 @@
 
 using namespace M3DM;
 
+#define _mm256_test_all_ones(data) _mm256_testc_si256(_mm256_castps_si256((data)), _mm256_castps_si256(_mm256_cmp_ps((data), (data), _CMP_EQ_OQ)));
+
+// TODO: replace in M3DMath.h
+__m256 vecabs_and(__m256 v) {
+	__m256i minus1 = _mm256_set1_epi32(-1);
+#ifdef _AVX2_
+	__m256 mask = _mm256_castsi256_ps(_mm256_srli_epi32(minus1, 1));
+#endif
+#if defined(_AVX_) && !defined(_AVX2_)
+	__m256 mask = _mm256_castsi256_ps(_mm256_set1_epi32(0x8fffffff));
+#endif
+	return _mm256_and_ps(mask, v);
+}
 
 // Conversions
 DoubleVectorF::DoubleVectorF(float x1, float y1, float z1, float w1, float x2, float y2, float z2, float w2)
@@ -117,8 +130,56 @@ DoubleVectorF& DoubleVectorF::operator/=(float scale)
 }
 bool DoubleVectorF::operator==(const DoubleVectorF& vector) const
 {
-	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, 0);
-    return _mm256_testc_si256(_mm256_castps_si256(dataEqual), _mm256_castps_si256(_mm256_cmp_ps(dataEqual,dataEqual, 0)));
+	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_EQ_OQ);
+    return _mm256_test_all_ones(dataEqual);
+}
+
+bool DoubleVectorF::operator<(const DoubleVectorF& vector) const
+{
+	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_LT_OQ); 
+	return _mm256_test_all_ones(dataEqual);
+}
+
+bool DoubleVectorF::operator>(const DoubleVectorF& vector) const
+{
+	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_GT_OQ);
+	return _mm256_test_all_ones(dataEqual);
+}
+
+bool DoubleVectorF::operator<=(const DoubleVectorF& vector) const
+{
+	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_LE_OQ);
+	return _mm256_test_all_ones(dataEqual);
+}
+
+bool DoubleVectorF::operator>=(const DoubleVectorF& vector) const
+{
+	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_GE_OQ);
+	return _mm256_test_all_ones(dataEqual);
+}
+
+bool DoubleVectorF::isEqualPrec(const DoubleVectorF& vector, float precision) const
+{
+	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_GT_OQ);
+	return _mm256_test_all_ones(dataEqual);
+}
+
+bool DoubleVectorF::isEqualPrec(const DoubleVectorF& vector, const DoubleVectorF& precision) const
+{
+	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
+	__m256 dataCmp = _mm256_cmp_ps(delta, precision, _CMP_LE_OQ);
+	return _mm256_test_all_ones(dataCmp);
+}
+
+DoubleVectorF DoubleVectorF::isEqualVec(const DoubleVectorF& vector) const
+{
+	return _mm256_cmp_ps(m_data, vector.m_data, _CMP_EQ_OQ);
+}
+
+DoubleVectorF DoubleVectorF::isEqualPrecVec(const DoubleVectorF& vector, const DoubleVectorF& precision) const
+{
+	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
+	return _mm256_cmp_ps(delta, precision, _CMP_LE_OQ);
 }
 
 

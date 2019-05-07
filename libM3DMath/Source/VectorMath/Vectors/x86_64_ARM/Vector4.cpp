@@ -1,4 +1,5 @@
 #include "M3DMath.h"
+#include <cmath>
 
 /// Implementation of Vector4
 
@@ -142,6 +143,7 @@ Vector4& Vector4::operator/=(float scale)
 	return *this;
 }
 
+// Compare functions
 bool Vector4::operator==(const Vector4& vector) const
 {
 	return x == vector.x && y == vector.y && z == vector.z && w == vector.w;
@@ -174,7 +176,7 @@ bool Vector4::isEqualPrec(const Vector4& vector, float precision) const
 
 bool Vector4::isEqualPrec(const Vector4& vector, const Vector4& precision) const
 {
-	return fabsf(vector.x - x) <= precision.x && fabsf(vector.y - y) <= precision.y && fabsf(vector.z - z) <= precision.z && fabsf(vector.w - w) <= precision.w;
+	return fabsf(vector.x - x) <= precision.x && fabsf(vector.y - y) <= precision.y && fabsf(vector.z - z) <= precision.z && fabs(vector.w - w) <= precision.w;
 }
 
 Vector4 Vector4::isEqualVec(const Vector4& vector) const

@@ -137,6 +137,8 @@ Vector3& Vector3::operator/=(float scale)
 	return *this;
 }
 
+// Compare functions
+
 bool Vector3::operator==(const Vector3& vector) const
 {
 	return x == vector.x && y == vector.y && z == vector.z;

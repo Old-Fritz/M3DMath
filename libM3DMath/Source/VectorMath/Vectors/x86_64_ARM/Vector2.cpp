@@ -130,6 +130,8 @@ Vector2& Vector2::operator/=(float scale)
 	return *this;
 }
 
+// Compare functions
+
 bool Vector2::operator==(const Vector2& vector) const
 {
 	return x == vector.x && y == vector.y;

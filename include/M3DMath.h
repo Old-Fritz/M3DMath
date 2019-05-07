@@ -5,6 +5,7 @@
 
 // x86_64 platform
 #if defined(__x86_64__) || defined(__i386__) || defined(WIN32)
+# define _AVX_
 # include <xmmintrin.h>
 # include <emmintrin.h>
 # include <pmmintrin.h>
@@ -12,6 +13,7 @@
 # include <immintrin.h>
 # define M128 __m128
 # define M256 __m256
+
 #endif
 // arm_platform
 #ifdef __ARM_NEON
