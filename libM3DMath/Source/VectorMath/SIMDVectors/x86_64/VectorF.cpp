@@ -173,6 +173,7 @@ void VectorF::load(Vector4 vector)
 }
 void VectorF::load(Vector2 vector1, Vector2 vector2)
 {
+	
 	m_data = _mm_load_ps(Vector4(vector1, vector2));
 }
 
