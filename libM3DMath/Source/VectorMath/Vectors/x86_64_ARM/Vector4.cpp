@@ -10,14 +10,13 @@ Vector4::operator float*()
 {
 	return reinterpret_cast<float*>(this);
 }
-
 Vector4::operator float const*() const
 {
 	return reinterpret_cast<float const*>(this);
 }
 
 // Operators
-Vector4 Vector4::operator+(const Vector4& vector) const
+Vector4 Vector4::operator+(Vector4 vector) const
 {
 	Vector4 vectorRes;
 	vectorRes.x = this->x + vector.x;
@@ -27,8 +26,7 @@ Vector4 Vector4::operator+(const Vector4& vector) const
 
 	return vectorRes;
 }
-
-Vector4 Vector4::operator-(const Vector4& vector) const
+Vector4 Vector4::operator-(Vector4 vector) const
 {
 	Vector4 vectorRes;
 	vectorRes.x = this->x - vector.x;
@@ -38,8 +36,7 @@ Vector4 Vector4::operator-(const Vector4& vector) const
 
 	return vectorRes;
 }
-
-Vector4 Vector4::operator*(const Vector4& vector) const
+Vector4 Vector4::operator*(Vector4 vector) const
 {
 	Vector4 vectorRes;
 	vectorRes.x = this->x * vector.x;
@@ -49,8 +46,7 @@ Vector4 Vector4::operator*(const Vector4& vector) const
 
 	return vectorRes;
 }
-
-Vector4 Vector4::operator/(const Vector4& vector) const
+Vector4 Vector4::operator/(Vector4 vector) const
 {
 	Vector4 vectorRes;
 	vectorRes.x = this->x / vector.x;
@@ -60,7 +56,6 @@ Vector4 Vector4::operator/(const Vector4& vector) const
 
 	return vectorRes;
 }
-
 Vector4 Vector4::operator*(float scale) const
 {
 	Vector4 vectorRes;
@@ -71,7 +66,6 @@ Vector4 Vector4::operator*(float scale) const
 
 	return vectorRes;
 }
-
 Vector4 Vector4::operator/(float scale) const
 {
 	Vector4 vectorRes;
@@ -82,8 +76,7 @@ Vector4 Vector4::operator/(float scale) const
 
 	return vectorRes;
 }
-
-Vector4& Vector4::operator+=(const Vector4& vector)
+Vector4& Vector4::operator+=(Vector4 vector)
 {
 	this->x += vector.x;
 	this->y += vector.y;
@@ -92,8 +85,7 @@ Vector4& Vector4::operator+=(const Vector4& vector)
 
 	return *this;
 }
-
-Vector4& Vector4::operator-=(const Vector4& vector)
+Vector4& Vector4::operator-=(Vector4 vector)
 {
 	this->x -= vector.x;
 	this->y -= vector.y;
@@ -102,8 +94,7 @@ Vector4& Vector4::operator-=(const Vector4& vector)
 
 	return *this;
 }
-
-Vector4& Vector4::operator*=(const Vector4& vector)
+Vector4& Vector4::operator*=(Vector4 vector)
 {
 	this->x *= vector.x;
 	this->y *= vector.y;
@@ -112,8 +103,7 @@ Vector4& Vector4::operator*=(const Vector4& vector)
 
 	return *this;
 }
-
-Vector4& Vector4::operator/=(const Vector4& vector)
+Vector4& Vector4::operator/=(Vector4 vector)
 {
 	this->x /= vector.x;
 	this->y /= vector.y;
@@ -122,7 +112,6 @@ Vector4& Vector4::operator/=(const Vector4& vector)
 
 	return *this;
 }
-
 Vector4& Vector4::operator*=(float scale)
 {
 	this->x *= scale;
@@ -132,7 +121,6 @@ Vector4& Vector4::operator*=(float scale)
 
 	return *this;
 }
-
 Vector4& Vector4::operator/=(float scale)
 {
 	this->x /= scale;
@@ -144,42 +132,35 @@ Vector4& Vector4::operator/=(float scale)
 }
 
 // Compare functions
-bool Vector4::operator==(const Vector4& vector) const
+bool Vector4::operator==(Vector4 vector) const
 {
 	return x == vector.x && y == vector.y && z == vector.z && w == vector.w;
 }
-
-bool Vector4::operator<(const Vector4& vector) const
+bool Vector4::operator<(Vector4 vector) const
 {
 	return x < vector.x&& y < vector.y&& z < vector.z;
 }
-
-bool Vector4::operator>(const Vector4& vector) const
+bool Vector4::operator>(Vector4 vector) const
 {
 	return vector < *this;
 }
-
-bool Vector4::operator<=(const Vector4& vector) const
+bool Vector4::operator<=(Vector4 vector) const
 {
 	return x <= vector.x&& y <= vector.y&& z <= vector.z;
 }
-
-bool Vector4::operator>=(const Vector4& vector) const
+bool Vector4::operator>=(Vector4 vector) const
 {
 	return vector <= *this;
 }
-
-bool Vector4::isEqualPrec(const Vector4& vector, float precision) const
+bool Vector4::isEqualPrec(Vector4 vector, float precision) const
 {
 	return fabsf(vector.x - x) <= precision && fabsf(vector.y - y) <= precision && fabsf(vector.z - z) <= precision && fabsf(vector.w - w) <= precision;
 }
-
-bool Vector4::isEqualPrec(const Vector4& vector, const Vector4& precision) const
+bool Vector4::isEqualPrec(Vector4 vector, Vector4 precision) const
 {
 	return fabsf(vector.x - x) <= precision.x && fabsf(vector.y - y) <= precision.y && fabsf(vector.z - z) <= precision.z && fabs(vector.w - w) <= precision.w;
 }
-
-Vector4 Vector4::isEqualVec(const Vector4& vector) const
+Vector4 Vector4::isEqualVec(Vector4 vector) const
 {
 	Vector4 result;
 	result.x = vector.x == x;
@@ -188,8 +169,7 @@ Vector4 Vector4::isEqualVec(const Vector4& vector) const
 	result.w = vector.w == w;
 	return result;
 }
-
-Vector4 Vector4::isEqualPrecVec(const Vector4& vector, const Vector4& precision) const
+Vector4 Vector4::isEqualPrecVec(Vector4 vector, Vector4 precision) const
 {
 	Vector4 result;
 	result.x = fabsf(vector.x - x) <= precision.x;

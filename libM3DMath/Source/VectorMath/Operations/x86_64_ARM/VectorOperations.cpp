@@ -5,7 +5,7 @@
 using namespace M3DM;
 
 // Vector2 and Vector3
-Vector3 M3DM::operator*(const Vector3& vector1, const Vector2& vector2)
+Vector3 M3DM::operator*(Vector3 vector1, Vector2 vector2)
 {
 	Vector3 vectorRes;
 	vectorRes.x = vector1.x * vector2.x;
@@ -14,7 +14,7 @@ Vector3 M3DM::operator*(const Vector3& vector1, const Vector2& vector2)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator*(const Vector2& vector1, const Vector3& vector2)
+Vector3 M3DM::operator*(Vector2 vector1, Vector3 vector2)
 {
 	Vector3 vectorRes;
 	vectorRes.x = vector1.x * vector2.x;
@@ -23,7 +23,7 @@ Vector3 M3DM::operator*(const Vector2& vector1, const Vector3& vector2)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator/(const Vector3& vector1, const Vector2& vector2)
+Vector3 M3DM::operator/(Vector3 vector1, Vector2 vector2)
 {
 	Vector3 vectorRes;
 	vectorRes.x = vector1.x / vector2.x;
@@ -32,7 +32,7 @@ Vector3 M3DM::operator/(const Vector3& vector1, const Vector2& vector2)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator/(const Vector2& vector1, const Vector3& vector2)
+Vector3 M3DM::operator/(Vector2 vector1, Vector3 vector2)
 {
 	Vector3 vectorRes;
 	vectorRes.x = vector1.x / vector2.x;
@@ -41,7 +41,7 @@ Vector3 M3DM::operator/(const Vector2& vector1, const Vector3& vector2)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator+(const Vector3& vector1, const Vector2& vector2)
+Vector3 M3DM::operator+(Vector3 vector1, Vector2 vector2)
 {
 	Vector3 vectorRes;
 	vectorRes.x = vector1.x + vector2.x;
@@ -50,7 +50,7 @@ Vector3 M3DM::operator+(const Vector3& vector1, const Vector2& vector2)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator+(const Vector2& vector1, const Vector3& vector2)
+Vector3 M3DM::operator+(Vector2 vector1, Vector3 vector2)
 {
 	Vector3 vectorRes;
 	vectorRes.x = vector1.x + vector2.x;
@@ -59,7 +59,7 @@ Vector3 M3DM::operator+(const Vector2& vector1, const Vector3& vector2)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator-(const Vector3& vector1, const Vector2& vector2)
+Vector3 M3DM::operator-(Vector3 vector1, Vector2 vector2)
 {
 	Vector3 vectorRes;
 	vectorRes.x = vector1.x - vector2.x;
@@ -68,7 +68,7 @@ Vector3 M3DM::operator-(const Vector3& vector1, const Vector2& vector2)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator-(const Vector2& vector1, const Vector3& vector2)
+Vector3 M3DM::operator-(Vector2 vector1, Vector3 vector2)
 {
 	Vector3 vectorRes;
 	vectorRes.x = vector1.x - vector2.x;
@@ -79,7 +79,7 @@ Vector3 M3DM::operator-(const Vector2& vector1, const Vector3& vector2)
 }
 
 // Vector2 and Vector4
-Vector4 M3DM::operator*(const Vector4& vector1, const Vector2& vector2)
+Vector4 M3DM::operator*(Vector4 vector1, Vector2 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x * vector2.x;
@@ -89,7 +89,7 @@ Vector4 M3DM::operator*(const Vector4& vector1, const Vector2& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator*(const Vector2& vector1, const Vector4& vector2)
+Vector4 M3DM::operator*(Vector2 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x * vector2.x;
@@ -99,7 +99,7 @@ Vector4 M3DM::operator*(const Vector2& vector1, const Vector4& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator/(const Vector4& vector1, const Vector2& vector2)
+Vector4 M3DM::operator/(Vector4 vector1, Vector2 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x / vector2.x;
@@ -109,7 +109,7 @@ Vector4 M3DM::operator/(const Vector4& vector1, const Vector2& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator/(const Vector2& vector1, const Vector4& vector2)
+Vector4 M3DM::operator/(Vector2 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x / vector2.x;
@@ -119,7 +119,7 @@ Vector4 M3DM::operator/(const Vector2& vector1, const Vector4& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator+(const Vector4& vector1, const Vector2& vector2)
+Vector4 M3DM::operator+(Vector4 vector1, Vector2 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x + vector2.x;
@@ -129,7 +129,7 @@ Vector4 M3DM::operator+(const Vector4& vector1, const Vector2& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator+(const Vector2& vector1, const Vector4& vector2)
+Vector4 M3DM::operator+(Vector2 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x + vector2.x;
@@ -139,7 +139,7 @@ Vector4 M3DM::operator+(const Vector2& vector1, const Vector4& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator-(const Vector4& vector1, const Vector2& vector2)
+Vector4 M3DM::operator-(Vector4 vector1, Vector2 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x - vector2.x;
@@ -149,7 +149,7 @@ Vector4 M3DM::operator-(const Vector4& vector1, const Vector2& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator-(const Vector2& vector1, const Vector4& vector2)
+Vector4 M3DM::operator-(Vector2 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x - vector2.x;
@@ -161,7 +161,7 @@ Vector4 M3DM::operator-(const Vector2& vector1, const Vector4& vector2)
 }
 
 // Vector3 and Vector4
-Vector4 M3DM::operator*(const Vector4& vector1, const Vector3& vector2)
+Vector4 M3DM::operator*(Vector4 vector1, Vector3 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x * vector2.x;
@@ -171,7 +171,7 @@ Vector4 M3DM::operator*(const Vector4& vector1, const Vector3& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator*(const Vector3& vector1, const Vector4& vector2)
+Vector4 M3DM::operator*(Vector3 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x * vector2.x;
@@ -181,7 +181,7 @@ Vector4 M3DM::operator*(const Vector3& vector1, const Vector4& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator/(const Vector4& vector1, const Vector3& vector2)
+Vector4 M3DM::operator/(Vector4 vector1, Vector3 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x / vector2.x;
@@ -191,7 +191,7 @@ Vector4 M3DM::operator/(const Vector4& vector1, const Vector3& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator/(const Vector3& vector1, const Vector4& vector2)
+Vector4 M3DM::operator/(Vector3 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x / vector2.x;
@@ -201,7 +201,7 @@ Vector4 M3DM::operator/(const Vector3& vector1, const Vector4& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator+(const Vector4& vector1, const Vector3& vector2)
+Vector4 M3DM::operator+(Vector4 vector1, Vector3 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x + vector2.x;
@@ -211,7 +211,7 @@ Vector4 M3DM::operator+(const Vector4& vector1, const Vector3& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator+(const Vector3& vector1, const Vector4& vector2)
+Vector4 M3DM::operator+(Vector3 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x / vector2.x;
@@ -221,7 +221,7 @@ Vector4 M3DM::operator+(const Vector3& vector1, const Vector4& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator-(const Vector4& vector1, const Vector3& vector2)
+Vector4 M3DM::operator-(Vector4 vector1, Vector3 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x - vector2.x;
@@ -231,7 +231,7 @@ Vector4 M3DM::operator-(const Vector4& vector1, const Vector3& vector2)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator-(const Vector3& vector1, const Vector4& vector2)
+Vector4 M3DM::operator-(Vector3 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
 	vectorRes.x = vector1.x - vector2.x;
@@ -243,19 +243,19 @@ Vector4 M3DM::operator-(const Vector3& vector1, const Vector4& vector2)
 }
 
 // Scalar operations
-Vector2 M3DM::operator*(float scale, const Vector2& vector)
+Vector2 M3DM::operator*(float scale, Vector2 vector)
 {
 	return vector*scale;
 }
-Vector3 M3DM::operator*(float scale, const Vector3& vector)
+Vector3 M3DM::operator*(float scale, Vector3 vector)
 {
 	return vector*scale;
 }
-Vector4 M3DM::operator*(float scale, const Vector4& vector)
+Vector4 M3DM::operator*(float scale, Vector4 vector)
 {
 	return vector*scale;
 }
-Vector2 M3DM::operator/(float scale, const Vector2& vector)
+Vector2 M3DM::operator/(float scale, Vector2 vector)
 {
 	Vector2 vectorRes;
 	vectorRes.x = scale / vector.x;
@@ -263,7 +263,7 @@ Vector2 M3DM::operator/(float scale, const Vector2& vector)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator/(float scale, const Vector3& vector)
+Vector3 M3DM::operator/(float scale, Vector3 vector)
 {
 	Vector3 vectorRes;
 	vectorRes.x = scale / vector.x;
@@ -272,7 +272,7 @@ Vector3 M3DM::operator/(float scale, const Vector3& vector)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator/(float scale, const Vector4& vector)
+Vector4 M3DM::operator/(float scale, Vector4 vector)
 {
 	Vector4 vectorRes;
 	vectorRes.x = scale / vector.x;

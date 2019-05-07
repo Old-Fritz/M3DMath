@@ -27,40 +27,39 @@ DoubleVectorF::DoubleVectorF(float* pArray)
 {
 	load(pArray);
 }
-DoubleVectorF::DoubleVectorF(const Vector2& vector)
+DoubleVectorF::DoubleVectorF(Vector2 vector)
 {
 	load(vector);
 }
-DoubleVectorF::DoubleVectorF(const Vector3& vector)
+DoubleVectorF::DoubleVectorF(Vector3 vector)
 {
 	load(vector);
 }
-DoubleVectorF::DoubleVectorF(const Vector4& vector)
+DoubleVectorF::DoubleVectorF(Vector4 vector)
 {
 	load(vector);
 }
-DoubleVectorF::DoubleVectorF(const Vector2& vector1, const Vector2& vector2)
+DoubleVectorF::DoubleVectorF(Vector2 vector1, Vector2 vector2)
 {
 	load(vector1, vector2);
 }
-DoubleVectorF::DoubleVectorF(const Vector3& vector1, const Vector3& vector2)
+DoubleVectorF::DoubleVectorF(Vector3 vector1, Vector3 vector2)
 {
 	load(vector1, vector2);
 }
-DoubleVectorF::DoubleVectorF(const Vector4& vector1, const Vector4& vector2)
+DoubleVectorF::DoubleVectorF(Vector4 vector1, Vector4 vector2)
 {
 	load(vector1, vector2);
 }
-DoubleVectorF::DoubleVectorF(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3,
-	const Vector2& vector4)
+DoubleVectorF::DoubleVectorF(Vector2 vector1, Vector2 vector2, Vector2 vector3, Vector2 vector4)
 {
 	load(vector1, vector2, vector3, vector4);
 }
-DoubleVectorF::DoubleVectorF(const VectorF& vector)
+DoubleVectorF::DoubleVectorF(VectorF vector)
 {
 	load(vector);
 }
-DoubleVectorF::DoubleVectorF(const VectorF& vector1, const VectorF& vector2)
+DoubleVectorF::DoubleVectorF(VectorF vector1, VectorF vector2)
 {
 	load(vector1, vector2);
 }
@@ -70,19 +69,19 @@ DoubleVectorF::operator __m256() const
 }
 
 // Base operations
-DoubleVectorF DoubleVectorF::operator+(const DoubleVectorF& vector) const
+DoubleVectorF DoubleVectorF::operator+(DoubleVectorF vector) const
 {
 	return _mm256_add_ps(m_data, vector.m_data);
 }
-DoubleVectorF DoubleVectorF::operator-(const DoubleVectorF& vector) const
+DoubleVectorF DoubleVectorF::operator-(DoubleVectorF vector) const
 {
 	return _mm256_sub_ps(m_data, vector.m_data);
 }
-DoubleVectorF DoubleVectorF::operator*(const DoubleVectorF& vector) const
+DoubleVectorF DoubleVectorF::operator*(DoubleVectorF vector) const
 {
 	return _mm256_mul_ps(m_data, vector.m_data);
 }
-DoubleVectorF DoubleVectorF::operator/(const DoubleVectorF& vector) const
+DoubleVectorF DoubleVectorF::operator/(DoubleVectorF vector) const
 {
 	return _mm256_div_ps(m_data, vector.m_data);
 }
@@ -96,22 +95,22 @@ DoubleVectorF DoubleVectorF::operator/(float scale) const
 	__m256 data2 = _mm256_set1_ps(scale);
 	return _mm256_div_ps(m_data, data2);
 }
-DoubleVectorF& DoubleVectorF::operator+=(const DoubleVectorF& vector)
+DoubleVectorF& DoubleVectorF::operator+=(DoubleVectorF vector)
 {
 	m_data = _mm256_add_ps(m_data, vector.m_data);
 	return *this;
 }
-DoubleVectorF& DoubleVectorF::operator-=(const DoubleVectorF& vector)
+DoubleVectorF& DoubleVectorF::operator-=(DoubleVectorF vector)
 {
 	m_data = _mm256_sub_ps(m_data, vector.m_data);
 	return *this;
 }
-DoubleVectorF& DoubleVectorF::operator*=(const DoubleVectorF& vector)
+DoubleVectorF& DoubleVectorF::operator*=(DoubleVectorF vector)
 {
 	m_data = _mm256_mul_ps(m_data, vector.m_data);
 	return *this;
 }
-DoubleVectorF& DoubleVectorF::operator/=(const DoubleVectorF& vector)
+DoubleVectorF& DoubleVectorF::operator/=(DoubleVectorF vector)
 {
 	m_data = _mm256_div_ps(m_data, vector.m_data);
 	return *this;
@@ -128,55 +127,49 @@ DoubleVectorF& DoubleVectorF::operator/=(float scale)
 	m_data = _mm256_div_ps(m_data, data2);
 	return *this;
 }
-bool DoubleVectorF::operator==(const DoubleVectorF& vector) const
+
+// Compare functions
+bool DoubleVectorF::operator==(DoubleVectorF vector) const
 {
 	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_EQ_OQ);
     return _mm256_test_all_ones(dataEqual);
 }
-
-bool DoubleVectorF::operator<(const DoubleVectorF& vector) const
+bool DoubleVectorF::operator<(DoubleVectorF vector) const
 {
 	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_LT_OQ); 
 	return _mm256_test_all_ones(dataEqual);
 }
-
-bool DoubleVectorF::operator>(const DoubleVectorF& vector) const
+bool DoubleVectorF::operator>(DoubleVectorF vector) const
 {
 	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_GT_OQ);
 	return _mm256_test_all_ones(dataEqual);
 }
-
-bool DoubleVectorF::operator<=(const DoubleVectorF& vector) const
+bool DoubleVectorF::operator<=(DoubleVectorF vector) const
 {
 	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_LE_OQ);
 	return _mm256_test_all_ones(dataEqual);
 }
-
-bool DoubleVectorF::operator>=(const DoubleVectorF& vector) const
+bool DoubleVectorF::operator>=(DoubleVectorF vector) const
 {
 	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_GE_OQ);
 	return _mm256_test_all_ones(dataEqual);
 }
-
-bool DoubleVectorF::isEqualPrec(const DoubleVectorF& vector, float precision) const
+bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, float precision) const
 {
 	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_GT_OQ);
 	return _mm256_test_all_ones(dataEqual);
 }
-
-bool DoubleVectorF::isEqualPrec(const DoubleVectorF& vector, const DoubleVectorF& precision) const
+bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, DoubleVectorF precision) const
 {
 	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
 	__m256 dataCmp = _mm256_cmp_ps(delta, precision, _CMP_LE_OQ);
 	return _mm256_test_all_ones(dataCmp);
 }
-
-DoubleVectorF DoubleVectorF::isEqualVec(const DoubleVectorF& vector) const
+DoubleVectorF DoubleVectorF::isEqualVec(DoubleVectorF vector) const
 {
 	return _mm256_cmp_ps(m_data, vector.m_data, _CMP_EQ_OQ);
 }
-
-DoubleVectorF DoubleVectorF::isEqualPrecVec(const DoubleVectorF& vector, const DoubleVectorF& precision) const
+DoubleVectorF DoubleVectorF::isEqualPrecVec(DoubleVectorF vector, DoubleVectorF precision) const
 {
 	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
 	return _mm256_cmp_ps(delta, precision, _CMP_LE_OQ);
@@ -192,39 +185,39 @@ void DoubleVectorF::load(const float* pArray)
 {
 	m_data = _mm256_load_ps(pArray);
 }
-void DoubleVectorF::load(const Vector2& vector)
+void DoubleVectorF::load(Vector2 vector)
 {
 	m_data = _mm256_setr_ps(vector.x, vector.y, 0, 0, 0, 0, 0, 0);
 }
-void DoubleVectorF::load(const Vector3& vector)
+void DoubleVectorF::load(Vector3 vector)
 {
 	m_data = _mm256_setr_ps(vector.x, vector.y, vector.z, 0, 0, 0, 0, 0);
 }
-void DoubleVectorF::load(const Vector4& vector)
+void DoubleVectorF::load(Vector4 vector)
 {
 	m_data = _mm256_setr_ps(vector.x, vector.y, vector.z, vector.w, 0, 0, 0, 0);
 }
-void DoubleVectorF::load(const Vector2& vector1, const Vector2& vector2)
+void DoubleVectorF::load(Vector2 vector1, Vector2 vector2)
 {
 	m_data = _mm256_setr_ps(vector1.x, vector1.y, 0, 0, vector2.x, vector2.y, 0, 0);
 }
-void DoubleVectorF::load(const Vector3& vector1, const Vector3& vector2)
+void DoubleVectorF::load(Vector3 vector1, Vector3 vector2)
 {
 	m_data = _mm256_setr_ps(vector1.x, vector1.y, vector1.z, 0, vector2.x, vector2.y, vector2.z, 0);
 }
-void DoubleVectorF::load(const Vector4& vector1, const Vector4& vector2)
+void DoubleVectorF::load(Vector4 vector1, Vector4 vector2)
 {
 	load(VectorF(vector1), VectorF(vector2));
 }
-void DoubleVectorF::load(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4)
+void DoubleVectorF::load(Vector2 vector1, Vector2 vector2, Vector2 vector3, Vector2 vector4)
 {
 	load(VectorF(vector1, vector2), VectorF(vector3, vector4));
 }
-void DoubleVectorF::load(const VectorF& vector)
+void DoubleVectorF::load(VectorF vector)
 {
 	m_data = _mm256_insertf128_ps(__m256(), vector, 1);
 }
-void DoubleVectorF::load(const VectorF& vector1, const VectorF& vector2)
+void DoubleVectorF::load(VectorF vector1, VectorF vector2)
 {
     m_data = _mm256_insertf128_ps(_mm256_castps128_ps256(vector1), (vector2), 0x1);
 }
