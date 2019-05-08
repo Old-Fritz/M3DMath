@@ -217,19 +217,19 @@ namespace M3DM
 	{
 	public:
 		// Constructors
-		VECCALL VectorF() : m_data() {}
-		VECCALL VectorF(const VectorF& vector) = default;
-		VECCALL VectorF(M128 data) : m_data(data) {}
+		VectorF() : m_data() {}
+		VectorF(const VectorF& vector) = default;
+		VectorF(M128 data) : m_data(data) {}
 		VectorF& VECCALL operator=(const VectorF& vector) = default;
 		
 		// Conversions
-		explicit VECCALL VectorF(float x = 0, float y = 0, float z = 0, float w = 0);
-		explicit VECCALL VectorF(float* pArray);
-		explicit VECCALL VectorF(Vector2 vector);
-		explicit VECCALL VectorF(Vector3 vector);
-		explicit VECCALL VectorF(Vector4 vector);
-		explicit VECCALL VectorF(Vector2 vector1, Vector2 vector2);
-		VECCALL operator M128() const;
+		explicit VectorF(float x = 0, float y = 0, float z = 0, float w = 0);
+		explicit VectorF(float* pArray);
+		explicit VectorF(Vector2 vector);
+		explicit VectorF(Vector3 vector);
+		explicit VectorF(Vector4 vector);
+		explicit VectorF(Vector2 vector1, Vector2 vector2);
+		operator M128() const;
 
 		// Base operations
 		VectorF VECCALL operator+(VectorF vector) const;
@@ -280,23 +280,23 @@ namespace M3DM
 	{
 	public:
 		// Constructors
-		VECCALL DoubleVectorF() : m_data() {}
-		VECCALL DoubleVectorF(const DoubleVectorF& vector) = default;
-		VECCALL DoubleVectorF(M256 data) : m_data(data) {}
+		DoubleVectorF() : m_data() {}
+		DoubleVectorF(const DoubleVectorF& vector) = default;
+		DoubleVectorF(M256 data) : m_data(data) {}
 		DoubleVectorF& VECCALL operator=(const DoubleVectorF& vector) = default;
 
 		// Conversions
-		explicit VECCALL DoubleVectorF(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
-		explicit VECCALL DoubleVectorF(float* pArray);
-		explicit VECCALL DoubleVectorF(Vector2 vector);
-		explicit VECCALL DoubleVectorF(Vector3 vector);
-		explicit VECCALL DoubleVectorF(Vector4 vector);
-		explicit VECCALL DoubleVectorF(Vector2 vector1, Vector2 vector2);
-		explicit VECCALL DoubleVectorF(Vector3 vector1, Vector3 vector2);
-		explicit VECCALL DoubleVectorF(Vector4 vector1, Vector4 vector2);
-		explicit VECCALL DoubleVectorF(Vector2 vector1, Vector2 vector2, Vector2 vector3, Vector2 vector4);
-		explicit VECCALL DoubleVectorF(VectorF vector);
-		explicit VECCALL DoubleVectorF(VectorF vector1, VectorF vector2);
+		explicit DoubleVectorF(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
+		explicit DoubleVectorF(float* pArray);
+		explicit DoubleVectorF(Vector2 vector);
+		explicit DoubleVectorF(Vector3 vector);
+		explicit DoubleVectorF(Vector4 vector);
+		explicit DoubleVectorF(Vector2 vector1, Vector2 vector2);
+		explicit DoubleVectorF(Vector3 vector1, Vector3 vector2);
+		explicit DoubleVectorF(Vector4 vector1, Vector4 vector2);
+		explicit DoubleVectorF(Vector2 vector1, Vector2 vector2, Vector2 vector3, Vector2 vector4);
+		explicit DoubleVectorF(VectorF vector);
+		explicit DoubleVectorF(VectorF vector1, VectorF vector2);
 		VECCALL operator M256() const;
 
 		// Base operations

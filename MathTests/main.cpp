@@ -17,8 +17,14 @@ using namespace M3DM;
 bool makeTests()
 {
 	Vector2Tester vector2Tester;
+	Vector3Tester vector3Tester;
 	bool result;
+
 	result = vector2Tester.testAll();
+	if (!result)
+		return false;
+
+	result = vector3Tester.testAll();
 	if (!result)
 		return false;
 
