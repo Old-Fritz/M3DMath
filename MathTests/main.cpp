@@ -18,6 +18,8 @@ bool makeTests()
 {
 	Vector2Tester vector2Tester;
 	Vector3Tester vector3Tester;
+	Vector4Tester vector4Tester;
+
 	bool result;
 
 	result = vector2Tester.testAll();
@@ -27,6 +29,12 @@ bool makeTests()
 	result = vector3Tester.testAll();
 	if (!result)
 		return false;
+
+
+	result = vector4Tester.testAll();
+	if (!result)
+		return false;
+
 
 	return true;
 }
