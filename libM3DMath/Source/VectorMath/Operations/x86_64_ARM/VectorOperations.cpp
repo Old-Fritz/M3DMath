@@ -214,9 +214,9 @@ Vector4 M3DM::operator+(Vector4 vector1, Vector3 vector2)
 Vector4 M3DM::operator+(Vector3 vector1, Vector4 vector2)
 {
 	Vector4 vectorRes;
-	vectorRes.x = vector1.x / vector2.x;
-	vectorRes.y = vector1.y / vector2.y;
-	vectorRes.z = vector1.z / vector2.z;
+	vectorRes.x = vector1.x + vector2.x;
+	vectorRes.y = vector1.y + vector2.y;
+	vectorRes.z = vector1.z + vector2.z;
 	vectorRes.w = vector2.w;
 
 	return vectorRes;

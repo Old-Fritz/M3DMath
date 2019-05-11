@@ -19,6 +19,7 @@ bool makeTests()
 	Vector2Tester vector2Tester;
 	Vector3Tester vector3Tester;
 	Vector4Tester vector4Tester;
+	VectorOperationsTester vectorOperatinosTester;
 
 	bool result;
 
@@ -35,6 +36,9 @@ bool makeTests()
 	if (!result)
 		return false;
 
+	result = vectorOperatinosTester.testAll();
+	if (!result)
+		return false;
 
 	return true;
 }

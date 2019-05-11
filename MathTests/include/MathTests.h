@@ -65,3 +65,14 @@ public:
 	bool testMul();
 	bool testDiv();
 };
+
+class VectorOperationsTester
+{
+public:
+	bool testAll();
+
+	bool testVector2And3();
+	bool testVector2And4();
+	bool testVector3And4();
+	bool testScalarOperations();
+};
