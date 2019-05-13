@@ -54,36 +54,36 @@ namespace M3DM
 
 		// Conversions
 		explicit Vector2(const float* pArray) : x(pArray[0]), y(pArray[1]) {}
-		explicit Vector2(Vector3 vector);
-		explicit Vector2(Vector4 vector);
+		explicit Vector2(const Vector3& vector);
+		explicit Vector2(const Vector4& vector);
 		operator float* ();
 		operator float const* () const;
 
 		// Base operations
-		Vector2 operator+(Vector2 vector) const;
-		Vector2 operator-(Vector2 vector) const;
-		Vector2 operator*(Vector2 vector) const;
-		Vector2 operator/(Vector2 vector) const;
+		Vector2 operator+(const Vector2& vector) const;
+		Vector2 operator-(const Vector2& vector) const;
+		Vector2 operator*(const Vector2& vector) const;
+		Vector2 operator/(const Vector2& vector) const;
 		Vector2 operator*(float scale) const;
 		Vector2 operator/(float scale) const;
-		Vector2& operator+=(Vector2 vector);
-		Vector2& operator-=(Vector2 vector);
-		Vector2& operator*=(Vector2 vector);
-		Vector2& operator/=(Vector2 vector);
+		Vector2& operator+=(const Vector2& vector);
+		Vector2& operator-=(const Vector2& vector);
+		Vector2& operator*=(const Vector2& vector);
+		Vector2& operator/=(const Vector2& vector);
 		Vector2& operator*=(float scale);
 		Vector2& operator/=(float scale);
 		
 
 		// Compare functions
-		bool operator==(Vector2 vector) const;
-		bool operator<(Vector2 vector) const;
-		bool operator>(Vector2 vector) const;
-		bool operator<=(Vector2 vector) const;
-		bool operator>=(Vector2 vector) const;
-		bool isEqualPrec(Vector2 vector, float precision = 0) const;
-		bool isEqualPrec(Vector2 vector, Vector2 precision) const;
-		Vector2 isEqualVec(Vector2 vector) const;
-		Vector2 isEqualPrecVec(Vector2 vector, Vector2 precision) const;
+		bool operator==(const Vector2& vector) const;
+		bool operator<(const Vector2& vector) const;
+		bool operator>(const Vector2& vector) const;
+		bool operator<=(const Vector2& vector) const;
+		bool operator>=(const Vector2& vector) const;
+		bool isEqualPrec(const Vector2& vector, float precision = 0) const;
+		bool isEqualPrec(const Vector2& vector, const Vector2& precision) const;
+		Vector2 isEqualVec(const Vector2& vector) const;
+		Vector2 isEqualPrecVec(const Vector2& vector, const Vector2& precision) const;
 	};
 
 	struct Vector3
@@ -97,35 +97,35 @@ namespace M3DM
 
 		// Conversions
 		explicit Vector3(const float* pArray) : x(pArray[0]), y(pArray[1]), z(pArray[2]) {}
-		explicit Vector3(Vector2 vector) : x(vector.x), y(vector.y), z(0) {}
-		explicit Vector3(Vector4 vector);
+		explicit Vector3(const Vector2& vector) : x(vector.x), y(vector.y), z(0) {}
+		explicit Vector3(const Vector4& vector);
 		operator float* ();
 		operator float const* () const;
 
 		// Base operations
-		Vector3 operator+(Vector3 vector) const;
-		Vector3 operator-(Vector3 vector) const;
-		Vector3 operator*(Vector3 vector) const;
-		Vector3 operator/(Vector3 vector) const;
+		Vector3 operator+(const Vector3& vector) const;
+		Vector3 operator-(const Vector3& vector) const;
+		Vector3 operator*(const Vector3& vector) const;
+		Vector3 operator/(const Vector3& vector) const;
 		Vector3 operator*(float scale) const;
 		Vector3 operator/(float scale) const;
-		Vector3& operator+=(Vector3 vector);
-		Vector3& operator-=(Vector3 vector);
-		Vector3& operator*=(Vector3 vector);
-		Vector3& operator/=(Vector3 vector);
+		Vector3& operator+=(const Vector3& vector);
+		Vector3& operator-=(const Vector3& vector);
+		Vector3& operator*=(const Vector3& vector);
+		Vector3& operator/=(const Vector3& vector);
 		Vector3& operator*=(float scale);
 		Vector3& operator/=(float scale);
 
 		// Compare functions
-		bool operator==(Vector3 vector) const;
-		bool operator<(Vector3 vector) const;
-		bool operator>(Vector3 vector) const;
-		bool operator<=(Vector3 vector) const;
-		bool operator>=(Vector3 vector) const;
-		bool isEqualPrec(Vector3 vector, float precision = 0) const;
-		bool isEqualPrec(Vector3 vector, Vector3 precision) const;
-		Vector3 isEqualVec(Vector3 vector) const;
-		Vector3 isEqualPrecVec(Vector3 vector, Vector3 precision) const;
+		bool operator==(const Vector3& vector) const;
+		bool operator<(const Vector3& vector) const;
+		bool operator>(const Vector3& vector) const;
+		bool operator<=(const Vector3& vector) const;
+		bool operator>=(const Vector3& vector) const;
+		bool isEqualPrec(const Vector3& vector, float precision = 0) const;
+		bool isEqualPrec(const Vector3& vector, const Vector3& precision) const;
+		Vector3 isEqualVec(const Vector3& vector) const;
+		Vector3 isEqualPrecVec(const Vector3& vector, const Vector3& precision) const;
 	};
 	
 	struct ALIGN(16) Vector4
@@ -139,77 +139,77 @@ namespace M3DM
 
 		// Conversions
 		explicit Vector4(const float* pArray) : x(pArray[0]), y(pArray[1]), z(pArray[2]), w(pArray[3]) {}
-		explicit Vector4(const Vector2 vector) : x(vector.x), y(vector.y), z(0), w(0) {}
-		explicit Vector4(const Vector3 vector) : x(vector.x), y(vector.y), z(vector.z), w(0) {}
-		explicit Vector4(const Vector2 vector1, const Vector2& vector2) : x(vector1.x), y(vector1.y), z(vector2.x), w(vector2.y) {}
+		explicit Vector4(const Vector2& vector) : x(vector.x), y(vector.y), z(0), w(0) {}
+		explicit Vector4(const Vector3& vector) : x(vector.x), y(vector.y), z(vector.z), w(0) {}
+		explicit Vector4(const Vector2& vector1, const Vector2& vector2) : x(vector1.x), y(vector1.y), z(vector2.x), w(vector2.y) {}
 		operator float*();
 		operator float const * () const;
 
 		// Base operations
-		Vector4 operator+(Vector4 vector) const;
-		Vector4 operator-(Vector4 vector) const;
-		Vector4 operator*(Vector4 vector) const;
-		Vector4 operator/(Vector4 vector) const;
+		Vector4 operator+(const Vector4& vector) const;
+		Vector4 operator-(const Vector4& vector) const;
+		Vector4 operator*(const Vector4& vector) const;
+		Vector4 operator/(const Vector4& vector) const;
 		Vector4 operator*(float scale) const;
 		Vector4 operator/(float scale) const;
-		Vector4& operator+=(Vector4 vector);
-		Vector4& operator-=(Vector4 vector);
-		Vector4& operator*=(Vector4 vector);
-		Vector4& operator/=(Vector4 vector);
+		Vector4& operator+=(const Vector4& vector);
+		Vector4& operator-=(const Vector4& vector);
+		Vector4& operator*=(const Vector4& vector);
+		Vector4& operator/=(const Vector4& vector);
 		Vector4& operator*=(float scale);
 		Vector4& operator/=(float scale);
 
 		// Compare functions
-		bool operator==(Vector4 vector) const;
-		bool operator<(Vector4 vector) const;
-		bool operator>(Vector4 vector) const;
-		bool operator<=(Vector4 vector) const;
-		bool operator>=(Vector4 vector) const;
-		bool isEqualPrec(Vector4 vector, float precision = 0) const;
-		bool isEqualPrec(Vector4 vector, Vector4 precision) const;
-		Vector4 isEqualVec(Vector4 vector) const;
-		Vector4 isEqualPrecVec(Vector4 vector, Vector4 precision) const;
+		bool operator==(const Vector4& vector) const;
+		bool operator<(const Vector4& vector) const;
+		bool operator>(const Vector4& vector) const;
+		bool operator<=(const Vector4& vector) const;
+		bool operator>=(const Vector4& vector) const;
+		bool isEqualPrec(const Vector4& vector, float precision = 0) const;
+		bool isEqualPrec(const Vector4& vector, const Vector4& precision) const;
+		Vector4 isEqualVec(const Vector4& vector) const;
+		Vector4 isEqualPrecVec(const Vector4& vector, const Vector4& precision) const;
 	};
 
 	/// Different operator combinations
 #pragma region 
 	// Vector2 and Vector3
-	Vector3 operator*(Vector3 vector1, Vector2 vector2);
-	Vector3 operator*(Vector2 vector1, Vector3 vector2);
-	Vector3 operator/(Vector3 vector1, Vector2 vector2);
-	Vector3 operator/(Vector2 vector1, Vector3 vector2);
-	Vector3 operator+(Vector3 vector1, Vector2 vector2);
-	Vector3 operator+(Vector2 vector1, Vector3 vector2);
-	Vector3 operator-(Vector3 vector1, Vector2 vector2);
-	Vector3 operator-(Vector2 vector1, Vector3 vector2);
+	Vector3 operator*(const Vector3& vector1, const Vector2& vector2);
+	Vector3 operator*(const Vector2& vector1, const Vector3& vector2);
+	Vector3 operator/(const Vector3& vector1, const Vector2& vector2);
+	Vector3 operator/(const Vector2& vector1, const Vector3& vector2);
+	Vector3 operator+(const Vector3& vector1, const Vector2& vector2);
+	Vector3 operator+(const Vector2& vector1, const Vector3& vector2);
+	Vector3 operator-(const Vector3& vector1, const Vector2& vector2);
+	Vector3 operator-(const Vector2& vector1, const Vector3& vector2);
 
 	// Vector2 and Vector4
-	Vector4 operator*(Vector4 vector1, Vector2 vector2);
-	Vector4 operator*(Vector2 vector1, Vector4 vector2);
-	Vector4 operator/(Vector4 vector1, Vector2 vector2);
-	Vector4 operator/(Vector2 vector1, Vector4 vector2);
-	Vector4 operator+(Vector4 vector1, Vector2 vector2);
-	Vector4 operator+(Vector2 vector1, Vector4 vector2);
-	Vector4 operator-(Vector4 vector1, Vector2 vector2);
-	Vector4 operator-(Vector2 vector1, Vector4 vector2);
+	Vector4 operator*(const Vector4& vector1, const Vector2& vector2);
+	Vector4 operator*(const Vector2& vector1, const Vector4& vector2);
+	Vector4 operator/(const Vector4& vector1, const Vector2& vector2);
+	Vector4 operator/(const Vector2& vector1, const Vector4& vector2);
+	Vector4 operator+(const Vector4& vector1, const Vector2& vector2);
+	Vector4 operator+(const Vector2& vector1, const Vector4& vector2);
+	Vector4 operator-(const Vector4& vector1, const Vector2& vector2);
+	Vector4 operator-(const Vector2& vector1, const Vector4& vector2);
 
 	// Vector3 and Vector4
-	Vector4 operator*(Vector4 vector1, Vector3 vector2);
-	Vector4 operator*(Vector3 vector1, Vector4 vector2);
-	Vector4 operator/(Vector4 vector1, Vector3 vector2);
-	Vector4 operator/(Vector3 vector1, Vector4 vector2);
-	Vector4 operator+(Vector4 vector1, Vector3 vector2);
-	Vector4 operator+(Vector3 vector1, Vector4 vector2);
-	Vector4 operator-(Vector4 vector1, Vector3 vector2);
-	Vector4 operator-(Vector3 vector1, Vector4 vector2);
+	Vector4 operator*(const Vector4& vector1, const Vector3& vector2);
+	Vector4 operator*(const Vector3& vector1, const Vector4& vector2);
+	Vector4 operator/(const Vector4& vector1, const Vector3& vector2);
+	Vector4 operator/(const Vector3& vector1, const Vector4& vector2);
+	Vector4 operator+(const Vector4& vector1, const Vector3& vector2);
+	Vector4 operator+(const Vector3& vector1, const Vector4& vector2);
+	Vector4 operator-(const Vector4& vector1, const Vector3& vector2);
+	Vector4 operator-(const Vector3& vector1, const Vector4& vector2);
 
 	// Scalar operations
-	Vector2 operator*(float scale, Vector2 vector);
-	Vector3 operator*(float scale, Vector3 vector);
-	Vector4 operator*(float scale, Vector4 vector);
-	Vector2 operator/(float scale, Vector2 vector);
-	Vector3 operator/(float scale, Vector3 vector);
-	Vector4 operator/(float scale, Vector4 vector);
+	Vector2 operator*(float scale, const Vector2& vector);
+	Vector3 operator*(float scale, const Vector3& vector);
+	Vector4 operator*(float scale, const Vector4& vector);
+	Vector2 operator/(float scale, const Vector2& vector);
+	Vector3 operator/(float scale, const Vector3& vector);
+	Vector4 operator/(float scale, const Vector4& vector);
 #pragma endregion operators
 	
 	/// SSE vector
@@ -225,10 +225,10 @@ namespace M3DM
 		// Conversions
 		explicit VectorF(float x = 0, float y = 0, float z = 0, float w = 0);
 		explicit VectorF(float* pArray);
-		explicit VectorF(Vector2 vector);
-		explicit VectorF(Vector3 vector);
-		explicit VectorF(Vector4 vector);
-		explicit VectorF(Vector2 vector1, Vector2 vector2);
+		explicit VectorF(const Vector2& vector);
+		explicit VectorF(const Vector3& vector);
+		explicit VectorF(const Vector4& vector);
+		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
 		operator M128() const;
 
 		// Base operations
@@ -259,10 +259,10 @@ namespace M3DM
 		// load/store
 		void VECCALL load(float x = 0, float y = 0, float z = 0, float w = 0);
 		void VECCALL load(const float* pArray);
-		void VECCALL load(Vector2 vector);
-		void VECCALL load(Vector3 vector);
-		void VECCALL load(Vector4 vector);
-		void VECCALL load(Vector2 vector1, Vector2 vector2);
+		void VECCALL load(const Vector2& vector);
+		void VECCALL load(const Vector3& vector);
+		void VECCALL load(const Vector4& vector);
+		void VECCALL load(const Vector2& vector1, const Vector2& vector2);
 
 		void VECCALL store(float& x, float& y, float& z, float& w) const;
 		void VECCALL store(float* pArray) const;
@@ -288,13 +288,13 @@ namespace M3DM
 		// Conversions
 		explicit DoubleVectorF(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
 		explicit DoubleVectorF(float* pArray);
-		explicit DoubleVectorF(Vector2 vector);
-		explicit DoubleVectorF(Vector3 vector);
-		explicit DoubleVectorF(Vector4 vector);
-		explicit DoubleVectorF(Vector2 vector1, Vector2 vector2);
-		explicit DoubleVectorF(Vector3 vector1, Vector3 vector2);
-		explicit DoubleVectorF(Vector4 vector1, Vector4 vector2);
-		explicit DoubleVectorF(Vector2 vector1, Vector2 vector2, Vector2 vector3, Vector2 vector4);
+		explicit DoubleVectorF(const Vector2& vector);
+		explicit DoubleVectorF(const Vector3& vector);
+		explicit DoubleVectorF(const Vector4& vector);
+		explicit DoubleVectorF(const Vector2& vector1, const Vector2& vector2);
+		explicit DoubleVectorF(const Vector3& vector1, const Vector3& vector2);
+		explicit DoubleVectorF(const Vector4& vector1, const Vector4& vector2);
+		explicit DoubleVectorF(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4);
 		explicit DoubleVectorF(VectorF vector);
 		explicit DoubleVectorF(VectorF vector1, VectorF vector2);
 		VECCALL operator M256() const;
@@ -327,13 +327,13 @@ namespace M3DM
 		// load/store
 		void VECCALL load(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
 		void VECCALL load(const float* pArray);
-		void VECCALL load(Vector2 vector);
-		void VECCALL load(Vector3 vector);
-		void VECCALL load(Vector4 vector);
-		void VECCALL load(Vector2 vector1, Vector2 vector2);
-		void VECCALL load(Vector3 vector1, Vector3 vector2);
-		void VECCALL load(Vector4 vector1, Vector4 vector2);
-		void VECCALL load(Vector2 vector1, Vector2 vector2, Vector2 vector3, Vector2 vector4);
+		void VECCALL load(const Vector2& vector);
+		void VECCALL load(const Vector3& vector);
+		void VECCALL load(const Vector4& vector);
+		void VECCALL load(const Vector2& vector1, const Vector2& vector2);
+		void VECCALL load(const Vector3& vector1, const Vector3& vector2);
+		void VECCALL load(const Vector4& vector1, const Vector4& vector2);
+		void VECCALL load(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4);
 		void VECCALL load(VectorF vector);
 		void VECCALL load(VectorF vector1, VectorF vector2);
 

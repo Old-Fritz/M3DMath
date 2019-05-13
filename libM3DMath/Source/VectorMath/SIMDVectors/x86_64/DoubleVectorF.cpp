@@ -27,31 +27,31 @@ DoubleVectorF::DoubleVectorF(float* pArray)
 {
 	load(pArray);
 }
-DoubleVectorF::DoubleVectorF(Vector2 vector)
+DoubleVectorF::DoubleVectorF(const Vector2& vector)
 {
 	load(vector);
 }
-DoubleVectorF::DoubleVectorF(Vector3 vector)
+DoubleVectorF::DoubleVectorF(const Vector3& vector)
 {
 	load(vector);
 }
-DoubleVectorF::DoubleVectorF(Vector4 vector)
+DoubleVectorF::DoubleVectorF(const Vector4& vector)
 {
 	load(vector);
 }
-DoubleVectorF::DoubleVectorF(Vector2 vector1, Vector2 vector2)
+DoubleVectorF::DoubleVectorF(const Vector2& vector1, const Vector2& vector2)
 {
 	load(vector1, vector2);
 }
-DoubleVectorF::DoubleVectorF(Vector3 vector1, Vector3 vector2)
+DoubleVectorF::DoubleVectorF(const Vector3& vector1, const Vector3& vector2)
 {
 	load(vector1, vector2);
 }
-DoubleVectorF::DoubleVectorF(Vector4 vector1, Vector4 vector2)
+DoubleVectorF::DoubleVectorF(const Vector4& vector1, const Vector4& vector2)
 {
 	load(vector1, vector2);
 }
-DoubleVectorF::DoubleVectorF(Vector2 vector1, Vector2 vector2, Vector2 vector3, Vector2 vector4)
+DoubleVectorF::DoubleVectorF(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4)
 {
 	load(vector1, vector2, vector3, vector4);
 }
@@ -185,31 +185,31 @@ void DoubleVectorF::load(const float* pArray)
 {
 	m_data = _mm256_load_ps(pArray);
 }
-void DoubleVectorF::load(Vector2 vector)
+void DoubleVectorF::load(const Vector2& vector)
 {
 	m_data = _mm256_setr_ps(vector.x, vector.y, 0, 0, 0, 0, 0, 0);
 }
-void DoubleVectorF::load(Vector3 vector)
+void DoubleVectorF::load(const Vector3& vector)
 {
 	m_data = _mm256_setr_ps(vector.x, vector.y, vector.z, 0, 0, 0, 0, 0);
 }
-void DoubleVectorF::load(Vector4 vector)
+void DoubleVectorF::load(const Vector4& vector)
 {
 	m_data = _mm256_setr_ps(vector.x, vector.y, vector.z, vector.w, 0, 0, 0, 0);
 }
-void DoubleVectorF::load(Vector2 vector1, Vector2 vector2)
+void DoubleVectorF::load(const Vector2& vector1, const Vector2& vector2)
 {
 	m_data = _mm256_setr_ps(vector1.x, vector1.y, 0, 0, vector2.x, vector2.y, 0, 0);
 }
-void DoubleVectorF::load(Vector3 vector1, Vector3 vector2)
+void DoubleVectorF::load(const Vector3& vector1, const Vector3& vector2)
 {
 	m_data = _mm256_setr_ps(vector1.x, vector1.y, vector1.z, 0, vector2.x, vector2.y, vector2.z, 0);
 }
-void DoubleVectorF::load(Vector4 vector1, Vector4 vector2)
+void DoubleVectorF::load(const Vector4& vector1, const Vector4& vector2)
 {
 	load(VectorF(vector1), VectorF(vector2));
 }
-void DoubleVectorF::load(Vector2 vector1, Vector2 vector2, Vector2 vector3, Vector2 vector4)
+void DoubleVectorF::load(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4)
 {
 	load(VectorF(vector1, vector2), VectorF(vector3, vector4));
 }

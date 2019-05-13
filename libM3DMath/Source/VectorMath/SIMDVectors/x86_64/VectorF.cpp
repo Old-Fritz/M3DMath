@@ -21,19 +21,19 @@ VectorF::VectorF(float* pArray)
 {
 	load(pArray);
 }
-VectorF::VectorF(Vector2 vector)
+VectorF::VectorF(const Vector2& vector)
 {
 	load(vector);
 }
-VectorF::VectorF(Vector3 vector)
+VectorF::VectorF(const Vector3& vector)
 {
 	load(vector);
 }
-VectorF::VectorF(Vector4 vector)
+VectorF::VectorF(const Vector4& vector)
 {
 	load(vector);
 }
-VectorF::VectorF(Vector2 vector1, Vector2 vector2)
+VectorF::VectorF(const Vector2& vector1, const Vector2& vector2)
 {
 	load(vector1, vector2);
 }
@@ -159,19 +159,19 @@ void VectorF::load(const float* pArray)
 {
 	m_data = _mm_load_ps(pArray);
 }
-void VectorF::load(Vector2 vector)
+void VectorF::load(const Vector2& vector)
 {
 	m_data = _mm_load_ps(Vector4(vector));
 }
-void VectorF::load(Vector3 vector)
+void VectorF::load(const Vector3& vector)
 {
 	m_data = _mm_load_ps(Vector4(vector));
 }
-void VectorF::load(Vector4 vector)
+void VectorF::load(const Vector4& vector)
 {
 	m_data = _mm_load_ps(vector);
 }
-void VectorF::load(Vector2 vector1, Vector2 vector2)
+void VectorF::load(const Vector2& vector1, const Vector2& vector2)
 {
 	
 	m_data = _mm_load_ps(Vector4(vector1, vector2));
