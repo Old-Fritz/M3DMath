@@ -105,7 +105,8 @@ VectorF& VectorF::operator/=(float scale)
 // Compare functions
 bool VectorF::operator==(VectorF vector) const
 {
-	__m128 dataEqual = _mm_cmpeq_ps(m_data, vector.m_data);
+	__m128 dataEqual = _mm_castsi128_ps(_mm_cmpeq_epi32(_mm_castps_si128(m_data), _mm_castps_si128(vector.m_data)));
+	//__m128 dataEqual = _mm_cmpeq_(m_data, vector.m_data);
 	return _mm_test_all_ones(_mm_castps_si128(dataEqual));
 }
 bool VectorF::operator<(VectorF vector) const

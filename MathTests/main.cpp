@@ -20,6 +20,7 @@ bool makeTests()
 	Vector3Tester vector3Tester;
 	Vector4Tester vector4Tester;
 	VectorOperationsTester vectorOperatinosTester;
+	VectorFTester vectorFTester;
 
 	bool result;
 
@@ -37,6 +38,10 @@ bool makeTests()
 		return false;
 
 	result = vectorOperatinosTester.testAll();
+	if (!result)
+		return false;
+
+	result = vectorFTester.testAll();
 	if (!result)
 		return false;
 

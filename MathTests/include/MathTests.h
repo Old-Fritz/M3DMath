@@ -23,6 +23,22 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::Vector4& vecto
 	return stream;
 }
 
+inline std::ostream& operator<<(std::ostream& stream, const M3DM::VectorF& vectorF)
+{
+	ALIGN(16) float pArray[4];
+	vectorF.store(pArray);
+	stream << "[" << pArray[0] << ", " << pArray[1] << ", " << pArray[2] << ", " << pArray[3] << "]";
+	return stream;
+}
+
+inline std::ostream& operator<<(std::ostream& stream, const M3DM::DoubleVectorF& dVectorF)
+{
+	ALIGN(32) float pArray[8];
+	dVectorF.store(pArray);
+	stream << "[" << pArray[0] << ", " << pArray[1] << ", " << pArray[2] << ", " << pArray[3] << ", " << pArray[4] << ", " << pArray[5] << ", " << pArray[6] << ", " << pArray[7] << "]";
+	return stream;
+}
+
 
 class Vector2Tester
 {
@@ -75,4 +91,34 @@ public:
 	bool testVector2And4();
 	bool testVector3And4();
 	bool testScalarOperations();
+};
+
+class VectorFTester
+{
+public:
+	bool testAll();
+
+	bool testEqual();
+	bool testCmp();
+	bool testConversions();
+	bool testAdd();
+	bool testSub();
+	bool testMul();
+	bool testDiv();
+	bool testStore();
+};
+
+class DoubleVectorFTester
+{
+public:
+	bool testAll();
+
+	bool testEqual();
+	bool testCmp();
+	bool testConversions();
+	bool testAdd();
+	bool testSub();
+	bool testMul();
+	bool testDiv();
+	bool testStore();
 };
