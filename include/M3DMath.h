@@ -1,7 +1,8 @@
 #pragma once
 
 #define VECCALL
-
+#define M128 __m128
+#define M256 __m256
 
 #ifdef WIN32
 #include <DirectXMath.h>
@@ -16,8 +17,7 @@
 # include <pmmintrin.h>
 # include <smmintrin.h>
 # include <immintrin.h>
-# define M128 __m128
-# define M256 __m256
+
 
 #endif
 // arm_platform
@@ -28,6 +28,8 @@
 #define M256 float64x2x2_t
 #define NO_ALIGNS
 #define ALIGN(N) 
+# define M128 
+# define M256
 #endif
 
 #ifndef NO_ALIGNS
@@ -38,6 +40,18 @@
 
 namespace M3DM
 {
+	/// Scalar structs
+
+	union intFloat
+	{
+		int i;
+		float f;
+	};
+
+	/// Constants
+
+	const float FNAN = intFloat{ -1 }.f;
+
 	/// Base vector structs
 	struct Vector2;
 	struct Vector3;
@@ -223,7 +237,7 @@ namespace M3DM
 		VectorF& VECCALL operator=(const VectorF& vector) = default;
 		
 		// Conversions
-		explicit VectorF(float x = 0, float y = 0, float z = 0, float w = 0);
+		explicit VectorF(float x, float y = 0, float z = 0, float w = 0);
 		explicit VectorF(float* pArray);
 		explicit VectorF(const Vector2& vector);
 		explicit VectorF(const Vector3& vector);
@@ -286,7 +300,7 @@ namespace M3DM
 		DoubleVectorF& VECCALL operator=(const DoubleVectorF& vector) = default;
 
 		// Conversions
-		explicit DoubleVectorF(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
+		explicit DoubleVectorF(float x1, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
 		explicit DoubleVectorF(float* pArray);
 		explicit DoubleVectorF(const Vector2& vector);
 		explicit DoubleVectorF(const Vector3& vector);
