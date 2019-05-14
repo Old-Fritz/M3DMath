@@ -9,7 +9,12 @@ using namespace M3DM;
 // TODO: replace in M3DMath.h
 __m256 vecabs_and(__m256 v) {
 	__m256i minus1 = _mm256_set1_epi32(-1);
+#ifdef _AVX2_
 	__m256 mask = _mm256_castsi256_ps(_mm256_srli_epi32(minus1, 1));
+#endif
+#if defined(_AVX_) && !defined(_AVX2_)
+	__m256 mask = _mm256_castsi256_ps(_mm256_set1_epi32(0x7fffffff));
+#endif
 	return _mm256_and_ps(mask, v);
 }
 
@@ -126,9 +131,19 @@ DoubleVectorF& DoubleVectorF::operator/=(float scale)
 // Compare functions
 bool DoubleVectorF::operator==(DoubleVectorF vector) const
 {
-	__m256 dataEqual = _mm256_castsi256_ps(_mm256_cmpeq_epi32(_mm256_castps_si256(m_data), _mm256_castps_si256(vector.m_data)));
 	//__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_EQ_OQ);
+
+#ifdef _AVX2_
+	__m256 dataEqual = _mm256_castsi256_ps(_mm256_cmpeq_epi32(_mm256_castps_si256(m_data), _mm256_castps_si256(vector.m_data)));
 	return _mm256_test_all_ones(dataEqual);
+#endif
+#if defined(_AVX_) && !defined(_AVX2_)
+	VectorF vec11, vec21, vec12, vec22;
+	this->store(vec11, vec12);
+	vector.store(vec21, vec22);
+	return vec11 == vec21 && vec12 == vec22;
+#endif
+	
 }
 bool DoubleVectorF::operator<(DoubleVectorF vector) const
 {

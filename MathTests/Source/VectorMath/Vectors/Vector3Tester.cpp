@@ -625,6 +625,7 @@ bool Vector3Tester::testSub()
 bool Vector3Tester::testMul()
 {
 	Vector3 arg1, arg2, prediction, resultVec;
+	float scale;
 	bool result;
 
 	// TEST #1
@@ -653,12 +654,26 @@ bool Vector3Tester::testMul()
 		return false;
 	}
 
+	// TEST #3
+	arg1 = Vector3(1, 2, 3);
+	scale = 2;
+	prediction = Vector3(2, 4, 6);
+	std::cout << "TEST #3: " << arg1 << " * " << scale << " == " << prediction << std::endl;
+	resultVec = arg1 * scale;
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
 	return true;
 }
 
 bool Vector3Tester::testDiv()
 {
 	Vector3 arg1, arg2, prediction, resultVec;
+	float scale;
 	bool result;
 
 	// TEST #1
@@ -684,6 +699,19 @@ bool Vector3Tester::testDiv()
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << arg1 << std::endl;
+		return false;
+	}
+
+	// TEST #3
+	arg1 = Vector3(1, 2, 3);
+	scale = 2;
+	prediction = Vector3(0.5, 1, 1.5);
+	std::cout << "TEST #3: " << arg1 << " / " << scale << " == " << prediction << std::endl;
+	resultVec = arg1 / scale;
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
 	}
 
