@@ -1,4 +1,5 @@
 #include "MathTests.h"
+#include <cmath>
 
 using namespace M3DM;
 
@@ -38,6 +39,11 @@ bool Vector4Tester::testAll()
 
 	std::cout << "--Test div--" << std::endl;
 	result = testDiv();
+	if (!result)
+		return false;
+
+	std::cout << "--Test functions--" << std::endl;
+	result = testFunctions();
 	if (!result)
 		return false;
 
@@ -631,6 +637,18 @@ bool Vector4Tester::testSub()
 		return false;
 	}
 
+	// TEST #3
+	arg1 = Vector4(1, 2, 3, 4);
+	prediction = Vector4(-1, -2, -3, -4);
+	std::cout << "TEST #3: " << " -" << arg1 << " == " << prediction << std::endl;
+	resultVec = -arg1;
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
 	return true;
 }
 
@@ -726,6 +744,330 @@ bool Vector4Tester::testDiv()
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
+	return true;
+}
+
+bool Vector4Tester::testFunctions()
+{
+	Vector4 vec, vecPrediction, vecPrediction2, vecResult, vecResult2;
+	float value, valueResult, valuePrediction;
+	bool result;
+
+	// TEST #1
+	vec = Vector4(1, 2, 3, 4);
+	valuePrediction = 5.477225575051f;
+	std::cout << "TEST #1: " << vec << ".length()" << " == " << valuePrediction << std::endl;
+	valueResult = vec.length();
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #2
+	vec = Vector4(1, 2, 3, 4);
+	valuePrediction = 30;
+	std::cout << "TEST #2: " << vec << ".sqrlength()" << " == " << valuePrediction << std::endl;
+	valueResult = vec.sqrlength();
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #3
+	vec = Vector4(1, 2, 3, 4);
+	vecPrediction = Vector4(1 / 5.477225575051f, 2 / 5.477225575051f, 3 / 5.477225575051f, 4 / 5.477225575051f);
+	std::cout << "TEST #3: " << vec << ".normalized()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.normalized();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #4
+	vec = Vector4(-3, 4, -5, 6);
+	vecPrediction = Vector4(3, 4, 5, 6);
+	std::cout << "TEST #4: " << vec << ".abs()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.abs();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #5
+	vec = Vector4(3.1, 4.7, 5.2, 6.8);
+	vecPrediction = Vector4(3, 4, 5, 6);
+	std::cout << "TEST #5: " << vec << ".floor()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.floor();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #6
+	vec = Vector4(3.7, 4.1, 5.6, 6.3);
+	vecPrediction = Vector4(3, 4, 5, 6);
+	std::cout << "TEST #6: " << vec << ".floor()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.floor();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #7
+	vec = Vector4(3.1, 4.7, 5.2, 6.8);
+	vecPrediction = Vector4(4, 5, 6, 7);
+	std::cout << "TEST #7: " << vec << ".ceil()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.ceil();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #8
+	vec = Vector4(3.7, 4.1, 5.6, 6.3);
+	vecPrediction = Vector4(4, 5, 6, 7);
+	std::cout << "TEST #8: " << vec << ".ceil()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.ceil();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #9
+	vec = Vector4(3.1, 4.7, 5.2, 6.8);
+	vecPrediction = Vector4(3, 5, 5, 7);
+	std::cout << "TEST #9: " << vec << ".round()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.round();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #10
+	vec = Vector4(3.7, 4.1, 5.6, 6.3);
+	vecPrediction = Vector4(4, 4, 6, 6);
+	std::cout << "TEST #10: " << vec << ".round()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.round();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #11
+	vec = Vector4(2, 4, 8, 5);
+	vecPrediction = Vector4(0.5, 0.25, 0.125, 0.2);
+	std::cout << "TEST #11: " << vec << ".reciprocal()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.reciprocal();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #12
+	vec = Vector4(0.4, 6, 3, 0);
+	vecPrediction = Vector4(0.4, 1, 1, 0);
+	std::cout << "TEST #12: " << vec << ".saturate()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.saturate();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #13
+	vec = Vector4(-5, 0.7, 0.3, 0.9999999);
+	vecPrediction = Vector4(0, 0.7, 0.3, 0.9999999);
+	std::cout << "TEST #13: " << vec << ".saturate()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.saturate();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #14
+	vec = Vector4(4, 9, 16, 25);
+	vecPrediction = Vector4(2, 3, 4, 5);
+	std::cout << "TEST #14: " << vec << ".sqrt()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.sqrt();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+
+	// TEST #15
+	vec = Vector4(4, -9, 34, 21);
+	vecPrediction = Vector4(sinf(4), sinf(-9), sinf(34), sinf(21));
+	std::cout << "TEST #15: " << vec << ".sin()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.sin();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #16
+	vec = Vector4(4, -9, 34, 21);
+	vecPrediction = Vector4(cosf(4), cosf(-9), cosf(34), cosf(21));
+	std::cout << "TEST #16: " << vec << ".cos()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.cos();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #17
+	vec = Vector4(4, -9, 34, 21);
+	vecPrediction = Vector4(tanf(4), tanf(-9), tanf(34), tanf(21));
+	std::cout << "TEST #17: " << vec << ".tan()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.tan();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #18
+	vec = Vector4(0.4, -0.6, 0.34, 0.21);
+	vecPrediction = Vector4(asinf(0.4), asinf(-0.6), asinf(0.34), asinf(0.21));
+	std::cout << "TEST #18: " << vec << ".asin()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.asin();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #19
+	vec = Vector4(0.4, -0.6, 0.34, 0.21);
+	vecPrediction = Vector4(acosf(0.4), acosf(-0.6), acosf(0.34), acosf(0.21));
+	std::cout << "TEST #19: " << vec << ".acos()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.acos();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #20
+	vec = Vector4(0.4, -0.6, 0.34, 0.21);
+	vecPrediction = Vector4(atanf(0.4), atanf(-0.6), atanf(0.34), atanf(0.21));
+	std::cout << "TEST #20: " << vec << ".atan()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.atan();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #21
+	vec = Vector4(1, 2, 3, 4);
+	vecPrediction = Vector4(exp2f(1), exp2f(2), exp2f(3), exp2f(4));
+	std::cout << "TEST #21: " << vec << ".exp2()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.exp2();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #22
+	vec = Vector4(1, 2, 3, 4);
+	vecPrediction = Vector4(expf(1), expf(2), expf(3), expf(4));
+	std::cout << "TEST #22: " << vec << ".expE()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.expE();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #23
+	vec = Vector4(1, 2, 3, 4);
+	vecPrediction = Vector4(log2f(1), log2f(2), log2f(3), log2f(4));
+	std::cout << "TEST #23: " << vec << ".log2()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.log2();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #24
+	vec = Vector4(1, 2, 3, 4);
+	vecPrediction = Vector4(logf(1), logf(2), logf(3), logf(4));
+	std::cout << "TEST #24: " << vec << ".logE()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.logE();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #25
+	vec = Vector4(1, 2, 3, 4);
+	vecPrediction = Vector4(sinf(1), sinf(2), sinf(3), sinf(4));
+	vecPrediction2 = Vector4(cosf(1), cosf(2), cosf(3), cosf(4));
+	std::cout << "TEST #25: " << vec << ".sincos()" << " == " << vecPrediction << ", " << vecPrediction2 << std::endl;
+	vec.sincos(vecResult, vecResult2);
+	result = vecResult == vecPrediction && vecResult2 == vecPrediction2;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: vecResult = " << vecResult << "; vecResult2 = " << vecResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #26
+	vec = Vector4(1, 2, 3, 4);
+	value = 3;
+	vecPrediction = Vector4(value, value, value, value);
+	std::cout << "TEST #26: " << vec << ".replcate()" << " == " << vecPrediction << std::endl;
+	vec.replicate(value);
+	result = vec == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vec << std::endl;
 		return false;
 	}
 

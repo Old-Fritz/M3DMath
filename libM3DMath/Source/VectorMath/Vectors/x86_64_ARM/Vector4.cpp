@@ -130,6 +130,16 @@ Vector4& Vector4::operator/=(float scale)
 
 	return *this;
 }
+Vector4 Vector4::operator-()
+{
+	Vector4 vectorRes;
+	vectorRes.x = -x;
+	vectorRes.y = -y;
+	vectorRes.z = -z;
+	vectorRes.w = -w;
+
+	return vectorRes;
+}
 
 // Compare functions
 bool Vector4::operator==(const Vector4& vector) const

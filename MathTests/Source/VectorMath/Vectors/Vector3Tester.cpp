@@ -627,7 +627,7 @@ bool Vector3Tester::testSub()
 	// TEST #3
 	arg1 = Vector3(1, 2, 3);
 	prediction = Vector3(-1, -2, -3);
-	std::cout << "TEST #2: " << " -" << arg1 << " == " << prediction << std::endl;
+	std::cout << "TEST #3: " << " -" << arg1 << " == " << prediction << std::endl;
 	resultVec = -arg1;
 	result = resultVec == prediction;
 	if (!result)
