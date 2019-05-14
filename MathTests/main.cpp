@@ -73,6 +73,4 @@ int main()
 		std::cout << "----------!!!!SOME TESTS NOT PASSED!!!!!----------" << std::endl;
 
 	std::cin.get();
-
-	Vector2::distance(Vector2(1, 2), Vector2(1, 2));
 }

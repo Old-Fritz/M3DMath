@@ -1,6 +1,6 @@
 #include "MathTests.h"
 
-using namespace M3DM; 
+using namespace M3DM;
 
 
 

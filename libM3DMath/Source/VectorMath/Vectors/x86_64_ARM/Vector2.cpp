@@ -116,6 +116,15 @@ Vector2& Vector2::operator/=(float scale)
 
 	return *this;
 }
+Vector2 Vector2::operator-()
+{
+	Vector2 vectorRes;
+	vectorRes.x = -x;
+	vectorRes.y = -y;
+	return vectorRes;
+}
+
+
 
 // Compare functions
 

@@ -52,6 +52,7 @@ public:
 	bool testSub();
 	bool testMul();
 	bool testDiv();
+	bool testFunctions();
 };
 
 class Vector3Tester

@@ -102,7 +102,7 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlenth();
+		float sqrlength();
 		Vector2 normalized();
 		Vector2 abs();
 		Vector2 floor();
@@ -170,7 +170,7 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlenth();
+		float sqrlength();
 		Vector3 normalized();
 		Vector3 abs();
 		Vector3 floor();
@@ -238,7 +238,7 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlenth();
+		float sqrlength();
 		Vector4 normalized();
 		Vector4 abs();
 		Vector4 floor();
@@ -370,7 +370,7 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlenth();
+		float sqrlength();
 		VectorF VECCALL normalized();
 		VectorF VECCALL abs();
 		VectorF VECCALL floor();
@@ -479,7 +479,7 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlenth();
+		float sqrlength();
 		DoubleVectorF VECCALL normalized();
 		DoubleVectorF VECCALL abs();
 		DoubleVectorF VECCALL floor();
