@@ -354,7 +354,153 @@ bool VectorFTester::testEqual()
 
 bool VectorFTester::testCmp()
 {
-	// TODO: make this tests
+	VectorF v1, v2;
+	bool result, resultPrediciton;
+
+	// TEST #1
+	v1 = VectorF(1.5, 2.5, 3.5, 4.5);
+	v2 = VectorF(1.5, 2.5, 3.5, 4.5);
+	resultPrediciton = false;
+	std::cout << "TEST #1: " << v1 << " < " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 < v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #2
+	v1 = VectorF(1.5, 2.5, 3.5, 4.5);
+	v2 = VectorF(1.6, 2.6, 3.6, 4.6);
+	resultPrediciton = true;
+	std::cout << "TEST #2: " << v1 << " < " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 < v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #3
+	v1 = VectorF(1.5, 2.5, 3.5, 4.5);
+	v2 = VectorF(1.5, 2.5, 3.5, 4.5);
+	resultPrediciton = false;
+	std::cout << "TEST #3: " << v1 << " > " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 > v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #4
+	v1 = VectorF(1.6, 2.6, 3.6, 4.6);
+	v2 = VectorF(1.5, 2.5, 3.5, 4.5);
+	resultPrediciton = true;
+	std::cout << "TEST #4: " << v1 << " > " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 > v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #5
+	v1 = VectorF(1.5, 2.5, 3.5, 4.5);
+	v2 = VectorF(1.5, 2.5, 3.5, 4.5);
+	resultPrediciton = true;
+	std::cout << "TEST #5: " << v1 << " >= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 >= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #6
+	v1 = VectorF(1.5, 2.5, 3.5, 4.5);
+	v2 = VectorF(1.5, 2.5, 3.5, 4.5);
+	resultPrediciton = true;
+	std::cout << "TEST #6: " << v1 << " <= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 <= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #7
+	v1 = VectorF(1.4, 2.4, 3.4, 4.4);
+	v2 = VectorF(1.5, 2.5, 3.5, 4.5);
+	resultPrediciton = false;
+	std::cout << "TEST #7: " << v1 << " >= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 >= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #8
+	v1 = VectorF(1.4, 2.4, 3.4, 4.4);
+	v2 = VectorF(1.3, 2.5, 3.5, 4.5);
+	resultPrediciton = false;
+	std::cout << "TEST #8: " << v1 << " >= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 >= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #9
+	v1 = VectorF(1.4, 2.4, 3.4, 4.4);
+	v2 = VectorF(1.3, 2.3, 3.3, 4.4);
+	resultPrediciton = true;
+	std::cout << "TEST #9: " << v1 << " >= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 >= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #10
+	v1 = VectorF(1.4, 2.4, 3.4, 4.4);
+	v2 = VectorF(1.3, 2.3, 3.3, 4.3);
+	resultPrediciton = false;
+	std::cout << "TEST #10: " << v1 << " <= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 <= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #11
+	v1 = VectorF(1.4, 2.4, 3.4, 4.4);
+	v2 = VectorF(1.3, 2.5, 3.5, 4.5);
+	resultPrediciton = false;
+	std::cout << "TEST #11: " << v1 << " <= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 <= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #12
+	v1 = VectorF(1.4, 2.4, 3.4, 4.4);
+	v2 = VectorF(1.5, 2.5, 3.5, 4.5);
+	resultPrediciton = true;
+	std::cout << "TEST #12: " << v1 << " <= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 <= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
 	return true;
 }
 

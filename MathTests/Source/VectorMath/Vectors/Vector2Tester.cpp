@@ -338,70 +338,151 @@ bool Vector2Tester::testEqual()
 bool Vector2Tester::testCmp()
 {
 	Vector2 v1, v2;
-	bool result;
+	bool result, resultPrediciton;
 
-	std::cout << "(1.5, 2.5) < (1.5, 2.5) == false" << std::endl;
+	// TEST #1
 	v1 = Vector2(1.5, 2.5);
 	v2 = Vector2(1.5, 2.5);
-	result = v1 < v2 == false;
+	resultPrediciton = false;
+	std::cout << "TEST #1: " << v1 << " < " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 < v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5) < (1.6, 2.6) == true" << std::endl;
+	// TEST #2
 	v1 = Vector2(1.5, 2.5);
 	v2 = Vector2(1.6, 2.6);
-	result = v1 < v2 == true;
+	resultPrediciton = true;
+	std::cout << "TEST #2: " << v1 << " < " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 < v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5) > (1.5, 2.5) == false" << std::endl;
+	// TEST #3
 	v1 = Vector2(1.5, 2.5);
 	v2 = Vector2(1.5, 2.5);
-	result = v1 > v2 == false;
+	resultPrediciton = false;
+	std::cout << "TEST #3: " << v1 << " > " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 > v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.6, 2.6) > (1.5, 2.5) == true" << std::endl;
+	// TEST #4
 	v1 = Vector2(1.6, 2.6);
 	v2 = Vector2(1.5, 2.5);
-	result = v1 > v2 == true;
+	resultPrediciton = true;
+	std::cout << "TEST #4: " << v1 << " > " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 > v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5) <= (1.5, 2.5) == true" << std::endl;
+	// TEST #5
 	v1 = Vector2(1.5, 2.5);
 	v2 = Vector2(1.5, 2.5);
-	result = v1 <= v2 == true;
+	resultPrediciton = true;
+	std::cout << "TEST #5: " << v1 << " >= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 >= v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5) <= (1.5, 2.5) == true" << std::endl;
+	// TEST #6
 	v1 = Vector2(1.5, 2.5);
 	v2 = Vector2(1.5, 2.5);
-	result = v1 <= v2 == true;
+	resultPrediciton = true;
+	std::cout << "TEST #6: " << v1 << " <= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 <= v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.4, 2.4) >= (1.5, 2.5) == false" << std::endl;
+	// TEST #7
 	v1 = Vector2(1.4, 2.4);
 	v2 = Vector2(1.5, 2.5);
-	result = v1 >= v2 == false;
+	resultPrediciton = false;
+	std::cout << "TEST #7: " << v1 << " >= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 >= v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.4, 2.4) <= (1.3, 2.5) == false" << std::endl;
+	// TEST #8
 	v1 = Vector2(1.4, 2.4);
 	v2 = Vector2(1.3, 2.5);
-	result = v1 <= v2 == false;
+	resultPrediciton = false;
+	std::cout << "TEST #8: " << v1 << " >= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 >= v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.4, 2.4) >= (1.3, 2.3) == true" << std::endl;
+	// TEST #9
 	v1 = Vector2(1.4, 2.4);
 	v2 = Vector2(1.3, 2.3);
-	result = v1 >= v2 == true;
+	resultPrediciton = true;
+	std::cout << "TEST #9: " << v1 << " >= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 >= v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
 		return false;
+	}
+
+	// TEST #10
+	v1 = Vector2(1.4, 2.4);
+	v2 = Vector2(1.3, 2.3);
+	resultPrediciton = false;
+	std::cout << "TEST #10: " << v1 << " <= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 <= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #11
+	v1 = Vector2(1.4, 2.4);
+	v2 = Vector2(1.3, 2.5);
+	resultPrediciton = false;
+	std::cout << "TEST #11: " << v1 << " <= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 <= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #12
+	v1 = Vector2(1.4, 2.4);
+	v2 = Vector2(1.5, 2.5);
+	resultPrediciton = true;
+	std::cout << "TEST #12: " << v1 << " <= " << v2 << " == " << resultPrediciton << std::endl;
+	result = (v1 <= v2) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
 
 	return true;
 }
