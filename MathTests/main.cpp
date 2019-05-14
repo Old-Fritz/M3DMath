@@ -14,13 +14,14 @@
 
 using namespace M3DM;
 
-bool makeTests()
+bool makeVectorTests()
 {
 	Vector2Tester vector2Tester;
 	Vector3Tester vector3Tester;
 	Vector4Tester vector4Tester;
 	VectorOperationsTester vectorOperatinosTester;
 	VectorFTester vectorFTester;
+	DoubleVectorFTester doubleVectorFTester;
 
 	bool result;
 
@@ -42,6 +43,21 @@ bool makeTests()
 		return false;
 
 	result = vectorFTester.testAll();
+	if (!result)
+		return false;
+
+	result = doubleVectorFTester.testAll();
+	if (!result)
+		return false;
+
+	return true;
+}
+
+bool makeTests()
+{
+	bool result;
+
+	result = makeVectorTests();
 	if (!result)
 		return false;
 

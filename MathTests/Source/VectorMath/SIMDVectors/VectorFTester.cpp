@@ -506,8 +506,8 @@ bool VectorFTester::testCmp()
 
 bool VectorFTester::testConversions()
 {
-	float pArray[4];
-	float* pArrayRes;
+	ALIGN(16) float pArray[4];
+	ALIGN(16) float* pArrayRes;
 	Vector2 vec21, vec22;
 	Vector3 vec3;
 	Vector4 vec4;
@@ -570,7 +570,7 @@ bool VectorFTester::testConversions()
 	vec21 = Vector2(1, 2);
 	vec22 = Vector2(3, 4);
 	prediction = VectorF(1, 2, 3, 4);
-	std::cout << "TEST #4: VectorF(" << vec21 << ", " << vec22 <<  ") == " << prediction << std::endl;
+	std::cout << "TEST #5: VectorF(" << vec21 << ", " << vec22 <<  ") == " << prediction << std::endl;
 	resultVec = VectorF(vec21, vec22);
 	result = resultVec == prediction;
 	if (!result)

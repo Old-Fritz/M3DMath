@@ -9,12 +9,7 @@ using namespace M3DM;
 // TODO: replace in M3DMath.h
 __m256 vecabs_and(__m256 v) {
 	__m256i minus1 = _mm256_set1_epi32(-1);
-#ifdef _AVX2_
 	__m256 mask = _mm256_castsi256_ps(_mm256_srli_epi32(minus1, 1));
-#endif
-#if defined(_AVX_) && !defined(_AVX2_)
-	__m256 mask = _mm256_castsi256_ps(_mm256_set1_epi32(0x8fffffff));
-#endif
 	return _mm256_and_ps(mask, v);
 }
 
@@ -131,8 +126,9 @@ DoubleVectorF& DoubleVectorF::operator/=(float scale)
 // Compare functions
 bool DoubleVectorF::operator==(DoubleVectorF vector) const
 {
-	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_EQ_OQ);
-    return _mm256_test_all_ones(dataEqual);
+	__m256 dataEqual = _mm256_castsi256_ps(_mm256_cmpeq_epi32(_mm256_castps_si256(m_data), _mm256_castps_si256(vector.m_data)));
+	//__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_EQ_OQ);
+	return _mm256_test_all_ones(dataEqual);
 }
 bool DoubleVectorF::operator<(DoubleVectorF vector) const
 {
@@ -156,8 +152,9 @@ bool DoubleVectorF::operator>=(DoubleVectorF vector) const
 }
 bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, float precision) const
 {
-	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_GT_OQ);
-	return _mm256_test_all_ones(dataEqual);
+	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
+	__m256 dataCmp = _mm256_cmp_ps(delta, _mm256_set1_ps(precision), _CMP_LE_OQ);
+	return _mm256_test_all_ones(dataCmp);
 }
 bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, DoubleVectorF precision) const
 {
@@ -215,7 +212,7 @@ void DoubleVectorF::load(const Vector2& vector1, const Vector2& vector2, const V
 }
 void DoubleVectorF::load(VectorF vector)
 {
-	m_data = _mm256_insertf128_ps(__m256(), vector, 1);
+	m_data = _mm256_insertf128_ps(__m256(), vector, 0);
 }
 void DoubleVectorF::load(VectorF vector1, VectorF vector2)
 {
@@ -289,10 +286,10 @@ void DoubleVectorF::store(Vector2& vector1, Vector2& vector2, Vector2& vector3, 
 }
 void DoubleVectorF::store(VectorF& vector) const
 {
-	vector = _mm256_extractf128_ps(m_data, 1);
+	vector = _mm256_extractf128_ps(m_data, 0);
 }
 void DoubleVectorF::store(VectorF& vector1, VectorF& vector2) const
 {
-	vector1 = _mm256_extractf128_ps(m_data, 1);
-	vector2 = _mm256_extractf128_ps(m_data, 0);
+	vector1 = _mm256_extractf128_ps(m_data, 0);
+	vector2 = _mm256_extractf128_ps(m_data, 1);
 }
