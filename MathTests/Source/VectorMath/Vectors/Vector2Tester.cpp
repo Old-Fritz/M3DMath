@@ -46,80 +46,291 @@ bool Vector2Tester::testAll()
 
 bool Vector2Tester::testEqual()
 {
-	Vector2 v1(1.5, 2.5);
-	Vector2 v2(1.5, 2.5);
-	bool result;
+	Vector2 v1, v2, vecPrecision, resultVec, prediction;
+	float precision;
+	bool result, resultPrediciton;
 
-	std::cout << "((1.5, 2.5) == (1.5, 2.5)) == true" << std::endl;
-	result = v1 == v2;
+	// ==
+	// TEST #1
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 2);
+	resultPrediciton = true;
+	std::cout << "TEST #1: (" << v1 << " == " << v2 << ") == " << resultPrediciton << std::endl;
+	result = (v1 == v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "((1.5, 2.5) == (2.5, 2.5)) == false" << std::endl;
-	v2.x = 2.5;
-	result = !(v1 == v2);
+	// TEST #2
+	v1 = Vector2(1, 2);
+	v2 = Vector2(2, 2);
+	resultPrediciton = false;
+	std::cout << "TEST #2: (" << v1 << " == " << v2 << ") == " << resultPrediciton << std::endl;
+	result = (v1 == v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5).isEqualPrec((2.5, 2.5), 0) == false" << std::endl;
-	result = !v1.isEqualPrec(v2);
+	// TEST #3
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 3);
+	resultPrediciton = false;
+	std::cout << "TEST #3: (" << v1 << " == " << v2 << ") == " << resultPrediciton << std::endl;
+	result = (v1 == v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5).isEqualPrec((1.5, 2.5), 0) == true" << std::endl;
-	v2.x = 1.5;
-	result = v1.isEqualPrec(v2);
+	// TEST #4
+	v1 = Vector2(1, 2);
+	v2 = Vector2(2, 3);
+	resultPrediciton = false;
+	std::cout << "TEST #4: (" << v1 << " == " << v2 << ") == " << resultPrediciton << std::endl;
+	result = (v1 == v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5).isEqualPrec((1.500005, 2.5), 0.00001) == true" << std::endl;
-	v2.x = 1.500005;
-	result = v1.isEqualPrec(v2, 0.00001);
+	// TEST #5
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1.0001f, 2);
+	resultPrediciton = false;
+	std::cout << "TEST #5: (" << v1 << " == " << v2 << ") == " << resultPrediciton << std::endl;
+	result = (v1 == v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5).isEqualPrec((1.500005, 2.50002), 0.00001) == false" << std::endl;
-	v2.y = 2.50002;
-	result = !v1.isEqualPrec(v2, 0.00001);
-	if (!result)
-		return false;
+	// isEqualPrec
 
-	std::cout << "(1.5, 2.5).isEqualPrec((1.500005, 2.50002), (0.00001, 0.0001)) == true" << std::endl;
-	Vector2 v3(0.00001, 0.0001);
-	result = v1.isEqualPrec(v2,v3);
+	// TEST #6
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 2);
+	resultPrediciton = true;
+	std::cout << "TEST #6: " << v1 << ".isEqualPrec(" << v2 << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5).isEqualPrec((1.500005, 2.50002), (-0.00001, 0.00002)) == false" << std::endl;
-	v3.x = -0.00001;
-	result = !v1.isEqualPrec(v2,v3);
+	// TEST #7
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 3);
+	resultPrediciton = false;
+	std::cout << "TEST #7: " << v1 << ".isEqualPrec(" << v2 << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5).isEqualVec((1.500005, 2.5)) == (0,1)" << std::endl;
-	v2.y = 2.5;
-	result = v1.isEqualVec(v2) == Vector2(0, 1);
+	// TEST #8
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 2);
+	precision = 0.00001;
+	resultPrediciton = true;
+	std::cout << "TEST #8: " << v1 << ".isEqualPrec(" << v2 << ", " << precision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, precision) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.5, 2.5).isEqualVec((1.5, 2.5)) == (1,1)" << std::endl;
-	v2 = v1;
-	result = v1.isEqualVec(v2) == Vector2(1, 1);
+	// TEST #9
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 2.0001);
+	precision = 0.00001;
+	resultPrediciton = false;
+	std::cout << "TEST #9: " << v1 << ".isEqualPrec(" << v2 << ", " << precision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, precision) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.6, 2.6).isEqualVec((1.5, 2.5)) == (0,0)" << std::endl;
-	v1 = Vector2(1.6, 2.6);
-	result = v1.isEqualVec(v2) == Vector2(0, 0);
+	// TEST #10
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1.000001, 2.000001);
+	precision = 0.00001;
+	resultPrediciton = true;
+	std::cout << "TEST #10: " << v1 << ".isEqualPrec(" << v2 << ", " << precision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, precision) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
 
-	std::cout << "(1.6, 2.6).isEqualVecPrec((1.60001, 2.60002), (0.00001, 0.00001)) == (1,0)" << std::endl;
-	v2 = Vector2(1.600005, 2.60002);
-	v3 = Vector2(0.00001, 0.00001);
-	result = v1.isEqualPrecVec(v2, v3) == Vector2(1, 0);
+	// isEqualPrec (vec)
+
+	// TEST #11
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1.000001, 2.000001);
+	vecPrecision = Vector2(0.0001, 0.0001);
+	resultPrediciton = true;
+	std::cout << "TEST #11: " << v1 << ".isEqualPrec(" << v2 << ", " << vecPrecision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, vecPrecision) == resultPrediciton;
 	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
 		return false;
+	}
+
+	// TEST #12
+	v1 = Vector2(1.000001, 2.000001);
+	v2 = Vector2(1, 2);
+	vecPrecision = Vector2(0.0001, 0.0001);
+	resultPrediciton = true;
+	std::cout << "TEST #12: " << v1 << ".isEqualPrec(" << v2 << ", " << vecPrecision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, vecPrecision) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
+		return false;
+	}
+
+	// TEST #13
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1.000001, 2.001);
+	vecPrecision = Vector2(0.0001, 0.0001);
+	resultPrediciton = false;
+	std::cout << "TEST #13: " << v1 << ".isEqualPrec(" << v2 << ", " << vecPrecision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, vecPrecision) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
+		return false;
+	}
+
+	// TEST #14
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1.001, 2.001);
+	vecPrecision = Vector2(0.0001, 0.0001);
+	resultPrediciton = false;
+	std::cout << "TEST #14: " << v1 << ".isEqualPrec(" << v2 << ", " << vecPrecision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, vecPrecision) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
+		return false;
+	}
+
+	// TEST #15
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1.001, 2.001);
+	vecPrecision = Vector2(0.005, 0.0001);
+	resultPrediciton = false;
+	std::cout << "TEST #15: " << v1 << ".isEqualPrec(" << v2 << ", " << vecPrecision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, vecPrecision) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
+		return false;
+	}
+
+	// TEST #16
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1.001, 2.001);
+	vecPrecision = Vector2(0.01, -0.01);
+	resultPrediciton = false;
+	std::cout << "TEST #16: " << v1 << ".isEqualPrec(" << v2 << ", " << vecPrecision << ") == " << resultPrediciton << std::endl;
+	result = v1.isEqualPrec(v2, vecPrecision) == resultPrediciton;
+	if (!result)
+	{
+		std::cout << "Failed." << std::endl;
+		return false;
+	}
+
+
+	// isEqualVec
+
+	// TEST #17
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 2);
+	prediction = Vector2(1, 1);
+	std::cout << "TEST #17: " << v1 << ".isEqualVec(" << v2 << ") == " << prediction << std::endl;
+	resultVec = v1.isEqualVec(v2);
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
+	// TEST #18
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 3);
+	prediction = Vector2(1, 0);
+	std::cout << "TEST #18: " << v1 << ".isEqualVec(" << v2 << ") == " << prediction << std::endl;
+	resultVec = v1.isEqualVec(v2);
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
+	// TEST #19
+	v1 = Vector2(1, 2);
+	v2 = Vector2(2, 3);
+	prediction = Vector2(0, 0);
+	std::cout << "TEST #19: " << v1 << ".isEqualVec(" << v2 << ") == " << prediction << std::endl;
+	resultVec = v1.isEqualVec(v2);
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
+	// isEqualPrecVec
+
+	// TEST #20
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1, 2);
+	vecPrecision = Vector2(0.0001, 0.0001);
+	prediction = Vector2(1, 1);
+	resultPrediciton = true;
+	std::cout << "TEST #20: " << v1 << ".isEqualPrecVec(" << v2 << ", " << vecPrecision << ") == " << prediction << std::endl;
+	resultVec = v1.isEqualPrecVec(v2, vecPrecision);
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
+
+
+	// TEST #21
+	v1 = Vector2(1, 2);
+	v2 = Vector2(1.0000001, 2.001);
+	vecPrecision = Vector2(0.0001, 0.0001);
+	prediction = Vector2(1, 0);
+	resultPrediciton = true;
+	std::cout << "TEST #21: " << v1 << ".isEqualPrecVec(" << v2 << ", " << vecPrecision << ") == " << prediction << std::endl;
+	resultVec = v1.isEqualPrecVec(v2, vecPrecision);
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
 
 	return true;
 }
@@ -197,115 +408,199 @@ bool Vector2Tester::testCmp()
 
 bool Vector2Tester::testConversions()
 {
-	Vector2 v1;
+	float pArray[2], pArrayPrediction[2];
+	float* pArrayRes;
+	Vector3 vec3;
+	Vector4 vec4;
+	Vector2 resultVec;
+	Vector2 prediction;
 	bool result;
 
-	std::cout << "Vector2({1,2}) == (1,2)" << std::endl;
-	float pArray[2] = { 1, 2 };
-	v1 = Vector2(pArray);
-	result = v1 == Vector2(1, 2);
+	// TEST #1
+	pArray[0] = 1;
+	pArray[1] = 2;
+	prediction = Vector2(1, 2);
+	std::cout << "TEST #1: Vector2({" << pArray[0] << ", " << pArray[1] << "}) == " << prediction << std::endl;
+	resultVec = Vector2(pArray);
+	result = resultVec == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
+	}
 
-	std::cout << "Vector2((1,2,3)) == (1,2)" << std::endl;
-	Vector3 v2 = Vector3(1, 2, 3);
-	v1 = Vector2(v2);
-	result = v1 == Vector2(1, 2);
+	// TEST #2
+	vec3 = Vector3(1, 2, 3);
+	prediction = Vector2(1, 2);
+	std::cout << "TEST #2: Vector2(" << vec3 << ") == " << prediction << std::endl;
+	resultVec = Vector2(vec3);
+	result = resultVec == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
+	}
 
-	std::cout << "Vector2((1,2,3,4)) == (1,2)" << std::endl;
-	Vector4 v3 = Vector4(1, 2, 3, 4);
-	v1 = Vector2(v3);
-	result = v1 == Vector2(1, 2);
+	// TEST #3
+	vec4 = Vector4(1, 2, 3, 4);
+	prediction = Vector2(1, 2);
+	std::cout << "TEST #3: Vector2(" << vec4 << ") == " << prediction << std::endl;
+	resultVec = Vector2(vec4);
+	result = resultVec == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
+	}
 
-	std::cout << "float((1,2)) = pArray, pArray[1] == 1, pArray[2] == 2" << std::endl;
-	float* pArray2 = v1;
-	result = pArray[0] == 1 && pArray[1] == 2;
+	// TEST #4
+	resultVec = Vector2(1, 2);
+	pArrayPrediction[0] = 1;
+	pArrayPrediction[1] = 2;
+	std::cout << "TEST #4: float*(" << resultVec << ") == {" << pArrayPrediction[0] << ", " << pArrayPrediction[1] << "}" << std::endl;
+	pArrayRes = resultVec;
+	result = pArrayRes[0] == pArrayPrediction[0] && pArrayRes[1] == pArrayPrediction[1];
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: {" << pArrayRes[0] << ", " << pArrayRes[1] << "}" << std::endl;
 		return false;
+	}
 
 	return true;
 }
 
 bool Vector2Tester::testAdd()
 {
-	Vector2 v1(1, 2);
-	Vector2 v2(2, 3);
+	Vector2 arg1, arg2, prediction, resultVec;
 	bool result;
 
-	std::cout << "(1,2) + (2,3) == (3,5)" << std::endl;
-	result = v1 + v2 == Vector2(3, 5);
+	// TEST #1
+	arg1 = Vector2(1, 2);
+	arg2 = Vector2(2, 3);
+	prediction = Vector2(3, 5);
+	std::cout << "TEST #1: " << arg1 << " + " << arg2 << " == " << prediction << std::endl;
+	resultVec = arg1 + arg2;
+	result = resultVec == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
+	}
 
-	std::cout << "(1,2) += (2,3) == (3,5)" << std::endl;
-	v1 += v2;
-	result = v1 == Vector2(3, 5);
+	// TEST #2
+	arg1 = Vector2(1, 2);
+	arg2 = Vector2(2, 3);
+	prediction = Vector2(3, 5);
+	std::cout << "TEST #2: " << arg1 << " += " << arg2 << " == " << prediction << std::endl;
+	arg1 += arg2;
+	result = arg1 == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << arg1 << std::endl;
 		return false;
+	}
 
 	return true;
 }
 
 bool Vector2Tester::testSub()
 {
-	Vector2 v1(1, 2);
-	Vector2 v2(2, 3);
+	Vector2 arg1, arg2, prediction, resultVec;
 	bool result;
 
-	std::cout << "(1,2) - (2,3) == (-1,-1)" << std::endl;
-	result = v1 - v2 == Vector2(-1, -1);
+	// TEST #1
+	arg1 = Vector2(1, 2);
+	arg2 = Vector2(2, 3);
+	prediction = Vector2(-1, -1);
+	std::cout << "TEST #1: " << arg1 << " - " << arg2 << " == " << prediction << std::endl;
+	resultVec = arg1 - arg2;
+	result = resultVec == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
+	}
 
-	std::cout << "(1,2) -= (2,3) == (-1,-1)" << std::endl;
-	v1 -= v2;
-	result = v1 == Vector2(-1, -1);
+	// TEST #2
+	arg1 = Vector2(1, 2);
+	arg2 = Vector2(2, 3);
+	prediction = Vector2(-1, -1);
+	std::cout << "TEST #2: " << arg1 << " -= " << arg2 << " == " << prediction << std::endl;
+	arg1 -= arg2;
+	result = arg1 == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << arg1 << std::endl;
 		return false;
+	}
 
 	return true;
 }
 
 bool Vector2Tester::testMul()
 {
-	Vector2 v1(1, 2);
-	Vector2 v2(2, 3);
+	Vector2 arg1, arg2, prediction, resultVec;
 	bool result;
 
-	std::cout << "(1,2) * (2,3) == (2,6)" << std::endl;
-	result = v1 * v2 == Vector2(2, 6);
+	// TEST #1
+	arg1 = Vector2(1, 2);
+	arg2 = Vector2(2, 3);
+	prediction = Vector2(2, 6);
+	std::cout << "TEST #1: " << arg1 << " * " << arg2 << " == " << prediction << std::endl;
+	resultVec = arg1 * arg2;
+	result = resultVec == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
+	}
 
-	std::cout << "(1,2) *= (2,3) == (2,6)" << std::endl;
-	v1 *= v2;
-	result = v1 == Vector2(2, 6);
+	// TEST #2
+	arg1 = Vector2(1, 2);
+	arg2 = Vector2(2, 3);
+	prediction = Vector2(2, 6);
+	std::cout << "TEST #2: " << arg1 << " *= " << arg2 << " == " << prediction << std::endl;
+	arg1 *= arg2;
+	result = arg1 == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << arg1 << std::endl;
 		return false;
+	}
 
 	return true;
 }
 
 bool Vector2Tester::testDiv()
 {
-	Vector2 v1(1, 2);
-	Vector2 v2(2, 3);
+	Vector2 arg1, arg2, prediction, resultVec;
 	bool result;
 
-	std::cout << "(1,2) / (2,3) == (0.5,0.66666) precision = 0.0001" << std::endl;
-	result = (v1 / v2).isEqualPrec(Vector2(0.5, 0.66666), 0.0001);
+	// TEST #1
+	arg1 = Vector2(1, 2);
+	arg2 = Vector2(2, 3);
+	prediction = Vector2(0.5, 0.66666666);
+	std::cout << "TEST #1: " << arg1 << " / " << arg2 << " == " << prediction << std::endl;
+	resultVec = arg1 / arg2;
+	result = resultVec == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
+	}
 
-	std::cout << "(1,2) /= (2,3) == (0.5,0.66666) precision = 0.0001" << std::endl;
-	v1 /= v2;
-	result = v1.isEqualPrec(Vector2(0.5, 0.66666), 0.0001);
+	// TEST #2
+	arg1 = Vector2(1, 2);
+	arg2 = Vector2(2, 3);
+	prediction = Vector2(0.5, 0.66666666);
+	std::cout << "TEST #2: " << arg1 << " /= " << arg2 << " == " << prediction << std::endl;
+	arg1 /= arg2;
+	result = arg1 == prediction;
 	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << arg1 << std::endl;
 		return false;
+	}
 
 	return true;
 }
