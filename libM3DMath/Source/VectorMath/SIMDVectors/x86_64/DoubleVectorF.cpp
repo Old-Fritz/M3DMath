@@ -138,10 +138,12 @@ bool DoubleVectorF::operator==(DoubleVectorF vector) const
 	return _mm256_test_all_ones(dataEqual);
 #endif
 #if defined(_AVX_) && !defined(_AVX2_)
-	VectorF vec11, vec21, vec12, vec22;
-	this->store(vec11, vec12);
-	vector.store(vec21, vec22);
-	return vec11 == vec21 && vec12 == vec22;
+	//VectorF vec11, vec21, vec12, vec22;
+	//this->store(vec11, vec12);
+	//vector.store(vec21, vec22);
+	//return vec11 == vec21 && vec12 == vec22;
+	__m256i xorValue = _mm256_castps_si256(_mm256_xor_ps(m_data, vector.m_data));
+	return _mm256_testz_si256(xorValue, xorValue);
 #endif
 	
 }
@@ -170,6 +172,7 @@ bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, float precision) const
 	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
 	__m256 dataCmp = _mm256_cmp_ps(delta, _mm256_set1_ps(precision), _CMP_LE_OQ);
 	return _mm256_test_all_ones(dataCmp);
+	
 }
 bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, DoubleVectorF precision) const
 {
