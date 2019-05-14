@@ -1039,11 +1039,11 @@ bool Vector2Tester::testFunctions()
 		return false;
 	}
 
-	// TEST #24
+	// TEST #26
 	vec = Vector2(1, 2);
 	value = 3;
 	vecPrediction = Vector2(value, value);
-	std::cout << "TEST #24: " << vec << ".replcate()" << " == " << vecPrediction << std::endl;
+	std::cout << "TEST #26: " << vec << ".replcate()" << " == " << vecPrediction << std::endl;
 	vec.replicate(value);
 	result = vec == vecPrediction;
 	if (!result)

@@ -9,13 +9,11 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::Vector2& vecto
 	return stream;
 }
 
-
 inline std::ostream& operator<<(std::ostream& stream, const M3DM::Vector3& vector3)
 {
 	stream << "(" << vector3.x << ", " << vector3.y << ", " << vector3.z << ")";
 	return stream;
 }
-
 
 inline std::ostream& operator<<(std::ostream& stream, const M3DM::Vector4& vector4)
 {
@@ -67,6 +65,7 @@ public:
 	bool testSub();
 	bool testMul();
 	bool testDiv();
+	bool testFunctions();
 };
 
 class Vector4Tester
@@ -81,6 +80,7 @@ public:
 	bool testSub();
 	bool testMul();
 	bool testDiv();
+	bool testFunctions();
 };
 
 class VectorOperationsTester
@@ -107,6 +107,7 @@ public:
 	bool testMul();
 	bool testDiv();
 	bool testStore();
+	bool testFunctions();
 };
 
 class DoubleVectorFTester
@@ -122,4 +123,5 @@ public:
 	bool testMul();
 	bool testDiv();
 	bool testStore();
+	bool testFunctions();
 };
