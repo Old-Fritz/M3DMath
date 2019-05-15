@@ -42,15 +42,30 @@ namespace M3DM
 {
 	/// Scalar structs
 
-	union intFloat
+	union IntFloat
 	{
 		int i;
 		float f;
 	};
 
+	union FloatInt
+	{
+		float f;
+		int i;
+	};
+
+	inline float int2Float(int value)
+	{
+		return IntFloat{ value }.f;
+	}
+	inline int float2Int(float value)
+	{
+		return FloatInt{ value }.i;
+	}
+
 	/// Constants
 
-	const float FNAN = intFloat{ -1 }.f;
+	const float FNAN = int2Float(-1);
 
 	/// Base vector structs
 	struct Vector2;
@@ -322,10 +337,10 @@ namespace M3DM
 		operator M128() const;
 
 		// getters and setters
-		float get(int ind);
-		void set(int ind, float value);
-		int getInt(int ind);
-		void setInt(int ind, int value);
+		float get(char  ind) const;
+		void set(char ind, float value);
+		int getInt(char ind) const;
+		void setInt(char ind, int value);
 
 		// Base operations
 		VectorF VECCALL operator+(VectorF vector) const;

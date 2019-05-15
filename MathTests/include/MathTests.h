@@ -107,6 +107,7 @@ public:
 	bool testMul();
 	bool testDiv();
 	bool testStore();
+	bool testGetSet();
 	bool testFunctions();
 };
 
@@ -123,5 +124,6 @@ public:
 	bool testMul();
 	bool testDiv();
 	bool testStore();
+	bool testGetSet();
 	bool testFunctions();
 };

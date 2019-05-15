@@ -46,6 +46,11 @@ bool VectorFTester::testAll()
 	if (!result)
 		return false;
 
+	std::cout << "--Test store--" << std::endl;
+	result = testGetSet();
+	if (!result)
+		return false;
+
 	return true;
 }
 
@@ -647,6 +652,18 @@ bool VectorFTester::testSub()
 		return false;
 	}
 
+	// TEST #3
+	arg1 = VectorF(1, 2, 3, 4);
+	prediction = VectorF(-1, -2, -3, -4);
+	std::cout << "TEST #3: " << " -" << arg1 << " == " << prediction << std::endl;
+	resultVec = -arg1;
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
 	return true;
 }
 
@@ -837,6 +854,125 @@ bool VectorFTester::testStore()
 		std::cout << "Failed. Computed value: vec21 = " << vec21 << "; vec22 = " << vec22 << std::endl;
 		return false;
 	}
+
+	return true;
+}
+
+bool VectorFTester::testGetSet()
+{
+	VectorF vec, vecPrediction;
+	float valuef, valuefResult, valuefPrediction;
+	int ind, valuei, valueiResult, valueiPrediction;
+	bool result;
+
+	// TEST #1
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(1, 2, 3, 5);
+	valuef = 5;
+	ind = 3;
+	std::cout << "TEST #1: " << vec << ".set(" << ind << ", " << valuef << ") == " << vecPrediction << std::endl;
+	vec.set(ind, valuef);
+	result = vec == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vec << std::endl;
+		return false;
+	}
+
+	// TEST #2
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(5, 2, 3, 4);
+	valuef = 5;
+	ind = 0;
+	std::cout << "TEST #2: " << vec << ".set(" << ind << ", " << valuef << ") == " << vecPrediction << std::endl;
+	vec.set(ind, valuef);
+	result = vec == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vec << std::endl;
+		return false;
+	}
+
+	// TEST #3
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(1, 2, 3, int2Float(5));
+	valuei = 5;
+	ind = 3;
+	std::cout << "TEST #3: " << vec << ".setInt(" << ind << ", " << valuei << ") == " << vecPrediction << std::endl;
+	vec.setInt(ind, valuei);
+	result = vec == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vec << std::endl;
+		return false;
+	}
+
+	// TEST #4
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(int2Float(5), 2, 3, 4);
+	valuei = 5;
+	ind = 0;
+	std::cout << "TEST #4: " << vec << ".setInt(" << ind << ", " << valuei << ") == " << vecPrediction << std::endl;
+	vec.setInt(ind, valuei);
+	result = vec == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vec << std::endl;
+		return false;
+	}
+
+	// TEST #5
+	vec = VectorF(1, 2, 3, 4);
+	valuefPrediction = 4;
+	ind = 3;
+	std::cout << "TEST #5: " << vec << ".get(" << ind << ") == " << valuefPrediction << std::endl;
+	valuefResult = vec.get(ind);
+	result = valuefPrediction == valuefResult;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valuefResult << std::endl;
+		return false;
+	}
+
+	// TEST #6
+	vec = VectorF(1, 2, 3, 4);
+	valuefPrediction = 1;
+	ind = 0;
+	std::cout << "TEST #6: " << vec << ".get(" << ind << ") == " << valuefPrediction << std::endl;
+	valuefResult = vec.get(ind);
+	result = valuefPrediction == valuefResult;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valuefResult << std::endl;
+		return false;
+	}
+
+	// TEST #7
+	vec = VectorF(1, 2, 3, 4);
+	valueiPrediction = float2Int(4);
+	ind = 3;
+	std::cout << "TEST #5: " << vec << ".getInt(" << ind << ") == " << valueiPrediction << std::endl;
+	valueiResult = vec.getInt(ind);
+	result = valueiPrediction == valueiResult;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueiResult << std::endl;
+		return false;
+	}
+
+	// TEST #8
+	vec = VectorF(1, 2, 3, 4);
+	valueiPrediction = float2Int(1);;
+	ind = 0;
+	std::cout << "TEST #6: " << vec << ".getInt(" << ind << ") == " << valueiPrediction << std::endl;
+	valueiResult = vec.getInt(ind);
+	result = valueiPrediction == valueiResult;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueiResult << std::endl;
+		return false;
+	}
+
 
 	return true;
 }
