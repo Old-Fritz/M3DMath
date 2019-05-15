@@ -20,7 +20,7 @@ IF(ANDROID)
 	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffreestanding -march=armv7-a -mfpu=neon -mfloat-abi=softfp" )
 ELSE()
 # For x86_64
-	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx" )
+	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx -mveclibabi=svml" )
 ENDIF()
 
 # Targets

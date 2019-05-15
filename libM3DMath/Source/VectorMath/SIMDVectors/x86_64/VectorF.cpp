@@ -4,13 +4,6 @@
 
 using namespace M3DM;
 
-// TODO: replace in M3DMath.h
-__m128 vecabs_and(__m128 v) {
-	__m128i minus1 = _mm_set1_epi32(-1);
-	__m128 mask = _mm_castsi128_ps(_mm_srli_epi32(minus1, 1));
-	return _mm_and_ps(mask, v);
-}
-
 
 // Conversions
 VectorF::VectorF(float x, float y, float z, float w)
@@ -37,7 +30,7 @@ VectorF::VectorF(const Vector2& vector1, const Vector2& vector2)
 {
 	load(vector1, vector2);
 }
-VectorF::operator __m128() const
+VectorF::operator __m128&()
 {
 	return m_data;
 }
@@ -213,13 +206,13 @@ bool VectorF::operator>=(VectorF vector) const
 }
 bool VectorF::isEqualPrec(VectorF vector, float precision) const
 {
-	__m128 delta = vecabs_and(static_cast<__m128>(*this - vector));
+	__m128 delta = (*this - vector).abs();
 	__m128 dataCmp = _mm_cmple_ps(delta, _mm_set_ps1(precision));
 	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
 }
 bool VectorF::isEqualPrec(VectorF vector, VectorF precision) const
 {
-	__m128 delta = vecabs_and(static_cast<__m128>(*this - vector));
+	__m128 delta = (*this - vector).abs();
 	__m128 dataCmp = _mm_cmple_ps(delta, precision);
 	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
 }
@@ -229,7 +222,7 @@ VectorF VectorF::isEqualVec(VectorF vector) const
 }
 VectorF VectorF::isEqualPrecVec(VectorF vector, VectorF precision) const
 {
-	__m128 delta = vecabs_and(static_cast<__m128>(*this - vector));
+	__m128 delta = (*this - vector).abs();
 	return _mm_cmple_ps(delta, precision);
 }
 
@@ -297,3 +290,5 @@ void VectorF::store(Vector2& vector1, Vector2& vector2) const
 	vector2 = Vector2(vectorData + 2);
 
 }
+
+

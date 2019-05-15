@@ -7,6 +7,7 @@
 #ifdef WIN32
 #include <DirectXMath.h>
 #define VECCALL __vectorcall
+#define _SVML_ 1
 #endif
 
 // x86_64 platform
@@ -334,7 +335,7 @@ namespace M3DM
 		explicit VectorF(const Vector3& vector);
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
-		operator M128() const;
+		operator M128&();
 
 		// getters and setters
 		float get(char  ind) const;
