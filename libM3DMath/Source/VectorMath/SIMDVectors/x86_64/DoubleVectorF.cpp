@@ -68,6 +68,129 @@ DoubleVectorF::operator __m256() const
 	return m_data;
 }
 
+// getters and setters
+float DoubleVectorF::get(const char ind)  const
+{
+	switch (ind % 8)
+	{
+	case 0:
+		return int2Float(_mm256_extract_epi32(_mm256_castps_si256(m_data), 0));
+		break;
+	case 1:
+		return int2Float(_mm256_extract_epi32(_mm256_castps_si256(m_data), 1));
+		break;
+	case 2:
+		return int2Float(_mm256_extract_epi32(_mm256_castps_si256(m_data), 2));
+		break;
+	case 3:
+		return int2Float(_mm256_extract_epi32(_mm256_castps_si256(m_data), 3));
+		break;
+	case 4:
+		return int2Float(_mm256_extract_epi32(_mm256_castps_si256(m_data), 4));
+		break;
+	case 5:
+		return int2Float(_mm256_extract_epi32(_mm256_castps_si256(m_data), 5));
+		break;
+	case 6:
+		return int2Float(_mm256_extract_epi32(_mm256_castps_si256(m_data), 6));
+		break;
+	case 7:
+		return int2Float(_mm256_extract_epi32(_mm256_castps_si256(m_data), 7));
+		break;
+	}
+
+}
+void DoubleVectorF::set(char ind, float value)
+{
+	switch (ind % 8)
+	{
+	case 0:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), float2Int(value), 0));
+		break;
+	case 1:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), float2Int(value), 1));
+		break;
+	case 2:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), float2Int(value), 2));
+		break;
+	case 3:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), float2Int(value), 3));
+		break;
+	case 4:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), float2Int(value), 4));
+		break;
+	case 5:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), float2Int(value), 5));
+		break;
+	case 6:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), float2Int(value), 6));
+		break;
+	case 7:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), float2Int(value), 7));
+		break;
+	}
+}
+int DoubleVectorF::getInt(char ind)  const
+{
+	switch (ind % 8)
+	{
+	case 0:
+		return _mm256_extract_epi32(_mm256_castps_si256(m_data), 0);
+		break;
+	case 1:
+		return _mm256_extract_epi32(_mm256_castps_si256(m_data), 1);
+		break;
+	case 2:
+		return _mm256_extract_epi32(_mm256_castps_si256(m_data), 2);
+		break;
+	case 3:
+		return _mm256_extract_epi32(_mm256_castps_si256(m_data), 3);
+		break;
+	case 4:
+		return _mm256_extract_epi32(_mm256_castps_si256(m_data), 4);
+		break;
+	case 5:
+		return _mm256_extract_epi32(_mm256_castps_si256(m_data), 5);
+		break;
+	case 6:
+		return _mm256_extract_epi32(_mm256_castps_si256(m_data), 6);
+		break;
+	case 7:
+		return _mm256_extract_epi32(_mm256_castps_si256(m_data), 7);
+		break;
+	}
+}
+void DoubleVectorF::setInt(char ind, int value)
+{
+	switch (ind % 8)
+	{
+	case 0:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), value, 0));
+		break;
+	case 1:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), value, 1));
+		break;
+	case 2:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), value, 2));
+		break;
+	case 3:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), value, 3));
+		break;
+	case 4:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), value, 4));
+		break;
+	case 5:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), value, 5));
+		break;
+	case 6:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), value, 6));
+		break;
+	case 7:
+		m_data = _mm256_castsi256_ps(_mm256_insert_epi32(_mm256_castps_si256(m_data), value, 7));
+		break;
+	}
+}
+
 // Base operations
 DoubleVectorF DoubleVectorF::operator+(DoubleVectorF vector) const
 {
@@ -126,6 +249,10 @@ DoubleVectorF& DoubleVectorF::operator/=(float scale)
 	__m256 data2 = _mm256_set1_ps(scale);
 	m_data = _mm256_div_ps(m_data, data2);
 	return *this;
+}
+DoubleVectorF DoubleVectorF::operator-()
+{
+	return _mm256_sub_ps(__m256(), m_data);
 }
 
 // Compare functions

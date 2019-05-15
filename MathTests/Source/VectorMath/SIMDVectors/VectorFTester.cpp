@@ -46,7 +46,7 @@ bool VectorFTester::testAll()
 	if (!result)
 		return false;
 
-	std::cout << "--Test store--" << std::endl;
+	std::cout << "--Test get and set--" << std::endl;
 	result = testGetSet();
 	if (!result)
 		return false;
@@ -951,7 +951,7 @@ bool VectorFTester::testGetSet()
 	vec = VectorF(1, 2, 3, 4);
 	valueiPrediction = float2Int(4);
 	ind = 3;
-	std::cout << "TEST #5: " << vec << ".getInt(" << ind << ") == " << valueiPrediction << std::endl;
+	std::cout << "TEST #7: " << vec << ".getInt(" << ind << ") == " << valueiPrediction << std::endl;
 	valueiResult = vec.getInt(ind);
 	result = valueiPrediction == valueiResult;
 	if (!result)
@@ -962,9 +962,9 @@ bool VectorFTester::testGetSet()
 
 	// TEST #8
 	vec = VectorF(1, 2, 3, 4);
-	valueiPrediction = float2Int(1);;
+	valueiPrediction = float2Int(1);
 	ind = 0;
-	std::cout << "TEST #6: " << vec << ".getInt(" << ind << ") == " << valueiPrediction << std::endl;
+	std::cout << "TEST #8: " << vec << ".getInt(" << ind << ") == " << valueiPrediction << std::endl;
 	valueiResult = vec.getInt(ind);
 	result = valueiPrediction == valueiResult;
 	if (!result)

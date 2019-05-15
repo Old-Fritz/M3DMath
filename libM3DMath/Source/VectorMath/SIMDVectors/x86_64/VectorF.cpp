@@ -45,7 +45,6 @@ VectorF::operator __m128() const
 // getters and setters
 float VectorF::get(const char ind)  const
 {
-	IntFloat value;
 	switch (ind%4)
 	{
 	case 0:

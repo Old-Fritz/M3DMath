@@ -436,10 +436,10 @@ namespace M3DM
 		VECCALL operator M256() const;
 
 		// getters and setters
-		float get(int ind);
-		void set(int ind, float value);
-		int getInt(int ind);
-		void setInt(int ind, int value);
+		float get(char ind) const;
+		void set(char ind, float value);
+		int getInt(char ind) const;
+		void setInt(char ind, int value);
 
 		// Base operations
 		DoubleVectorF VECCALL operator+(DoubleVectorF vector) const;
@@ -454,7 +454,7 @@ namespace M3DM
 		DoubleVectorF& VECCALL operator/=(DoubleVectorF vector);
 		DoubleVectorF& VECCALL operator*=(float scale);
 		DoubleVectorF& VECCALL operator/=(float scale);
-		VectorF VECCALL operator-();
+		DoubleVectorF VECCALL operator-();
 
 		// Compare functions
 		bool VECCALL operator==(DoubleVectorF vector) const;
