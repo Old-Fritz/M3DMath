@@ -1,6 +1,7 @@
 #include "M3DMath.h"
 #include <cmath>
 
+
 /// Implementation of VectorF methods
 
 using namespace M3DM;
@@ -62,79 +63,57 @@ VectorF VectorF::sqrt()
 
 VectorF VectorF::cos()
 {
-#ifdef _SVML_
 	return _mm_cos_ps(m_data);
-#endif
 }
 
 VectorF VectorF::sin()
 {
-#ifdef _SVML_
 	return _mm_sin_ps(m_data);
-#endif
 }
 
 VectorF VectorF::tan()
 {
-#ifdef _SVML_
 	return _mm_tan_ps(m_data);
-#endif
 }
 
 VectorF VectorF::acos()
 {
-#ifdef _SVML_
 	return _mm_acos_ps(m_data);
-#endif
 }
 
 VectorF VectorF::asin()
 {
-#ifdef _SVML_
 	return _mm_asin_ps(m_data);
-#endif
 }
 
 VectorF VectorF::atan()
 {
-#ifdef _SVML_
 	return _mm_atan_ps(m_data);
-#endif
 }
 
 VectorF VectorF::exp2()
 {
-#ifdef _SVML_
 	return _mm_exp2_ps(m_data);
-#endif
 }
 
 VectorF VectorF::expE()
 {
-#ifdef _SVML_
 	return _mm_exp_ps(m_data);
-#endif
 }
 
 VectorF VectorF::log2()
 {
-#ifdef _SVML_
 	return _mm_log2_ps(m_data);
-#endif
 }
 
 VectorF VectorF::logE()
 {
-#ifdef _SVML_
 	return _mm_log_ps(m_data);
-#endif
 }
 
 void VectorF::sincos(VectorF& sin, VectorF& cos)
 {
-#ifdef _SVML_
 	sin = _mm_sincos_ps(&static_cast<__m128&>(cos), m_data);
-#endif
 }
 
 void VectorF::replicate(float value)

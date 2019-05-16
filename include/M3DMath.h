@@ -4,10 +4,10 @@
 #define M128 __m128
 #define M256 __m256
 
+
 #ifdef WIN32
 #include <DirectXMath.h>
 #define VECCALL __vectorcall
-#define _SVML_ 1
 #endif
 
 // x86_64 platform
@@ -18,9 +18,8 @@
 # include <pmmintrin.h>
 # include <smmintrin.h>
 # include <immintrin.h>
-
-
 #endif
+
 // arm_platform
 #ifdef __ARM_NEON
 #define __ARM_FEATURE_FP16_VECTOR_ARITHMETIC 1
