@@ -6,18 +6,6 @@ using namespace M3DM;
 
 #define _mm256_test_all_ones(data) _mm256_testc_si256(_mm256_castps_si256((data)), _mm256_castps_si256(_mm256_cmp_ps((data), (data), _CMP_EQ_OQ)));
 
-// TODO: replace in M3DMath.h
-__m256 vecabs_and(__m256 v) {
-	__m256i minus1 = _mm256_set1_epi32(-1);
-#ifdef _AVX2_
-	__m256 mask = _mm256_castsi256_ps(_mm256_srli_epi32(minus1, 1));
-#endif
-#if defined(_AVX_) && !defined(_AVX2_)
-	__m256 mask = _mm256_castsi256_ps(_mm256_set1_epi32(0x7fffffff));
-#endif
-	return _mm256_and_ps(mask, v);
-}
-
 // Conversions
 DoubleVectorF::DoubleVectorF(float x1, float y1, float z1, float w1, float x2, float y2, float z2, float w2)
 {
@@ -63,7 +51,7 @@ DoubleVectorF::DoubleVectorF(VectorF vector1, VectorF vector2)
 {
 	load(vector1, vector2);
 }
-DoubleVectorF::operator __m256() const
+DoubleVectorF::operator __m256&()
 {
 	return m_data;
 }
@@ -296,14 +284,14 @@ bool DoubleVectorF::operator>=(DoubleVectorF vector) const
 }
 bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, float precision) const
 {
-	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
+	__m256 delta = (*this - vector).abs();
 	__m256 dataCmp = _mm256_cmp_ps(delta, _mm256_set1_ps(precision), _CMP_LE_OQ);
 	return _mm256_test_all_ones(dataCmp);
 	
 }
 bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, DoubleVectorF precision) const
 {
-	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
+	__m256 delta = (*this - vector).abs();
 	__m256 dataCmp = _mm256_cmp_ps(delta, precision, _CMP_LE_OQ);
 	return _mm256_test_all_ones(dataCmp);
 }
@@ -313,7 +301,7 @@ DoubleVectorF DoubleVectorF::isEqualVec(DoubleVectorF vector) const
 }
 DoubleVectorF DoubleVectorF::isEqualPrecVec(DoubleVectorF vector, DoubleVectorF precision) const
 {
-	__m256 delta = vecabs_and(static_cast<__m256>(*this - vector));
+	__m256 delta = (*this - vector).abs();
 	return _mm256_cmp_ps(delta, precision, _CMP_LE_OQ);
 }
 
@@ -438,3 +426,5 @@ void DoubleVectorF::store(VectorF& vector1, VectorF& vector2) const
 	vector1 = _mm256_extractf128_ps(m_data, 0);
 	vector2 = _mm256_extractf128_ps(m_data, 1);
 }
+
+

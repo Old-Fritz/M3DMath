@@ -117,7 +117,7 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlength();
+		float sqrLength();
 		Vector2 normalized();
 		Vector2 abs();
 		Vector2 floor();
@@ -185,7 +185,7 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlength();
+		float sqrLength();
 		Vector3 normalized();
 		Vector3 abs();
 		Vector3 floor();
@@ -253,7 +253,7 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlength();
+		float sqrLength();
 		Vector4 normalized();
 		Vector4 abs();
 		Vector4 floor();
@@ -438,7 +438,7 @@ namespace M3DM
 		explicit DoubleVectorF(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4);
 		explicit DoubleVectorF(VectorF vector);
 		explicit DoubleVectorF(VectorF vector1, VectorF vector2);
-		VECCALL operator M256() const;
+		VECCALL operator M256&();
 
 		// getters and setters
 		float get(char ind) const;
@@ -498,8 +498,8 @@ namespace M3DM
 		void VECCALL store(VectorF& vector1, VectorF& vector2) const;
 
 		// Functions
-		float length();
-		float sqrlength();
+		void length(float& len1, float& len2);
+		void sqrLength(float& len1, float& len2);
 		DoubleVectorF VECCALL normalized();
 		DoubleVectorF VECCALL abs();
 		DoubleVectorF VECCALL floor();

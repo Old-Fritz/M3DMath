@@ -1,4 +1,5 @@
 #include "MathTests.h"
+#include <cmath>
 
 using namespace M3DM;
 
@@ -48,6 +49,11 @@ bool DoubleVectorFTester::testAll()
 
 	std::cout << "--Test get and set--" << std::endl;
 	result = testGetSet();
+	if (!result)
+		return false;
+
+	std::cout << "--Test functions--" << std::endl;
+	result = testFunctions();
 	if (!result)
 		return false;
 
@@ -1127,6 +1133,392 @@ bool DoubleVectorFTester::testGetSet()
 		return false;
 	}
 
+
+	return true;
+}
+
+bool DoubleVectorFTester::testFunctions()
+{
+	DoubleVectorF vec, vecPrediction, vecPrediction2, vecResult, vecResult2;
+	float value, valueResult, value2Result, valuePrediction, value2Prediction;
+	bool result;
+
+	// TEST #1
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	valuePrediction = 5.477225575f;
+	value2Prediction = 13.19090596f;
+	std::cout << "TEST #1: " << vec << ".length(); " << " lenth1 == " << valuePrediction << ", length2 ==" << value2Prediction << std::endl;
+	vec.length(valueResult, value2Result);
+	result = valueResult == valuePrediction && value2Result == value2Prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: lenth1 == " << valueResult << ", length2 ==" << value2Result << std::endl;
+		return false;
+	}
+
+	// TEST #2
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	valuePrediction = 30;
+	value2Prediction = 174;
+	std::cout << "TEST #2: " << vec << ".sqrLength(); " << " lenth1 == " << valuePrediction << ", length2 ==" << value2Prediction << std::endl;
+	vec.sqrLength(valueResult, value2Result);
+	result = valueResult == valuePrediction && value2Result == value2Prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: lenth1 == " << valueResult << ", length2 ==" << value2Result << std::endl;
+		return false;
+	}
+
+	// TEST #3
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	value = 3;
+	vecPrediction = DoubleVectorF(value, value, value, value, value, value, value, value);
+	std::cout << "TEST #3: " << vec << ".replicate()" << " == " << vecPrediction << std::endl;
+	vec.replicate(value);
+	result = vec == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vec << std::endl;
+		return false;
+	}
+
+	// TEST #4
+	vec = DoubleVectorF(-3, 4, -5, 6, 7, -8, -9, 10);
+	vecPrediction = DoubleVectorF(3, 4, 5, 6, 7, 8, 9, 10);
+	std::cout << "TEST #4: " << vec << ".abs()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.abs();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #5
+	vec = DoubleVectorF(3.1, 4.7, 5.2, 6.8, 7.2, 8.3, 9.5, 10.8);
+	vecPrediction = DoubleVectorF(3, 4, 5, 6, 7, 8, 9, 10);
+	std::cout << "TEST #5: " << vec << ".floor()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.floor();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #6
+	vec = DoubleVectorF(3.7, 4.1, 5.6, 6.3, 7.9, 8.6, 9.2, 10.3);
+	vecPrediction = DoubleVectorF(3, 4, 5, 6, 7, 8, 9, 10);
+	std::cout << "TEST #6: " << vec << ".floor()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.floor();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #7
+	vec = DoubleVectorF(3.1, 4.7, 5.2, 6.8, 7.2, 8.3, 9.5, 10.8);
+	vecPrediction = DoubleVectorF(4, 5, 6, 7, 8, 9, 10, 11);
+	std::cout << "TEST #7: " << vec << ".ceil()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.ceil();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #8
+	vec = DoubleVectorF(3.7, 4.1, 5.6, 6.3, 7.9, 8.6, 9.2, 10.3);
+	vecPrediction = DoubleVectorF(4, 5, 6, 7, 8, 9, 10, 11);
+	std::cout << "TEST #8: " << vec << ".ceil()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.ceil();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #9
+	vec = DoubleVectorF(3.1, 4.7, 5.2, 6.8, 7.2, 8.3, 9.5, 10.8);
+	vecPrediction = DoubleVectorF(3, 5, 5, 7, 7, 8, 10, 11);
+	std::cout << "TEST #9: " << vec << ".round()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.round();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #10
+	vec = DoubleVectorF(3.7, 4.1, 5.6, 6.3, 7.9, 8.6, 9.2, 10.3);
+	vecPrediction = DoubleVectorF(4, 4, 6, 6, 8, 9, 9, 10);
+	std::cout << "TEST #10: " << vec << ".round()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.round();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #11
+	vec = DoubleVectorF(2, 4, 8, 5, 10, 20, 100, 1);
+	vecPrediction = DoubleVectorF(0.5, 0.25, 0.125, 0.2, 0.1, 0.05, 0.01, 1);
+	std::cout << "TEST #11: " << vec << ".reciprocal()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.reciprocal();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #12
+	vec = DoubleVectorF(0.4, 6, 3, 0, 0.3, 2, -4, 4);
+	vecPrediction = DoubleVectorF(0.4, 1, 1, 0, 0.3, 1, 0, 1);
+	std::cout << "TEST #12: " << vec << ".saturate()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.saturate();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #13
+	vec = DoubleVectorF(-5, 0.7, 0.3, 0.9999999, 0.00000001, 5, 0.6, 1);
+	vecPrediction = DoubleVectorF(0, 0.7, 0.3, 0.9999999, 0.00000001, 1, 0.6, 1);
+	std::cout << "TEST #13: " << vec << ".saturate()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.saturate();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #14
+	vec = DoubleVectorF(4, 9, 16, 25, 36, 49, 64, 81);
+	vecPrediction = DoubleVectorF(2, 3, 4, 5, 6, 7, 8, 9);
+	std::cout << "TEST #14: " << vec << ".sqrt()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.sqrt();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+
+	// TEST #15
+	vec = DoubleVectorF(4, -9, 34, 21, 65, 521, 42, -17);
+	vecPrediction = DoubleVectorF(sinf(4), sinf(-9), sinf(34), sinf(21), sinf(65), sinf(521), sinf(42), sinf(-17));
+	std::cout << "TEST #15: " << vec << ".sin()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.sin();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #16
+	vec = DoubleVectorF(4, -9, 34, 21, 65, 521, 42, -17);
+	vecPrediction = DoubleVectorF(cosf(4), cosf(-9), cosf(34), cosf(21), cosf(65), cosf(521), cosf(42), cosf(-17));
+	std::cout << "TEST #16: " << vec << ".cos()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.cos();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #17
+	vec = DoubleVectorF(4, -9, 34, 21, 65, 521, 42, -17);
+	vecPrediction = DoubleVectorF(tanf(4), tanf(-9), tanf(34), tanf(21), tanf(65), tanf(521), tanf(42), tanf(-17));
+	std::cout << "TEST #17: " << vec << ".tan()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.tan();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #18
+	vec = DoubleVectorF(0.4, -0.6, 0.34, 0.21, 0.5, 0.9999999, 0, -0.9999999);
+	vecPrediction = DoubleVectorF(asinf(0.4), asinf(-0.6), asinf(0.34), asinf(0.21), asinf(0.5), asinf(0.9999999), asinf(0), asinf(-0.9999999));
+	std::cout << "TEST #18: " << vec << ".asin()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.asin();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #19
+	vec = DoubleVectorF(0.4, -0.6, 0.34, 0.21, 0.5, 0.9999999, 0, -0.9999999);
+	vecPrediction = DoubleVectorF(acosf(0.4), acosf(-0.6), acosf(0.34), acosf(0.21), acosf(0.5), acosf(0.9999999), acosf(0), acosf(-0.9999999));
+	std::cout << "TEST #19: " << vec << ".acos()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.acos();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #20
+	vec = DoubleVectorF(0.4, -0.6, 0.34, 0.21, 0.5, 0.9999999, 0, -0.9999999);
+	vecPrediction = DoubleVectorF(atanf(0.4), atanf(-0.6), atanf(0.34), atanf(0.21), atanf(0.5), atanf(0.9999999), atanf(0), atanf(-0.9999999));
+	std::cout << "TEST #20: " << vec << ".atan()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.atan();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #21
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(exp2f(1), exp2f(2), exp2f(3), exp2f(4), exp2f(5), exp2f(6), exp2f(7), exp2f(8));
+	std::cout << "TEST #21: " << vec << ".exp2()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.exp2();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #22
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(expf(1), expf(2), expf(3), expf(4), expf(5), expf(6), expf(7), expf(8));
+	std::cout << "TEST #22: " << vec << ".expE()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.expE();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #23
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(log2f(1), log2f(2), log2f(3), log2f(4), log2f(5), log2f(6), log2f(7), log2f(8));
+	std::cout << "TEST #23: " << vec << ".log2()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.log2();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #24
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(logf(1), logf(2), logf(3), logf(4), logf(5), logf(6), logf(7), logf(8));
+	std::cout << "TEST #24: " << vec << ".logE()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.logE();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #25
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(sinf(1), sinf(2), sinf(3), sinf(4), sinf(5), sinf(6), sinf(7), sinf(8));
+	vecPrediction2 = DoubleVectorF(cosf(1), cosf(2), cosf(3), cosf(4), cosf(5), cosf(6), cosf(7), cosf(8));
+	std::cout << "TEST #25: " << vec << ".sincos()" << " == " << vecPrediction << ", " << vecPrediction2 << std::endl;
+	vec.sincos(vecResult, vecResult2);
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f)) && vecResult2.isEqualPrec(vecPrediction2, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: vecResult = " << vecResult << "; vecResult2 = " << vecResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #26
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(1 / 5.477225575051f, 2 / 5.477225575051f, 3 / 5.477225575051f, 4 / 5.477225575051f, 5 / 13.19090596f, 6 / 13.19090596f, 7 / 13.19090596f, 8 / 13.19090596f);
+	std::cout << "TEST #26: " << vec << ".normalized()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.normalized();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #27
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(VectorF().replicate(5.477225575051f), VectorF().replicate(13.19090596f));
+	std::cout << "TEST #27: " << vec << ".lengthVec()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.lengthVec();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #28
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(VectorF().replicate(30), VectorF().replicate(174));
+	std::cout << "TEST #28: " << vec << ".sqrLengthVec()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.sqrLengthVec();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #29
+	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	vecPrediction = DoubleVectorF(1 / 5.477225f, 2 / 5.477225f, 3 / 5.477225f, 4 / 5.477225f, 5 / 13.19090596f, 6 / 13.19090596f, 7 / 13.19090596f, 8 / 13.19090596f);
+	std::cout << "TEST #29: " << vec << ".normalizedFast()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.normalizedFast();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #30
+	vec = DoubleVectorF(1, 2, 3, 0.01, 10, 20, 100, 1);
+	vecPrediction = DoubleVectorF(1, 0.5, 0.333333, 100, 0.1, 0.05, 0.01, 1);
+	std::cout << "TEST #30: " << vec << ".reciprocalFast()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.reciprocalFast();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.01f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #31
+	vec = DoubleVectorF(1, 4, 9, 16, 25, 36, 49, 64);
+	vecPrediction = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
+	std::cout << "TEST #31: " << vec << ".sqrtFast()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.sqrtFast();
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF().replicate(0.01f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
 
 	return true;
 }

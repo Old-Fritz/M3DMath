@@ -1004,7 +1004,7 @@ bool VectorFTester::testFunctions()
 	// TEST #2
 	vec = VectorF(1, 2, 3, 4);
 	valuePrediction = 30;
-	std::cout << "TEST #2: " << vec << ".sqrlength()" << " == " << valuePrediction << std::endl;
+	std::cout << "TEST #2: " << vec << ".sqrLength()" << " == " << valuePrediction << std::endl;
 	valueResult = vec.sqrLength();
 	result = valueResult == valuePrediction;
 	if (!result)
@@ -1015,13 +1015,14 @@ bool VectorFTester::testFunctions()
 
 	// TEST #3
 	vec = VectorF(1, 2, 3, 4);
-	vecPrediction = VectorF(1 / 5.477225575051f, 2 / 5.477225575051f, 3 / 5.477225575051f, 4 / 5.477225575051f);
-	std::cout << "TEST #3: " << vec << ".normalized()" << " == " << vecPrediction << std::endl;
-	vecResult = vec.normalized();
-	result = vecResult.isEqualPrec(vecPrediction, VectorF().replicate(0.0001f));
+	value = 3;
+	vecPrediction = VectorF(value, value, value, value);
+	std::cout << "TEST #3: " << vec << ".replcate()" << " == " << vecPrediction << std::endl;
+	vec.replicate(value);
+	result = vec == vecPrediction;
 	if (!result)
 	{
-		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		std::cout << "Failed. Computed value: " << vec << std::endl;
 		return false;
 	}
 
@@ -1293,14 +1294,13 @@ bool VectorFTester::testFunctions()
 
 	// TEST #26
 	vec = VectorF(1, 2, 3, 4);
-	value = 3;
-	vecPrediction = VectorF(value, value, value, value);
-	std::cout << "TEST #26: " << vec << ".replcate()" << " == " << vecPrediction << std::endl;
-	vec.replicate(value);
-	result = vec == vecPrediction;
+	vecPrediction = VectorF(1 / 5.477225575051f, 2 / 5.477225575051f, 3 / 5.477225575051f, 4 / 5.477225575051f);
+	std::cout << "TEST #26: " << vec << ".normalized()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.normalized();
+	result = vecResult.isEqualPrec(vecPrediction, VectorF().replicate(0.0001f));
 	if (!result)
 	{
-		std::cout << "Failed. Computed value: " << vec << std::endl;
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
 		return false;
 	}
 

@@ -752,8 +752,8 @@ bool Vector2Tester::testFunctions()
 	// TEST #2
 	vec = Vector2(1, 2);
 	valuePrediction = 5;
-	std::cout << "TEST #2: " << vec << ".sqrlength()" << " == " << valuePrediction << std::endl;
-	valueResult = vec.sqrlength();
+	std::cout << "TEST #2: " << vec << ".sqrLength()" << " == " << valuePrediction << std::endl;
+	valueResult = vec.sqrLength();
 	result = valueResult == valuePrediction;
 	if (!result)
 	{

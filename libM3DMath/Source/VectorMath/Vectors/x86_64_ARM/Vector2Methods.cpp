@@ -11,7 +11,7 @@ float Vector2::length()
 	return sqrtf(x * x + y * y);
 }
 
-float Vector2::sqrlength()
+float Vector2::sqrLength()
 {
 	return x * x + y * y;
 }
