@@ -207,9 +207,11 @@ void Vector3::sincos(Vector3 & sin, Vector3 & cos)
 	cos.z = cosf(z);
 }
 
-void Vector3::replicate(float value)
+Vector3& Vector3::replicate(float value)
 {
 	x = value;
 	y = value;
 	z = value;
+
+	return *this;
 }

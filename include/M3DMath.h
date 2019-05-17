@@ -137,7 +137,7 @@ namespace M3DM
 		Vector2 log2();
 		Vector2 logE();
 		void sincos(Vector2& sin, Vector2& cos);
-		void replicate(float value);
+		Vector2& replicate(float value);
 		
 	};
 
@@ -205,7 +205,7 @@ namespace M3DM
 		Vector3 log2();
 		Vector3 logE();
 		void sincos(Vector3& sin, Vector3& cos);
-		void replicate(float value);
+		Vector3& replicate(float value);
 	};
 	
 	struct ALIGN(16) Vector4
@@ -273,7 +273,7 @@ namespace M3DM
 		Vector4 log2();
 		Vector4 logE();
 		void sincos(Vector4& sin, Vector4& cos);
-		void replicate(float value);
+		Vector4& replicate(float value);
 	};
 
 	/// Different operator combinations
@@ -385,15 +385,15 @@ namespace M3DM
 
 		// Functions
 		float length();
-		float sqrlength();
-		VectorF VECCALL normalized();
+		float sqrLength();
+		VectorF VECCALL normalized(); // TODO: fast version
 		VectorF VECCALL abs();
 		VectorF VECCALL floor();
 		VectorF VECCALL ceil();
-		VectorF VECCALL round();
-		VectorF VECCALL reciprocal();
+		VectorF VECCALL round(); 
+		VectorF VECCALL reciprocal(); // TODO: fast version
 		VectorF VECCALL saturate();
-		VectorF VECCALL sqrt();
+		VectorF VECCALL sqrt(); // TODO: fast version
 		VectorF VECCALL cos();
 		VectorF VECCALL sin();
 		VectorF VECCALL tan();
@@ -404,8 +404,13 @@ namespace M3DM
 		VectorF VECCALL expE();
 		VectorF VECCALL log2();
 		VectorF VECCALL logE();
+		VectorF VECCALL lengthVec();
+		VectorF VECCALL sqrLengthVec();
+		VectorF VECCALL normalizedFast();
+		VectorF VECCALL reciprocalFast();
+		VectorF VECCALL sqrtFast();
 		void sincos(VectorF& sin, VectorF& cos);
-		void replicate(float value);
+		VectorF& replicate(float value);
 
 	private:
 		M128 m_data{};
@@ -513,8 +518,13 @@ namespace M3DM
 		DoubleVectorF VECCALL expE();
 		DoubleVectorF VECCALL log2();
 		DoubleVectorF VECCALL logE();
+		DoubleVectorF VECCALL lengthVec();
+		DoubleVectorF VECCALL sqrLengthVec();
+		DoubleVectorF VECCALL normalizedFast();
+		DoubleVectorF VECCALL reciprocalFast();
+		DoubleVectorF VECCALL sqrtFast();
 		void sincos(DoubleVectorF& sin, DoubleVectorF& cos);
-		void replicate(float value);
+		DoubleVectorF& replicate(float value);
 	private:
 		M256 m_data{};
 	};
@@ -585,7 +595,7 @@ namespace M3DM
 	VectorF VECCALL vecFOrthogonal(VectorF vec, VectorF normal);
 	VectorF VECCALL vecFDotVec(VectorF vec1, VectorF vec2);
 	VectorF VECCALL vecFLinePointDistanceVec(VectorF line, VectorF point);
-	VectorF VECCALL vecFAngleBetweenVec(VectorF vec1, VectorF vec2);
+	VectorF VECCALL vecFAngleBetweenVec(VectorF vec1, VectorF vec2); // TODO: fast version
 	VectorF VECCALL vecFInBoundVec(VectorF vec, VectorF left, VectorF right);
 	VectorF VECCALL vecFPow(VectorF vec, VectorF pow);
 	VectorF VECCALL vecFPow(VectorF vec, float pow);

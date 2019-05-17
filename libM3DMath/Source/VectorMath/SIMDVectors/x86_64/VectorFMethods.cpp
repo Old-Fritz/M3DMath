@@ -11,7 +11,7 @@ float VectorF::length()
 	return VectorF(_mm_sqrt_ps(_mm_dp_ps(m_data, m_data, 0b11111111))).get(0);
 }
 
-float VectorF::sqrlength()
+float VectorF::sqrLength()
 {
 	return VectorF(_mm_dp_ps(m_data, m_data, 0b11111111)).get(0);
 }
@@ -116,7 +116,34 @@ void VectorF::sincos(VectorF& sin, VectorF& cos)
 	sin = _mm_sincos_ps(&static_cast<__m128&>(cos), m_data);
 }
 
-void VectorF::replicate(float value)
+VectorF& VectorF::replicate(float value)
 {
 	m_data = _mm_set_ps1(value);
+
+	return *this;
+}
+
+VectorF VectorF::lengthVec()
+{
+	return _mm_sqrt_ps(_mm_dp_ps(m_data, m_data, 0b11111111));
+}
+
+VectorF VectorF::sqrLengthVec()
+{
+	return _mm_dp_ps(m_data, m_data, 0b11111111);
+}
+
+VectorF VectorF::normalizedFast()
+{
+	return _mm_mul_ps(m_data, _mm_rsqrt_ps(sqrLengthVec()));
+}
+
+VectorF VectorF::reciprocalFast()
+{
+	return _mm_rcp_ps(m_data);
+}
+
+VectorF VectorF::sqrtFast()
+{
+	return _mm_rcp_ps(_mm_rsqrt_ps(m_data));
 }

@@ -227,10 +227,12 @@ void Vector4::sincos(Vector4 & sin, Vector4 & cos)
 	cos.w = cosf(w);
 }
 
-void Vector4::replicate(float value)
+Vector4& Vector4::replicate(float value)
 {
 	x = value;
 	y = value;
 	z = value;
 	w = value;
+
+	return *this;
 }

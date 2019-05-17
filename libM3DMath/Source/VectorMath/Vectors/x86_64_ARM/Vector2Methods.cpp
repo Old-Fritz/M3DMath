@@ -188,8 +188,10 @@ void Vector2::sincos(Vector2& sin, Vector2& cos)
 
 }
 
-void Vector2::replicate(float value)
+Vector2& Vector2::replicate(float value)
 {
 	x = value;
 	y = value;
+
+	return *this;
 }
