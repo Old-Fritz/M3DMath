@@ -22,6 +22,7 @@ bool makeVectorTests()
 	VectorOperationsTester vectorOperatinosTester;
 	VectorFTester vectorFTester;
 	DoubleVectorFTester doubleVectorFTester;
+	VectorFunctionsTester vectorFunctionsTester;
 
 	bool result;
 
@@ -47,6 +48,10 @@ bool makeVectorTests()
 		return false;
 
 	result = doubleVectorFTester.testAll();
+	if (!result)
+		return false;
+
+	result = vectorFunctionsTester.testAll();
 	if (!result)
 		return false;
 

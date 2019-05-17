@@ -127,3 +127,11 @@ public:
 	bool testGetSet();
 	bool testFunctions();
 };
+
+class VectorFunctionsTester
+{
+public:
+	bool testAll();
+
+	bool testVector2();
+};

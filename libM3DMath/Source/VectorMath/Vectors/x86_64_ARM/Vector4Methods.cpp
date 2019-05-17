@@ -6,17 +6,17 @@
 using namespace M3DM;
 
 
-float Vector4::length()
+float Vector4::length() const
 {
 	return sqrtf(x * x + y * y + z * z + w * w);
 }
 
-float Vector4::sqrLength()
+float Vector4::sqrLength() const
 {
 	return x * x + y * y + z * z + w * w;
 }
 
-Vector4 Vector4::normalized()
+Vector4 Vector4::normalized() const
 {
 	Vector4 resultVec;
 	float len = length();
@@ -28,7 +28,7 @@ Vector4 Vector4::normalized()
 	return resultVec;
 }
 
-Vector4 Vector4::abs()
+Vector4 Vector4::abs() const
 {
 	Vector4 resultVec;
 	resultVec.x = fabs(x);
@@ -39,7 +39,7 @@ Vector4 Vector4::abs()
 	return resultVec;
 }
 
-Vector4 Vector4::floor()
+Vector4 Vector4::floor() const
 {
 	Vector4 resultVec;
 	resultVec.x = floorf(x);
@@ -50,7 +50,7 @@ Vector4 Vector4::floor()
 	return resultVec;
 }
 
-Vector4 Vector4::ceil()
+Vector4 Vector4::ceil() const
 {
 	Vector4 resultVec;
 	resultVec.x = ceilf(x);
@@ -61,7 +61,7 @@ Vector4 Vector4::ceil()
 	return resultVec;
 }
 
-Vector4 Vector4::round()
+Vector4 Vector4::round() const
 {
 	Vector4 resultVec;
 	resultVec.x = roundf(x);
@@ -72,7 +72,7 @@ Vector4 Vector4::round()
 	return resultVec;
 }
 
-Vector4 Vector4::reciprocal()
+Vector4 Vector4::reciprocal() const
 {
 	Vector4 resultVec;
 	resultVec.x = 1 / x;
@@ -83,7 +83,7 @@ Vector4 Vector4::reciprocal()
 	return resultVec;
 }
 
-Vector4 Vector4::saturate()
+Vector4 Vector4::saturate() const
 {
 	Vector4 resultVec;
 	resultVec.x = fmin(fmax(x, 0), 1);
@@ -94,7 +94,7 @@ Vector4 Vector4::saturate()
 	return resultVec;
 }
 
-Vector4 Vector4::sqrt()
+Vector4 Vector4::sqrt() const
 {
 	Vector4 resultVec;
 	resultVec.x = sqrtf(x);
@@ -105,7 +105,7 @@ Vector4 Vector4::sqrt()
 	return resultVec;
 }
 
-Vector4 Vector4::cos()
+Vector4 Vector4::cos() const
 {
 	Vector4 resultVec;
 	resultVec.x = cosf(x);
@@ -116,7 +116,7 @@ Vector4 Vector4::cos()
 	return resultVec;
 }
 
-Vector4 Vector4::sin()
+Vector4 Vector4::sin() const
 {
 	Vector4 resultVec;
 	resultVec.x = sinf(x);
@@ -127,7 +127,7 @@ Vector4 Vector4::sin()
 	return resultVec;
 }
 
-Vector4 Vector4::tan()
+Vector4 Vector4::tan() const
 {
 	Vector4 resultVec;
 	resultVec.x = tanf(x);
@@ -138,7 +138,7 @@ Vector4 Vector4::tan()
 	return resultVec;
 }
 
-Vector4 Vector4::acos()
+Vector4 Vector4::acos() const
 {
 	Vector4 resultVec;
 	resultVec.x = acosf(x);
@@ -149,7 +149,7 @@ Vector4 Vector4::acos()
 	return resultVec;
 }
 
-Vector4 Vector4::asin()
+Vector4 Vector4::asin() const
 {
 	Vector4 resultVec;
 	resultVec.x = asinf(x);
@@ -160,7 +160,7 @@ Vector4 Vector4::asin()
 	return resultVec;
 }
 
-Vector4 Vector4::atan()
+Vector4 Vector4::atan() const
 {
 	Vector4 resultVec;
 	resultVec.x = atanf(x);
@@ -171,7 +171,7 @@ Vector4 Vector4::atan()
 	return resultVec;
 }
 
-Vector4 Vector4::exp2()
+Vector4 Vector4::exp2() const
 {
 	Vector4 resultVec;
 	resultVec.x = exp2f(x);
@@ -182,7 +182,7 @@ Vector4 Vector4::exp2()
 	return resultVec;
 }
 
-Vector4 Vector4::expE()
+Vector4 Vector4::expE() const
 {
 	Vector4 resultVec;
 	resultVec.x = expf(x);
@@ -193,7 +193,7 @@ Vector4 Vector4::expE()
 	return resultVec;
 }
 
-Vector4 Vector4::log2()
+Vector4 Vector4::log2() const
 {
 	Vector4 resultVec;
 	resultVec.x = log2f(x);
@@ -204,7 +204,7 @@ Vector4 Vector4::log2()
 	return resultVec;
 }
 
-Vector4 Vector4::logE()
+Vector4 Vector4::logE() const
 {
 	Vector4 resultVec;
 	resultVec.x = logf(x);
@@ -215,7 +215,7 @@ Vector4 Vector4::logE()
 	return resultVec;
 }
 
-void Vector4::sincos(Vector4 & sin, Vector4 & cos)
+void Vector4::sincos(Vector4 & sin, Vector4 & cos) const
 {
 	sin.x = sinf(x);
 	sin.y = sinf(y);

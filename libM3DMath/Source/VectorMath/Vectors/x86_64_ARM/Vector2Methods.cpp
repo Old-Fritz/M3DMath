@@ -6,17 +6,17 @@
 using namespace M3DM;
 
 
-float Vector2::length()
+float Vector2::length() const
 {
 	return sqrtf(x * x + y * y);
 }
 
-float Vector2::sqrLength()
+float Vector2::sqrLength() const
 {
 	return x * x + y * y;
 }
 
-Vector2 Vector2::normalized()
+Vector2 Vector2::normalized() const
 {
 	Vector2 resultVec;
 	float len = length();
@@ -26,7 +26,7 @@ Vector2 Vector2::normalized()
 	return resultVec;
 }
 
-Vector2 Vector2::abs()
+Vector2 Vector2::abs() const
 {
 	Vector2 resultVec;
 	resultVec.x = fabs(x);
@@ -35,7 +35,7 @@ Vector2 Vector2::abs()
 	return resultVec;
 }
 
-Vector2 Vector2::floor()
+Vector2 Vector2::floor() const
 {
 	Vector2 resultVec;
 	resultVec.x = floorf(x);
@@ -44,7 +44,7 @@ Vector2 Vector2::floor()
 	return resultVec;
 }
 
-Vector2 Vector2::ceil()
+Vector2 Vector2::ceil() const
 {
 	Vector2 resultVec;
 	resultVec.x = ceilf(x);
@@ -53,7 +53,7 @@ Vector2 Vector2::ceil()
 	return resultVec;
 }
 
-Vector2 Vector2::round()
+Vector2 Vector2::round() const
 {
 	Vector2 resultVec;
 	resultVec.x = roundf(x);
@@ -62,7 +62,7 @@ Vector2 Vector2::round()
 	return resultVec;
 }
 
-Vector2 Vector2::reciprocal()
+Vector2 Vector2::reciprocal() const
 {
 	Vector2 resultVec;
 	resultVec.x = 1/x;
@@ -71,7 +71,7 @@ Vector2 Vector2::reciprocal()
 	return resultVec;
 }
 
-Vector2 Vector2::saturate()
+Vector2 Vector2::saturate() const
 {
 	Vector2 resultVec;
 	resultVec.x = fmin(fmax(x,0),1);
@@ -80,7 +80,7 @@ Vector2 Vector2::saturate()
 	return resultVec;
 }
 
-Vector2 Vector2::sqrt()
+Vector2 Vector2::sqrt() const
 {
 	Vector2 resultVec;
 	resultVec.x = sqrtf(x);
@@ -89,7 +89,7 @@ Vector2 Vector2::sqrt()
 	return resultVec;
 }
 
-Vector2 Vector2::cos()
+Vector2 Vector2::cos() const
 {
 	Vector2 resultVec;
 	resultVec.x = cosf(x);
@@ -98,7 +98,7 @@ Vector2 Vector2::cos()
 	return resultVec;
 }
 
-Vector2 Vector2::sin()
+Vector2 Vector2::sin() const
 {
 	Vector2 resultVec;
 	resultVec.x =sinf(x);
@@ -107,7 +107,7 @@ Vector2 Vector2::sin()
 	return resultVec;
 }
 
-Vector2 Vector2::tan()
+Vector2 Vector2::tan() const
 {
 	Vector2 resultVec;
 	resultVec.x = tanf(x);
@@ -116,7 +116,7 @@ Vector2 Vector2::tan()
 	return resultVec;
 }
 
-Vector2 Vector2::acos()
+Vector2 Vector2::acos() const
 {
 	Vector2 resultVec;
 	resultVec.x = acosf(x);
@@ -125,7 +125,7 @@ Vector2 Vector2::acos()
 	return resultVec;
 }
 
-Vector2 Vector2::asin()
+Vector2 Vector2::asin() const
 {
 	Vector2 resultVec;
 	resultVec.x = asinf(x);
@@ -134,7 +134,7 @@ Vector2 Vector2::asin()
 	return resultVec;
 }
 
-Vector2 Vector2::atan()
+Vector2 Vector2::atan() const
 {
 	Vector2 resultVec;
 	resultVec.x = atanf(x);
@@ -143,7 +143,7 @@ Vector2 Vector2::atan()
 	return resultVec;
 }
 
-Vector2 Vector2::exp2()
+Vector2 Vector2::exp2() const
 {
 	Vector2 resultVec;
 	resultVec.x = exp2f(x);
@@ -152,7 +152,7 @@ Vector2 Vector2::exp2()
 	return resultVec;
 }
 
-Vector2 Vector2::expE()
+Vector2 Vector2::expE() const
 {
 	Vector2 resultVec;
 	resultVec.x = expf(x);
@@ -161,7 +161,7 @@ Vector2 Vector2::expE()
 	return resultVec;
 }
 
-Vector2 Vector2::log2()
+Vector2 Vector2::log2() const
 {
 	Vector2 resultVec;
 	resultVec.x = log2f(x);
@@ -170,7 +170,7 @@ Vector2 Vector2::log2()
 	return resultVec;
 }
 
-Vector2 Vector2::logE()
+Vector2 Vector2::logE() const
 {
 	Vector2 resultVec;
 	resultVec.x = logf(x);
@@ -179,7 +179,7 @@ Vector2 Vector2::logE()
 	return resultVec;
 }
 
-void Vector2::sincos(Vector2& sin, Vector2& cos)
+void Vector2::sincos(Vector2& sin, Vector2& cos) const
 {
 	sin.x = sinf(x);
 	sin.y = sinf(y);
@@ -194,4 +194,13 @@ Vector2& Vector2::replicate(float value)
 	y = value;
 
 	return *this;
+}
+
+Vector2 Vector2::orthogonal() const
+{
+	Vector2 resultVec;
+	resultVec.x = -y;
+	resultVec.y = x;
+
+	return resultVec;
 }

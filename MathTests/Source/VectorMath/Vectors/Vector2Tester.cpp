@@ -4,6 +4,7 @@ using namespace M3DM;
 
 bool Vector2Tester::testAll()
 {
+	std::cout << vec2Distance(Vector2(0, 0), Vector2(0, 1));
 	bool result;
 	std::cout << "------VECTOR 2 TEST------" << std::endl;
 	std::cout << "--Test equal--" << std::endl;
@@ -1049,6 +1050,18 @@ bool Vector2Tester::testFunctions()
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vec << std::endl;
+		return false;
+	}
+
+	// TEST #27
+	vec = Vector2(1, 2);
+	vecPrediction = Vector2(-2, 1);
+	std::cout << "TEST #27: " << vec << ".orthogonal()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.orthogonal();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
 		return false;
 	}
 
