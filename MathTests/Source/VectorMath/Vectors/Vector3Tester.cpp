@@ -1056,5 +1056,17 @@ bool Vector3Tester::testFunctions()
 		return false;
 	}
 
+	// TEST #27
+	vec = Vector3(1, -1, 0);
+	vecPrediction = Vector3(1, 1, 1);
+	std::cout << "TEST #27: " << vec << ".logE()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.orthogonal();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
 	return true;
 }

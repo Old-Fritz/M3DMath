@@ -188,6 +188,7 @@ namespace M3DM
 		float length() const;
 		float sqrLength() const;
 		Vector3 normalized() const;
+		Vector3 orthogonal();
 		Vector3 abs() const;
 		Vector3 floor() const;
 		Vector3 ceil() const;
@@ -558,7 +559,6 @@ namespace M3DM
 	Vector3 vec3IntersectLines(const Vector3& l1p1, const Vector3& l1p2, const Vector3& l2p1, const Vector3& l2p2);
 	Vector3 vec3Reflect(const Vector3& vec, const Vector3& normal);
 	Vector3 vec3Refract(const Vector3& vec, const Vector3& normal, float refractionIndex);
-	Vector3 vec3Orthogonal(const Vector3& vec, const Vector3& normal);
 	Vector3 vec3Pow(const Vector3& vec, const Vector3& pow);
 	Vector3 vec3Pow(const Vector3& vec, float pow);
 	float vec3Dot(const Vector3& vec1, const Vector3& vec2);

@@ -40,13 +40,13 @@ Vector2 M3DM::vec2Project(const Vector2& vec1, const Vector2& vec2)
 
 Vector2 M3DM::vec2IntersectLines(const Vector2& l1p1, const Vector2& l1p2, const Vector2& l2p1, const Vector2& l2p2)
 {
-	// TODO: for 3d:  point = l1p1 + cross(l2p2-l2p1, l2p1-l1p1)/cross(l2p2-l2p1, l1p2-l1p1)*(l1p2-l1p1)
+	// point = l1p1 + cross(l2p2-l2p1, l2p1-l1p1)/cross(l2p2-l2p1, l1p2-l1p1)*(l1p2-l1p1)
 	Vector2 line1Vec = l1p2 - l1p1;
 	Vector2 line2Vec = l2p2 - l2p1;
 	Vector2 r = l2p1 - l1p1;
-	float dot = vec2Cross(line2Vec, line1Vec);
-	float line1Dot = vec2Cross(line2Vec, r);
-	float shift = line1Dot / dot;
+	float lineCross = vec2Cross(line2Vec, line1Vec);
+	float rCross = vec2Cross(line2Vec, r);
+	float shift = rCross / lineCross;
 	Vector2 point = l1p1 + line1Vec * shift;
 
 	return point;

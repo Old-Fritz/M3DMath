@@ -134,4 +134,8 @@ public:
 	bool testAll();
 
 	bool testVector2();
+	bool testVector3();
+	bool testVector4();
+	bool testVectorF();
+	bool testDoubleVectorF();
 };

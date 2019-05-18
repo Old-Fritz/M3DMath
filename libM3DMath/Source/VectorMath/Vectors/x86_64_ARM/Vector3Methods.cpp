@@ -27,6 +27,17 @@ Vector3 Vector3::normalized() const
 	return resultVec;
 }
 
+Vector3 Vector3::orthogonal()
+{
+	Vector3 resultVec;
+
+	resultVec = Vector3(z, z, -x-y);
+	if (resultVec == Vector3()) //chech that result is not zero vector
+		resultVec = Vector3(-y-z, x, x);
+
+	return resultVec;
+}
+
 Vector3 Vector3::abs() const
 {
 	Vector3 resultVec;
