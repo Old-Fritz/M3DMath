@@ -124,7 +124,7 @@ Vector3& Vector3::operator/=(float scale)
 
 	return *this;
 }
-Vector3 Vector3::operator-()
+Vector3 Vector3::operator-()  const
 {
 	Vector3 vectorRes;
 	vectorRes.x = -x;

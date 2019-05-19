@@ -16,10 +16,70 @@ float VectorF::sqrLength() const
 	return VectorF(_mm_dp_ps(m_data, m_data, 0b11111111)).get(0);
 }
 
+float VectorF::length3D() const
+{
+	return lengthVec3D().get(0);
+}
+
+float VectorF::sqrLength3D() const
+{
+	return sqrLengthVec3D().get(0);
+}
+
+VectorF VectorF::normalized3D() const
+{
+	return _mm_div_ps(m_data, lengthVec3D());
+}
+
+VectorF VectorF::lengthVec3D() const
+{
+	return VectorF(_mm_sqrt_ps(_mm_dp_ps(m_data, m_data, 0b01111111)));
+}
+
+VectorF VectorF::sqrLengthVec3D() const
+{
+	return VectorF(_mm_dp_ps(m_data, m_data, 0b01111111));
+}
+
+VectorF VectorF::normalizedFast3D() const
+{
+	return _mm_mul_ps(m_data, _mm_rsqrt_ps(sqrLengthVec3D()));
+}
+
 VectorF VectorF::normalized() const
 {
-	//return _mm_mul_ps(m_data, _mm_rcp_ps(_mm_sqrt_ps(_mm_dp_ps(m_data, m_data, 0b11111111))));
 	return _mm_div_ps(m_data, _mm_sqrt_ps(_mm_dp_ps(m_data, m_data, 0b11111111)));
+}
+
+VectorF VectorF::orthogonal3D() const
+{
+	// _mm_shuffle_ps
+	// 
+	VectorF resultVec;
+	Vector4 data;
+	VectorF mask = VectorF(0, 0, 0, FNAN);
+	store(data);
+	float value = -data.x - data.y;
+
+	resultVec = _mm_shuffle_ps(m_data, m_data, 0b11101010);
+	resultVec.set(2, value);
+	VectorF checkVec = _mm_and_ps(m_data, mask);
+	if (resultVec == checkVec) //chech that result is not zero vector
+	{
+		value = -data.y - data.z;
+		resultVec = _mm_shuffle_ps(m_data, m_data, 0b11000000);
+		resultVec.set(0, value);
+	}
+		
+
+	return resultVec;
+}
+
+VectorF VectorF::orthogonal4D() const
+{
+	VectorF minusData = -*this;
+	VectorF vecResult = _mm_shuffle_ps(m_data, minusData.m_data, 0b01001110);
+	return vecResult;
 }
 
 VectorF VectorF::abs() const

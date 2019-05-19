@@ -1085,7 +1085,7 @@ bool Vector4Tester::testFunctions()
 
 	// TEST #28
 	vec = Vector4(1, -1, 0, 2);
-	vecPrediction = Vector4(1, 1, -2, 0);
+	vecPrediction = Vector4(0, 2, -1, 1);
 	std::cout << "TEST #28: " << vec << ".orthogonal4D()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.orthogonal4D();
 	result = vecResult == vecPrediction;

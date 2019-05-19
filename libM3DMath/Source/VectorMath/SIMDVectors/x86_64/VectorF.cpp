@@ -172,7 +172,7 @@ VectorF& VectorF::operator/=(float scale)
 	m_data = _mm_div_ps(m_data, data2);
 	return *this;
 }
-VectorF VectorF::operator-()
+VectorF VectorF::operator-() const
 {
 	return _mm_sub_ps(__m128(), m_data);
 }

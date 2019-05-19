@@ -238,7 +238,7 @@ DoubleVectorF& DoubleVectorF::operator/=(float scale)
 	m_data = _mm256_div_ps(m_data, data2);
 	return *this;
 }
-DoubleVectorF DoubleVectorF::operator-()
+DoubleVectorF DoubleVectorF::operator-() const
 {
 	return _mm256_sub_ps(__m256(), m_data);
 }

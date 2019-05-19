@@ -43,10 +43,10 @@ Vector4 Vector4::orthogonal4D() const
 {
 	Vector4 resultVec;
 
-	resultVec.x = -y;
-	resultVec.y = x;
-	resultVec.z = -w;
-	resultVec.w = z;
+	resultVec.x = z;
+	resultVec.y = w;
+	resultVec.z = -x;
+	resultVec.w = -y;
 
 	return resultVec;
 }
