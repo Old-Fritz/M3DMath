@@ -6,6 +6,10 @@ using namespace M3DM;
 
 
 // Conversions
+VectorF::VectorF(float value)
+{
+	load(value);
+}
 VectorF::VectorF(float x, float y, float z, float w)
 {
 	load(x, y, z, w);
@@ -227,6 +231,10 @@ VectorF VectorF::isEqualPrecVec(VectorF vector, VectorF precision) const
 }
 
 // Load/store
+void VectorF::load(float value)
+{
+	m_data = _mm_set_ps1(value);
+}
 void VectorF::load(float x, float y, float z, float w)
 {
 	m_data = _mm_setr_ps(x, y, z, w);

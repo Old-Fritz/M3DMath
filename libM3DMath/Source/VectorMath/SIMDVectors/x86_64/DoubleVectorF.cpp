@@ -6,6 +6,11 @@ using namespace M3DM;
 
 #define _mm256_test_all_ones(data) _mm256_testc_si256(_mm256_castps_si256((data)), _mm256_castps_si256(_mm256_cmp_ps((data), (data), _CMP_EQ_OQ)));
 
+DoubleVectorF::DoubleVectorF(float value)
+{
+	load(value);
+}
+
 // Conversions
 DoubleVectorF::DoubleVectorF(float x1, float y1, float z1, float w1, float x2, float y2, float z2, float w2)
 {
@@ -307,6 +312,10 @@ DoubleVectorF DoubleVectorF::isEqualPrecVec(DoubleVectorF vector, DoubleVectorF 
 
 
 // Load/store
+void DoubleVectorF::load(float value)
+{
+	m_data = _mm256_set1_ps(value);
+}
 void DoubleVectorF::load(float x1, float y1, float z1, float w1, float x2, float y2, float z2, float w2)
 {
 	m_data = _mm256_setr_ps(x1, y1, z1, w1, x2, y2, z2, w2);

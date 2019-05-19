@@ -188,14 +188,6 @@ void Vector2::sincos(Vector2& sin, Vector2& cos) const
 
 }
 
-Vector2& Vector2::replicate(float value)
-{
-	x = value;
-	y = value;
-
-	return *this;
-}
-
 Vector2 Vector2::orthogonal() const
 {
 	Vector2 resultVec;

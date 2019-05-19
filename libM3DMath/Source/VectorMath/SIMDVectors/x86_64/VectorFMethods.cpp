@@ -176,13 +176,6 @@ void VectorF::sincos(VectorF& sin, VectorF& cos) const
 	sin = _mm_sincos_ps(&static_cast<__m128&>(cos), m_data);
 }
 
-VectorF& VectorF::replicate(float value)
-{
-	m_data = _mm_set_ps1(value);
-
-	return *this;
-}
-
 VectorF VectorF::lengthVec() const
 {
 	return _mm_sqrt_ps(_mm_dp_ps(m_data, m_data, 0b11111111));

@@ -249,13 +249,3 @@ void Vector4::sincos(Vector4 & sin, Vector4 & cos) const
 	cos.z = cosf(z);
 	cos.w = cosf(w);
 }
-
-Vector4& Vector4::replicate(float value)
-{
-	x = value;
-	y = value;
-	z = value;
-	w = value;
-
-	return *this;
-}

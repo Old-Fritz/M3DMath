@@ -217,12 +217,3 @@ void Vector3::sincos(Vector3 & sin, Vector3 & cos) const
 	cos.y = cosf(y);
 	cos.z = cosf(z);
 }
-
-Vector3& Vector3::replicate(float value)
-{
-	x = value;
-	y = value;
-	z = value;
-
-	return *this;
-}

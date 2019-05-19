@@ -42,7 +42,7 @@ VectorF VECCALL M3DM::vecFIntersectLines3D(VectorF l1p1, VectorF l1p2, VectorF l
 	if (rCrossLen == zero || lineCrossLen == zero)
 		return VectorF(INFINITY, INFINITY, INFINITY, 0);
 	VectorF shift = rCrossLen / lineCrossLen;
-	VectorF sign = rCross * lineCross >= VectorF() ? VectorF().replicate(1) : VectorF().replicate(-1);
+	VectorF sign = rCross * lineCross >= VectorF() ? VectorF(1) : VectorF(-1);
 	VectorF point = l1p1 + line1Vec * shift * sign;
 
 	return point;
@@ -67,8 +67,8 @@ VectorF VECCALL M3DM::vecFPow(VectorF vec, float pow)
 VectorF VECCALL M3DM::vecFRefract(VectorF vec, VectorF normal, float refractionIndex)
 {
 	VectorF dot = vecFDotVec(vec, normal);
-	VectorF one = VectorF().replicate(1);
-	VectorF refractionIndexVec = VectorF().replicate(refractionIndex);
+	VectorF one = VectorF(1);
+	VectorF refractionIndexVec = VectorF(refractionIndex);
 	VectorF ref = one - refractionIndexVec * refractionIndexVec * (one - dot * dot);
 
 	// total reflection
@@ -81,8 +81,8 @@ VectorF VECCALL M3DM::vecFRefract(VectorF vec, VectorF normal, float refractionI
 
 VectorF VECCALL M3DM::vecFLerp(VectorF vec1, VectorF vec2, float value)
 {
-	VectorF one = VectorF().replicate(1);
-	VectorF valueVec = VectorF().replicate(value);
+	VectorF one = VectorF(1);
+	VectorF valueVec = VectorF(value);
 	return vec1 * valueVec + vec2 * (one-valueVec);
 }
 
@@ -134,7 +134,7 @@ VectorF VECCALL M3DM::vecFDistanceVec(VectorF vec1, VectorF vec2)
 VectorF VECCALL M3DM::vecFRefractVec(VectorF vec, VectorF normal, VectorF refractionIndex)
 {
 	VectorF dot = vecFDotVec(vec, normal);
-	VectorF one = VectorF().replicate(1);
+	VectorF one = VectorF(1);
 	VectorF ref = one - refractionIndex * refractionIndex * (one - dot * dot);
 
 	// total reflection
@@ -148,7 +148,7 @@ VectorF VECCALL M3DM::vecFRefractVec(VectorF vec, VectorF normal, VectorF refrac
 
 VectorF VECCALL M3DM::vecFLerpVec(VectorF vec1, VectorF vec2, VectorF value)
 {
-	VectorF one = VectorF().replicate(1);
+	VectorF one = VectorF(1);
 	return vec1 * value + vec2 * (one - value);
 }
 

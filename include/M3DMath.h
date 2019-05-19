@@ -77,8 +77,10 @@ namespace M3DM
 		float x, y;
 
 		// Constructors
+		Vector2() : x(0), y(0) {}
 		Vector2(const Vector2& vector) = default;
-		Vector2(const float x = 0, const float y = 0) : x(x), y(y) {}
+		explicit Vector2(float value) : x(value), y(value) {}
+		Vector2(float x, float y) : x(x), y(y) {}
 		Vector2& operator=(const Vector2& vector) = default;
 
 		// Conversions
@@ -137,9 +139,7 @@ namespace M3DM
 		Vector2 expE() const;
 		Vector2 log2() const;
 		Vector2 logE() const;
-		void sincos(Vector2& sin, Vector2& cos) const;
-		Vector2& replicate(float value);
-		
+		void sincos(Vector2& sin, Vector2& cos) const;		
 	};
 
 	struct Vector3
@@ -147,8 +147,10 @@ namespace M3DM
 		float x, y, z;
 
 		// Constructors
+		Vector3() : x(0), y(0), z(0) {}
 		Vector3(const Vector3& vector) = default;
-		Vector3(const float x = 0, const float y = 0, const float z = 0) : x(x), y(y), z(z) {}
+		explicit Vector3(float value) : x(value), y(value), z(value) {}
+		Vector3(float x, float y, float z) : x(x), y(y), z(z) {}
 		Vector3& operator=(const Vector3& vector) = default;
 
 		// Conversions
@@ -207,7 +209,6 @@ namespace M3DM
 		Vector3 log2() const;
 		Vector3 logE() const;
 		void sincos(Vector3& sin, Vector3& cos) const;
-		Vector3& replicate(float value);
 	};
 	
 	struct ALIGN(16) Vector4
@@ -215,8 +216,10 @@ namespace M3DM
 		float x, y, z, w;
 
 		// Constructors
+		Vector4() : x(0), y(0), z(0), w(0) {}
 		Vector4(const Vector4& vector) = default;
-		Vector4(const float x = 0, const float y = 0, const float z = 0, const float w = 0) : x(x), y(y), z(z), w(w) {}
+		Vector4(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
+		explicit Vector4(float value) : x(value), y(value), z(value), w(value) {}
 		Vector4& operator=(const Vector4& vector) = default;
 
 		// Conversions
@@ -277,7 +280,6 @@ namespace M3DM
 		Vector4 log2() const;
 		Vector4 logE() const;
 		void sincos(Vector4& sin, Vector4& cos) const;
-		Vector4& replicate(float value);
 	};
 
 	/// Different operator combinations
@@ -332,7 +334,8 @@ namespace M3DM
 		VectorF& VECCALL operator=(const VectorF& vector) = default;
 		
 		// Conversions
-		explicit VectorF(float x, float y = 0, float z = 0, float w = 0);
+		explicit VectorF(float value);
+		explicit VectorF(float x, float y, float z, float w);
 		explicit VectorF(float* pArray);
 		explicit VectorF(const Vector2& vector);
 		explicit VectorF(const Vector3& vector);
@@ -373,7 +376,8 @@ namespace M3DM
 		VectorF VECCALL isEqualPrecVec(VectorF vector, VectorF precision) const;
 
 		// load/store
-		void VECCALL load(float x = 0, float y = 0, float z = 0, float w = 0);
+		void VECCALL load(float value);
+		void VECCALL load(float x, float y, float z, float w);
 		void VECCALL load(const float* pArray);
 		void VECCALL load(const Vector2& vector);
 		void VECCALL load(const Vector3& vector);
@@ -422,7 +426,6 @@ namespace M3DM
 		VectorF VECCALL reciprocalFast() const;
 		VectorF VECCALL sqrtFast() const;
 		void sincos(VectorF& sin, VectorF& cos) const;
-		VectorF& replicate(float value);
 
 	private:
 		M128 m_data{};
@@ -439,7 +442,8 @@ namespace M3DM
 		DoubleVectorF& VECCALL operator=(const DoubleVectorF& vector) = default;
 
 		// Conversions
-		explicit DoubleVectorF(float x1, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
+		explicit DoubleVectorF(float value);
+		explicit DoubleVectorF(float x1, float y1, float z1, float w1, float x2, float y2, float z2, float w2);
 		explicit DoubleVectorF(float* pArray);
 		explicit DoubleVectorF(const Vector2& vector);
 		explicit DoubleVectorF(const Vector3& vector);
@@ -485,7 +489,8 @@ namespace M3DM
 		DoubleVectorF VECCALL isEqualPrecVec(DoubleVectorF vector, DoubleVectorF precision) const;
 
 		// load/store
-		void VECCALL load(float x1 = 0, float y1 = 0, float z1 = 0, float w1 = 0, float x2 = 0, float y2 = 0, float z2 = 0, float w2 = 0);
+		void VECCALL load(float value);
+		void VECCALL load(float x1, float y1, float z1, float w1, float x2, float y2, float z2, float w2);
 		void VECCALL load(const float* pArray);
 		void VECCALL load(const Vector2& vector);
 		void VECCALL load(const Vector3& vector);
@@ -538,7 +543,6 @@ namespace M3DM
 		DoubleVectorF VECCALL reciprocalFast() const;
 		DoubleVectorF VECCALL sqrtFast() const;
 		void sincos(DoubleVectorF& sin, DoubleVectorF& cos) const;
-		DoubleVectorF& replicate(float value);
 	private:
 		M256 m_data{};
 	};

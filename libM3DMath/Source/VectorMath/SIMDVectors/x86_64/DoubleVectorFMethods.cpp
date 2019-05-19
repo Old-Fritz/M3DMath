@@ -148,10 +148,3 @@ void DoubleVectorF::sincos(DoubleVectorF& sin, DoubleVectorF& cos) const
 {
 	sin = _mm256_sincos_ps(&static_cast<__m256&>(cos), m_data);
 }
-
-DoubleVectorF& DoubleVectorF::replicate(float value)
-{
-	m_data = _mm256_set1_ps(value);
-
-	return *this;
-}

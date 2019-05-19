@@ -498,6 +498,7 @@ bool Vector3Tester::testConversions()
 {
 	float pArray[3], pArrayPrediction[3];
 	float* pArrayRes;
+	float value;
 	Vector2 vec2;
 	Vector4 vec4;
 	Vector3 resultVec;
@@ -553,6 +554,18 @@ bool Vector3Tester::testConversions()
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: {" << pArrayRes[0] << ", " << pArrayRes[1] << ", " << pArrayRes[2] << "}" << std::endl;
+		return false;
+	}
+
+	// TEST #5
+	value = 3;
+	prediction = Vector3(3, 3, 3);
+	std::cout << "TEST #5: Vector3(" << value << ") == " << prediction << std::endl;
+	resultVec = Vector3(value);
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
 		return false;
 	}
 
@@ -1040,19 +1053,6 @@ bool Vector3Tester::testFunctions()
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: vecResult = " << vecResult << "; vecResult2 = " << vecResult2 << std::endl;
-		return false;
-	}
-
-	// TEST #26
-	vec = Vector3(1, 2, 3);
-	value = 3;
-	vecPrediction = Vector3(value, value, value);
-	std::cout << "TEST #26: " << vec << ".replcate()" << " == " << vecPrediction << std::endl;
-	vec.replicate(value);
-	result = vec == vecPrediction;
-	if (!result)
-	{
-		std::cout << "Failed. Computed value: " << vec << std::endl;
 		return false;
 	}
 

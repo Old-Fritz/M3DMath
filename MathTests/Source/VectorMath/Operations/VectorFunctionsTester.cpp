@@ -433,11 +433,11 @@ bool VectorFunctionsTester::testVector3()
 	}
 
 	// TEST #3
-	arg1 = Vector3(0, 0);
-	arg2 = Vector3(2, 2);
-	arg3 = Vector3(0, 2);
-	arg4 = Vector3(2, 0);
-	vecPrediction = Vector3(1, 1);
+	arg1 = Vector3(0, 0, 0);
+	arg2 = Vector3(2, 2, 0);
+	arg3 = Vector3(0, 2, 0);
+	arg4 = Vector3(2, 0, 0);
+	vecPrediction = Vector3(1, 1, 0);
 	std::cout << "TEST #3: vec3IntersectLines(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec3IntersectLines(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -448,11 +448,11 @@ bool VectorFunctionsTester::testVector3()
 	}
 
 	// TEST #4
-	arg1 = Vector3(0, 2);
-	arg2 = Vector3(2, 0);
-	arg3 = Vector3(0, 0);
-	arg4 = Vector3(2, 2);
-	vecPrediction = Vector3(1, 1);
+	arg1 = Vector3(0, 2, 0);
+	arg2 = Vector3(2, 0, 0);
+	arg3 = Vector3(0, 0, 0);
+	arg4 = Vector3(2, 2, 0);
+	vecPrediction = Vector3(1, 1, 0);
 	std::cout << "TEST #4: vec3IntersectLines(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec3IntersectLines(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -463,11 +463,11 @@ bool VectorFunctionsTester::testVector3()
 	}
 
 	// TEST #5
-	arg1 = Vector3(0, 0);
-	arg2 = Vector3(2, 2);
-	arg3 = Vector3(3, 2);
-	arg4 = Vector3(5, 0);
-	vecPrediction = Vector3(2.5, 2.5);
+	arg1 = Vector3(0, 0, 0);
+	arg2 = Vector3(2, 2, 0);
+	arg3 = Vector3(3, 2, 0);
+	arg4 = Vector3(5, 0, 0);
+	vecPrediction = Vector3(2.5, 2.5, 0);
 	std::cout << "TEST #5: vec3IntersectLines(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec3IntersectLines(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -478,11 +478,11 @@ bool VectorFunctionsTester::testVector3()
 	}
 
 	// TEST #6
-	arg1 = Vector3(0, 0);
-	arg2 = Vector3(2, 2);
-	arg3 = Vector3(-3, 2);
-	arg4 = Vector3(-1, 0);
-	vecPrediction = Vector3(-0.5, -0.5);
+	arg1 = Vector3(0, 0, 0);
+	arg2 = Vector3(2, 2, 0);
+	arg3 = Vector3(-3, 2, 0);
+	arg4 = Vector3(-1, 0, 0);
+	vecPrediction = Vector3(-0.5, -0.5, 0);
 	std::cout << "TEST #6: vec3IntersectLines(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec3IntersectLines(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -493,10 +493,10 @@ bool VectorFunctionsTester::testVector3()
 	}
 
 	// TEST #7
-	arg1 = Vector3(0, 0);
-	arg2 = Vector3(2, 2);
-	arg3 = Vector3(1, 0);
-	arg4 = Vector3(3, 2);
+	arg1 = Vector3(0, 0, 0);
+	arg2 = Vector3(2, 2, 0);
+	arg3 = Vector3(1, 0, 0);
+	arg4 = Vector3(3, 2, 0);
 	vecPrediction = Vector3(INFINITY, INFINITY, INFINITY);
 	std::cout << "TEST #7: vec3IntersectLines(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec3IntersectLines(arg1, arg2, arg3, arg4);
@@ -508,10 +508,10 @@ bool VectorFunctionsTester::testVector3()
 	}
 
 	// TEST #8
-	arg1 = Vector3(0, 0);
-	arg2 = Vector3(2, 2);
-	arg3 = Vector3(0, 0);
-	arg4 = Vector3(2, 2);
+	arg1 = Vector3(0, 0, 0);
+	arg2 = Vector3(2, 2, 0);
+	arg3 = Vector3(0, 0, 0);
+	arg4 = Vector3(2, 2, 0);
 	vecPrediction = Vector3(INFINITY, INFINITY, INFINITY);
 	std::cout << "TEST #8: vec3IntersectLines(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec3IntersectLines(arg1, arg2, arg3, arg4);
@@ -803,11 +803,11 @@ bool VectorFunctionsTester::testVector4()
 	}
 
 	// TEST #3
-	arg1 = Vector4(0, 0);
-	arg2 = Vector4(2, 2);
-	arg3 = Vector4(0, 2);
-	arg4 = Vector4(2, 0);
-	vecPrediction = Vector4(1, 1);
+	arg1 = Vector4(0, 0, 0, 0);
+	arg2 = Vector4(2, 2, 0, 0);
+	arg3 = Vector4(0, 2, 0, 0);
+	arg4 = Vector4(2, 0, 0, 0);
+	vecPrediction = Vector4(1, 1, 0, 0);
 	std::cout << "TEST #3: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -818,11 +818,11 @@ bool VectorFunctionsTester::testVector4()
 	}
 
 	// TEST #4
-	arg1 = Vector4(0, 2);
-	arg2 = Vector4(2, 0);
-	arg3 = Vector4(0, 0);
-	arg4 = Vector4(2, 2);
-	vecPrediction = Vector4(1, 1);
+	arg1 = Vector4(0, 2, 0, 0);
+	arg2 = Vector4(2, 0, 0, 0);
+	arg3 = Vector4(0, 0, 0, 0);
+	arg4 = Vector4(2, 2, 0, 0);
+	vecPrediction = Vector4(1, 1, 0, 0);
 	std::cout << "TEST #4: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -833,11 +833,11 @@ bool VectorFunctionsTester::testVector4()
 	}
 
 	// TEST #5
-	arg1 = Vector4(0, 0);
-	arg2 = Vector4(2, 2);
-	arg3 = Vector4(3, 2);
-	arg4 = Vector4(5, 0);
-	vecPrediction = Vector4(2.5, 2.5);
+	arg1 = Vector4(0, 0, 0, 0);
+	arg2 = Vector4(2, 2, 0, 0);
+	arg3 = Vector4(3, 2, 0, 0);
+	arg4 = Vector4(5, 0, 0, 0);
+	vecPrediction = Vector4(2.5, 2.5, 0, 0);
 	std::cout << "TEST #5: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -848,11 +848,11 @@ bool VectorFunctionsTester::testVector4()
 	}
 
 	// TEST #6
-	arg1 = Vector4(0, 0);
-	arg2 = Vector4(2, 2);
-	arg3 = Vector4(-3, 2);
-	arg4 = Vector4(-1, 0);
-	vecPrediction = Vector4(-0.5, -0.5);
+	arg1 = Vector4(0, 0, 0, 0);
+	arg2 = Vector4(2, 2, 0, 0);
+	arg3 = Vector4(-3, 2, 0, 0);
+	arg4 = Vector4(-1, 0, 0, 0);
+	vecPrediction = Vector4(-0.5, -0.5, 0, 0);
 	std::cout << "TEST #6: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -863,11 +863,11 @@ bool VectorFunctionsTester::testVector4()
 	}
 
 	// TEST #7
-	arg1 = Vector4(0, 0);
-	arg2 = Vector4(2, 2);
-	arg3 = Vector4(1, 0);
-	arg4 = Vector4(3, 2);
-	vecPrediction = Vector4(INFINITY, INFINITY, INFINITY);
+	arg1 = Vector4(0, 0, 0, 0);
+	arg2 = Vector4(2, 2, 0, 0);
+	arg3 = Vector4(1, 0, 0, 0);
+	arg4 = Vector4(3, 2, 0, 0);
+	vecPrediction = Vector4(INFINITY, INFINITY, INFINITY, 0);
 	std::cout << "TEST #7: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -878,11 +878,11 @@ bool VectorFunctionsTester::testVector4()
 	}
 
 	// TEST #8
-	arg1 = Vector4(0, 0);
-	arg2 = Vector4(2, 2);
-	arg3 = Vector4(0, 0);
-	arg4 = Vector4(2, 2);
-	vecPrediction = Vector4(INFINITY, INFINITY, INFINITY);
+	arg1 = Vector4(0, 0, 0, 0);
+	arg2 = Vector4(2, 2, 0, 0);
+	arg3 = Vector4(0, 0, 0, 0);
+	arg4 = Vector4(2, 2, 0, 0);
+	vecPrediction = Vector4(INFINITY, INFINITY, INFINITY, 0);
 	std::cout << "TEST #8: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -1173,11 +1173,11 @@ bool VectorFunctionsTester::testVectorF()
 	}
 
 	// TEST #3
-	arg1 = VectorF(0, 0);
-	arg2 = VectorF(2, 2);
-	arg3 = VectorF(0, 2);
-	arg4 = VectorF(2, 0);
-	vecPrediction = VectorF(1, 1);
+	arg1 = VectorF(0, 0, 0, 0);
+	arg2 = VectorF(2, 2, 0, 0);
+	arg3 = VectorF(0, 2, 0, 0);
+	arg4 = VectorF(2, 0, 0, 0);
+	vecPrediction = VectorF(1, 1, 0, 0);
 	std::cout << "TEST #3: vecFIntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFIntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -1188,11 +1188,11 @@ bool VectorFunctionsTester::testVectorF()
 	}
 
 	// TEST #4
-	arg1 = VectorF(0, 2);
-	arg2 = VectorF(2, 0);
-	arg3 = VectorF(0, 0);
-	arg4 = VectorF(2, 2);
-	vecPrediction = VectorF(1, 1);
+	arg1 = VectorF(0, 2, 0, 0);
+	arg2 = VectorF(2, 0, 0, 0);
+	arg3 = VectorF(0, 0, 0, 0);
+	arg4 = VectorF(2, 2, 0, 0);
+	vecPrediction = VectorF(1, 1, 0, 0);
 	std::cout << "TEST #4: vecFIntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFIntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -1203,11 +1203,11 @@ bool VectorFunctionsTester::testVectorF()
 	}
 
 	// TEST #5
-	arg1 = VectorF(0, 0);
-	arg2 = VectorF(2, 2);
-	arg3 = VectorF(3, 2);
-	arg4 = VectorF(5, 0);
-	vecPrediction = VectorF(2.5, 2.5);
+	arg1 = VectorF(0, 0, 0, 0);
+	arg2 = VectorF(2, 2, 0, 0);
+	arg3 = VectorF(3, 2, 0, 0);
+	arg4 = VectorF(5, 0, 0, 0);
+	vecPrediction = VectorF(2.5, 2.5, 0, 0);
 	std::cout << "TEST #5: vecFIntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFIntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -1218,11 +1218,11 @@ bool VectorFunctionsTester::testVectorF()
 	}
 
 	// TEST #6
-	arg1 = VectorF(0, 0);
-	arg2 = VectorF(2, 2);
-	arg3 = VectorF(-3, 2);
-	arg4 = VectorF(-1, 0);
-	vecPrediction = VectorF(-0.5, -0.5);
+	arg1 = VectorF(0, 0, 0, 0);
+	arg2 = VectorF(2, 2, 0, 0);
+	arg3 = VectorF(-3, 2, 0, 0);
+	arg4 = VectorF(-1, 0, 0, 0);
+	vecPrediction = VectorF(-0.5, -0.5, 0, 0);
 	std::cout << "TEST #6: vecFIntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFIntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -1233,11 +1233,11 @@ bool VectorFunctionsTester::testVectorF()
 	}
 
 	// TEST #7
-	arg1 = VectorF(0, 0);
-	arg2 = VectorF(2, 2);
-	arg3 = VectorF(1, 0);
-	arg4 = VectorF(3, 2);
-	vecPrediction = VectorF(INFINITY, INFINITY, INFINITY);
+	arg1 = VectorF(0, 0, 0, 0);
+	arg2 = VectorF(2, 2, 0, 0);
+	arg3 = VectorF(1, 0, 0, 0);
+	arg4 = VectorF(3, 2, 0, 0);
+	vecPrediction = VectorF(INFINITY, INFINITY, INFINITY, 0);
 	std::cout << "TEST #7: vecFIntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFIntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -1248,11 +1248,11 @@ bool VectorFunctionsTester::testVectorF()
 	}
 
 	// TEST #8
-	arg1 = VectorF(0, 0);
-	arg2 = VectorF(2, 2);
-	arg3 = VectorF(0, 0);
-	arg4 = VectorF(2, 2);
-	vecPrediction = VectorF(INFINITY, INFINITY, INFINITY);
+	arg1 = VectorF(0, 0, 0, 0);
+	arg2 = VectorF(2, 2, 0, 0);
+	arg3 = VectorF(0, 0, 0, 0);
+	arg4 = VectorF(2, 2, 0, 0);
+	vecPrediction = VectorF(INFINITY, INFINITY, INFINITY, 0);
 	std::cout << "TEST #8: vecFIntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFIntersectLines3D(arg1, arg2, arg3, arg4);
 	result = vecResult == vecPrediction;
@@ -1506,7 +1506,7 @@ bool VectorFunctionsTester::testVectorF()
 	// TEST #27
 	arg1 = VectorF(1, -2, 3, 13);
 	arg2 = VectorF(0, 1, 5, 6);
-	arg3 = VectorF().replicate(0.5);
+	arg3 = VectorF(0.5);
 	vecPrediction = VectorF(0.5, -92.0082397, -453.541199, -539.549438);
 	std::cout << "TEST #27: vecFRefractVec(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFRefractVec(arg1, arg2, arg3);
@@ -1520,7 +1520,7 @@ bool VectorFunctionsTester::testVectorF()
 	// TEST #28
 	arg1 = VectorF(100, 20, 0, 3);
 	arg2 = VectorF(20, 200, 0, 5);
-	arg3 = VectorF().replicate(0.7);
+	arg3 = VectorF(0.7);
 	vecPrediction = VectorF(76, 74, 0, 3.6);
 	std::cout << "TEST #28: vecFLerpVec(" << arg1 << ", " << arg2 << ", " << arg3  << ") == " << vecPrediction << std::endl;
 	vecResult = vecFLerpVec(arg1, arg2, arg3);
@@ -1534,7 +1534,7 @@ bool VectorFunctionsTester::testVectorF()
 	// TEST #29
 	arg1 = VectorF(1, 2, 3, 12);
 	arg2 = VectorF(1, 3, -7, 1);
-	vecPrediction = VectorF().replicate(-2);
+	vecPrediction = VectorF(-2);
 	std::cout << "TEST #29: vecFDotVec(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFDotVec(arg1, arg2);
 	result = vecResult == vecPrediction;
@@ -1548,7 +1548,7 @@ bool VectorFunctionsTester::testVectorF()
 	arg1 = VectorF(2, 0, 1, 2);
 	arg2 = VectorF(0, 0, 0, 3);
 	arg3 = VectorF(1, 2, 1, 4);
-	vecPrediction = VectorF().replicate(2.04939015319192);
+	vecPrediction = VectorF(2.04939015319192);
 	std::cout << "TEST #30: vecFLinePointDistanceVec3D(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFLinePointDistanceVec3D(arg1, arg2, arg3);
 	result = vecResult == vecPrediction;
@@ -1561,7 +1561,7 @@ bool VectorFunctionsTester::testVectorF()
 	// TEST #31
 	arg1 = VectorF(1, 2, 0, 0);
 	arg2 = VectorF(2, -1, 0, 0);
-	vecPrediction = VectorF().replicate(3.1415926535897 / 2);
+	vecPrediction = VectorF(3.1415926535897 / 2);
 	std::cout << "TEST #31: vecFAngleBetweenVec(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFAngleBetweenVec(arg1, arg2);
 	result = vecResult == vecPrediction;
@@ -1574,7 +1574,7 @@ bool VectorFunctionsTester::testVectorF()
 	// TEST #32
 	arg1 = VectorF(1, 2, 0, 0).normalized();
 	arg2 = VectorF(-2, 1, 0, 0).normalized();
-	vecPrediction = VectorF().replicate(3.1415926535897 / 2);
+	vecPrediction = VectorF(3.1415926535897 / 2);
 	std::cout << "TEST #32: vecFAngleBetweenNormalsVec(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFAngleBetweenNormalsVec(arg1, arg2);
 	result = vecResult == vecPrediction;
@@ -1587,7 +1587,7 @@ bool VectorFunctionsTester::testVectorF()
 	// TEST #33
 	arg1 = VectorF(1, 2, 3, 4);
 	arg2 = VectorF(2, 3, 7, 5);
-	vecPrediction = VectorF().replicate(sqrtf(19));
+	vecPrediction = VectorF(sqrtf(19));
 	std::cout << "TEST #33: vecFDistanceVec(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFDistanceVec(arg1, arg2);
 	result = vecResult == vecPrediction;
@@ -1600,7 +1600,7 @@ bool VectorFunctionsTester::testVectorF()
 	// TEST #34
 	arg1 = VectorF(1, 2, 3, 4);
 	arg2 = VectorF(2, 3, 7, 5);
-	vecPrediction = VectorF().replicate(29);
+	vecPrediction = VectorF(29);
 	std::cout << "TEST #34: vecFDotVec3D(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vecFDotVec3D(arg1, arg2);
 	result = vecResult == vecPrediction;
