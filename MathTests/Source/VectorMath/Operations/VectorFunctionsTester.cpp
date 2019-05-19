@@ -1,6 +1,6 @@
 #include "MathTests.h"
-//#include "DirectXMath.h"
-//using namespace DirectX;
+#include "DirectXMath.h"
+using namespace DirectX;
 
 using namespace M3DM;
 
@@ -15,6 +15,11 @@ bool VectorFunctionsTester::testAll()
 
 	std::cout << "--Test Vector3--" << std::endl;
 	result = testVector3();
+	if (!result)
+		return false;
+
+	std::cout << "--Test Vector4--" << std::endl;
+	result = testVector4();
 	if (!result)
 		return false;
 
@@ -241,7 +246,7 @@ bool VectorFunctionsTester::testVector2()
 	arg1 = Vector2(2, 3);
 	arg2 = Vector2(2, 3);
 	vecPrediction = Vector2(4, 27);
-	std::cout << "TEST #16: vec3Pow(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	std::cout << "TEST #16: vec2Pow(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vec2Pow(arg1, arg2);
 	result = vecResult == vecPrediction;
 	if (!result)
@@ -254,7 +259,7 @@ bool VectorFunctionsTester::testVector2()
 	arg1 = Vector2(2, 3);
 	value = 4;
 	vecPrediction = Vector2(16, 81);
-	std::cout << "TEST #16: vec3Pow(" << arg1 << ", " << value << ") == " << vecPrediction << std::endl;
+	std::cout << "TEST #17: vec2Pow(" << arg1 << ", " << value << ") == " << vecPrediction << std::endl;
 	vecResult = vec2Pow(arg1, value);
 	result = vecResult == vecPrediction;
 	if (!result)
@@ -280,8 +285,9 @@ bool VectorFunctionsTester::testVector2()
 	// TEST #19
 	arg1 = Vector2(100, 20);
 	arg2 = Vector2(20, 200);
+	value = 0.7;
 	vecPrediction = Vector2(76, 74);
-	std::cout << "TEST #18: vec2Lerp(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	std::cout << "TEST #19: vec2Lerp(" << arg1 << ", " << arg2 << ", " << value << ") == " << vecPrediction << std::endl;
 	vecResult = vec2Lerp(arg1, arg2, value);
 	result = vecResult == vecPrediction;
 	if (!result)
@@ -321,7 +327,7 @@ bool VectorFunctionsTester::testVector2()
 	arg2 = Vector2(0, 0);
 	arg3 = Vector2(1, 2);
 	valuePrediction = 2;
-	std::cout << "TEST #22: vec3LinePointDistance(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << valuePrediction << std::endl;
+	std::cout << "TEST #22: vec2LinePointDistance(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << valuePrediction << std::endl;
 	valueResult = vec2LinePointDistance(arg1, arg2, arg3);
 	result = valueResult == valuePrediction;
 	if (!result)
@@ -335,7 +341,7 @@ bool VectorFunctionsTester::testVector2()
 	arg2 = Vector2(2, 2);
 	arg3 = Vector2(0, 2);
 	valuePrediction = sqrtf(2);
-	std::cout << "TEST #23: vec3LinePointDistance(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << valuePrediction << std::endl;
+	std::cout << "TEST #23: vec2LinePointDistance(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << valuePrediction << std::endl;
 	valueResult = vec2LinePointDistance(arg1, arg2, arg3);
 	result = valueResult == valuePrediction;
 	if (!result)
@@ -399,7 +405,7 @@ bool VectorFunctionsTester::testVector3()
 	arg1 = Vector3(1, 2, 3);
 	arg2 = Vector3(1, 3, -7);
 	valuePrediction = -14;
-	std::cout << "TEST #1: vec2Dot(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
+	std::cout << "TEST #1: vec3Dot(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
 	valueResult = vec3Dot(arg1, arg2);
 	result = valueResult == valuePrediction;
 	if (!result)
@@ -412,9 +418,6 @@ bool VectorFunctionsTester::testVector3()
 	arg1 = Vector3(1, 2, 3);
 	arg2 = Vector3(1, 3, 5);
 	vecPrediction = Vector3(1, -2, 1);
-	//XMStoreFloat3((XMFLOAT3*)static_cast<const float*>(vecPrediction),
-	//	XMVector3Cross(XMLoadFloat3((XMFLOAT3*)static_cast<const float*>(arg1)),
-	//		XMLoadFloat3((XMFLOAT3*)static_cast<const float*>(arg2))));
 	std::cout << "TEST #2: vec3Cross(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vec3Cross(arg1, arg2);
 	result = vecResult == vecPrediction;
@@ -623,7 +626,7 @@ bool VectorFunctionsTester::testVector3()
 	arg1 = Vector3(2, 3, 4);
 	value = 4;
 	vecPrediction = Vector3(16, 81, 256);
-	std::cout << "TEST #16: vec3Pow(" << arg1 << ", " << value << ") == " << vecPrediction << std::endl;
+	std::cout << "TEST #17: vec3Pow(" << arg1 << ", " << value << ") == " << vecPrediction << std::endl;
 	vecResult = vec3Pow(arg1, value);
 	result = vecResult == vecPrediction;
 	if (!result)
@@ -649,8 +652,9 @@ bool VectorFunctionsTester::testVector3()
 	// TEST #19
 	arg1 = Vector3(100, 20, 0);
 	arg2 = Vector3(20, 200, 0);
+	value = 0.7;
 	vecPrediction = Vector3(76, 74, 0);
-	std::cout << "TEST #18: vec3Lerp(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	std::cout << "TEST #18: vec3Lerp(" << arg1 << ", " << arg2 << ", " << value << ") == " << vecPrediction << std::endl;
 	vecResult = vec3Lerp(arg1, arg2, value);
 	result = vecResult == vecPrediction;
 	if (!result)
@@ -747,6 +751,379 @@ bool VectorFunctionsTester::testVector3()
 	valuePrediction = 3.1415926535897 / 2;
 	std::cout << "TEST #26: vec3AngleBetweenNormals(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
 	valueResult = vec3AngleBetweenNormals(arg1, arg2);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	return true;
+}
+
+bool VectorFunctionsTester::testVector4()
+{
+	Vector4 arg1, arg2, arg3, arg4, vecResult, vecPrediction;
+	float value, valueResult, valuePrediction;
+	bool boolResult, boolPrediction;
+	bool result;
+
+	// TEST #1
+	arg1 = Vector4(1, 2, 3, 14);
+	arg2 = Vector4(1, 3, -7, 1);
+	valuePrediction = 0;
+	std::cout << "TEST #1: vec4Dot(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
+	valueResult = vec4Dot(arg1, arg2);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #2
+	arg1 = Vector4(1, 2, 3, 4);
+	arg2 = Vector4(1, 3, 5, 4);
+	vecPrediction = Vector4(1, -2, 1, 0);
+	//XMStoreFloat3((XMFLOAT3*)static_cast<const float*>(vecPrediction),
+	//	XMVector4Cross(XMLoadFloat3((XMFLOAT3*)static_cast<const float*>(arg1)),
+	//		XMLoadFloat3((XMFLOAT3*)static_cast<const float*>(arg2))));
+	std::cout << "TEST #2: vec4Cross(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Cross3D(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #3
+	arg1 = Vector4(0, 0);
+	arg2 = Vector4(2, 2);
+	arg3 = Vector4(0, 2);
+	arg4 = Vector4(2, 0);
+	vecPrediction = Vector4(1, 1);
+	std::cout << "TEST #3: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #4
+	arg1 = Vector4(0, 2);
+	arg2 = Vector4(2, 0);
+	arg3 = Vector4(0, 0);
+	arg4 = Vector4(2, 2);
+	vecPrediction = Vector4(1, 1);
+	std::cout << "TEST #4: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #5
+	arg1 = Vector4(0, 0);
+	arg2 = Vector4(2, 2);
+	arg3 = Vector4(3, 2);
+	arg4 = Vector4(5, 0);
+	vecPrediction = Vector4(2.5, 2.5);
+	std::cout << "TEST #5: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #6
+	arg1 = Vector4(0, 0);
+	arg2 = Vector4(2, 2);
+	arg3 = Vector4(-3, 2);
+	arg4 = Vector4(-1, 0);
+	vecPrediction = Vector4(-0.5, -0.5);
+	std::cout << "TEST #6: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #7
+	arg1 = Vector4(0, 0);
+	arg2 = Vector4(2, 2);
+	arg3 = Vector4(1, 0);
+	arg4 = Vector4(3, 2);
+	vecPrediction = Vector4(INFINITY, INFINITY, INFINITY);
+	std::cout << "TEST #7: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #8
+	arg1 = Vector4(0, 0);
+	arg2 = Vector4(2, 2);
+	arg3 = Vector4(0, 0);
+	arg4 = Vector4(2, 2);
+	vecPrediction = Vector4(INFINITY, INFINITY, INFINITY);
+	std::cout << "TEST #8: vec4IntersectLines3D(" << arg1 << ", " << arg2 << ", " << arg3 << ", " << arg4 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4IntersectLines3D(arg1, arg2, arg3, arg4);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #9
+	arg1 = Vector4(1, 2, 1, 3);
+	arg2 = Vector4(0, 0, 0, 3);
+	vecPrediction = Vector4(0, 0, 0, 3);
+	std::cout << "TEST #9: vec4Project(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Project(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #10
+	arg1 = Vector4(1, 2, 3, 4);
+	arg2 = Vector4(2, 3, 7, 5);
+	valuePrediction = sqrtf(19);
+	std::cout << "TEST #10: vec4Distance(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
+	valueResult = vec4Distance(arg1, arg2);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #11
+	arg1 = Vector4(1, 2, 3, 4);
+	arg2 = Vector4(2, 1, 0, 8);
+	vecPrediction = Vector4(1, 1, 0, 4);
+	std::cout << "TEST #11: vec4Min(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Min(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #12
+	arg1 = Vector4(1, 2, 3, 4);
+	arg2 = Vector4(2, 1, 0, 8);
+	vecPrediction = Vector4(2, 2, 3, 8);
+	std::cout << "TEST #12: vec4Max(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Max(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #13
+	arg1 = Vector4(1, -2, 5, 7);
+	arg2 = Vector4(0, 1, 2, 9);
+	vecPrediction = Vector4(1, -144, -279, - 1271);
+	//XMStoreFloat4((XMFLOAT4*)static_cast<const float*>(vecPrediction),
+	//	XMVector4Reflect(XMLoadFloat4((XMFLOAT4*)static_cast<const float*>(arg1)),
+	//		XMLoadFloat4((XMFLOAT4*)static_cast<const float*>(arg2))));
+	std::cout << "TEST #13: vec4Reflect(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Reflect(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #14
+	arg1 = Vector4(1, -2, 3, 13);
+	arg2 = Vector4(0, 1, 5, 6);
+	value = 1;
+	vecPrediction = Vector4(1, -184, -907, -1079);
+	vecResult = vec4Refract(arg1, arg2, value);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #15
+	arg1 = Vector4(1, -2, 3, 13);
+	arg2 = Vector4(0, 1, 5, 6);
+	value = 0.5;
+	vecPrediction = Vector4(0.5, -92.0082397, -453.541199, -539.549438);
+	std::cout << "TEST #15: vec4Refract(" << arg1 << ", " << arg2 << ", " << value << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Refract(arg1, arg2, value);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #16
+	arg1 = Vector4(2, 3, 4, 5);
+	arg2 = Vector4(2, 3, 4, 2);
+	vecPrediction = Vector4(4, 27, 256, 25);
+	std::cout << "TEST #16: vec4Pow(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Pow(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #17
+	arg1 = Vector4(2, 3, 4, 1);
+	value = 4;
+	vecPrediction = Vector4(16, 81, 256, 1);
+	std::cout << "TEST #17: vec4Pow(" << arg1 << ", " << value << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Pow(arg1, value);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #18
+	arg1 = Vector4(100, 20, 500, 1);
+	arg2 = Vector4(20, 200, 0, 1);
+	value = 0.7;
+	vecPrediction = Vector4(76, 74, 350, 1);
+	std::cout << "TEST #18: vec4Lerp(" << arg1 << ", " << arg2 << ", " << value << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Lerp(arg1, arg2, value);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #19
+	arg1 = Vector4(100, 20, 0, 3);
+	arg2 = Vector4(20, 200, 0, 5);
+	value = 0.7;
+	vecPrediction = Vector4(76, 74, 0, 3.6);
+	std::cout << "TEST #19: vec4Lerp(" << arg1 << ", " << arg2 << ", " << ") == " << vecPrediction << std::endl;
+	vecResult = vec4Lerp(arg1, arg2, value);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #20
+	arg1 = Vector4(1, 2, 0, 0);
+	arg2 = Vector4(-2, 1, 0, 0);
+	valuePrediction = 3.1415926535897 / 2;
+	std::cout << "TEST #20: vec4AngleBetween(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
+	valueResult = vec4AngleBetween(arg1, arg2);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #21
+	arg1 = Vector4(1, 2, 0, 0);
+	arg2 = Vector4(2, -1, 0, 0);
+	valuePrediction = 3.1415926535897 / 2;
+	std::cout << "TEST #21: vec4AngleBetween(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
+	valueResult = vec4AngleBetween(arg1, arg2);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #22
+	arg1 = Vector4(2, 0, 1, 2);
+	arg2 = Vector4(0, 0, 0, 3);
+	arg3 = Vector4(1, 2, 1, 4);
+	valuePrediction = 2.04939015319192;
+	std::cout << "TEST #22: vec4LinePointDistance3D(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << valuePrediction << std::endl;
+	valueResult = vec4LinePointDistance3D(arg1, arg2, arg3);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #23
+	arg1 = Vector4(0, 0, 0, 2);
+	arg2 = Vector4(2, 2, 2, 3);
+	arg3 = Vector4(0, 1, 1, 4);
+	valuePrediction = 0.81649658092772;
+	std::cout << "TEST #23: vec4LinePointDistance3D(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << valuePrediction << std::endl;
+	valueResult = vec4LinePointDistance3D(arg1, arg2, arg3);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #24
+	arg1 = Vector4(2, 2, 2, 2);
+	arg2 = Vector4(0, 0, 0, 0);
+	arg3 = Vector4(3, 3, 3, 3);
+	boolPrediction = true;
+	std::cout << "TEST #24: vec4InBound(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << boolPrediction << std::endl;
+	boolResult = vec4InBound(arg1, arg2, arg3);
+	result = boolResult == boolPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #25
+	arg1 = Vector4(2, 2, 2, 3);
+	arg2 = Vector4(0, 0, 0, 4);
+	arg3 = Vector4(3, 3, 3, 3);
+	boolPrediction = false;
+	std::cout << "TEST #25: vec4InBound(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << boolPrediction << std::endl;
+	boolResult = vec4InBound(arg1, arg2, arg3);
+	result = boolResult == boolPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #26
+	arg1 = Vector4(1, 2, 0, 0).normalized();
+	arg2 = Vector4(-2, 1, 0, 0).normalized();
+	valuePrediction = 3.1415926535897 / 2;
+	std::cout << "TEST #26: vec4AngleBetweenNormals(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
+	valueResult = vec4AngleBetweenNormals(arg1, arg2);
 	result = valueResult == valuePrediction;
 	if (!result)
 	{

@@ -27,7 +27,7 @@ Vector3 Vector3::normalized() const
 	return resultVec;
 }
 
-Vector3 Vector3::orthogonal()
+Vector3 Vector3::orthogonal() const
 {
 	Vector3 resultVec;
 

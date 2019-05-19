@@ -28,6 +28,29 @@ Vector4 Vector4::normalized() const
 	return resultVec;
 }
 
+Vector4 Vector4::orthogonal3D() const
+{
+	Vector4 resultVec;
+
+	resultVec = Vector4(z, z, -x - y, w);
+	if (resultVec == Vector4(0,0,0,w)) //chech that result is not zero vector
+		resultVec = Vector4(-y - z, x, x, w);
+
+	return resultVec;
+}
+
+Vector4 Vector4::orthogonal4D() const
+{
+	Vector4 resultVec;
+
+	resultVec.x = -y;
+	resultVec.y = x;
+	resultVec.z = -w;
+	resultVec.w = z;
+
+	return resultVec;
+}
+
 Vector4 Vector4::abs() const
 {
 	Vector4 resultVec;

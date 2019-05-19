@@ -1071,5 +1071,29 @@ bool Vector4Tester::testFunctions()
 		return false;
 	}
 
+	// TEST #27
+	vec = Vector4(1, -1, 0, 2);
+	vecPrediction = Vector4(1, 1, 1, 2);
+	std::cout << "TEST #27: " << vec << ".orthogonal3D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.orthogonal3D();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #28
+	vec = Vector4(1, -1, 0, 2);
+	vecPrediction = Vector4(1, 1, -2, 0);
+	std::cout << "TEST #28: " << vec << ".orthogonal4D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.orthogonal4D();
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
 	return true;
 }

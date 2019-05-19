@@ -148,7 +148,7 @@ bool Vector4::operator==(const Vector4& vector) const
 }
 bool Vector4::operator<(const Vector4& vector) const
 {
-	return x < vector.x&& y < vector.y&& z < vector.z;
+	return x < vector.x&& y < vector.y&& z < vector.z&& w < vector.w;
 }
 bool Vector4::operator>(const Vector4& vector) const
 {
@@ -156,7 +156,7 @@ bool Vector4::operator>(const Vector4& vector) const
 }
 bool Vector4::operator<=(const Vector4& vector) const
 {
-	return x <= vector.x&& y <= vector.y&& z <= vector.z;
+	return x <= vector.x && y <= vector.y && z <= vector.z && w <= vector.w;
 }
 bool Vector4::operator>=(const Vector4& vector) const
 {

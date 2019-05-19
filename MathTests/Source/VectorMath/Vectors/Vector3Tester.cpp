@@ -1059,7 +1059,7 @@ bool Vector3Tester::testFunctions()
 	// TEST #27
 	vec = Vector3(1, -1, 0);
 	vecPrediction = Vector3(1, 1, 1);
-	std::cout << "TEST #27: " << vec << ".logE()" << " == " << vecPrediction << std::endl;
+	std::cout << "TEST #27: " << vec << ".orthogonal()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.orthogonal();
 	result = vecResult == vecPrediction;
 	if (!result)
