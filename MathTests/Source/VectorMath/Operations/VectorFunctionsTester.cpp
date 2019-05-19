@@ -372,6 +372,19 @@ bool VectorFunctionsTester::testVector2()
 		return false;
 	}
 
+	// TEST #26
+	arg1 = Vector2(1, 2).normalized();
+	arg2 = Vector2(-2, 1).normalized();
+	valuePrediction = 3.1415926535897 / 2;
+	std::cout << "TEST #26: vec2AngleBetweenNormals(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
+	valueResult = vec2AngleBetweenNormals(arg1, arg2);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
 	return true;
 }
 
@@ -725,6 +738,19 @@ bool VectorFunctionsTester::testVector3()
 	if (!result)
 	{
 		std::cout << "Failed. " << std::endl;
+		return false;
+	}
+
+	// TEST #26
+	arg1 = Vector3(1, 2, 0).normalized();
+	arg2 = Vector3(-2, 1, 0).normalized();
+	valuePrediction = 3.1415926535897 / 2;
+	std::cout << "TEST #26: vec3AngleBetweenNormals(" << arg1 << ", " << arg2 << ") == " << valuePrediction << std::endl;
+	valueResult = vec3AngleBetweenNormals(arg1, arg2);
+	result = valueResult == valuePrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
 		return false;
 	}
 

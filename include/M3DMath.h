@@ -547,6 +547,7 @@ namespace M3DM
 	float vec2Distance(const Vector2& vec1, const Vector2& vec2);
 	float vec2LinePointDistance(const Vector2& linePoint1, const Vector2& linePoint2, const Vector2& point);
 	float vec2AngleBetween(const Vector2& vec1, const Vector2& vec2);
+	float vec2AngleBetweenNormals(const Vector2& vec1, const Vector2& vec2);
 	bool vec2InBound(const Vector2& vec, const Vector2& left, const Vector2& right);
 
 	// Vector3
@@ -565,71 +566,81 @@ namespace M3DM
 	float vec3Distance(const Vector3& vec1, const Vector3& vec2);
 	float vec3LinePointDistance(const Vector3& linePoint1, const Vector3& linePoint2, const Vector3& point);
 	float vec3AngleBetween(const Vector3& vec1, const Vector3& vec2);
+	float vec3AngleBetweenNormals(const Vector3& vec1, const Vector3& vec2);
 	bool vec3InBound(const Vector3& vec, const Vector3& left, const Vector3& right);
 
 	// Vector4
+	Vector4 vec4Cross3D(const Vector4& vec1, const Vector4& vec2);
 	Vector4 vec4Lerp(const Vector4& vec1, const Vector4& vec2, float value);
 	Vector4 vec4Max(const Vector4& vec1, const Vector4& vec2);
 	Vector4 vec4Min(const Vector4& vec1, const Vector4& vec2);
 	Vector4 vec4Project(const Vector4& vec1, const Vector4& vec2);
-	Vector4 vec4IntersectLines(const Vector4& l1p1, const Vector4& l1p2, const Vector4& l2p1, const Vector4& l2p2);
+	Vector4 vec4IntersectLines3D(const Vector4& l1p1, const Vector4& l1p2, const Vector4& l2p1, const Vector4& l2p2);
 	Vector4 vec4Reflect(const Vector4& vec, const Vector4& normal);
 	Vector4 vec4Refract(const Vector4& vec, const Vector4& normal, float refractionIndex);
-	Vector4 vec4Orthogonal(const Vector4& vec, const Vector4& normal);
+	Vector4 vec4Orthogonal3D(const Vector4& vec, const Vector4& normal);
+	Vector4 vec4Orthogonal4D(const Vector4& vec, const Vector4& normal);
 	Vector4 vec4Pow(const Vector4& vec, const Vector4& pow);
 	Vector4 vec4Pow(const Vector4& vec, float pow);
 	float vec4Dot(const Vector4& vec1, const Vector4& vec2);
 	float vec4Distance(const Vector4& vec1, const Vector4& vec2);
-	float vec4LinePointDistance(const Vector4& linePoint1, const Vector4& linePoint2, const Vector4& point);
+	float vec4LinePointDistance3D(const Vector4& linePoint1, const Vector4& linePoint2, const Vector4& point);
 	float vec4AngleBetween(const Vector4& vec1, const Vector4& vec2);
+	float vec4AngleBetweenNormals(const Vector4& vec1, const Vector4& vec2);
 	bool vec4InBound(const Vector4& vec, const Vector4& left, const Vector4& right);
 
 	// VectorF
 	VectorF VECCALL vecFDistanceVec(VectorF vec1, VectorF vec2);
-	VectorF VECCALL vecFCross(VectorF vec1, VectorF vec2);
+	VectorF VECCALL vecFCross3D(VectorF vec1, VectorF vec2);
 	VectorF VECCALL vecFLerp(VectorF vec1, VectorF vec2);
 	VectorF VECCALL vecFMax(VectorF vec1, VectorF vec2);
 	VectorF VECCALL vecFMin(VectorF vec1, VectorF vec2);
 	VectorF VECCALL vecFProject(VectorF vec1, VectorF vec2);
-	VectorF VECCALL vecFIntersectLines(VectorF l1p1, VectorF l1p2, VectorF l2p1, VectorF l2p2);
+	VectorF VECCALL vecFIntersectLines3D(VectorF l1p1, VectorF l1p2, VectorF l2p1, VectorF l2p2);
 	VectorF VECCALL vecFReflect(VectorF vec, VectorF normal);
 	VectorF VECCALL vecFRefract(VectorF vec, VectorF normal, float refractionIndex);
 	VectorF VECCALL vecFRefractVec(VectorF vec, VectorF normal, VectorF refractionIndex);
-	VectorF VECCALL vecFOrthogonal(VectorF vec, VectorF normal);
+	VectorF VECCALL vecFOrthogonal3D(VectorF vec, VectorF normal);
+	VectorF VECCALL vecFOrthogonal4D(VectorF vec, VectorF normal);
 	VectorF VECCALL vecFDotVec(VectorF vec1, VectorF vec2);
-	VectorF VECCALL vecFLinePointDistanceVec(VectorF linePoint1, VectorF linePoint2, VectorF point);
-	VectorF VECCALL vecFAngleBetweenVec(VectorF vec1, VectorF vec2); // TODO: fast version
+	VectorF VECCALL vecFLinePointDistanceVec3D(VectorF linePoint1, VectorF linePoint2, VectorF point);
+	VectorF VECCALL vecFAngleBetweenVec(VectorF vec1, VectorF vec2);
+	VectorF VECCALL vecFAngleBetweenNormalsVec(VectorF vec1, VectorF vec2); // TODO: fast version
 	VectorF VECCALL vecFInBoundVec(VectorF vec, VectorF left, VectorF right);
 	VectorF VECCALL vecFPow(VectorF vec, VectorF pow);
 	VectorF VECCALL vecFPow(VectorF vec, float pow);
 	float VECCALL vecFDistance(VectorF vec1, VectorF vec2);
 	float VECCALL vecFDot(VectorF vec1, VectorF vec2);
-	float VECCALL vecFLinePointDistance(VectorF line, VectorF point);
+	float VECCALL vecFLinePointDistance3D(VectorF line, VectorF point);
 	float VECCALL vecFAngleBetween(VectorF vec1, VectorF vec2);
+	float VECCALL vecFAngleBetweenNormals(VectorF vec1, VectorF vec2);
 	bool VECCALL vecFinBound(VectorF vec, VectorF left, VectorF right);
 
 	// DoubleDoubleVectorF
 	DoubleVectorF VECCALL doubleVecFDistanceVec(DoubleVectorF vec1, DoubleVectorF vec2);
-	DoubleVectorF VECCALL doubleVecFCross(DoubleVectorF vec1, DoubleVectorF vec2);
+	DoubleVectorF VECCALL doubleVecFCross3D(DoubleVectorF vec1, DoubleVectorF vec2);
 	DoubleVectorF VECCALL doubleVecFLerp(DoubleVectorF vec1, DoubleVectorF vec2);
 	DoubleVectorF VECCALL doubleVecFMax(DoubleVectorF vec1, DoubleVectorF vec2);
 	DoubleVectorF VECCALL doubleVecFMin(DoubleVectorF vec1, DoubleVectorF vec2);
 	DoubleVectorF VECCALL doubleVecFProject(DoubleVectorF vec1, DoubleVectorF vec2);
-	DoubleVectorF VECCALL doubleVecFIntersectLines(DoubleVectorF l1p1, DoubleVectorF l1p2, DoubleVectorF l2p1, DoubleVectorF l2p2);
+	DoubleVectorF VECCALL doubleVecFIntersectLines3D(DoubleVectorF l1p1, DoubleVectorF l1p2, DoubleVectorF l2p1, DoubleVectorF l2p2);
 	DoubleVectorF VECCALL doubleVecFReflect(DoubleVectorF vec, DoubleVectorF normal);
 	DoubleVectorF VECCALL doubleVecFRefract(DoubleVectorF vec, DoubleVectorF normal, float refractionIndex);
 	DoubleVectorF VECCALL doubleVecFRefractVec(DoubleVectorF vec, DoubleVectorF normal, DoubleVectorF refractionIndex);
-	DoubleVectorF VECCALL doubleVecFOrthogonal(DoubleVectorF vec, DoubleVectorF normal);
+	DoubleVectorF VECCALL doubleVecFOrthogonal3D(DoubleVectorF vec, DoubleVectorF normal);
+	DoubleVectorF VECCALL doubleVecFOrthogonal4D(DoubleVectorF vec, DoubleVectorF normal);
 	DoubleVectorF VECCALL doubleVecFDotVec(DoubleVectorF vec1, DoubleVectorF vec2);
 	DoubleVectorF VECCALL doubleVecFLinePointDistanceVec(DoubleVectorF line, DoubleVectorF point);
 	DoubleVectorF VECCALL doubleVecFAngleBetweenVec(DoubleVectorF vec1, DoubleVectorF vec2);
+	DoubleVectorF VECCALL doubleVecFAngleBetweenNormalsVec(DoubleVectorF vec1, DoubleVectorF vec2);
 	DoubleVectorF VECCALL doubleVecFInBoundVec(DoubleVectorF vec, DoubleVectorF left, DoubleVectorF right);
 	DoubleVectorF VECCALL doubleVecFPow(const DoubleVectorF& vec, const DoubleVectorF& pow);
 	DoubleVectorF VECCALL doubleVecFPow(const DoubleVectorF& vec, float pow);
 	float VECCALL doubleVecFDot(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFDistance(DoubleVectorF vec1, DoubleVectorF vec2);
-	float VECCALL doubleVecFLinePointDistance(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point);
+	float VECCALL doubleVecFLinePointDistance3D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point);
 	float VECCALL doubleVecFAngleBetween(DoubleVectorF vec1, DoubleVectorF vec2);
+	float VECCALL doubleVecFAngleBetweenNormals(DoubleVectorF vec1, DoubleVectorF vec2);
 	bool VECCALL doubleVecFinBound(DoubleVectorF vec, DoubleVectorF left, DoubleVectorF right);
 
 }

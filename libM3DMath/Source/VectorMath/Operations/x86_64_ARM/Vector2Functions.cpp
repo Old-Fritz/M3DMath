@@ -120,6 +120,11 @@ float M3DM::vec2AngleBetween(const Vector2& vec1, const Vector2& vec2)
 	return acosf(vec2Dot(vec1, vec2)/(vec1.length()*vec2.length()));
 }
 
+float M3DM::vec2AngleBetweenNormals(const Vector2& vec1, const Vector2& vec2)
+{
+	return acosf(vec2Dot(vec1, vec2) / (vec1.length() * vec2.length()));
+}
+
 bool M3DM::vec2InBound(const Vector2& vec, const Vector2& left, const Vector2& right)
 {
 	return vec <= right && vec >= left;
