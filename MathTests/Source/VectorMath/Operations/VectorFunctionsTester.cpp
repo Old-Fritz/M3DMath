@@ -1,6 +1,7 @@
 #include "MathTests.h"
-#include "DirectXMath.h"
-using namespace DirectX;
+#include <math.h>
+//#include "DirectXMath.h"
+//using namespace DirectX;
 
 using namespace M3DM;
 

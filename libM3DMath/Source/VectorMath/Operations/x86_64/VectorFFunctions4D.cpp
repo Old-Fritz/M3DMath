@@ -3,6 +3,7 @@
 
 using namespace M3DM;
 
+
 /*
 VectorF VECCALL M3DM::vecFCross3D(VectorF vec1, VectorF vec2)
 {

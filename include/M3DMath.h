@@ -7,6 +7,7 @@
 
 #ifdef WIN32
 #include <DirectXMath.h>
+#define DIRECTX
 #define VECCALL __vectorcall
 #endif
 
@@ -89,6 +90,16 @@ namespace M3DM
 		explicit Vector2(const Vector4& vector);
 		operator float* ();
 		operator float const* () const;
+#ifdef DIRECTX
+		DirectX::XMFLOAT2* XMFloat2Ptr()
+		{
+			return reinterpret_cast<DirectX::XMFLOAT2*>(this);
+		}
+		DirectX::XMVECTOR XMVec()
+		{
+			return DirectX::XMLoadFloat2(XMFloat2Ptr());
+		}
+#endif
 
 		// Base operations
 		Vector2 operator+(const Vector2& vector) const;
@@ -159,6 +170,20 @@ namespace M3DM
 		explicit Vector3(const Vector4& vector);
 		operator float* ();
 		operator float const* () const;
+		Vector2* Vec2Ptr()
+		{
+			return reinterpret_cast<Vector2*>(this);
+		}
+#ifdef DIRECTX
+		DirectX::XMFLOAT3* XMFloat3Ptr()
+		{
+			return reinterpret_cast<DirectX::XMFLOAT3*>(this);
+		}
+		DirectX::XMVECTOR XMVec()
+		{
+			return DirectX::XMLoadFloat3(XMFloat3Ptr());
+		}
+#endif
 
 		// Base operations
 		Vector3 operator+(const Vector3& vector) const;
@@ -229,6 +254,26 @@ namespace M3DM
 		explicit Vector4(const Vector2& vector1, const Vector2& vector2) : x(vector1.x), y(vector1.y), z(vector2.x), w(vector2.y) {}
 		operator float*();
 		operator float const * () const;
+		explicit operator Vector2* ();
+		explicit operator Vector3* ();
+		Vector2* Vec2Ptr()
+		{
+			return reinterpret_cast<Vector2*>(this);
+		}
+		Vector3* Vec3Ptr()
+		{
+			return reinterpret_cast<Vector3*>(this);
+		}
+#ifdef DIRECTX
+		DirectX::XMFLOAT4* XMFloat4Ptr()
+		{
+			return reinterpret_cast<DirectX::XMFLOAT4*>(this);
+		}
+		DirectX::XMVECTOR XMVec()
+		{
+			return DirectX::XMLoadFloat4(XMFloat4Ptr());
+		}
+#endif
 
 		// Base operations
 		Vector4 operator+(const Vector4& vector) const;
@@ -342,6 +387,12 @@ namespace M3DM
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
 		operator M128&();
+#ifdef DIRECTX
+		DirectX::XMVECTOR XMVec()
+		{
+			return m_data;
+		}
+#endif
 
 		// getters and setters
 		float get(char  ind) const;
@@ -687,7 +738,6 @@ namespace M3DM
 	bool VECCALL vecFcmp3D(VectorF vec1, VectorF vec2, int type);
 
 	// VectorF 4D
-	VectorF VECCALL doubleVecFCross4D(VectorF vec1, VectorF vec2);
 	VectorF VECCALL doubleVecFProject4D(VectorF vec1, VectorF vec2);
 	VectorF VECCALL doubleVecFReflect4D(VectorF vec, VectorF normal);
 	VectorF VECCALL doubleVecFRefract4D(VectorF vec, VectorF normal, float refractionIndex);
