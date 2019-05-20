@@ -67,7 +67,7 @@ Vector2 M3DM::vec2Refract(const Vector2& vec, const Vector2& normal, float refra
 	if (ref < 0)
 		return Vector2();
 
-	return vec * refractionIndex - (refractionIndex * dot + sqrt(ref)) * normal;
+	return vec * refractionIndex - (refractionIndex * dot + sqrtf(ref)) * normal;
 }
 
 Vector2 M3DM::vec2Pow(const Vector2& vec, const Vector2& pow)

@@ -136,6 +136,10 @@ public:
 	bool testVector2();
 	bool testVector3();
 	bool testVector4();
-	bool testVectorF();
-	bool testDoubleVectorF();
+	bool testVectorF2D();
+	bool testVectorF3D();
+	bool testVectorF4D();
+	bool testDoubleVectorF2D();
+	bool testDoubleVectorF3D();
+	bool testDoubleVectorF4D();
 };
