@@ -372,9 +372,6 @@ namespace M3DM
 		bool VECCALL operator>=(VectorF vector) const;
 		bool VECCALL isEqualPrec(VectorF vector, float precision = 0) const;
 		bool VECCALL isEqualPrec(VectorF vector, VectorF precision) const;
-		bool VECCALL cmp2D(VectorF vector, int type);
-		bool VECCALL cmp3D(VectorF vector, int type);
-		bool VECCALL cmp4D(VectorF vector, int type);
 		VectorF VECCALL isEqualVec(VectorF vector) const;
 		VectorF VECCALL isEqualPrecVec(VectorF vector, VectorF precision) const;
 
@@ -501,9 +498,6 @@ namespace M3DM
 		bool VECCALL operator>=(DoubleVectorF vector) const;
 		bool VECCALL isEqualPrec(DoubleVectorF vector, float precision = 0) const;
 		bool VECCALL isEqualPrec(DoubleVectorF vector, DoubleVectorF precision) const;
-		bool VECCALL cmp2D(DoubleVectorF vector, int type);
-		bool VECCALL cmp3D(DoubleVectorF vector, int type);
-		bool VECCALL cmp4D(DoubleVectorF vector, int type);
 		DoubleVectorF VECCALL isEqualVec(DoubleVectorF vector) const;
 		DoubleVectorF VECCALL isEqualPrecVec(DoubleVectorF vector, DoubleVectorF precision) const;
 
@@ -553,12 +547,12 @@ namespace M3DM
 		DoubleVectorF VECCALL log2() const;
 		DoubleVectorF VECCALL logE() const;
 		DoubleVectorF VECCALL sqrtFast() const;
-		void sincos(DoubleVectorF& sin, DoubleVectorF& cos) const;
 		DoubleVectorF VECCALL reciprocalFast() const;
+		void sincos(DoubleVectorF& sin, DoubleVectorF& cos) const;
 
 		// functions 2d
-		float length2D() const;
-		float sqrLength2D() const;
+		void length2D(float& len1, float& len2) const;
+		void sqrLength2D(float& len1, float& len2) const;
 		DoubleVectorF VECCALL normalized2D() const;
 		DoubleVectorF VECCALL orthogonal2D() const;
 		DoubleVectorF VECCALL lengthVec2D() const;
@@ -566,8 +560,8 @@ namespace M3DM
 		DoubleVectorF VECCALL normalizedFast2D() const;
 
 		// functions 3d
-		float length3D() const;
-		float sqrLength3D() const;
+		void length3D(float& len1, float& len2) const;
+		void sqrLength3D(float& len1, float& len2) const;
 		DoubleVectorF VECCALL normalized3D() const;
 		DoubleVectorF VECCALL orthogonal3D() const;
 		DoubleVectorF VECCALL lengthVec3D() const;
@@ -575,8 +569,8 @@ namespace M3DM
 		DoubleVectorF VECCALL normalizedFast3D() const;
 
 		// functions 4d
-		float length4D() const;
-		float sqrLength4D() const;
+		void length4D(float& len1, float& len2) const;
+		void sqrLength4D(float& len1, float& len2) const;
 		DoubleVectorF VECCALL normalized4D() const;
 		DoubleVectorF VECCALL orthogonal4D() const;
 		DoubleVectorF VECCALL lengthVec4D() const;
@@ -669,6 +663,7 @@ namespace M3DM
 	float VECCALL vecFAngleBetween2D(VectorF vec1, VectorF vec2);
 	float VECCALL vecFAngleBetweenNormals2D(VectorF vec1, VectorF vec2);
 	float VECCALL vecFLinePointDistance2D2D(VectorF linePoint1, VectorF linePoint2, VectorF point);
+	bool VECCALL vecFcmp2D(VectorF vec1, VectorF vec2, int type);
 
 	// VectorF 3D
 	VectorF VECCALL vecFCross3D(VectorF vec1, VectorF vec2);
@@ -683,14 +678,14 @@ namespace M3DM
 	VectorF VECCALL vecFLinePointDistanceVec3D(VectorF linePoint1, VectorF linePoint2, VectorF point);
 	VectorF VECCALL vecFAngleBetweenVec3D(VectorF vec1, VectorF vec2);
 	VectorF VECCALL vecFAngleBetweenNormalsVec3D(VectorF vec1, VectorF vec2);
-	
 
 	float VECCALL vecFDistance3D(VectorF vec1, VectorF vec2);
 	float VECCALL vecFDot3D(VectorF vec1, VectorF vec2);
 	float VECCALL vecFAngleBetween3D(VectorF vec1, VectorF vec2);
 	float VECCALL vecFAngleBetweenNormals3D(VectorF vec1, VectorF vec2);
 	float VECCALL vecFLinePointDistance3D(VectorF linePoint1, VectorF linePoint2, VectorF point);
-	
+	bool VECCALL vecFcmp3D(VectorF vec1, VectorF vec2, int type);
+
 	// VectorF 4D
 	VectorF VECCALL doubleVecFCross4D(VectorF vec1, VectorF vec2);
 	VectorF VECCALL doubleVecFProject4D(VectorF vec1, VectorF vec2);
@@ -708,7 +703,7 @@ namespace M3DM
 	float VECCALL doubleVecFDot4D(VectorF vec1, VectorF vec2);
 	float VECCALL doubleVecFAngleBetween4D(VectorF vec1, VectorF vec2);
 	float VECCALL doubleVecFAngleBetweenNormals4D(VectorF vec1, VectorF vec2);
-
+	bool VECCALL vecFcmp4D(VectorF vec1, VectorF vec2, int type);
 	
 	// DoubleVectorF common
 	DoubleVectorF VECCALL doubleVecFMax(DoubleVectorF vec1, DoubleVectorF vec2);
@@ -737,7 +732,8 @@ namespace M3DM
 	float VECCALL doubleVecFDot2D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFAngleBetween2D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFAngleBetweenNormals2D(DoubleVectorF vec1, DoubleVectorF vec2);
-	float VECCALL doubleVecFLinePointDistance2D2D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point);
+	float VECCALL doubleVecFLinePointDistance2D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point);
+	bool VECCALL doubleVecFcmp2D(DoubleVectorF vec1, DoubleVectorF vec2, int type);
 
 	// DoubleVectorF 3D
 	DoubleVectorF VECCALL doubleVecFCross3D(DoubleVectorF vec1, DoubleVectorF vec2);
@@ -753,12 +749,12 @@ namespace M3DM
 	DoubleVectorF VECCALL doubleVecFAngleBetweenVec3D(DoubleVectorF vec1, DoubleVectorF vec2);
 	DoubleVectorF VECCALL doubleVecFAngleBetweenNormalsVec3D(DoubleVectorF vec1, DoubleVectorF vec2);
 
-
 	float VECCALL doubleVecFDistance3D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFDot3D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFAngleBetween3D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFAngleBetweenNormals3D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFLinePointDistance3D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point);
+	bool VECCALL doubleVecFcmp3D(DoubleVectorF vec1, DoubleVectorF vec2, int type);
 
 	// DoubleVectorF 4D
 	DoubleVectorF VECCALL doubleVecFCross4D(DoubleVectorF vec1, DoubleVectorF vec2);
@@ -777,4 +773,5 @@ namespace M3DM
 	float VECCALL doubleVecFDot4D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFAngleBetween4D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFAngleBetweenNormals4D(DoubleVectorF vec1, DoubleVectorF vec2);
+	bool VECCALL doubleVecFcmp4D(DoubleVectorF vec1, DoubleVectorF vec2, int type);
 }

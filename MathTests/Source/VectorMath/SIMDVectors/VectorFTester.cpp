@@ -1006,8 +1006,8 @@ bool VectorFTester::testFunctions()
 	// TEST #1
 	vec = VectorF(1, 2, 3, 4);
 	valuePrediction = 5.477225575051f;
-	std::cout << "TEST #1: " << vec << ".length()" << " == " << valuePrediction << std::endl;
-	valueResult = vec.length();
+	std::cout << "TEST #1: " << vec << ".length4D()" << " == " << valuePrediction << std::endl;
+	valueResult = vec.length4D();
 	result = valueResult == valuePrediction;
 	if (!result)
 	{
@@ -1018,8 +1018,8 @@ bool VectorFTester::testFunctions()
 	// TEST #2
 	vec = VectorF(1, 2, 3, 4);
 	valuePrediction = 30;
-	std::cout << "TEST #2: " << vec << ".sqrLength()" << " == " << valuePrediction << std::endl;
-	valueResult = vec.sqrLength();
+	std::cout << "TEST #2: " << vec << ".sqrLength4D()" << " == " << valuePrediction << std::endl;
+	valueResult = vec.sqrLength4D();
 	result = valueResult == valuePrediction;
 	if (!result)
 	{
@@ -1296,8 +1296,8 @@ bool VectorFTester::testFunctions()
 	// TEST #26
 	vec = VectorF(1, 2, 3, 4);
 	vecPrediction = VectorF(1 / 5.477225575051f, 2 / 5.477225575051f, 3 / 5.477225575051f, 4 / 5.477225575051f);
-	std::cout << "TEST #26: " << vec << ".normalized()" << " == " << vecPrediction << std::endl;
-	vecResult = vec.normalized();
+	std::cout << "TEST #26: " << vec << ".normalized4D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.normalized4D();
 	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.0001f));
 	if (!result)
 	{
@@ -1308,8 +1308,8 @@ bool VectorFTester::testFunctions()
 	// TEST #27
 	vec = VectorF(1, 2, 3, 4);
 	vecPrediction = VectorF(5.477225575051f);
-	std::cout << "TEST #27: " << vec << ".lengthVec()" << " == " << vecPrediction << std::endl;
-	vecResult = vec.lengthVec();
+	std::cout << "TEST #27: " << vec << ".lengthVec4D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.lengthVec4D();
 	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.0001f));
 	if (!result)
 	{
@@ -1320,8 +1320,8 @@ bool VectorFTester::testFunctions()
 	// TEST #28
 	vec = VectorF(1, 2, 3, 4);
 	vecPrediction = VectorF(30);
-	std::cout << "TEST #28: " << vec << ".sqrLengthVec()" << " == " << vecPrediction << std::endl;
-	vecResult = vec.sqrLengthVec();
+	std::cout << "TEST #28: " << vec << ".sqrLengthVec4D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.sqrLengthVec4D();
 	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.0001f));
 	if (!result)
 	{
@@ -1332,8 +1332,8 @@ bool VectorFTester::testFunctions()
 	// TEST #29
 	vec = VectorF(1, 2, 3, 4);
 	vecPrediction = VectorF(1/ 5.477225f, 2 / 5.477225f, 3 / 5.477225f, 4 / 5.477225f);
-	std::cout << "TEST #29: " << vec << ".normalizedFast()" << " == " << vecPrediction << std::endl;
-	vecResult = vec.normalizedFast();
+	std::cout << "TEST #29: " << vec << ".normalizedFast4D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.normalizedFast4D();
 	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.001f));
 	if (!result)
 	{
@@ -1454,6 +1454,90 @@ bool VectorFTester::testFunctions()
 	vecPrediction = VectorF(1 / 3.7416573867f, 2 / 3.7416573867f, 3 / 3.7416573867f, 1.06904495);
 	std::cout << "TEST #39: " << vec << ".normalizedFast3D()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.normalizedFast3D();
+	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.01f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #40
+	vec = VectorF(1, 2, 3, 4);
+	valuePrediction = sqrtf(5);
+	std::cout << "TEST #40: " << vec << ".length2D()" << " == " << valuePrediction << std::endl;
+	valueResult = vec.length2D();
+	result = valuePrediction == valueResult;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #41
+	vec = VectorF(1, 2, 3, 4);
+	valuePrediction = 5;
+	std::cout << "TEST #41: " << vec << ".sqrLength2D()" << " == " << valuePrediction << std::endl;
+	valueResult = vec.sqrLength2D();
+	result = valuePrediction == valueResult;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << valueResult << std::endl;
+		return false;
+	}
+
+	// TEST #42
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(1/sqrtf(5), 2/sqrtf(5), 3/sqrtf(5), 4/sqrtf(5));
+	std::cout << "TEST #42: " << vec << ".normalized2D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.normalized2D();
+	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #43
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(-2, 1, 1, 1);
+	std::cout << "TEST #43: " << vec << ".orthogonal2D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.orthogonal2D();
+	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #44
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(sqrtf(5));
+	std::cout << "TEST #44: " << vec << ".lengthVec2D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.lengthVec2D();
+	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #45
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(5);
+	std::cout << "TEST #45: " << vec << ".sqrLengthVec2D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.sqrLengthVec2D();
+	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #46
+	vec = VectorF(1, 2, 3, 4);
+	vecPrediction = VectorF(1 / sqrtf(5), 2 / sqrtf(5), 3 / sqrtf(5), 4 / sqrtf(5));
+	std::cout << "TEST #46: " << vec << ".normalizedFast2D()" << " == " << vecPrediction << std::endl;
+	vecResult = vec.normalizedFast2D();
 	result = vecResult.isEqualPrec(vecPrediction, VectorF(0.01f));
 	if (!result)
 	{

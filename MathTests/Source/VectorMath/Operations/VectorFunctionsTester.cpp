@@ -23,10 +23,10 @@ bool VectorFunctionsTester::testAll()
 	if (!result)
 		return false;
 
-	std::cout << "--Test VectorF--" << std::endl;
-	result = testVectorF();
-	if (!result)
-		return false;
+	//std::cout << "--Test VectorF--" << std::endl;
+	//result = testVectorF();
+	//if (!result)
+	//	return false;
 
 	return true;
 }
@@ -1138,7 +1138,7 @@ bool VectorFunctionsTester::testVector4()
 
 	return true;
 }
-
+/*
 bool VectorFunctionsTester::testVectorF()
 {
 	VectorF arg1, arg2, arg3, arg4, vecResult, vecPrediction;
@@ -1625,3 +1625,4 @@ bool VectorFunctionsTester::testVectorF()
 
 	return true;
 }
+*/

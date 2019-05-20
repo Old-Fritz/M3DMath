@@ -3,6 +3,7 @@
 
 using namespace M3DM;
 
+/*
 VectorF VECCALL M3DM::vecFCross3D(VectorF vec1, VectorF vec2)
 {
 	__m128 result = _mm_sub_ps(
@@ -181,3 +182,5 @@ VectorF VECCALL M3DM::vecFAngleBetweenNormalsVec(VectorF vec1, VectorF vec2)
 {
 	return vecFDotVec(vec1, vec2).acos();
 }
+
+*/
