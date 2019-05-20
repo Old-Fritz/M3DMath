@@ -142,3 +142,7 @@ bool VECCALL M3DM::vecFCmp2D(VectorF vec1, VectorF vec2, int type)
 	}
 	return (_mm_movemask_ps(cmpResult) & mask) == mask;
 }
+bool VECCALL M3DM::vecFInBound2D(VectorF vec, VectorF left, VectorF right)
+{
+	return vecFCmp2D(vec, right, CMP_LE) && vecFCmp2D(vec, left, CMP_GE);
+}

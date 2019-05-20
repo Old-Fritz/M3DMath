@@ -697,7 +697,7 @@ namespace M3DM
 	VectorF VECCALL vecFPow(VectorF vec, VectorF pow);
 	VectorF VECCALL vecFPow(VectorF vec, float pow);
 	VectorF VECCALL vecFLerp(VectorF vec1, VectorF vec2, float value);
-	bool VECCALL vecFInBound(VectorF vec, VectorF left, VectorF right);
+	
 
 	// VectorF 2D
 	VectorF VECCALL vecFCross2D(VectorF vec1, VectorF vec2);
@@ -719,6 +719,7 @@ namespace M3DM
 	float VECCALL vecFAngleBetweenNormals2D(VectorF vec1, VectorF vec2);
 	float VECCALL vecFLinePointDistance2D(VectorF linePoint1, VectorF linePoint2, VectorF point);
 	bool VECCALL vecFCmp2D(VectorF vec1, VectorF vec2, int type);
+	bool VECCALL vecFInBound2D(VectorF vec, VectorF left, VectorF right);
 
 	// VectorF 3D
 	VectorF VECCALL vecFCross3D(VectorF vec1, VectorF vec2);
@@ -740,6 +741,7 @@ namespace M3DM
 	float VECCALL vecFAngleBetweenNormals3D(VectorF vec1, VectorF vec2);
 	float VECCALL vecFLinePointDistance3D(VectorF linePoint1, VectorF linePoint2, VectorF point);
 	bool VECCALL vecFCmp3D(VectorF vec1, VectorF vec2, int type);
+	bool VECCALL vecFInBound3D(VectorF vec, VectorF left, VectorF right);
 
 	// VectorF 4D
 	VectorF VECCALL doubleVecFProject4D(VectorF vec1, VectorF vec2);
@@ -757,6 +759,7 @@ namespace M3DM
 	float VECCALL doubleVecFAngleBetween4D(VectorF vec1, VectorF vec2);
 	float VECCALL doubleVecFAngleBetweenNormals4D(VectorF vec1, VectorF vec2);
 	bool VECCALL vecFCmp4D(VectorF vec1, VectorF vec2, int type);
+	bool VECCALL vecFInBound4D(VectorF vec, VectorF left, VectorF right);
 	
 	// DoubleVectorF common
 	DoubleVectorF VECCALL doubleVecFMax(DoubleVectorF vec1, DoubleVectorF vec2);
@@ -764,7 +767,6 @@ namespace M3DM
 	DoubleVectorF VECCALL doubleVecFPow(DoubleVectorF vec, DoubleVectorF pow);
 	DoubleVectorF VECCALL doubleVecFPow(DoubleVectorF vec, float pow);
 	DoubleVectorF VECCALL doubleVecFLerp(DoubleVectorF vec1, DoubleVectorF vec2, float value);
-	bool VECCALL doubleVecFInBound(DoubleVectorF vec, DoubleVectorF left, DoubleVectorF right);
 
 	// DoubleVectorF 2D
 	DoubleVectorF VECCALL doubleVecFCross2D(DoubleVectorF vec1, DoubleVectorF vec2);
@@ -786,6 +788,7 @@ namespace M3DM
 	float VECCALL doubleVecFAngleBetweenNormals2D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFLinePointDistance2D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point);
 	bool VECCALL doubleVecFCmp2D(DoubleVectorF vec1, DoubleVectorF vec2, int type);
+	bool VECCALL doubleVecFInBound2D(DoubleVectorF vec, DoubleVectorF left, DoubleVectorF right);
 
 	// DoubleVectorF 3D
 	DoubleVectorF VECCALL doubleVecFCross3D(DoubleVectorF vec1, DoubleVectorF vec2);
@@ -807,6 +810,7 @@ namespace M3DM
 	float VECCALL doubleVecFAngleBetweenNormals3D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFLinePointDistance3D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point);
 	bool VECCALL doubleVecFCmp3D(DoubleVectorF vec1, DoubleVectorF vec2, int type);
+	bool VECCALL doubleVecFInBound3D(DoubleVectorF vec, DoubleVectorF left, DoubleVectorF right);
 
 	// DoubleVectorF 4D
 	DoubleVectorF VECCALL doubleVecFCross4D(DoubleVectorF vec1, DoubleVectorF vec2);
@@ -825,4 +829,5 @@ namespace M3DM
 	float VECCALL doubleVecFAngleBetween4D(DoubleVectorF vec1, DoubleVectorF vec2);
 	float VECCALL doubleVecFAngleBetweenNormals4D(DoubleVectorF vec1, DoubleVectorF vec2);
 	bool VECCALL doubleVecFCmp4D(DoubleVectorF vec1, DoubleVectorF vec2, int type);
+	bool VECCALL doubleVecFInBound4D(DoubleVectorF vec, DoubleVectorF left, DoubleVectorF right);
 }
