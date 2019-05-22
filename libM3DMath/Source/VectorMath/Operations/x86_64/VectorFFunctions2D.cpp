@@ -18,7 +18,8 @@ VectorF VECCALL M3DM::vecFProject2D(VectorF vec1, VectorF vec2)
 VectorF VECCALL M3DM::vecFReflect2D(VectorF vec, VectorF normal)
 {
 	// normal normalized
-	return vec - normal * 2 * vecFDotVec2D(vec, normal);
+	VectorF ind = normal * vecFDotVec2D(vec, normal);
+	return vec - ind - ind;
 }
 VectorF VECCALL M3DM::vecFRefract2D(VectorF vec, VectorF normal, float refractionIndex)
 {

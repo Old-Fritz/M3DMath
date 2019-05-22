@@ -744,20 +744,20 @@ namespace M3DM
 	bool VECCALL vecFInBound3D(VectorF vec, VectorF left, VectorF right);
 
 	// VectorF 4D
-	VectorF VECCALL doubleVecFProject4D(VectorF vec1, VectorF vec2);
-	VectorF VECCALL doubleVecFReflect4D(VectorF vec, VectorF normal);
-	VectorF VECCALL doubleVecFRefract4D(VectorF vec, VectorF normal, float refractionIndex);
+	VectorF VECCALL vecFProject4D(VectorF vec1, VectorF vec2);
+	VectorF VECCALL vecFReflect4D(VectorF vec, VectorF normal);
+	VectorF VECCALL vecFRefract4D(VectorF vec, VectorF normal, float refractionIndex);
 
-	VectorF VECCALL doubleVecFDistanceVec4D(VectorF vec1, VectorF vec2);
-	VectorF VECCALL doubleVecFRefractVec4D(VectorF vec, VectorF normal, VectorF refractionIndex);
-	VectorF VECCALL doubleVecFDotVec4D(VectorF vec1, VectorF vec2);
-	VectorF VECCALL doubleVecFAngleBetweenVec4D(VectorF vec1, VectorF vec2);
-	VectorF VECCALL doubleVecFAngleBetweenNormalsVec4D(VectorF vec1, VectorF vec2);
+	VectorF VECCALL vecFDistanceVec4D(VectorF vec1, VectorF vec2);
+	VectorF VECCALL vecFRefractVec4D(VectorF vec, VectorF normal, VectorF refractionIndex);
+	VectorF VECCALL vecFDotVec4D(VectorF vec1, VectorF vec2);
+	VectorF VECCALL vecFAngleBetweenVec4D(VectorF vec1, VectorF vec2);
+	VectorF VECCALL vecFAngleBetweenNormalsVec4D(VectorF vec1, VectorF vec2);
 
-	float VECCALL doubleVecFDistance4D(VectorF vec1, VectorF vec2);
-	float VECCALL doubleVecFDot4D(VectorF vec1, VectorF vec2);
-	float VECCALL doubleVecFAngleBetween4D(VectorF vec1, VectorF vec2);
-	float VECCALL doubleVecFAngleBetweenNormals4D(VectorF vec1, VectorF vec2);
+	float VECCALL vecFDistance4D(VectorF vec1, VectorF vec2);
+	float VECCALL vecFDot4D(VectorF vec1, VectorF vec2);
+	float VECCALL vecFAngleBetween4D(VectorF vec1, VectorF vec2);
+	float VECCALL vecFAngleBetweenNormals4D(VectorF vec1, VectorF vec2);
 	bool VECCALL vecFCmp4D(VectorF vec1, VectorF vec2, int type);
 	bool VECCALL vecFInBound4D(VectorF vec, VectorF left, VectorF right);
 	
