@@ -1,5 +1,5 @@
 #include "M3DMath.h"
-#include <cmath>
+#include <math.h>
 
 using namespace M3DM;
 

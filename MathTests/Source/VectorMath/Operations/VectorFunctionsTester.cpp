@@ -3040,6 +3040,313 @@ bool VectorFunctionsTester::testDoubleVectorF3D()
 
 bool VectorFunctionsTester::testDoubleVectorF4D()
 {
+	DoubleVectorF arg1, arg2, arg3, arg4, vecResult, vecPrediction;
+	float value, valueResult, valueResult2, valuePrediction, valuePrediction2;
+	bool boolResult, boolResult2, boolPrediction, boolPrediction2;
+	bool result;
+
+
+	// TEST #1
+	arg1 = DoubleVectorF(1, 2, 3, 4, 1, 2, 3, 4);
+	arg2 = DoubleVectorF(1, 2, 3, 6, 1, 2, 3, 4);
+	boolPrediction = false;
+	boolPrediction2 = true;
+	std::cout << "TEST #1: doubleVecFCmp4D(" << arg1 << ", " << arg2 << ", CMP_EQ) == " << boolPrediction << ", " << boolPrediction2 << std::endl;
+	doubleVecFCmp4D(arg1, arg2, CMP_EQ, boolResult, boolResult2);
+	result = boolResult == boolPrediction && boolResult2 == boolPrediction2;
+	if (!result)
+	{
+		std::cout << "Failed.  Computed value: boolResult1 = " << boolResult << ", boolResult2 = " << boolResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #2
+	arg1 = DoubleVectorF(1, 2, 3, 4, 1, 2, 3, 4);
+	arg2 = DoubleVectorF(1, 2, 3, 4, 1, 2, 4, 4);
+	boolPrediction = true;
+	boolPrediction2 = false;
+	std::cout << "TEST #1: doubleVecFCmp4D(" << arg1 << ", " << arg2 << ", CMP_EQ) == " << boolPrediction << ", " << boolPrediction2 << std::endl;
+	doubleVecFCmp4D(arg1, arg2, CMP_EQ, boolResult, boolResult2);
+	result = boolResult == boolPrediction && boolResult2 == boolPrediction2;
+	if (!result)
+	{
+		std::cout << "Failed.  Computed value: boolResult1 = " << boolResult << ", boolResult2 = " << boolResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #4
+	arg1 = DoubleVectorF(1, 2, 3, 14, 1, 2, 3, 14);
+	arg2 = DoubleVectorF(1, 3, -7, 1, 1, 3, -7, 1);
+	vecPrediction = DoubleVectorF();
+	std::cout << "TEST #3: doubleVecFDotVec4D(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFDotVec4D(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #5
+	arg1 = DoubleVectorF(1, -2, 5, 7, 1, -2, 5, 7);
+	arg2 = DoubleVectorF(0, 1, 2, 9, 0, 1, 2, 9);
+	vecPrediction = DoubleVectorF(1, -144, -279, -1271, 1, -144, -279, -1271);
+	std::cout << "TEST #5: doubleVecFReflect4D(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFReflect4D(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #6
+	arg1 = DoubleVectorF(1, -2, 3, 13, 1, -2, 3, 13);
+	arg2 = DoubleVectorF(0, 1, 5, 6, 0, 1, 5, 6);
+	value = 1;
+	vecPrediction = DoubleVectorF(1, -184, -907, -1079, 1, -184, -907, -1079);
+	std::cout << "TEST #6: doubleVecFRefract4D(" << arg1 << ", " << arg2 << ", " << value << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFRefract4D(arg1, arg2, value);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #7
+	arg1 = DoubleVectorF(1, -2, 3, 13, 1, -2, 3, 13);
+	arg2 = DoubleVectorF(0, 1, 5, 6, 0, 1, 5, 6);
+	value = 0.5;
+	vecPrediction = DoubleVectorF(0.5, -92.0082397, -453.541199, -539.549438, 0.5, -92.0082397, -453.541199, -539.549438);
+	std::cout << "TEST #7: doubleVecFRefract4D(" << arg1 << ", " << arg2 << ", " << value << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFRefract4D(arg1, arg2, value);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #8
+	arg1 = DoubleVectorF(1, 2, 3, 14, 1, 2, 3, 14);
+	arg2 = DoubleVectorF(1, 3, -7, 1, 1, 3, -7, 1);
+	vecPrediction = DoubleVectorF(1, 3, 3, 14, 1, 3, 3, 14);
+	std::cout << "TEST #8: doubleVecFMax(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFMax(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #9
+	arg1 = DoubleVectorF(1, 2, 3, 14, 1, 2, 3, 14);
+	arg2 = DoubleVectorF(1, 3, -7, 1, 1, 3, -7, 1);
+	vecPrediction = DoubleVectorF(1, 2, -7, 1, 1, 2, -7, 1);
+	std::cout << "TEST #9: doubleVecFMin(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFMin(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #10
+	arg1 = DoubleVectorF(1, 2, 3, 4, 1, 2, 3, 4);
+	arg2 = DoubleVectorF(4, 3, 2, 1, 4, 3, 2, 1);
+	vecPrediction = DoubleVectorF(1, 8, 9, 4, 1, 8, 9, 4);
+	std::cout << "TEST #10: doubleVecFPow(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFPow(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #11
+	arg1 = DoubleVectorF(1, 2, 3, 4, 1, 2, 3, 4);
+	value = 3;
+	vecPrediction = DoubleVectorF(1, 8, 27, 64, 1, 8, 27, 64);
+	std::cout << "TEST #11: doubleVecFPow(" << arg1 << ", " << value << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFPow(arg1, value);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #12
+	arg1 = DoubleVectorF(1, 0, 3, 4, 1, 0, 3, 4);
+	arg2 = DoubleVectorF(4, 3, 3, 1, 4, 3, 3, 1);
+	value = 0.7;
+	vecPrediction = DoubleVectorF(1.9, 0.9, 3, 3.1, 1.9, 0.9, 3, 3.1);
+	std::cout << "TEST #12: doubleVecFLerp(" << arg1 << ", " << arg2 << ", " << value << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFLerp(arg1, arg2, value);
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF(0.00001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #14
+	arg1 = DoubleVectorF(1, 2, 3, 4, 1, 2, 3, 4);
+	arg2 = DoubleVectorF(3, 4, 5, 6, 3, 4, 5, 6);
+	vecPrediction = DoubleVectorF(4);
+	std::cout << "TEST #14: doubleVecFDistanceVec4D(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFDistanceVec4D(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #15
+	arg1 = DoubleVectorF(1, -2, 3, 13, 1, -2, 3, 13);
+	arg2 = DoubleVectorF(0, 1, 5, 6, 0, 1, 5, 6);
+	arg3 = DoubleVectorF(0.5);
+	vecPrediction = DoubleVectorF(0.5, -92.0082397, -453.541199, -539.549438, 0.5, -92.0082397, -453.541199, -539.549438);
+	std::cout << "TEST #15: doubleVecFRefractVec4D(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFRefractVec4D(arg1, arg2, arg3);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #18
+	arg1 = DoubleVectorF(1, 2, 0, 0, 1, 2, 0, 0);
+	arg2 = DoubleVectorF(-2, 1, 0, 0, -2, 1, 0, 0);
+	vecPrediction = DoubleVectorF(3.1415926535897 / 2);
+	std::cout << "TEST #18: doubleVecFAngleBetweenVec4D(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFAngleBetweenVec4D(arg1, arg2);
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #19
+	arg1 = DoubleVectorF(1, 2, 0, 0, 1, 2, 0, 0).normalized4D();
+	arg2 = DoubleVectorF(2, -1, 0, 0, 2, -1, 0, 0).normalized4D();
+	vecPrediction = DoubleVectorF(3.1415926535897 / 2);
+	std::cout << "TEST #19: doubleVecFAngleBetweenNormalsVec4D(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFAngleBetweenNormalsVec4D(arg1, arg2);
+	result = vecResult.isEqualPrec(vecPrediction, DoubleVectorF(0.0001f));
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+	// TEST #20
+	arg1 = DoubleVectorF(1, 2, 3, 4, 1, 2, 3, 4);
+	arg2 = DoubleVectorF(3, 4, 5, 6, 3, 4, 5, 6);
+	valuePrediction = 4;
+	valuePrediction2 = 4;
+	std::cout << "TEST #20: doubleVecFDistance4D(" << arg1 << ", " << arg2 << ") == " << valuePrediction << ", " << valuePrediction2 << std::endl;
+	doubleVecFDistance4D(arg1, arg2, valueResult, valueResult2);
+	result = (valueResult == valuePrediction) && (valueResult2 == valuePrediction2);
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: valueResult1 = " << valueResult << ", valueResult2 = " << valueResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #21
+	arg1 = DoubleVectorF(1, 2, 5, 3, 1, 2, 5, 3);
+	arg2 = DoubleVectorF(1, 3, -7, 1, 1, 3, -7, 1);
+	valuePrediction = -25;
+	valuePrediction2 = -25;
+	std::cout << "TEST #21: doubleVecFDot4D(" << arg1 << ", " << arg2 << ") == " << valuePrediction << ", " << valuePrediction2 << std::endl;
+	doubleVecFDot4D(arg1, arg2, valueResult, valueResult2);
+	result = (valueResult == valuePrediction) && (valueResult2 == valuePrediction2);
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: valueResult1 = " << valueResult << ", valueResult2 = " << valueResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #22
+	arg1 = DoubleVectorF(1, 2, 0, 0, 1, 2, 0, 0);
+	arg2 = DoubleVectorF(-2, 1, 0, 0, -2, 1, 0, 0);
+	valuePrediction = 3.1415926535897 / 2;
+	valuePrediction2 = 3.1415926535897 / 2;
+	std::cout << "TEST #22: doubleVecFAngleBetween4D(" << arg1 << ", " << arg2 << ") == " << valuePrediction << ", " << valuePrediction2 << std::endl;
+	doubleVecFAngleBetween4D(arg1, arg2, valueResult, valueResult2);
+	result = (valueResult == valuePrediction) && (valueResult2 == valuePrediction2);
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: valueResult1 = " << valueResult << ", valueResult2 = " << valueResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #23
+	arg1 = DoubleVectorF(1, 2, 0, 0, 1, 2, 0, 0).normalized4D();
+	arg2 = DoubleVectorF(2, -1, 0, 0, 2, -1, 0, 0).normalized4D();
+	valuePrediction = 3.1415926535897 / 2;
+	std::cout << "TEST #23: doubleVecFAngleBetweenNormals4D(" << arg1 << ", " << arg2 << ") == " << valuePrediction << ", " << valuePrediction2 << std::endl;
+	doubleVecFAngleBetweenNormals4D(arg1, arg2, valueResult, valueResult2);
+	result = (valueResult == valuePrediction) && (valueResult2 == valuePrediction2);
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: valueResult1 = " << valueResult << ", valueResult2 = " << valueResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #24
+	arg1 = DoubleVectorF(3, 3, 3, 3, 3, 3, 3, 3);
+	arg2 = DoubleVectorF(2, 2, 2, 2, 2, 2, 2, 2);
+	arg3 = DoubleVectorF(4, 4, 4, 4, 4, 4, 4, 4);
+	boolPrediction = true;
+	boolPrediction2 = true;
+	std::cout << "TEST #24: doubleVecFInBound4D(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << boolPrediction << ", " << boolPrediction2 << std::endl;
+	doubleVecFInBound4D(arg1, arg2, arg3, boolResult, boolResult2);
+	result = (boolResult == boolPrediction) && (boolResult2 == boolPrediction2);
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: boolResult1 = " << boolResult << ", boolResult2 = " << boolResult2 << std::endl;
+		return false;
+	}
+
+	// TEST #25
+	arg1 = DoubleVectorF(3, 5, 3, 3, 3, 5, 3, 3);
+	arg2 = DoubleVectorF(2, 2, 2, 2, 2, 2, 2, 2);
+	arg3 = DoubleVectorF(4, 4, 4, 4, 4, 4, 4, 4);
+	boolPrediction = false;
+	boolPrediction2 = false;
+	std::cout << "TEST #25: doubleVecFInBound4D(" << arg1 << ", " << arg2 << ", " << arg3 << ") == " << boolPrediction << ", " << boolPrediction2 << std::endl;
+	doubleVecFInBound4D(arg1, arg2, arg3, boolResult, boolResult2);
+	result = (boolResult == boolPrediction) && (boolResult2 == boolPrediction2);
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: boolResult1 = " << boolResult << ", boolResult2 = " << boolResult2 << std::endl;
+		return false;
+	}
+
+
+	// TEST #26
+	arg1 = DoubleVectorF(1, 2, 1, 3, 1, 2, 1, 3);
+	arg2 = DoubleVectorF(0, 0, 0, 3, 0, 0, 0, 3);
+	vecPrediction = DoubleVectorF(0, 0, 0, 3, 0, 0, 0, 3);
+	std::cout << "TEST #26: doubleVecFProject4D(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
+	vecResult = doubleVecFProject4D(arg1, arg2);
+	result = vecResult == vecPrediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << vecResult << std::endl;
+		return false;
+	}
+
+
 	return true;
 }
 
