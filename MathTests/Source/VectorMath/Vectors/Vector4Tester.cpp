@@ -943,7 +943,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(sinf(4), sinf(-9), sinf(34), sinf(21));
 	std::cout << "TEST #15: " << vec << ".sin()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.sin();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -955,7 +955,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(cosf(4), cosf(-9), cosf(34), cosf(21));
 	std::cout << "TEST #16: " << vec << ".cos()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.cos();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -967,7 +967,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(tanf(4), tanf(-9), tanf(34), tanf(21));
 	std::cout << "TEST #17: " << vec << ".tan()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.tan();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -979,7 +979,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(asinf(0.4), asinf(-0.6), asinf(0.34), asinf(0.21));
 	std::cout << "TEST #18: " << vec << ".asin()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.asin();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -991,7 +991,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(acosf(0.4), acosf(-0.6), acosf(0.34), acosf(0.21));
 	std::cout << "TEST #19: " << vec << ".acos()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.acos();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -1003,7 +1003,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(atanf(0.4), atanf(-0.6), atanf(0.34), atanf(0.21));
 	std::cout << "TEST #20: " << vec << ".atan()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.atan();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -1015,7 +1015,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(exp2f(1), exp2f(2), exp2f(3), exp2f(4));
 	std::cout << "TEST #21: " << vec << ".exp2()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.exp2();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -1027,7 +1027,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(expf(1), expf(2), expf(3), expf(4));
 	std::cout << "TEST #22: " << vec << ".expE()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.expE();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -1039,7 +1039,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(log2f(1), log2f(2), log2f(3), log2f(4));
 	std::cout << "TEST #23: " << vec << ".log2()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.log2();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -1051,7 +1051,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(logf(1), logf(2), logf(3), logf(4));
 	std::cout << "TEST #24: " << vec << ".logE()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.logE();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -1076,7 +1076,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(1, 1, 1, 2);
 	std::cout << "TEST #27: " << vec << ".orthogonal3D()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.orthogonal3D();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;
@@ -1088,7 +1088,7 @@ bool Vector4Tester::testFunctions()
 	vecPrediction = Vector4(0, 2, -1, 1);
 	std::cout << "TEST #28: " << vec << ".orthogonal4D()" << " == " << vecPrediction << std::endl;
 	vecResult = vec.orthogonal4D();
-	result = vecResult == vecPrediction;
+	result = vecResult.isEqualPrec(vecPrediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << vecResult << std::endl;

@@ -426,8 +426,8 @@ namespace M3DM
 		bool VECCALL operator>(VectorF vector) const;
 		bool VECCALL operator<=(VectorF vector) const;
 		bool VECCALL operator>=(VectorF vector) const;
-		bool VECCALL isEqualPrec(VectorF vector, float precision = 0) const;
-		bool VECCALL isEqualPrec(VectorF vector, VectorF precision) const;
+		bool VECCALL isEqualPrec(VectorF vector, float precision = 0, int mask = 0b1111) const;
+		bool VECCALL isEqualPrec(VectorF vector, VectorF precision, int mask = 0b1111) const;
 		VectorF VECCALL isEqualVec(VectorF vector) const;
 		VectorF VECCALL isEqualPrecVec(VectorF vector, VectorF precision) const;
 
@@ -552,8 +552,8 @@ namespace M3DM
 		bool VECCALL operator>(DoubleVectorF vector) const;
 		bool VECCALL operator<=(DoubleVectorF vector) const;
 		bool VECCALL operator>=(DoubleVectorF vector) const;
-		bool VECCALL isEqualPrec(DoubleVectorF vector, float precision = 0) const;
-		bool VECCALL isEqualPrec(DoubleVectorF vector, DoubleVectorF precision) const;
+		bool VECCALL isEqualPrec(DoubleVectorF vector, float precision = 0, int mask = 0b11111111) const;
+		bool VECCALL isEqualPrec(DoubleVectorF vector, DoubleVectorF precision, int mask = 0b11111111) const;
 		DoubleVectorF VECCALL isEqualVec(DoubleVectorF vector) const;
 		DoubleVectorF VECCALL isEqualPrecVec(DoubleVectorF vector, DoubleVectorF precision) const;
 

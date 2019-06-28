@@ -287,18 +287,18 @@ bool DoubleVectorF::operator>=(DoubleVectorF vector) const
 	__m256 dataEqual = _mm256_cmp_ps(m_data, vector.m_data, _CMP_GE_OQ);
 	return _mm256_test_all_ones(dataEqual);
 }
-bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, float precision) const
+bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, float precision, int mask) const
 {
 	__m256 delta = (*this - vector).abs();
 	__m256 dataCmp = _mm256_cmp_ps(delta, _mm256_set1_ps(precision), _CMP_LE_OQ);
-	return _mm256_test_all_ones(dataCmp);
+	return (_mm256_movemask_ps(dataCmp)&mask)==mask;
 	
 }
-bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, DoubleVectorF precision) const
+bool DoubleVectorF::isEqualPrec(DoubleVectorF vector, DoubleVectorF precision, int mask) const
 {
 	__m256 delta = (*this - vector).abs();
 	__m256 dataCmp = _mm256_cmp_ps(delta, precision, _CMP_LE_OQ);
-	return _mm256_test_all_ones(dataCmp);
+	return (_mm256_movemask_ps(dataCmp) & mask) == mask;
 }
 DoubleVectorF DoubleVectorF::isEqualVec(DoubleVectorF vector) const
 {

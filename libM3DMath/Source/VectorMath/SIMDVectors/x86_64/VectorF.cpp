@@ -208,17 +208,17 @@ bool VectorF::operator>=(VectorF vector) const
 	__m128 dataCmp = _mm_cmpge_ps(m_data, vector.m_data);
 	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
 }
-bool VectorF::isEqualPrec(VectorF vector, float precision) const
+bool VectorF::isEqualPrec(VectorF vector, float precision, int mask) const
 {
 	__m128 delta = (*this - vector).abs();
 	__m128 dataCmp = _mm_cmple_ps(delta, _mm_set_ps1(precision));
-	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
+	return (_mm_movemask_ps(dataCmp) & mask) == mask;
 }
-bool VectorF::isEqualPrec(VectorF vector, VectorF precision) const
+bool VectorF::isEqualPrec(VectorF vector, VectorF precision, int mask) const
 {
 	__m128 delta = (*this - vector).abs();
 	__m128 dataCmp = _mm_cmple_ps(delta, precision);
-	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
+	return (_mm_movemask_ps(dataCmp) & mask) == mask;
 }
 VectorF VectorF::isEqualVec(VectorF vector) const
 {
