@@ -157,7 +157,7 @@ void VECCALL M3DM::doubleVecFInBound2D(DoubleVectorF vec, DoubleVectorF left, Do
 {
 	bool tempResLE1, tempResLE2, tempResGE1, tempResGE2;
 	doubleVecFCmp2D(vec, right, CMP_LE, tempResLE1, tempResLE2);
-	doubleVecFCmp2D(vec, right, CMP_GE, tempResGE1, tempResGE2);
+	doubleVecFCmp2D(vec, left, CMP_GE, tempResGE1, tempResGE2);
 	result1 = tempResLE1 && tempResGE1;
-	result1 = tempResLE2 && tempResGE2;
+	result2 = tempResLE2 && tempResGE2;
 }
