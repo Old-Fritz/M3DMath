@@ -14,6 +14,19 @@
 
 using namespace M3DM;
 
+bool makeMatrixTests()
+{
+	MatrixScalarTester matrixScalarTester;
+
+	bool result;
+
+	result = matrixScalarTester.testAll();
+	if (!result)
+		return false;
+
+	return true;
+}
+
 bool makeVectorTests()
 {
 	Vector2Tester vector2Tester;
@@ -62,7 +75,11 @@ bool makeTests()
 {
 	bool result;
 
-	result = makeVectorTests();
+	//result = makeVectorTests();
+	//if (!result)
+	//	return false;
+
+	result = makeMatrixTests();
 	if (!result)
 		return false;
 

@@ -400,10 +400,10 @@ namespace M3DM
 #endif
 
 		// getters and setters
-		float get(char  ind) const;
-		void set(char ind, float value);
-		int getInt(char ind) const;
-		void setInt(char ind, int value);
+		float VECCALL get(char  ind) const;
+		void VECCALL set(char ind, float value);
+		int VECCALL getInt(char ind) const;
+		void VECCALL setInt(char ind, int value);
 
 		// Base operations
 		VectorF VECCALL operator+(VectorF vector) const;
@@ -470,8 +470,8 @@ namespace M3DM
 		VectorF VECCALL reciprocalFast() const;
 
 		// functions 2d
-		float length2D() const;
-		float sqrLength2D() const;
+		float VECCALL length2D() const;
+		float VECCALL sqrLength2D() const;
 		VectorF VECCALL normalized2D() const;
 		VectorF VECCALL orthogonal2D() const;
 		VectorF VECCALL lengthVec2D() const;
@@ -479,8 +479,8 @@ namespace M3DM
 		VectorF VECCALL normalizedFast2D() const;
 
 		// functions 3d
-		float length3D() const;
-		float sqrLength3D() const;
+		float VECCALL length3D() const;
+		float VECCALL sqrLength3D() const;
 		VectorF VECCALL normalized3D() const;
 		VectorF VECCALL orthogonal3D() const;
 		VectorF VECCALL lengthVec3D() const;
@@ -488,8 +488,8 @@ namespace M3DM
 		VectorF VECCALL normalizedFast3D() const;
 
 		// functions 4d
-		float length4D() const;
-		float sqrLength4D() const;
+		float VECCALL length4D() const;
+		float VECCALL sqrLength4D() const;
 		VectorF VECCALL normalized4D() const;
 		VectorF VECCALL orthogonal4D() const;
 		VectorF VECCALL lengthVec4D() const;
@@ -526,10 +526,10 @@ namespace M3DM
 		VECCALL operator M256&();
 
 		// getters and setters
-		float get(char ind) const;
-		void set(char ind, float value);
-		int getInt(char ind) const;
-		void setInt(char ind, int value);
+		float VECCALL get(char ind) const;
+		void VECCALL set(char ind, float value);
+		int VECCALL getInt(char ind) const;
+		void VECCALL setInt(char ind, int value);
 
 		// Base operations
 		DoubleVectorF VECCALL operator+(DoubleVectorF vector) const;
@@ -604,11 +604,11 @@ namespace M3DM
 		DoubleVectorF VECCALL logE() const;
 		DoubleVectorF VECCALL sqrtFast() const;
 		DoubleVectorF VECCALL reciprocalFast() const;
-		void sincos(DoubleVectorF& sin, DoubleVectorF& cos) const;
+		void VECCALL sincos(DoubleVectorF& sin, DoubleVectorF& cos) const;
 
 		// functions 2d
-		void length2D(float& len1, float& len2) const;
-		void sqrLength2D(float& len1, float& len2) const;
+		void VECCALL length2D(float& len1, float& len2) const;
+		void VECCALL sqrLength2D(float& len1, float& len2) const;
 		DoubleVectorF VECCALL normalized2D() const;
 		DoubleVectorF VECCALL orthogonal2D() const;
 		DoubleVectorF VECCALL lengthVec2D() const;
@@ -616,8 +616,8 @@ namespace M3DM
 		DoubleVectorF VECCALL normalizedFast2D() const;
 
 		// functions 3d
-		void length3D(float& len1, float& len2) const;
-		void sqrLength3D(float& len1, float& len2) const;
+		void VECCALL length3D(float& len1, float& len2) const;
+		void VECCALL sqrLength3D(float& len1, float& len2) const;
 		DoubleVectorF VECCALL normalized3D() const;
 		DoubleVectorF VECCALL orthogonal3D() const;
 		DoubleVectorF VECCALL lengthVec3D() const;
@@ -625,8 +625,8 @@ namespace M3DM
 		DoubleVectorF VECCALL normalizedFast3D() const;
 
 		// functions 4d
-		void length4D(float& len1, float& len2) const;
-		void sqrLength4D(float& len1, float& len2) const;
+		void VECCALL length4D(float& len1, float& len2) const;
+		void VECCALL sqrLength4D(float& len1, float& len2) const;
 		DoubleVectorF VECCALL normalized4D() const;
 		DoubleVectorF VECCALL orthogonal4D() const;
 		DoubleVectorF VECCALL lengthVec4D() const;
@@ -911,6 +911,10 @@ namespace M3DM
 
 	// matrix functions
 	MatrixScalar matrixScalarIdentity();
+	MatrixScalar matrixScalarInfinity();
+	float matrixScalar3Determinant(float m11, float m12, float m13,
+		float m21, float m22, float m23,
+		float m31, float m32, float m33);
 
 	// vector simd matrix
 	class ALIGN(32)  MatrixF
@@ -939,10 +943,10 @@ namespace M3DM
 #endif
 		
 		// getters and setters
-		float get(char  ind) const;
-		void set(char ind, float value);
-		int getInt(char ind) const;
-		void setInt(char ind, int value);
+		float VECCALL get(char  ind) const;
+		void VECCALL set(char ind, float value);
+		int VECCALL getInt(char ind) const;
+		void VECCALL setInt(char ind, int value);
 
 		// base operations
 		MatrixF VECCALL operator+(MatrixF matrix) const;
@@ -956,6 +960,10 @@ namespace M3DM
 		MatrixF& VECCALL operator*=(float scale);
 		MatrixF& VECCALL operator/=(float scale);
 		MatrixF VECCALL operator-() const;
+
+		// additional operations
+		friend MatrixF VECCALL operator*(float scale, MatrixF matrix);
+		friend MatrixF VECCALL operator/(float scale, MatrixF matrix);
 
 		// compare
 		bool VECCALL operator==(MatrixF matrix) const;

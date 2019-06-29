@@ -37,6 +37,21 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::DoubleVectorF&
 	return stream;
 }
 
+inline std::ostream& operator<<(std::ostream& stream, const M3DM::MatrixScalar& matrix)
+{
+	const float* pArray = matrix;
+	stream << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		stream << "| ";
+		for (int j = 0; j < 4; j++)
+		{
+			stream << pArray[ i*4 + j] << "\t";
+		}
+		stream << " |" << std::endl;
+	}
+	return stream;
+}
 
 class Vector2Tester
 {
@@ -142,4 +157,19 @@ public:
 	bool testDoubleVectorF2D();
 	bool testDoubleVectorF3D();
 	bool testDoubleVectorF4D();
+};
+
+class MatrixScalarTester
+{
+public:
+	bool testAll();
+
+	bool testEqual();
+	bool testCmp();
+	bool testConversions();
+	bool testAdd();
+	bool testSub();
+	bool testMul();
+	bool testDiv();
+	bool testFunctions();
 };

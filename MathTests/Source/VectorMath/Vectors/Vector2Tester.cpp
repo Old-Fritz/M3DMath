@@ -4,7 +4,6 @@ using namespace M3DM;
 
 bool Vector2Tester::testAll()
 {
-	std::cout << vec2Distance(Vector2(0, 0), Vector2(0, 1));
 	bool result;
 	std::cout << "------VECTOR 2 TEST------" << std::endl;
 	std::cout << "--Test equal--" << std::endl;
