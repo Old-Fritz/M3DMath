@@ -386,7 +386,7 @@ namespace M3DM
 		// Conversions
 		explicit VectorF(float value);
 		explicit VectorF(float x, float y, float z, float w);
-		explicit VectorF(float* pArray);
+		explicit VectorF(const float* pArray);
 		explicit VectorF(const Vector2& vector);
 		explicit VectorF(const Vector3& vector);
 		explicit VectorF(const Vector4& vector);
@@ -513,7 +513,7 @@ namespace M3DM
 		// Conversions
 		explicit DoubleVectorF(float value);
 		explicit DoubleVectorF(float x1, float y1, float z1, float w1, float x2, float y2, float z2, float w2);
-		explicit DoubleVectorF(float* pArray);
+		explicit DoubleVectorF(const float* pArray);
 		explicit DoubleVectorF(const Vector2& vector);
 		explicit DoubleVectorF(const Vector3& vector);
 		explicit DoubleVectorF(const Vector4& vector);
@@ -830,4 +830,172 @@ namespace M3DM
 	void VECCALL doubleVecFAngleBetweenNormals4D(DoubleVectorF vec1, DoubleVectorF vec2, float& angle1, float& angle2);
 	void VECCALL doubleVecFCmp4D(DoubleVectorF vec1, DoubleVectorF vec2, int type, bool& result1, bool& result2);
 	void VECCALL doubleVecFInBound4D(DoubleVectorF vec, DoubleVectorF left, DoubleVectorF right, bool& result1, bool& result2);
+
+
+	/// Matrix math
+
+	// base matrix
+	struct MatrixScalar
+	{
+		float m11, m12, m13, m14;
+		float m21, m22, m23, m24;
+		float m31, m32, m33, m34;
+		float m41, m42, m43, m44;
+
+		// Constructors
+		MatrixScalar() : m11(0), m12(0), m13(0), m14(0),
+			m21(0), m22(0), m23(0), m24(0),
+			m31(0), m32(0), m33(0), m34(0),
+			m41(0), m42(0), m43(0), m44(0) {}
+		MatrixScalar(float m11, float m12, float m13, float m14,
+			float m21, float m22, float m23, float m24,
+			float m31, float m32, float m33, float m34,
+			float m41, float m42, float m43, float m44) : 
+			m11(m11), m12(m12), m13(m13), m14(m14),
+			m21(m21), m22(m22), m23(m23), m24(m24),
+			m31(m31), m32(m32), m33(m33), m34(m34),
+			m41(m41), m42(m42), m43(m43), m44(m44) {}
+		MatrixScalar(const MatrixScalar& matrix) = default;
+		MatrixScalar& operator=(const MatrixScalar& matrix) = default;
+
+		// Conversions
+		explicit MatrixScalar(const float* pArray) : 
+			m11(pArray[0]), m12(pArray[1]), m13(pArray[2]), m14(pArray[3]),
+			m21(pArray[4]), m22(pArray[5]), m23(pArray[6]), m24(pArray[7]),
+			m31(pArray[8]), m32(pArray[9]), m33(pArray[10]), m34(pArray[11]),
+			m41(pArray[12]), m42(pArray[13]), m43(pArray[14]), m44(pArray[15]) {}
+		operator float* ();
+		operator float const* () const;
+#ifdef DIRECTX
+		DirectX::XMFLOAT4X4* XMFloat4x4Ptr()
+		{
+			return reinterpret_cast<DirectX::XMFLOAT4X4*>(this);
+		}
+		DirectX::XMMATRIX XMMatrix()
+		{
+			return DirectX::XMLoadFloat4x4(XMFloat4x4Ptr());
+		}
+#endif
+
+		// base operations
+		MatrixScalar operator+(const MatrixScalar& matrix) const;
+		MatrixScalar operator-(const MatrixScalar& matrix) const;
+		MatrixScalar operator*(const MatrixScalar& matrix) const;
+		MatrixScalar operator*(float scale) const;
+		MatrixScalar operator/(float scale) const;
+		MatrixScalar& operator+=(const MatrixScalar& matrix);
+		MatrixScalar& operator-=(const MatrixScalar& matrix);
+		MatrixScalar& operator*=(const MatrixScalar& matrix);
+		MatrixScalar& operator*=(float scale);
+		MatrixScalar& operator/=(float scale);
+		MatrixScalar operator-() const;
+
+		// compare
+		bool operator==(const MatrixScalar& matrix) const;
+		bool operator<(const MatrixScalar& matrix) const;
+		bool operator>(const MatrixScalar& matrix) const;
+		bool operator<=(const MatrixScalar& matrix) const;
+		bool operator>=(const MatrixScalar& matrix) const;
+		bool isEqualPrec(const MatrixScalar& matrix, float precision = 0) const;
+		bool isEqualPrec(const MatrixScalar& matrix, const MatrixScalar& precision) const;
+
+		// methods
+		MatrixScalar transpose() const;
+		MatrixScalar inverse() const;
+		float determinant() const;
+	};
+
+	// additional operations
+	MatrixScalar operator*(float scale, const MatrixScalar& matrix);
+	MatrixScalar operator/(float scale, const MatrixScalar& matrix);
+
+	// matrix functions
+	MatrixScalar matrixScalarIdentity();
+
+	// vector simd matrix
+	class ALIGN(32)  MatrixF
+	{
+
+	public: 
+		// Constructors
+		MatrixF() : part1(), part2() {}
+		MatrixF(float m11, float m12, float m13, float m14,
+			float m21, float m22, float m23, float m24,
+			float m31, float m32, float m33, float m34,
+			float m41, float m42, float m43, float m44) :
+			part1(m11, m12, m13, m14, m21, m22, m23, m24),
+			part2(m31, m32, m33, m34, m41, m42, m43, m44) {}
+		MatrixF(const MatrixF& matrix) = default;
+		MatrixF& operator=(const MatrixF& matrix) = default;
+
+		// Conversions
+		explicit MatrixF(const float* pArray) : part1(pArray), part2(pArray + 8) {}
+		explicit MatrixF(const MatrixScalar& matrix)
+			: part1(matrix), part2(static_cast<const float*>(matrix) + 8) {}
+		explicit MatrixF(DoubleVectorF part1, DoubleVectorF part2) : part1(part1), part2(part2) {}
+		explicit MatrixF(VectorF row1, VectorF row2, VectorF row3, VectorF row4) : part1(row1, row2), part2(row3, row4) {}
+#ifdef DIRECTX
+		DirectX::XMMATRIX VECCALL XMMatrix();
+#endif
+		
+		// getters and setters
+		float get(char  ind) const;
+		void set(char ind, float value);
+		int getInt(char ind) const;
+		void setInt(char ind, int value);
+
+		// base operations
+		MatrixF VECCALL operator+(MatrixF matrix) const;
+		MatrixF VECCALL operator-(MatrixF matrix) const;
+		MatrixF VECCALL operator*(MatrixF matrix) const;
+		MatrixF VECCALL operator*(float scale) const;
+		MatrixF VECCALL operator/(float scale) const;
+		MatrixF& VECCALL operator+=(MatrixF matrix);
+		MatrixF& VECCALL operator-=(MatrixF matrix);
+		MatrixF& VECCALL operator*=(MatrixF matrix);
+		MatrixF& VECCALL operator*=(float scale);
+		MatrixF& VECCALL operator/=(float scale);
+		MatrixF VECCALL operator-() const;
+
+		// compare
+		bool VECCALL operator==(MatrixF matrix) const;
+		bool VECCALL operator<(MatrixF matrix) const;
+		bool VECCALL operator>(MatrixF matrix) const;
+		bool VECCALL operator<=(MatrixF matrix) const;
+		bool VECCALL operator>=(MatrixF matrix) const;
+		bool VECCALL isEqualPrec(MatrixF matrix, float precision = 0) const;
+		bool VECCALL isEqualPrec(MatrixF matrix, MatrixF precision) const;
+
+		// store/load
+		void VECCALL load(float m11, float m12, float m13, float m14,
+			float m21, float m22, float m23, float m24,
+			float m31, float m32, float m33, float m34,
+			float m41, float m42, float m43, float m44);
+		void VECCALL load(const float* pArray);
+		void VECCALL load(const MatrixScalar& matrix);
+		void VECCALL load(VectorF row1, VectorF row2, VectorF row3, VectorF row4);
+
+		void VECCALL store(float& m11, float& m12, float& m13, float& m14,
+			float& m21, float& m22, float& m23, float& m24,
+			float& m31, float& m32, float& m33, float& m34,
+			float& m41, float& m42, float& m43, float& m44) const;
+		void VECCALL store(float* pArray) const;
+		void VECCALL store(MatrixScalar& matrix) const;
+		void VECCALL store(VectorF& row1, VectorF& row2, VectorF& row3, VectorF& row4) const;
+
+		// methods
+		MatrixF VECCALL transpose() const;
+		MatrixF VECCALL inverse() const;
+		float VECCALL determinant() const;
+
+	private:
+		DoubleVectorF part1, part2;
+	};
+
+	// additional operations
+	MatrixF VECCALL operator*(float scale, MatrixF matrix);
+	MatrixF VECCALL operator/(float scale, MatrixF matrix);
+
+	// matrix functions
+	MatrixF VECCALL matrixFIdentity();
 }

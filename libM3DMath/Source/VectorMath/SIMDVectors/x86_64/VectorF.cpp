@@ -14,7 +14,7 @@ VectorF::VectorF(float x, float y, float z, float w)
 {
 	load(x, y, z, w);
 }
-VectorF::VectorF(float* pArray)
+VectorF::VectorF(const float* pArray)
 {
 	load(pArray);
 }

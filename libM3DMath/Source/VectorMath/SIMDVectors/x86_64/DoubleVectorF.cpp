@@ -16,7 +16,7 @@ DoubleVectorF::DoubleVectorF(float x1, float y1, float z1, float w1, float x2, f
 {
 	load(x1, y1, z1, w1, x2, y2, z2, w2);
 }
-DoubleVectorF::DoubleVectorF(float* pArray)
+DoubleVectorF::DoubleVectorF(const float* pArray)
 {
 	load(pArray);
 }
