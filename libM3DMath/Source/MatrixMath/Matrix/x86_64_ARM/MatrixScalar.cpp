@@ -122,7 +122,7 @@ MatrixScalar& MatrixScalar::operator-=(const MatrixScalar& matrix)
 
 	// calcuate
 	for (int i = 0; i < 16; i++)
-		matrix1Array[i] = matrix1Array[i] + matrix2Array[i];
+		matrix1Array[i] = matrix1Array[i] - matrix2Array[i];
 
 	return *this;
 }
@@ -168,7 +168,7 @@ MatrixScalar MatrixScalar::operator-() const
 }
 
 // additional operations
-MatrixScalar operator*(float scale, const MatrixScalar& matrix)
+MatrixScalar M3DM::operator*(float scale, const MatrixScalar& matrix)
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
@@ -181,7 +181,7 @@ MatrixScalar operator*(float scale, const MatrixScalar& matrix)
 
 	return matrixResult;
 }
-MatrixScalar operator/(float scale, const MatrixScalar& matrix)
+MatrixScalar M3DM::operator/(float scale, const MatrixScalar& matrix)
 {
 	MatrixScalar matrixResult;
 	// convert to arrays

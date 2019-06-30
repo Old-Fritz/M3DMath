@@ -867,6 +867,10 @@ namespace M3DM
 		operator float* ();
 		operator float const* () const;
 #ifdef DIRECTX
+		MatrixScalar(DirectX::XMMATRIX matrix)
+		{
+			DirectX::XMStoreFloat4x4(XMFloat4x4Ptr(), matrix);
+		}
 		DirectX::XMFLOAT4X4* XMFloat4x4Ptr()
 		{
 			return reinterpret_cast<DirectX::XMFLOAT4X4*>(this);
@@ -1006,4 +1010,5 @@ namespace M3DM
 
 	// matrix functions
 	MatrixF VECCALL matrixFIdentity();
+	MatrixF VECCALL matrixFInfinity();
 }
