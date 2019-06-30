@@ -17,10 +17,15 @@ using namespace M3DM;
 bool makeMatrixTests()
 {
 	MatrixScalarTester matrixScalarTester;
+	MatrixFTester matrixFTester;
 
 	bool result;
 
 	result = matrixScalarTester.testAll();
+	if (!result)
+		return false;
+
+	result = matrixFTester.testAll();
 	if (!result)
 		return false;
 

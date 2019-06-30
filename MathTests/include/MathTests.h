@@ -53,6 +53,23 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::MatrixScalar& 
 	return stream;
 }
 
+inline std::ostream& operator<<(std::ostream& stream, const M3DM::MatrixF& matrix)
+{
+	float pArray[16];
+	matrix.store(pArray);
+	stream << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		stream << "| ";
+		for (int j = 0; j < 4; j++)
+		{
+			stream << pArray[i * 4 + j] << "\t";
+		}
+		stream << " |" << std::endl;
+	}
+	return stream;
+}
+
 class Vector2Tester
 {
 public:
@@ -166,6 +183,23 @@ public:
 
 	bool testEqual();
 	bool testCmp();
+	bool testConversions();
+	bool testAdd();
+	bool testSub();
+	bool testMul();
+	bool testDiv();
+	bool testFunctions();
+};
+
+class MatrixFTester
+{
+public:
+	bool testAll();
+
+	bool testEqual();
+	bool testCmp();
+	bool testStore();
+	bool testGetSet();
 	bool testConversions();
 	bool testAdd();
 	bool testSub();

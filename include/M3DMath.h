@@ -100,7 +100,7 @@ namespace M3DM
 		{
 			return reinterpret_cast<DirectX::XMFLOAT2*>(this);
 		}
-		DirectX::XMVECTOR XMVec()
+		DirectX::XMVECTOR VECCALL XMVec()
 		{
 			return DirectX::XMLoadFloat2(XMFloat2Ptr());
 		}
@@ -184,7 +184,7 @@ namespace M3DM
 		{
 			return reinterpret_cast<DirectX::XMFLOAT3*>(this);
 		}
-		DirectX::XMVECTOR XMVec()
+		DirectX::XMVECTOR VECCALL XMVec()
 		{
 			return DirectX::XMLoadFloat3(XMFloat3Ptr());
 		}
@@ -274,7 +274,7 @@ namespace M3DM
 		{
 			return reinterpret_cast<DirectX::XMFLOAT4*>(this);
 		}
-		DirectX::XMVECTOR XMVec()
+		DirectX::XMVECTOR VECCALL XMVec()
 		{
 			return DirectX::XMLoadFloat4(XMFloat4Ptr());
 		}
@@ -391,9 +391,9 @@ namespace M3DM
 		explicit VectorF(const Vector3& vector);
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
-		operator M128&();
+		VECCALL operator M128&();
 #ifdef DIRECTX
-		DirectX::XMVECTOR XMVec()
+		DirectX::XMVECTOR VECCALL XMVec()
 		{
 			return m_data;
 		}
@@ -466,7 +466,7 @@ namespace M3DM
 		VectorF VECCALL log2() const;
 		VectorF VECCALL logE() const;
 		VectorF VECCALL sqrtFast() const;
-		void sincos(VectorF& sin, VectorF& cos) const;
+		void VECCALL sincos(VectorF& sin, VectorF& cos) const;
 		VectorF VECCALL reciprocalFast() const;
 
 		// functions 2d
@@ -938,8 +938,7 @@ namespace M3DM
 
 		// Conversions
 		explicit MatrixF(const float* pArray) : part1(pArray), part2(pArray + 8) {}
-		explicit MatrixF(const MatrixScalar& matrix)
-			: part1(matrix), part2(static_cast<const float*>(matrix) + 8) {}
+		explicit MatrixF(const MatrixScalar& matrix) : part1(matrix), part2(static_cast<const float*>(matrix) + 8) {}
 		explicit MatrixF(DoubleVectorF part1, DoubleVectorF part2) : part1(part1), part2(part2) {}
 		explicit MatrixF(VectorF row1, VectorF row2, VectorF row3, VectorF row4) : part1(row1, row2), part2(row3, row4) {}
 #ifdef DIRECTX
@@ -998,6 +997,7 @@ namespace M3DM
 		// methods
 		MatrixF VECCALL transpose() const;
 		MatrixF VECCALL inverse() const;
+		VectorF VECCALL determinantVec() const;
 		float VECCALL determinant() const;
 
 	private:
