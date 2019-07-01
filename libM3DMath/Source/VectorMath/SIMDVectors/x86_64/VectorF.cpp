@@ -181,6 +181,17 @@ VectorF VECCALL VectorF::operator-() const
 	return _mm_sub_ps(__m128(), m_data);
 }
 
+VectorF VECCALL M3DM::operator*(float scale, VectorF vector)
+{
+	return vector * scale;
+}
+VectorF VECCALL  M3DM::operator/(float scale, VectorF vector)
+{
+	__m128 data2 = _mm_set_ps1(scale);
+	return _mm_div_ps(data2, vector.m_data);
+}
+
+
 // Compare functions
 bool VECCALL VectorF::operator==(VectorF vector) const
 {

@@ -732,6 +732,19 @@ bool VectorFTester::testMul()
 		return false;
 	}
 
+	// TEST #4
+	arg1 = VectorF(1, 2, 3, 4);
+	scale = 2;
+	prediction = VectorF(2, 4, 6, 8);
+	std::cout << "TEST #4: " << scale << " * " << arg1 << " == " << prediction << std::endl;
+	resultVec = scale * arg1;
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
 	return true;
 }
 
@@ -773,6 +786,20 @@ bool VectorFTester::testDiv()
 	prediction = VectorF(0.5, 1, 1.5, 2);
 	std::cout << "TEST #3: " << arg1 << " / " << scale << " == " << prediction << std::endl;
 	resultVec = arg1 / scale;
+	result = resultVec == prediction;
+	if (!result)
+	{
+		std::cout << "Failed. Computed value: " << resultVec << std::endl;
+		return false;
+	}
+
+
+	// TEST #4
+	arg1 = VectorF(1, 2, 3, 4);
+	scale = 2;
+	prediction = VectorF(2, 1, 2.0 / 3, 2.0 / 4);
+	std::cout << "TEST #4: " << scale << " / " << arg1 << " == " << prediction << std::endl;
+	resultVec = scale / arg1;
 	result = resultVec == prediction;
 	if (!result)
 	{

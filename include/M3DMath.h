@@ -420,6 +420,9 @@ namespace M3DM
 		VectorF& VECCALL operator/=(float scale);
 		VectorF VECCALL operator-() const;
 
+		friend VectorF VECCALL operator*(float scale, VectorF vector);
+		friend VectorF VECCALL operator/(float scale, VectorF vector);
+
 		// Compare functions
 		bool VECCALL operator==(VectorF vector) const;
 		bool VECCALL operator<(VectorF vector) const;
@@ -546,6 +549,9 @@ namespace M3DM
 		DoubleVectorF& VECCALL operator/=(float scale);
 		DoubleVectorF VECCALL operator-() const;
 
+		friend DoubleVectorF VECCALL operator*(float scale, DoubleVectorF vector);
+		friend DoubleVectorF VECCALL operator/(float scale, DoubleVectorF vector);
+
 		// Compare functions
 		bool VECCALL operator==(DoubleVectorF vector) const;
 		bool VECCALL operator<(DoubleVectorF vector) const;
@@ -635,6 +641,13 @@ namespace M3DM
 	private:
 		M256 m_data{};
 	};
+
+	// Scalar operations
+	VectorF VECCALL operator*(float scale, VectorF vector);
+	DoubleVectorF VECCALL operator*(float scale, DoubleVectorF vector);
+	VectorF VECCALL operator/(float scale, VectorF vector);
+	DoubleVectorF VECCALL operator/(float scale, DoubleVectorF vector);
+
 
 	/// Vector functions
 	// Vector2

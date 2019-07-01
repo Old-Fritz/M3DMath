@@ -248,6 +248,16 @@ DoubleVectorF VECCALL DoubleVectorF::operator-() const
 	return _mm256_sub_ps(__m256(), m_data);
 }
 
+DoubleVectorF VECCALL M3DM::operator*(float scale, DoubleVectorF vector)
+{
+	return vector * scale;
+}
+DoubleVectorF VECCALL  M3DM::operator/(float scale, DoubleVectorF vector)
+{
+	__m256 data2 = _mm256_set1_ps(scale);
+	return _mm256_div_ps(data2, vector.m_data);
+}
+
 // Compare functions
 bool VECCALL DoubleVectorF::operator==(DoubleVectorF vector) const
 {

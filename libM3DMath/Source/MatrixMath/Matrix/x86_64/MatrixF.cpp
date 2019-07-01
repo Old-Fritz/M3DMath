@@ -10,33 +10,41 @@ using namespace M3DM;
 DirectX::XMMATRIX VECCALL MatrixF::XMMatrix()
 {
 	DirectX::XMMATRIX matrixResult;
+	MatrixScalar matrixScalar;
+	store(matrixScalar);
 
-	alignas(32) float pArray[16];
-	part1.store(pArray);
-	part2.store(pArray + 8);
-
-	//DirectX::XMMatrixLoad(pArray, matrixResult);
-
-	return matrixResult;
+	return matrixScalar.XMMatrix();
 }
 #endif
 
 // getters and setters
 float VECCALL MatrixF::get(char  ind) const
 {
-	return 0;
+	if (ind < 8)
+		return part1.get(ind);
+	else
+		return part2.get(ind - 8);
 }
 void VECCALL MatrixF::set(char ind, float value)
 {
-
+	if (ind < 8)
+		part1.set(ind, value);
+	else
+		part2.set(ind - 8, value);
 }
 int VECCALL MatrixF::getInt(char ind) const
 {
-	return 0;
+	if (ind < 8)
+		return part1.getInt(ind);
+	else
+		return part2.getInt(ind - 8);
 }
 void VECCALL MatrixF::setInt(char ind, int value)
 {
-
+	if (ind < 8)
+		part1.setInt(ind, value);
+	else
+		part2.setInt(ind - 8, value);
 }
 
 
@@ -45,11 +53,17 @@ MatrixF VECCALL MatrixF::operator+(MatrixF matrix) const
 {
 	MatrixF matrixResult;
 
+	matrixResult.part1 = part1 + matrix.part1;
+	matrixResult.part2 = part2 + matrix.part2;
+
 	return matrixResult;
 }
 MatrixF VECCALL MatrixF::operator-(MatrixF matrix) const
 {
 	MatrixF matrixResult;
+
+	matrixResult.part1 = part1 - matrix.part1;
+	matrixResult.part2 = part2 - matrix.part2;
 
 	return matrixResult;
 }
@@ -57,11 +71,16 @@ MatrixF VECCALL MatrixF::operator*(MatrixF matrix) const
 {
 	MatrixF matrixResult;
 
+	
+
 	return matrixResult;
 }
 MatrixF VECCALL MatrixF::operator*(float scale) const
 {
 	MatrixF matrixResult;
+
+	matrixResult.part1 = part1 * scale;
+	matrixResult.part2 = part2 * scale;
 
 	return matrixResult;
 }
@@ -69,19 +88,24 @@ MatrixF VECCALL MatrixF::operator/(float scale) const
 {
 	MatrixF matrixResult;
 
+	matrixResult.part1 = part1 / scale;
+	matrixResult.part2 = part2 / scale;
+
 	return matrixResult;
 }
 MatrixF& VECCALL MatrixF::operator+=(MatrixF matrix)
 {
-	MatrixF matrixResult;
+	part1 += matrix.part1;
+	part2 += matrix.part2;
 
-	return matrixResult;
+	return *this;
 }
 MatrixF& VECCALL MatrixF::operator-=(MatrixF matrix)
 {
-	MatrixF matrixResult;
+	part1 -= matrix.part1;
+	part2 -= matrix.part2;
 
-	return matrixResult;
+	return *this;
 }
 MatrixF& VECCALL MatrixF::operator*=(MatrixF matrix)
 {
@@ -91,19 +115,24 @@ MatrixF& VECCALL MatrixF::operator*=(MatrixF matrix)
 }
 MatrixF& VECCALL MatrixF::operator*=(float scale)
 {
-	MatrixF matrixResult;
+	part1 *= scale;
+	part2 *= scale;
 
-	return matrixResult;
+	return *this;
 }
 MatrixF& VECCALL MatrixF::operator/=(float scale)
 {
-	MatrixF matrixResult;
+	part1 /= scale;
+	part2 /= scale;
 
-	return matrixResult;
+	return *this;
 }
 MatrixF VECCALL MatrixF::operator-() const
 {
 	MatrixF matrixResult;
+
+	matrixResult.part1 = -part1;
+	matrixResult.part2 = -part2;
 
 	return matrixResult;
 }
@@ -113,11 +142,17 @@ MatrixF VECCALL M3DM::operator*(float scale, MatrixF matrix)
 {
 	MatrixF matrixResult;
 
+	matrixResult.part1 = matrix.part1 * scale;
+	matrixResult.part2 = matrix.part2 * scale;
+
 	return matrixResult;
 }
 MatrixF VECCALL M3DM::operator/(float scale, MatrixF matrix)
 {
 	MatrixF matrixResult;
+
+	matrixResult.part1 = scale / matrix.part1;
+	matrixResult.part2 = scale / matrix.part2;
 
 	return matrixResult;
 }

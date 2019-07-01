@@ -80,9 +80,9 @@ bool makeTests()
 {
 	bool result;
 
-	//result = makeVectorTests();
-	//if (!result)
-	//	return false;
+	result = makeVectorTests();
+	if (!result)
+		return false;
 
 	result = makeMatrixTests();
 	if (!result)
