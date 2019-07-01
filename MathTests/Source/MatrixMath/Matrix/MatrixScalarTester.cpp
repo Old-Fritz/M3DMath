@@ -478,7 +478,10 @@ bool MatrixScalarTester::testMul()
 	// TEST #4
 	m1 = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
 	m2 = MatrixScalar(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17);
-	prediction = DirectX::XMMatrixMultiply(m1.XMMatrix(), m2.XMMatrix());
+	prediction = MatrixScalar(100, 110, 120,130,
+		228, 254, 280, 306,
+		356, 398, 440, 482,
+		484, 542, 600, 658);
 	std::cout << "TEST #4: " << m1 << " * " << m2 << " == " << prediction << std::endl;
 	matrixResult = m1 * m2;
 	result = matrixResult == prediction;
@@ -491,7 +494,11 @@ bool MatrixScalarTester::testMul()
 	// TEST #5
 	m1 = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
 	m2 = MatrixScalar(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17);
-	prediction = DirectX::XMMatrixMultiply(m1.XMMatrix(), m2.XMMatrix());
+	//prediction = DirectX::XMMatrixMultiply(m1.XMMatrix(), m2.XMMatrix());
+	prediction = MatrixScalar(100, 110, 120, 130,
+		228, 254, 280, 306,
+		356, 398, 440, 482,
+		484, 542, 600, 658);
 	std::cout << "TEST #5: " << m1 << " *= " << m2 << " == " << prediction << std::endl;
 	m1 *= m2;
 	result = m1 == prediction;
@@ -603,7 +610,7 @@ bool MatrixScalarTester::testFunctions()
 		5, 7, 7, 8,
 		9, 10, 12, 12,
 		13, 14, 15, 17);
-	valuePrediction = VectorF(DirectX::XMMatrixDeterminant(matrix.XMMatrix())).get(0);
+	valuePrediction = -45;
 	std::cout << "TEST #4: " << matrix << ".determinant()" << " == " << valuePrediction << std::endl;
 	valueResult = matrix.determinant();
 	result = valueResult == valuePrediction;
@@ -618,10 +625,13 @@ bool MatrixScalarTester::testFunctions()
 		5, 7, 7, 8,
 		9, 10, 12, 12,
 		13, 14, 15, 17);
-	matrixPrediction = DirectX::XMMatrixInverse(0, matrix.XMMatrix());
+	matrixPrediction = MatrixScalar(-0.2222222, -0.6666666, -0.11111111, 0.4444444,
+		-0.6, 0.6, -0.2, -0,
+		0.0222222, -0.1333333, 0.711111, -0.4444444,
+		0.6444444, 0.1333333, -0.3777777, 0.1111111);
 	std::cout << "TEST #5: " << matrix << ".inverse()" << " == " << matrixPrediction << std::endl;
 	matrixResult = matrix.inverse();
-	result = matrixResult == matrixPrediction;
+	result = matrixResult.isEqualPrec(matrixPrediction, 0.000001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << matrixResult << std::endl;

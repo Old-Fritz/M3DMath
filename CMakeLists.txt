@@ -18,13 +18,19 @@ IF(ANDROID)
 	SET(CLANG_TOOLCHAIN_VERSION 8.0.2)
 	SET(ANDROID_TOOLCHAIN_INCLUDE_DIR ${ANDROID_TOOLCHAIN_ROOT}\\lib64\\clang\\${CLANG_TOOLCHAIN_VERSION}\\include)
 	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffreestanding -march=armv7-a -mfpu=neon -mfloat-abi=softfp" )
-ELSE()
-# For x86_64
+ENDIF()
+# For x86_64 windows
+IF()
 	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx -ftree-vectorize -funsafe-math-optimizations -mveclibabi=svml" )
 ENDIF()
+# For x86_64 linux
 IF(NOT ANDROID AND NOT WIN32)
-	SET (CMAKE_CXX_COMPILER "/opt/intel/system_studio_2019/bin/icpc")
-	SET (CMAKE_CC_COMPILER "/opt/intel/system_studio_2019/bin/icc")
+	SET ( CMAKE_CXX_COMPILER "/opt/intel/system_studio_2019/bin/icpc")
+	SET ( CMAKE_CC_COMPILER "/opt/intel/system_studio_2019/bin/icc")
+	# SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g" )
+	IF(CMAKE_DEBUG)
+		SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g" )
+	ENDIF()
 ENDIF()
 
 # Targets

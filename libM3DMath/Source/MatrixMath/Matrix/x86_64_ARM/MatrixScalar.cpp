@@ -269,7 +269,7 @@ bool MatrixScalar::isEqualPrec(const MatrixScalar& matrix, float precision) cons
 
 	// calcuate
 	for (int i = 0; i < 16; i++)
-		if (abs(matrix1Array[i] - matrix2Array[i]) > precision)
+		if (fabs(matrix1Array[i] - matrix2Array[i]) > precision)
 			return false;
 
 	return true;
@@ -283,7 +283,7 @@ bool MatrixScalar::isEqualPrec(const MatrixScalar& matrix, const MatrixScalar& p
 
 	// calcuate
 	for (int i = 0; i < 16; i++)
-		if (abs(matrix1Array[i] - matrix2Array[i]) > precisionArray[i])
+		if (fabs(matrix1Array[i] - matrix2Array[i]) > precisionArray[i])
 			return false;
 
 	return true;
