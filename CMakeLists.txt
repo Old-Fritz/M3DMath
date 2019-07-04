@@ -20,8 +20,9 @@ IF(ANDROID)
 	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffreestanding -march=armv7-a -mfpu=neon -mfloat-abi=softfp" )
 ENDIF()
 # For x86_64 windows
-IF()
-	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx -ftree-vectorize -funsafe-math-optimizations -mveclibabi=svml" )
+IF(WIN32)
+	#SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mavx -ftree-vectorize -funsafe-math-optimizations -mveclibabi=svml" )
+	SET ( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3" )
 ENDIF()
 # For x86_64 linux
 IF(NOT ANDROID AND NOT WIN32)

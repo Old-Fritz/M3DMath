@@ -13,7 +13,7 @@
 
 // x86_64 platform
 #if defined(__x86_64__) || defined(__i386__) || defined(WIN32)
-# define _AVX_
+# define _AVX2_
 # include <xmmintrin.h>
 # include <emmintrin.h>
 # include <pmmintrin.h>
@@ -392,6 +392,7 @@ namespace M3DM
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
 		VECCALL operator M128&();
+		VECCALL operator const M128& () const;
 #ifdef DIRECTX
 		DirectX::XMVECTOR VECCALL XMVec()
 		{
@@ -527,6 +528,7 @@ namespace M3DM
 		explicit DoubleVectorF(VectorF vector);
 		explicit DoubleVectorF(VectorF vector1, VectorF vector2);
 		VECCALL operator M256&();
+		VECCALL operator const M256& () const;
 
 		// getters and setters
 		float VECCALL get(char ind) const;
@@ -939,21 +941,20 @@ namespace M3DM
 
 	public: 
 		// Constructors
-		MatrixF() : part1(), part2() {}
+		MatrixF() : m_row1(), m_row2(), m_row3(), m_row4() {}
 		MatrixF(float m11, float m12, float m13, float m14,
 			float m21, float m22, float m23, float m24,
 			float m31, float m32, float m33, float m34,
 			float m41, float m42, float m43, float m44) :
-			part1(m11, m12, m13, m14, m21, m22, m23, m24),
-			part2(m31, m32, m33, m34, m41, m42, m43, m44) {}
+			m_row1(m11, m12, m13, m14),  m_row2(m21, m22, m23, m24),
+			m_row3(m31, m32, m33, m34), m_row4(m41, m42, m43, m44) {}
 		MatrixF(const MatrixF& matrix) = default;
 		MatrixF& operator=(const MatrixF& matrix) = default;
 
 		// Conversions
-		explicit MatrixF(const float* pArray) : part1(pArray), part2(pArray + 8) {}
-		explicit MatrixF(const MatrixScalar& matrix) : part1(matrix), part2(static_cast<const float*>(matrix) + 8) {}
-		explicit MatrixF(DoubleVectorF part1, DoubleVectorF part2) : part1(part1), part2(part2) {}
-		explicit MatrixF(VectorF row1, VectorF row2, VectorF row3, VectorF row4) : part1(row1, row2), part2(row3, row4) {}
+		explicit MatrixF(const float* pArray) : m_row1(pArray), m_row2(pArray + 4), m_row3(pArray + 8), m_row4(pArray + 12) {}
+		explicit MatrixF(const MatrixScalar& matrix) : m_row1(matrix), m_row2(matrix + 4), m_row3(matrix + 8), m_row4(matrix + 12) {}
+		explicit MatrixF(VectorF row1, VectorF row2, VectorF row3, VectorF row4) : m_row1(row1), m_row2(row2), m_row3(row3), m_row4(row4) {}
 #ifdef DIRECTX
 		DirectX::XMMATRIX VECCALL XMMatrix();
 #endif
@@ -1014,7 +1015,7 @@ namespace M3DM
 		float VECCALL determinant() const;
 
 	private:
-		DoubleVectorF part1, part2;
+		VectorF m_row1, m_row2, m_row3, m_row4;
 	};
 
 	// additional operations

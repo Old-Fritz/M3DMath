@@ -38,6 +38,10 @@ VECCALL VectorF::operator __m128&()
 {
 	return m_data;
 }
+VECCALL VectorF::operator const __m128& () const
+{
+	return m_data;
+}
 
 // getters and setters
 float VECCALL VectorF::get(const char ind)  const

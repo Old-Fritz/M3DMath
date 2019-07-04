@@ -61,6 +61,11 @@ VECCALL DoubleVectorF::operator __m256&()
 	return m_data;
 }
 
+VECCALL DoubleVectorF::operator const __m256& () const
+{
+	return m_data;
+}
+
 // getters and setters
 float VECCALL DoubleVectorF::get(const char ind)  const
 {
