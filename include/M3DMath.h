@@ -980,22 +980,20 @@ namespace M3DM
 
 	public: 
 		// Constructors
-		MatrixF() : m_row1(), m_row2(), m_row3(), m_row4() {}
+		MatrixF();
 		MatrixF(float m11, float m12, float m13, float m14,
 			float m21, float m22, float m23, float m24,
 			float m31, float m32, float m33, float m34,
-			float m41, float m42, float m43, float m44) :
-			m_row1(m11, m12, m13, m14),  m_row2(m21, m22, m23, m24),
-			m_row3(m31, m32, m33, m34), m_row4(m41, m42, m43, m44) {}
+			float m41, float m42, float m43, float m44);
 		MatrixF(const MatrixF& matrix) = default;
 		MatrixF& operator=(const MatrixF& matrix) = default;
 
 		// Conversions
-		explicit MatrixF(const float* pArray) : m_row1(pArray), m_row2(pArray + 4), m_row3(pArray + 8), m_row4(pArray + 12) {}
-		explicit MatrixF(const MatrixScalar& matrix) : m_row1(matrix), m_row2(matrix + 4), m_row3(matrix + 8), m_row4(matrix + 12) {}
-		explicit MatrixF(VectorF row1, VectorF row2, VectorF row3, VectorF row4) : m_row1(row1), m_row2(row2), m_row3(row3), m_row4(row4) {}
+		explicit MatrixF(const float* pArray);
+		explicit MatrixF(const MatrixScalar & matrix);
+		explicit MatrixF(VectorF row1, VectorF row2, VectorF row3, VectorF row4);
 #ifdef DIRECTX
-		MatrixF(DirectX::XMMATRIX matrix) : m_row1(matrix.r[0]), m_row2(matrix.r[1]), m_row3(matrix.r[2]), m_row4(matrix.r[3]) {}
+		MatrixF(DirectX::XMMATRIX matrix);
 		DirectX::XMMATRIX VECCALL XMMatrix();
 #endif
 		
@@ -1051,11 +1049,13 @@ namespace M3DM
 		// methods
 		MatrixF VECCALL transpose() const;
 		MatrixF VECCALL inverse() const;
+		MatrixF VECCALL inverseTransform() const;
+		MatrixF VECCALL inverseTransformNoScale() const;
 		VectorF VECCALL determinantVec() const;
 		float VECCALL determinant() const;
 
 	private:
-		VectorF m_row1, m_row2, m_row3, m_row4;
+		M128 m_rows[4];
 	};
 
 	// additional operations
