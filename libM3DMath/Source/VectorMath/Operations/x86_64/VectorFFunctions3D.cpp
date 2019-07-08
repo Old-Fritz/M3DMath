@@ -5,9 +5,11 @@ using namespace M3DM;
 
 VectorF VECCALL M3DM::vecFCross3D(VectorF vec1, VectorF vec2)
 {
+	//__m128 vec1Data = vec1.getData();
+	//__m128 vec2Data = vec2.getData();
 	__m128 result = _mm_sub_ps(
-		_mm_mul_ps(vec1, _mm_shuffle_ps(vec2, vec2, _MM_SHUFFLE(3, 0, 2, 1))),
-		_mm_mul_ps(vec2, _mm_shuffle_ps(vec1, vec1, _MM_SHUFFLE(3, 0, 2, 1)))
+		_mm_mul_ps(vec1.getData(), _mm_shuffle_ps(vec2.getData(), vec2.getData(), _MM_SHUFFLE(3, 0, 2, 1))),
+		_mm_mul_ps(vec2.getData(), _mm_shuffle_ps(vec1.getData(), vec1.getData(), _MM_SHUFFLE(3, 0, 2, 1)))
 	);
 	return  _mm_shuffle_ps(result, result, _MM_SHUFFLE(3, 0, 2, 1));
 }
@@ -73,7 +75,7 @@ VectorF VECCALL M3DM::vecFRefractVec3D(VectorF vec, VectorF normal, VectorF refr
 }
 VectorF VECCALL M3DM::vecFDotVec3D(VectorF vec1, VectorF vec2)
 {
-	return _mm_dp_ps(vec1, vec2, 0b01111111);
+	return _mm_dp_ps(vec1.getData(), vec2.getData(), 0b01111111);
 }
 VectorF VECCALL M3DM::vecFLinePointDistanceVec3D(VectorF linePoint1, VectorF linePoint2, VectorF point)
 {

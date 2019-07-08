@@ -89,7 +89,7 @@ VectorF VECCALL VectorF::sqrtFast() const
 }
 void VECCALL VectorF::sincos(VectorF& sin, VectorF& cos) const
 {
-	sin = _mm_sincos_ps(&static_cast<__m128&>(cos), m_data);
+	sin = _mm_sincos_ps(&cos.getDataRef(), m_data);
 }
 
 // functions 2d

@@ -352,6 +352,7 @@ float MatrixScalar::determinant() const
 {
 	float det1, det2, det3, det4;
 
+	/*
 	// calculate determinant by first row
 	det1 = matrixScalar3Determinant(m22, m23, m24,
 		m32, m33, m34,
@@ -367,6 +368,24 @@ float MatrixScalar::determinant() const
 		m41, m42, m43);
 
 	return m11* det1 - m12 * det2 + m13 * det3 - m14 * det4;
+	*/
+
+	
+	// calculate determinant by first col
+	det1 = matrixScalar3Determinant(m21, m22, m23,
+		m31, m32, m33,
+		m41, m42, m43);
+	det2 = matrixScalar3Determinant(m11, m12, m13,
+		m31, m32, m33,
+		m41, m42, m43);
+	det3 = matrixScalar3Determinant(m11, m12, m13,
+		m21, m22, m23,
+		m41, m42, m43);
+	det4 = matrixScalar3Determinant(m11, m12, m13,
+		m21, m22, m23,
+		m31, m32, m33);
+
+	return -m14* det1 + m24 * det2 - m34 * det3 + m44 * det4;
 }
 
 //functions

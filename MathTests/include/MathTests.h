@@ -198,6 +198,7 @@ public:
 
 	bool testEqual();
 	bool testCmp();
+	bool testLoad();
 	bool testStore();
 	bool testGetSet();
 	bool testConversions();

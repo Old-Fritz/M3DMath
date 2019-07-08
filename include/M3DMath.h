@@ -44,6 +44,25 @@
 #define CMP_GT 3
 #define CMP_GE 4
 
+
+/// Improved shuffles
+
+#define vecFMakeShuffleMask(x,y,z,w)           (x | (y<<2) | (z<<4) | (w<<6))
+
+// vec(0, 1, 2, 3) -> (vec[x], vec[y], vec[z], vec[w])
+#define vecFSwizzleMask(vec, mask)          _mm_castsi128_ps(_mm_shuffle_epi32(_mm_castps_si128(vec), mask))
+#define vecFSwizzle(vec, x, y, z, w)        vecFSwizzleMask(vec, vecFMakeShuffleMask(x,y,z,w))
+#define vecFSwizzle1(vec, x)                vecFSwizzleMask(vec, vecFMakeShuffleMask(x,x,x,x))
+// special swizzle
+#define vecFSwizzle_0022(vec)               _mm_moveldup_ps(vec)
+#define vecFSwizzle_1133(vec)               _mm_movehdup_ps(vec)
+// return (vec1[x], vec1[y], vec2[z], vec2[w])
+#define vecFShuffle(vec1, vec2, x,y,z,w)    _mm_shuffle_ps(vec1, vec2, vecFMakeShuffleMask(x,y,z,w))
+// special shuffle
+#define vecFShuffle_0101(vec1, vec2)        _mm_movelh_ps(vec1, vec2)
+#define vecFShuffle_2323(vec1, vec2)        _mm_movehl_ps(vec2, vec1)
+
+
 namespace M3DM
 {
 	/// Scalar structs
@@ -391,8 +410,21 @@ namespace M3DM
 		explicit VectorF(const Vector3& vector);
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
-		VECCALL operator M128&();
-		VECCALL operator const M128& () const;
+		VECCALL operator M128() const;
+		M128 VECCALL getData() const
+		{
+			return m_data;
+		}
+		M128& VECCALL getDataRef()
+		{
+			return m_data;
+		}
+		const M128& VECCALL getDataConstRef() const
+		{
+			return m_data;
+		}
+		//explicit VECCALL operator const M128&() const;
+		//explicit VECCALL operator M128& ();
 #ifdef DIRECTX
 		DirectX::XMVECTOR VECCALL XMVec()
 		{
@@ -501,7 +533,7 @@ namespace M3DM
 		VectorF VECCALL normalizedFast4D() const;
 		
 	private:
-		M128 m_data{};
+		M128 m_data;
 	};
 
 	/// AVX vector
@@ -956,6 +988,7 @@ namespace M3DM
 		explicit MatrixF(const MatrixScalar& matrix) : m_row1(matrix), m_row2(matrix + 4), m_row3(matrix + 8), m_row4(matrix + 12) {}
 		explicit MatrixF(VectorF row1, VectorF row2, VectorF row3, VectorF row4) : m_row1(row1), m_row2(row2), m_row3(row3), m_row4(row4) {}
 #ifdef DIRECTX
+		MatrixF(DirectX::XMMATRIX matrix) : m_row1(matrix.r[0]), m_row2(matrix.r[1]), m_row3(matrix.r[2]), m_row4(matrix.r[3]) {}
 		DirectX::XMMATRIX VECCALL XMMatrix();
 #endif
 		
@@ -1023,6 +1056,8 @@ namespace M3DM
 	MatrixF VECCALL operator/(float scale, MatrixF matrix);
 
 	// matrix functions
+	VectorF VECCALL matrixF3DeterminantVec(VectorF vec1, VectorF vec2, VectorF vec3);
+	float VECCALL matrixF3Determinant(VectorF vec1, VectorF vec2, VectorF vec3);
 	MatrixF VECCALL matrixFIdentity();
 	MatrixF VECCALL matrixFInfinity();
 }
