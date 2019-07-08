@@ -5,19 +5,19 @@ using namespace M3DM;
 
 DoubleVectorF VECCALL M3DM::doubleVecFMax(DoubleVectorF vec1, DoubleVectorF vec2)
 {
-	return _mm256_max_ps(vec1, vec2);
+	return _mm256_max_ps(vec1.getData(), vec2.getData());
 }
 DoubleVectorF VECCALL M3DM::doubleVecFMin(DoubleVectorF vec1, DoubleVectorF vec2)
 {
-	return _mm256_min_ps(vec1, vec2);
+	return _mm256_min_ps(vec1.getData(), vec2.getData());
 }
 DoubleVectorF VECCALL M3DM::doubleVecFPow(DoubleVectorF vec, DoubleVectorF pow)
 {
-	return _mm256_pow_ps(vec, pow);
+	return _mm256_pow_ps(vec.getData(), pow.getData());
 }
 DoubleVectorF VECCALL M3DM::doubleVecFPow(DoubleVectorF vec, float pow)
 {
-	return _mm256_pow_ps(vec, _mm256_set1_ps(pow));
+	return _mm256_pow_ps(vec.getData(), _mm256_set1_ps(pow));
 }
 DoubleVectorF VECCALL M3DM::doubleVecFLerp(DoubleVectorF vec1, DoubleVectorF vec2, float value)
 {
@@ -71,7 +71,7 @@ DoubleVectorF VECCALL M3DM::doubleVecFRefractVec4D(DoubleVectorF vec, DoubleVect
 }
 DoubleVectorF VECCALL M3DM::doubleVecFDotVec4D(DoubleVectorF vec1, DoubleVectorF vec2)
 {
-	return _mm256_dp_ps(vec1, vec2, 0b11111111);
+	return _mm256_dp_ps(vec1.getData(), vec2.getData(), 0b11111111);
 }
 DoubleVectorF VECCALL M3DM::doubleVecFAngleBetweenVec4D(DoubleVectorF vec1, DoubleVectorF vec2)
 {
@@ -114,19 +114,19 @@ void VECCALL M3DM::doubleVecFCmp4D(DoubleVectorF vec1, DoubleVectorF vec2, int t
 	switch (type)
 	{
 	case CMP_EQ:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_EQ_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_EQ_OQ);
 		break;
 	case CMP_LE:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_LE_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_LE_OQ);
 		break;
 	case CMP_LT:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_LT_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_LT_OQ);
 		break;
 	case CMP_GE:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_GE_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_GE_OQ);
 		break;
 	case CMP_GT:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_GT_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_GT_OQ);
 		break;
 	default:
 		cmpResult = __m256();

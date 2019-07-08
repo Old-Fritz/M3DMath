@@ -5,19 +5,19 @@ using namespace M3DM;
 
 VectorF VECCALL M3DM::vecFMax(VectorF vec1, VectorF vec2)
 {
-	return _mm_max_ps(vec1, vec2);
+	return _mm_max_ps(vec1.getData(), vec2.getData());
 }
 VectorF VECCALL M3DM::vecFMin(VectorF vec1, VectorF vec2)
 {
-	return _mm_min_ps(vec1, vec2);
+	return _mm_min_ps(vec1.getData(), vec2.getData());
 }
 VectorF VECCALL M3DM::vecFPow(VectorF vec, VectorF pow)
 {
-	return _mm_pow_ps(vec, pow);
+	return _mm_pow_ps(vec.getData(), pow.getData());
 }
 VectorF VECCALL M3DM::vecFPow(VectorF vec, float pow)
 {
-	return _mm_pow_ps(vec, _mm_set_ps1(pow));
+	return _mm_pow_ps(vec.getData(), _mm_set_ps1(pow));
 }
 VectorF VECCALL M3DM::vecFLerp(VectorF vec1, VectorF vec2, float value)
 {
@@ -71,7 +71,7 @@ VectorF VECCALL M3DM::vecFRefractVec4D(VectorF vec, VectorF normal, VectorF refr
 }
 VectorF VECCALL M3DM::vecFDotVec4D(VectorF vec1, VectorF vec2)
 {
-	return _mm_dp_ps(vec1, vec2, 0b11111111);
+	return _mm_dp_ps(vec1.getData(), vec2.getData(), 0b11111111);
 }
 VectorF VECCALL M3DM::vecFAngleBetweenVec4D(VectorF vec1, VectorF vec2)
 {
@@ -107,19 +107,19 @@ bool VECCALL M3DM::vecFCmp4D(VectorF vec1, VectorF vec2, int type)
 	switch (type)
 	{
 	case CMP_EQ:
-		cmpResult = _mm_cmpeq_ps(vec1, vec2);
+		cmpResult = _mm_cmpeq_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_LE:
-		cmpResult = _mm_cmple_ps(vec1, vec2);
+		cmpResult = _mm_cmple_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_LT:
-		cmpResult = _mm_cmplt_ps(vec1, vec2);
+		cmpResult = _mm_cmplt_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_GE:
-		cmpResult = _mm_cmpge_ps(vec1, vec2);
+		cmpResult = _mm_cmpge_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_GT:
-		cmpResult = _mm_cmpgt_ps(vec1, vec2);
+		cmpResult = _mm_cmpgt_ps(vec1.getData(), vec2.getData());
 		break;
 	default:
 		cmpResult = __m128();

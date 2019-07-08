@@ -94,7 +94,7 @@ DoubleVectorF VECCALL DoubleVectorF::sqrtFast() const
 }
 void VECCALL DoubleVectorF::sincos(DoubleVectorF& sin, DoubleVectorF& cos) const
 {
-	sin = _mm256_sincos_ps(&static_cast<__m256&>(cos), m_data);
+	sin = _mm256_sincos_ps(&cos.getDataRef(), m_data);
 }
 
 // functions 2d
@@ -112,18 +112,18 @@ void VECCALL DoubleVectorF::sqrLength2D(float& len1, float& len2) const
 }
 DoubleVectorF VECCALL DoubleVectorF::normalized2D() const
 {
-	return _mm256_div_ps(m_data, lengthVec2D());
+	return _mm256_div_ps(m_data, lengthVec2D().getData());
 }
 DoubleVectorF VECCALL DoubleVectorF::orthogonal2D() const
 {
 	DoubleVectorF vecResult = -*this;
-	vecResult = _mm256_shuffle_ps(m_data, vecResult, _MM_SHUFFLE(1, 1, 0, 0));
-	vecResult = _mm256_shuffle_ps(vecResult, vecResult, _MM_SHUFFLE(0, 0, 0, 2));
+	vecResult = _mm256_shuffle_ps(m_data, vecResult.getData(), _MM_SHUFFLE(1, 1, 0, 0));
+	vecResult = _mm256_shuffle_ps(vecResult.getData(), vecResult.getData(), _MM_SHUFFLE(0, 0, 0, 2));
 	return vecResult;
 }
 DoubleVectorF VECCALL DoubleVectorF::lengthVec2D() const
 {
-	return _mm256_sqrt_ps(sqrLengthVec2D());
+	return _mm256_sqrt_ps(sqrLengthVec2D().getData());
 }
 DoubleVectorF VECCALL DoubleVectorF::sqrLengthVec2D() const
 {
@@ -131,7 +131,7 @@ DoubleVectorF VECCALL DoubleVectorF::sqrLengthVec2D() const
 }
 DoubleVectorF VECCALL DoubleVectorF::normalizedFast2D() const
 {
-	return _mm256_mul_ps(m_data, _mm256_rsqrt_ps(sqrLengthVec2D()));
+	return _mm256_mul_ps(m_data, _mm256_rsqrt_ps(sqrLengthVec2D().getData()));
 }
 
 // functions 3d
@@ -149,7 +149,7 @@ void VECCALL DoubleVectorF::sqrLength3D(float& len1, float& len2) const
 }
 DoubleVectorF VECCALL DoubleVectorF::normalized3D() const
 {
-	return _mm256_div_ps(m_data, lengthVec3D());
+	return _mm256_div_ps(m_data, lengthVec3D().getData());
 }
 DoubleVectorF VECCALL DoubleVectorF::orthogonal3D() const
 {
@@ -163,7 +163,7 @@ DoubleVectorF VECCALL DoubleVectorF::orthogonal3D() const
 	resultVec = _mm256_shuffle_ps(m_data, m_data, 0b11101010);
 	resultVec.set(2, value1);
 	resultVec.set(6, value2);
-	DoubleVectorF checkVec = _mm256_and_ps(m_data, mask);
+	DoubleVectorF checkVec = _mm256_and_ps(m_data, mask.getData());
 	if (resultVec == checkVec) //chech that result is not zero vector
 	{
 		value1 = -data[1] - data[2];
@@ -178,7 +178,7 @@ DoubleVectorF VECCALL DoubleVectorF::orthogonal3D() const
 }
 DoubleVectorF VECCALL DoubleVectorF::lengthVec3D() const
 {
-	return _mm256_sqrt_ps(sqrLengthVec3D());
+	return _mm256_sqrt_ps(sqrLengthVec3D().getData());
 }
 DoubleVectorF VECCALL DoubleVectorF::sqrLengthVec3D() const
 {
@@ -186,7 +186,7 @@ DoubleVectorF VECCALL DoubleVectorF::sqrLengthVec3D() const
 }
 DoubleVectorF VECCALL DoubleVectorF::normalizedFast3D() const
 {
-	return _mm256_mul_ps(m_data, _mm256_rsqrt_ps(sqrLengthVec3D()));
+	return _mm256_mul_ps(m_data, _mm256_rsqrt_ps(sqrLengthVec3D().getData()));
 }
 
 // functions 4d
@@ -204,7 +204,7 @@ void VECCALL DoubleVectorF::sqrLength4D(float& len1, float& len2) const
 }
 DoubleVectorF VECCALL DoubleVectorF::normalized4D() const
 {
-	return _mm256_div_ps(m_data, lengthVec4D());
+	return _mm256_div_ps(m_data, lengthVec4D().getData());
 }
 DoubleVectorF VECCALL DoubleVectorF::orthogonal4D() const
 {
@@ -214,7 +214,7 @@ DoubleVectorF VECCALL DoubleVectorF::orthogonal4D() const
 }
 DoubleVectorF VECCALL DoubleVectorF::lengthVec4D() const
 {
-	return _mm256_sqrt_ps(sqrLengthVec4D());
+	return _mm256_sqrt_ps(sqrLengthVec4D().getData());
 }
 DoubleVectorF VECCALL DoubleVectorF::sqrLengthVec4D() const
 {
@@ -222,5 +222,5 @@ DoubleVectorF VECCALL DoubleVectorF::sqrLengthVec4D() const
 }
 DoubleVectorF VECCALL DoubleVectorF::normalizedFast4D() const
 {
-	return _mm256_mul_ps(m_data, _mm256_rsqrt_ps(sqrLengthVec4D()));
+	return _mm256_mul_ps(m_data, _mm256_rsqrt_ps(sqrLengthVec4D().getData()));
 }

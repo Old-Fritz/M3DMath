@@ -103,18 +103,18 @@ float VECCALL VectorF::sqrLength2D() const
 }
 VectorF VECCALL VectorF::normalized2D() const
 {
-	return _mm_div_ps(m_data, lengthVec2D());
+	return _mm_div_ps(m_data, lengthVec2D().getData());
 }
 VectorF VECCALL VectorF::orthogonal2D() const
 {
 	VectorF vecResult = -*this;
-	vecResult = _mm_shuffle_ps(m_data, vecResult, _MM_SHUFFLE(1, 1, 0, 0));
-	vecResult = _mm_shuffle_ps(vecResult, vecResult, _MM_SHUFFLE(0, 0, 0, 2));
+	vecResult = _mm_shuffle_ps(m_data, vecResult.getData(), _MM_SHUFFLE(1, 1, 0, 0));
+	vecResult = _mm_shuffle_ps(vecResult.getData(), vecResult.getData(), _MM_SHUFFLE(0, 0, 0, 2));
 	return vecResult;
 }
 VectorF VECCALL VectorF::lengthVec2D() const
 {
-	return _mm_sqrt_ps(sqrLengthVec2D());
+	return _mm_sqrt_ps(sqrLengthVec2D().getData());
 }
 VectorF VECCALL VectorF::sqrLengthVec2D() const
 {
@@ -122,7 +122,7 @@ VectorF VECCALL VectorF::sqrLengthVec2D() const
 }
 VectorF VECCALL VectorF::normalizedFast2D() const
 {
-	return _mm_mul_ps(m_data, _mm_rsqrt_ps(sqrLengthVec2D()));
+	return _mm_mul_ps(m_data, _mm_rsqrt_ps(sqrLengthVec2D().getData()));
 }
 
 // functions 3d
@@ -136,7 +136,7 @@ float VECCALL VectorF::sqrLength3D() const
 }
 VectorF VECCALL VectorF::normalized3D() const
 {
-	return _mm_div_ps(m_data, lengthVec3D());
+	return _mm_div_ps(m_data, lengthVec3D().getData());
 }
 VectorF VECCALL VectorF::orthogonal3D() const
 {
@@ -148,7 +148,7 @@ VectorF VECCALL VectorF::orthogonal3D() const
 
 	resultVec = _mm_shuffle_ps(m_data, m_data, 0b11101010);
 	resultVec.set(2, value);
-	VectorF checkVec = _mm_and_ps(m_data, mask);
+	VectorF checkVec = _mm_and_ps(m_data, mask.getData());
 	if (resultVec == checkVec) //chech that result is not zero vector
 	{
 		value = -data.y - data.z;
@@ -161,7 +161,7 @@ VectorF VECCALL VectorF::orthogonal3D() const
 }
 VectorF VECCALL VectorF::lengthVec3D() const
 {
-	return _mm_sqrt_ps(sqrLengthVec3D());
+	return _mm_sqrt_ps(sqrLengthVec3D().getData());
 }
 VectorF VECCALL VectorF::sqrLengthVec3D() const
 {
@@ -169,7 +169,7 @@ VectorF VECCALL VectorF::sqrLengthVec3D() const
 }
 VectorF VECCALL VectorF::normalizedFast3D() const
 {
-	return _mm_mul_ps(m_data, _mm_rsqrt_ps(sqrLengthVec3D()));
+	return _mm_mul_ps(m_data, _mm_rsqrt_ps(sqrLengthVec3D().getData()));
 }
 
 
@@ -184,7 +184,7 @@ float VECCALL VectorF::sqrLength4D() const
 }
 VectorF VECCALL VectorF::normalized4D() const
 {
-	return _mm_div_ps(m_data, lengthVec4D());
+	return _mm_div_ps(m_data, lengthVec4D().getData());
 }
 VectorF VECCALL VectorF::orthogonal4D() const
 {
@@ -194,7 +194,7 @@ VectorF VECCALL VectorF::orthogonal4D() const
 }
 VectorF VECCALL VectorF::lengthVec4D() const
 {
-	return _mm_sqrt_ps(sqrLengthVec4D());
+	return _mm_sqrt_ps(sqrLengthVec4D().getData());
 }
 VectorF VECCALL VectorF::sqrLengthVec4D() const
 {
@@ -202,6 +202,6 @@ VectorF VECCALL VectorF::sqrLengthVec4D() const
 }
 VectorF VECCALL VectorF::normalizedFast4D() const
 {
-	return _mm_mul_ps(m_data, _mm_rsqrt_ps(sqrLengthVec4D()));
+	return _mm_mul_ps(m_data, _mm_rsqrt_ps(sqrLengthVec4D().getData()));
 }
 

@@ -410,7 +410,6 @@ namespace M3DM
 		explicit VectorF(const Vector3& vector);
 		explicit VectorF(const Vector4& vector);
 		explicit VectorF(const Vector2& vector1, const Vector2& vector2);
-		VECCALL operator M128() const;
 		M128 VECCALL getData() const
 		{
 			return m_data;
@@ -423,8 +422,6 @@ namespace M3DM
 		{
 			return m_data;
 		}
-		//explicit VECCALL operator const M128&() const;
-		//explicit VECCALL operator M128& ();
 #ifdef DIRECTX
 		DirectX::XMVECTOR VECCALL XMVec()
 		{
@@ -559,8 +556,18 @@ namespace M3DM
 		explicit DoubleVectorF(const Vector2& vector1, const Vector2& vector2, const Vector2& vector3, const Vector2& vector4);
 		explicit DoubleVectorF(VectorF vector);
 		explicit DoubleVectorF(VectorF vector1, VectorF vector2);
-		VECCALL operator M256&();
-		VECCALL operator const M256& () const;
+		M256 VECCALL getData() const
+		{
+			return m_data;
+		}
+		M256& VECCALL getDataRef()
+		{
+			return m_data;
+		}
+		const M256& VECCALL getDataConstRef() const
+		{
+			return m_data;
+		}
 
 		// getters and setters
 		float VECCALL get(char ind) const;

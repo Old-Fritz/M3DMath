@@ -34,20 +34,6 @@ VectorF::VectorF(const Vector2& vector1, const Vector2& vector2)
 {
 	load(vector1, vector2);
 }
-VECCALL VectorF::operator __m128() const
-{
-	return m_data;
-}
-/*
-VECCALL VectorF::operator __m128&()
-{
-	return m_data;
-}
-VECCALL VectorF::operator const __m128& () const
-{
-	return m_data;
-}
-*/
 
 // getters and setters
 float VECCALL VectorF::get(const char ind)  const
@@ -231,14 +217,14 @@ bool VECCALL VectorF::operator>=(VectorF vector) const
 }
 bool VECCALL VectorF::isEqualPrec(VectorF vector, float precision, int mask) const
 {
-	__m128 delta = (*this - vector).abs();
+	__m128 delta = (*this - vector).abs().getData();
 	__m128 dataCmp = _mm_cmple_ps(delta, _mm_set_ps1(precision));
 	return (_mm_movemask_ps(dataCmp) & mask) == mask;
 }
 bool VECCALL VectorF::isEqualPrec(VectorF vector, VectorF precision, int mask) const
 {
-	__m128 delta = (*this - vector).abs();
-	__m128 dataCmp = _mm_cmple_ps(delta, precision);
+	__m128 delta = (*this - vector).abs().getData();
+	__m128 dataCmp = _mm_cmple_ps(delta, precision.getData());
 	return (_mm_movemask_ps(dataCmp) & mask) == mask;
 }
 VectorF VECCALL VectorF::isEqualVec(VectorF vector) const
@@ -247,8 +233,8 @@ VectorF VECCALL VectorF::isEqualVec(VectorF vector) const
 }
 VectorF VECCALL VectorF::isEqualPrecVec(VectorF vector, VectorF precision) const
 {
-	__m128 delta = (*this - vector).abs();
-	return _mm_cmple_ps(delta, precision);
+	__m128 delta = (*this - vector).abs().getData();
+	return _mm_cmple_ps(delta, precision.getData());
 }
 
 // Load/store

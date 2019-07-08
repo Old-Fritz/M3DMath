@@ -6,8 +6,8 @@ using namespace M3DM;
 VectorF VECCALL M3DM::vecFCross2D(VectorF vec1, VectorF vec2)
 {
 	__m128 result = _mm_sub_ps(
-		_mm_mul_ps(vec1, _mm_shuffle_ps(vec2, vec2, _MM_SHUFFLE(3, 2, 1, 1))),
-		_mm_mul_ps(vec2, _mm_shuffle_ps(vec1, vec1, _MM_SHUFFLE(3, 2, 1, 1)))
+		_mm_mul_ps(vec1.getData(), _mm_shuffle_ps(vec2.getData(), vec2.getData(), _MM_SHUFFLE(3, 2, 1, 1))),
+		_mm_mul_ps(vec2.getData(), _mm_shuffle_ps(vec1.getData(), vec1.getData(), _MM_SHUFFLE(3, 2, 1, 1)))
 	);
 	return  _mm_shuffle_ps(result, result, _MM_SHUFFLE(0, 0, 0, 0));
 }
@@ -73,7 +73,7 @@ VectorF VECCALL M3DM::vecFRefractVec2D(VectorF vec, VectorF normal, VectorF refr
 }
 VectorF VECCALL M3DM::vecFDotVec2D(VectorF vec1, VectorF vec2)
 {
-	return _mm_dp_ps(vec1, vec2, 0b00111111);
+	return _mm_dp_ps(vec1.getData(), vec2.getData(), 0b00111111);
 }
 VectorF VECCALL M3DM::vecFLinePointDistanceVec2D(VectorF linePoint1, VectorF linePoint2, VectorF point)
 {
@@ -123,19 +123,19 @@ bool VECCALL M3DM::vecFCmp2D(VectorF vec1, VectorF vec2, int type)
 	switch(type)
 	{
 	case CMP_EQ:
-		cmpResult = _mm_cmpeq_ps(vec1, vec2);
+		cmpResult = _mm_cmpeq_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_LE:
-		cmpResult = _mm_cmple_ps(vec1, vec2);
+		cmpResult = _mm_cmple_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_LT:
-		cmpResult = _mm_cmplt_ps(vec1, vec2);
+		cmpResult = _mm_cmplt_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_GE:
-		cmpResult = _mm_cmpge_ps(vec1, vec2);
+		cmpResult = _mm_cmpge_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_GT:
-		cmpResult = _mm_cmpgt_ps(vec1, vec2);
+		cmpResult = _mm_cmpgt_ps(vec1.getData(), vec2.getData());
 		break;
 	default:
 		cmpResult = __m128();

@@ -125,19 +125,19 @@ bool VECCALL M3DM::vecFCmp3D(VectorF vec1, VectorF vec2, int type)
 	switch (type)
 	{
 	case CMP_EQ:
-		cmpResult = _mm_cmpeq_ps(vec1, vec2);
+		cmpResult = _mm_cmpeq_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_LE:
-		cmpResult = _mm_cmple_ps(vec1, vec2);
+		cmpResult = _mm_cmple_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_LT:
-		cmpResult = _mm_cmplt_ps(vec1, vec2);
+		cmpResult = _mm_cmplt_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_GE:
-		cmpResult = _mm_cmpge_ps(vec1, vec2);
+		cmpResult = _mm_cmpge_ps(vec1.getData(), vec2.getData());
 		break;
 	case CMP_GT:
-		cmpResult = _mm_cmpgt_ps(vec1, vec2);
+		cmpResult = _mm_cmpgt_ps(vec1.getData(), vec2.getData());
 		break;
 	default:
 		cmpResult = __m128();

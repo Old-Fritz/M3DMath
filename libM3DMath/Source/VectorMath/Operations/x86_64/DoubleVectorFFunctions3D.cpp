@@ -6,8 +6,8 @@ using namespace M3DM;
 DoubleVectorF VECCALL M3DM::doubleVecFCross3D(DoubleVectorF vec1, DoubleVectorF vec2)
 {
 	__m256 result = _mm256_sub_ps(
-		_mm256_mul_ps(vec1, _mm256_shuffle_ps(vec2, vec2, _MM_SHUFFLE(3, 0, 2, 1))),
-		_mm256_mul_ps(vec2, _mm256_shuffle_ps(vec1, vec1, _MM_SHUFFLE(3, 0, 2, 1)))
+		_mm256_mul_ps(vec1.getData(), _mm256_shuffle_ps(vec2.getData(), vec2.getData(), _MM_SHUFFLE(3, 0, 2, 1))),
+		_mm256_mul_ps(vec2.getData(), _mm256_shuffle_ps(vec1.getData(), vec1.getData(), _MM_SHUFFLE(3, 0, 2, 1)))
 	);
 	return  _mm256_shuffle_ps(result, result, _MM_SHUFFLE(3, 0, 2, 1));
 }
@@ -73,7 +73,7 @@ DoubleVectorF VECCALL M3DM::doubleVecFRefractVec3D(DoubleVectorF vec, DoubleVect
 }
 DoubleVectorF VECCALL M3DM::doubleVecFDotVec3D(DoubleVectorF vec1, DoubleVectorF vec2)
 {
-	return _mm256_dp_ps(vec1, vec2, 0b01111111);
+	return _mm256_dp_ps(vec1.getData(), vec2.getData(), 0b01111111);
 }
 DoubleVectorF VECCALL M3DM::doubleVecFLinePointDistanceVec3D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point)
 {
@@ -131,19 +131,19 @@ void VECCALL M3DM::doubleVecFCmp3D(DoubleVectorF vec1, DoubleVectorF vec2, int t
 	switch (type)
 	{
 	case CMP_EQ:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_EQ_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_EQ_OQ);
 		break;
 	case CMP_LE:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_LE_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_LE_OQ);
 		break;
 	case CMP_LT:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_LT_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_LT_OQ);
 		break;
 	case CMP_GE:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_GE_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_GE_OQ);
 		break;
 	case CMP_GT:
-		cmpResult = _mm256_cmp_ps(vec1, vec2, _CMP_GT_OQ);
+		cmpResult = _mm256_cmp_ps(vec1.getData(), vec2.getData(), _CMP_GT_OQ);
 		break;
 	default:
 		cmpResult = __m256();
