@@ -968,11 +968,46 @@ namespace M3DM
 	MatrixScalar operator/(float scale, const MatrixScalar& matrix);
 
 	// matrix functions
-	MatrixScalar matrixScalarIdentity();
-	MatrixScalar matrixScalarInfinity();
 	float matrixScalar3Determinant(float m11, float m12, float m13,
 		float m21, float m22, float m23,
 		float m31, float m32, float m33);
+	MatrixScalar matrixScalarIdentity();
+	MatrixScalar matrixScalarInfinity();
+
+	// Transforms
+	MatrixScalar matrixScalarScaling(float x, float y, float z);
+	MatrixScalar matrixScalarScaling(Vector3 scale);
+
+	MatrixScalar matrixScalarRotationX(float angle);
+	MatrixScalar matrixScalarRotationY(float angle);
+	MatrixScalar matrixScalarRotationZ(float angle);
+	MatrixScalar matrixScalarRotationAxis(Vector3 axis, float angle);
+	MatrixScalar matrixScalarRotationNormal(Vector3 normal, float angle);
+	MatrixScalar matrixScalarRotationYawPitchRoll(float yaw, float pitch, float roll);
+	MatrixScalar matrixScalarRotationYawPitchRoll(Vector3 yawPitchRoll);
+	//MatrixScalar matrixScalarRotationQuaternion(Vector4 quaternion);
+
+	MatrixScalar matrixScalarTranslation(float x, float y, float z);
+	MatrixScalar matrixScalarTranslation(Vector3 vector);
+
+	//MatrixScalar matrixScalarTransformation(Vector3 scale,
+	//	Vector3 rotationOrigin, Vector4 rotationQuaternion, Vector3 translation);
+
+	Vector3 matrixScalarTransformCoord3D(Vector3 vector, MatrixScalar matrix);
+	Vector3 matrixScalarTransformNormal3D(Vector3 vector, MatrixScalar matrix);
+	Vector4 matrixScalarTransform(Vector4 vector, MatrixScalar matrix);
+
+	// special matricies LH
+	MatrixScalar matrixScalarOrthoLH();
+	MatrixScalar matrixScalarPerspectiveLH();
+	MatrixScalar matrixScalarPerspectiveFovLH();
+	MatrixScalar matrixScalarLookAtLH();
+
+	// special matricies RH
+	MatrixScalar matrixScalarOrthoRH();
+	MatrixScalar matrixScalarPerspectiveRH();
+	MatrixScalar matrixScalarPerspectiveFovRH();
+	MatrixScalar matrixScalarLookAtRH();
 
 	// vector simd matrix
 	class ALIGN(32)  MatrixF
@@ -1067,4 +1102,40 @@ namespace M3DM
 	float VECCALL matrixF3Determinant(VectorF vec1, VectorF vec2, VectorF vec3);
 	MatrixF VECCALL matrixFIdentity();
 	MatrixF VECCALL matrixFInfinity();
+
+	// Transforms
+	MatrixF matrixFScaling(float x, float y, float z);
+	MatrixF matrixFScaling(VectorF scale);
+
+	MatrixF matrixFRotationX(float angle);
+	MatrixF matrixFRotationY(float angle);
+	MatrixF matrixFRotationZ(float angle);
+	MatrixF matrixFRotationAxis(VectorF axis, float angle);
+	MatrixF matrixFRotationNormal(VectorF normal, float angle);
+	MatrixF matrixFRotationYawPitchRoll(float yaw, float pitch, float roll);
+	MatrixF matrixFRotationYawPitchRoll(VectorF yawPitchRoll);
+	//MatrixF matrixFRotationQuaternion(VectorF quaternion);
+
+	MatrixF matrixFTranslation(float x, float y, float z);
+	MatrixF matrixFTranslation(VectorF vector);
+
+	//matrixF matrixFTransformation(VectorF scale,
+	//	VectorF rotationOrigin, VectorF rotationQuaternion, VectorF translation);
+
+	Vector3 matrixFTransformCoord3D(VectorF vector, MatrixF matrix);
+	Vector3 matrixFTransformNormal3D(VectorF vector, MatrixF matrix);
+	Vector4 matrixFTransform(VectorF vector, MatrixF matrix);
+
+	// special matricies LH
+	MatrixF matrixFOrthoLH();
+	MatrixF matrixFPerspectiveLH();
+	MatrixF matrixFPerspectiveFovLH();
+	MatrixF matrixFLookAtLH();
+
+	// special matricies RH
+	MatrixF matrixFOrthoRH();
+	MatrixF matrixFPerspectiveRH();
+	MatrixF matrixFPerspectiveFovRH();
+	MatrixF matrixFLookAtRH();
+	
 }
