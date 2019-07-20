@@ -18,6 +18,8 @@ bool makeMatrixTests()
 {
 	MatrixScalarTester matrixScalarTester;
 	MatrixFTester matrixFTester;
+	MatrixScalarFunctionsTester matrixScalarFunctionsTester;
+	MatrixFFunctionsTester matrixFFunctionsTester;
 
 	bool result;
 
@@ -26,6 +28,14 @@ bool makeMatrixTests()
 		return false;
 
 	result = matrixFTester.testAll();
+	if (!result)
+		return false;
+
+	result = matrixScalarFunctionsTester.testAll();
+	if (!result)
+		return false;
+
+	result = matrixFFunctionsTester.testAll();
 	if (!result)
 		return false;
 

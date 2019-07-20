@@ -838,6 +838,7 @@ bool MatrixFTester::testMul()
 		return false;
 	}
 
+#ifdef DIRECTX
 	// TEST #6
 	//MatrixF s1, s2, sPrediction;
 	m1 = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -855,7 +856,7 @@ bool MatrixFTester::testMul()
 		std::cout << "Failed. Computed value: " << m1 << std::endl;
 		return false;
 	}
-
+#endif
 	return true;
 }
 

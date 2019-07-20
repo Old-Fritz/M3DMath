@@ -525,7 +525,7 @@ bool MatrixScalarTester::testDiv()
 	prediction = MatrixScalar(0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8);
 	std::cout << "TEST #1: " << m1 << " / " << value << " == " << prediction << std::endl;
 	matrixResult = m1 / value;
-	result = matrixResult == prediction;
+	result = matrixResult.isEqualPrec(prediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << matrixResult << std::endl;
@@ -538,7 +538,7 @@ bool MatrixScalarTester::testDiv()
 	prediction = MatrixScalar(0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8);
 	std::cout << "TEST #2: " << m1 << " /= " << value << " == " << prediction << std::endl;
 	m1 /= value;
-	result = m1 == prediction;
+	result = m1.isEqualPrec(prediction, 0.0001f);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: " << m1 << std::endl;

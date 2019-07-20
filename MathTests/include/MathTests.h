@@ -208,3 +208,29 @@ public:
 	bool testDiv();
 	bool testFunctions();
 };
+
+class MatrixScalarFunctionsTester
+{
+public:
+	bool testAll();
+
+	bool testScale();
+	bool testRotation();
+	bool testTranslation();
+	bool testTransform();
+	bool testSpecialLH();
+	bool testSpecialRH();
+};
+
+class MatrixFFunctionsTester
+{
+public:
+	bool testAll();
+
+	bool testScale();
+	bool testRotation();
+	bool testTranslation();
+	bool testTransform();
+	bool testSpecialLH();
+	bool testSpecialRH();
+};

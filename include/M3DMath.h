@@ -352,7 +352,6 @@ namespace M3DM
 	};
 
 	/// Different operator combinations
-#pragma region 
 	// Vector2 and Vector3
 	Vector3 operator*(const Vector3& vector1, const Vector2& vector2);
 	Vector3 operator*(const Vector2& vector1, const Vector3& vector2);
@@ -390,7 +389,6 @@ namespace M3DM
 	Vector2 operator/(float scale, const Vector2& vector);
 	Vector3 operator/(float scale, const Vector3& vector);
 	Vector4 operator/(float scale, const Vector4& vector);
-#pragma endregion operators
 	
 	/// SSE vector
 	class ALIGN(16) VectorF
@@ -998,16 +996,18 @@ namespace M3DM
 	Vector4 matrixScalarTransform(Vector4 vector, MatrixScalar matrix);
 
 	// special matricies LH
-	MatrixScalar matrixScalarOrthoLH();
-	MatrixScalar matrixScalarPerspectiveLH();
-	MatrixScalar matrixScalarPerspectiveFovLH();
-	MatrixScalar matrixScalarLookAtLH();
+	MatrixScalar matrixScalarOrthoLH(float width, float height, float minZ, float maxZ);
+	MatrixScalar matrixScalarPerspectiveLH(float width, float height, float minZ, float maxZ);
+	MatrixScalar matrixScalarPerspectiveFovLH(float fov, float aspect, float minZ, float maxZ);
+	MatrixScalar matrixScalarLookAtLH(Vector3 eye, Vector3 at, Vector3 up);
 
 	// special matricies RH
-	MatrixScalar matrixScalarOrthoRH();
-	MatrixScalar matrixScalarPerspectiveRH();
-	MatrixScalar matrixScalarPerspectiveFovRH();
-	MatrixScalar matrixScalarLookAtRH();
+	/*
+	MatrixScalar matrixScalarOrthoRH(float width, float height, float minZ, float maxZ);
+	MatrixScalar matrixScalarPerspectiveRH(float width, float height, float minZ, float maxZ);
+	MatrixScalar matrixScalarPerspectiveFovRH(float fov, float aspect, float minZ, float maxZ);
+	MatrixScalar matrixScalarLookAtRH(Vector3 eye, Vector3 at, Vector3 up);
+	*/
 
 	// vector simd matrix
 	class ALIGN(32)  MatrixF
@@ -1108,10 +1108,15 @@ namespace M3DM
 	MatrixF matrixFScaling(VectorF scale);
 
 	MatrixF matrixFRotationX(float angle);
+	MatrixF matrixFRotationX(VectorF angle);
 	MatrixF matrixFRotationY(float angle);
+	MatrixF matrixFRotationY(VectorF angle);
 	MatrixF matrixFRotationZ(float angle);
+	MatrixF matrixFRotationZ(VectorF angle);
 	MatrixF matrixFRotationAxis(VectorF axis, float angle);
+	MatrixF matrixFRotationAxis(VectorF axis, VectorF angle);
 	MatrixF matrixFRotationNormal(VectorF normal, float angle);
+	MatrixF matrixFRotationNormal(VectorF normal, VectorF angle);
 	MatrixF matrixFRotationYawPitchRoll(float yaw, float pitch, float roll);
 	MatrixF matrixFRotationYawPitchRoll(VectorF yawPitchRoll);
 	//MatrixF matrixFRotationQuaternion(VectorF quaternion);
@@ -1127,15 +1132,22 @@ namespace M3DM
 	Vector4 matrixFTransform(VectorF vector, MatrixF matrix);
 
 	// special matricies LH
-	MatrixF matrixFOrthoLH();
-	MatrixF matrixFPerspectiveLH();
-	MatrixF matrixFPerspectiveFovLH();
-	MatrixF matrixFLookAtLH();
+	MatrixF matrixFOrthoLH(float width, float height, float minZ, float maxZ);
+	MatrixF matrixFPerspectiveLH(float width, float height, float minZ, float maxZ);
+	MatrixF matrixFPerspectiveFovLH(float fov, float aspect, float minZ, float maxZ);
+	MatrixF matrixFOrthoLH(VectorF width, VectorF height, VectorF minZ, VectorF maxZ);
+	MatrixF matrixFPerspectiveLH(VectorF width, VectorF height, VectorF minZ, VectorF maxZ);
+	MatrixF matrixFPerspectiveFovLH(VectorF fov, VectorF aspect, VectorF minZ, VectorF maxZ);
+	MatrixF matrixFLookAtLH(VectorF eye, VectorF at, VectorF up);
 
 	// special matricies RH
-	MatrixF matrixFOrthoRH();
-	MatrixF matrixFPerspectiveRH();
-	MatrixF matrixFPerspectiveFovRH();
-	MatrixF matrixFLookAtRH();
-	
+	/*
+	MatrixF matrixFOrthoRH(float width, float height, float minZ, float maxZ);
+	MatrixF matrixFPerspectiveRH(float width, float height, float minZ, float maxZ);
+	MatrixF matrixFPerspectiveFovRH(float fov, float aspect, float minZ, float maxZ);
+	MatrixF matrixFOrthoRH(VectorF width, VectorF height, VectorF minZ, VectorF maxZ);
+	MatrixF matrixFPerspectiveRH(VectorF width, VectorF height, VectorF minZ, VectorF maxZ);
+	MatrixF matrixFPerspectiveFovRH(VectorF fov, VectorF aspect, VectorF minZ, VectorF maxZ);
+	MatrixF matrixFLookAtRH(VectorF eye, VectorF at, VectorF up);
+	*/
 }
