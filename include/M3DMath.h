@@ -1089,6 +1089,37 @@ namespace M3DM
 		VectorF VECCALL determinantVec() const;
 		float VECCALL determinant() const;
 
+		// friend functions
+		friend MatrixF matrixFScaling(float x, float y, float z);
+		friend MatrixF matrixFScaling(VectorF scale);
+		 
+		friend MatrixF matrixFRotationX(float angle);
+		friend MatrixF matrixFRotationX(VectorF angle);
+		friend MatrixF matrixFRotationY(float angle);
+		friend MatrixF matrixFRotationY(VectorF angle);
+		friend MatrixF matrixFRotationZ(float angle);
+		friend MatrixF matrixFRotationZ(VectorF angle);
+		friend MatrixF matrixFRotationAxis(VectorF axis, float angle);
+		friend MatrixF matrixFRotationAxis(VectorF axis, VectorF angle);
+		friend MatrixF matrixFRotationNormal(VectorF normal, float angle);
+		friend MatrixF matrixFRotationNormal(VectorF normal, VectorF angle);
+		friend MatrixF matrixFRotationYawPitchRoll(float yaw, float pitch, float roll);
+		friend MatrixF matrixFRotationYawPitchRoll(VectorF yawPitchRoll);
+		 
+		friend MatrixF matrixFTranslation(float x, float y, float z);
+		friend MatrixF matrixFTranslation(VectorF vector);
+
+		friend VectorF matrixFTransformCoord3D(VectorF vector, MatrixF matrix);
+		friend VectorF matrixFTransformNormal3D(VectorF vector, MatrixF matrix);
+		friend VectorF matrixFTransform(VectorF vector, MatrixF matrix);
+		 
+		friend MatrixF matrixFOrthoLH(float width, float height, float minZ, float maxZ);
+		friend MatrixF matrixFPerspectiveLH(float width, float height, float minZ, float maxZ);
+		friend MatrixF matrixFPerspectiveFovLH(float fov, float aspect, float minZ, float maxZ);
+		friend MatrixF matrixFOrthoLH(VectorF width, VectorF height, VectorF minZ, VectorF maxZ);
+		friend MatrixF matrixFPerspectiveLH(VectorF width, VectorF height, VectorF minZ, VectorF maxZ);
+		friend MatrixF matrixFPerspectiveFovLH(VectorF fov, VectorF aspect, VectorF minZ, VectorF maxZ);
+		friend MatrixF matrixFLookAtLH(VectorF eye, VectorF at, VectorF up);
 	private:
 		M128 m_rows[4];
 	};
@@ -1127,9 +1158,9 @@ namespace M3DM
 	//matrixF matrixFTransformation(VectorF scale,
 	//	VectorF rotationOrigin, VectorF rotationQuaternion, VectorF translation);
 
-	Vector3 matrixFTransformCoord3D(VectorF vector, MatrixF matrix);
-	Vector3 matrixFTransformNormal3D(VectorF vector, MatrixF matrix);
-	Vector4 matrixFTransform(VectorF vector, MatrixF matrix);
+	VectorF matrixFTransformCoord3D(VectorF vector, MatrixF matrix);
+	VectorF matrixFTransformNormal3D(VectorF vector, MatrixF matrix);
+	VectorF matrixFTransform(VectorF vector, MatrixF matrix);
 
 	// special matricies LH
 	MatrixF matrixFOrthoLH(float width, float height, float minZ, float maxZ);

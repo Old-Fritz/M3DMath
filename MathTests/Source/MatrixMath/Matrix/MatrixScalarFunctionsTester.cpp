@@ -294,7 +294,7 @@ bool MatrixScalarFunctionsTester::testTransform()
 	result = vector4Result.isEqualPrec(vector4Prediction, 0.0001f);
 	if (!result)
 	{
-		std::cout << "Failed. Result is " << vector3Result << std::endl;
+		std::cout << "Failed. Result is " << vector4Result << std::endl;
 		return false;
 	}
 
@@ -310,7 +310,7 @@ bool MatrixScalarFunctionsTester::testTransform()
 	result = vector4Result.isEqualPrec(vector4Prediction, 0.0001f);
 	if (!result)
 	{
-		std::cout << "Failed. Result is " << vector3Result << std::endl;
+		std::cout << "Failed. Result is " << vector4Result << std::endl;
 		return false;
 	}
 
