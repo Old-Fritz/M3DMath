@@ -5,9 +5,9 @@
 
 using namespace M3DM;
 
-bool VectorFunctionsTester::testAll()
+Bool VectorFunctionsTester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------VECTOR FUNCTIONS TEST------" << std::endl;
 	std::cout << "--Test Vector2--" << std::endl;
 	result = testVector2();
@@ -62,12 +62,12 @@ bool VectorFunctionsTester::testAll()
 	return true;
 }
 
-bool VectorFunctionsTester::testVector2()
+Bool VectorFunctionsTester::testVector2()
 {
 	Vector2 arg1, arg2, arg3, arg4, vecResult,  vecPrediction;
-	float value, valueResult, valuePrediction;
-	bool boolResult, boolPrediction;
-	bool result;
+	Float value, valueResult, valuePrediction;
+	Bool boolResult, boolPrediction;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector2(1, 2);
@@ -430,12 +430,12 @@ bool VectorFunctionsTester::testVector2()
 	return true;
 }
 
-bool VectorFunctionsTester::testVector3()
+Bool VectorFunctionsTester::testVector3()
 {
 	Vector3 arg1, arg2, arg3, arg4, vecResult, vecPrediction;
-	float value, valueResult, valuePrediction;
-	bool boolResult, boolPrediction;
-	bool result;
+	Float value, valueResult, valuePrediction;
+	Bool boolResult, boolPrediction;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector3(1, 2, 3);
@@ -797,12 +797,12 @@ bool VectorFunctionsTester::testVector3()
 	return true;
 }
 
-bool VectorFunctionsTester::testVector4()
+Bool VectorFunctionsTester::testVector4()
 {
 	Vector4 arg1, arg2, arg3, arg4, vecResult, vecPrediction;
-	float value, valueResult, valuePrediction;
-	bool boolResult, boolPrediction;
-	bool result;
+	Float value, valueResult, valuePrediction;
+	Bool boolResult, boolPrediction;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector4(1, 2, 3, 14);
@@ -821,9 +821,9 @@ bool VectorFunctionsTester::testVector4()
 	arg1 = Vector4(1, 2, 3, 4);
 	arg2 = Vector4(1, 3, 5, 4);
 	vecPrediction = Vector4(1, -2, 1, 0);
-	//XMStoreFloat3((XMFLOAT3*)static_cast<const float*>(vecPrediction),
-	//	XMVector4Cross(XMLoadFloat3((XMFLOAT3*)static_cast<const float*>(arg1)),
-	//		XMLoadFloat3((XMFLOAT3*)static_cast<const float*>(arg2))));
+	//XMStoreFloat3((XMFLOAT3*)static_cast<const Float*>(vecPrediction),
+	//	XMVector4Cross(XMLoadFloat3((XMFLOAT3*)static_cast<const Float*>(arg1)),
+	//		XMLoadFloat3((XMFLOAT3*)static_cast<const Float*>(arg2))));
 	std::cout << "TEST #2: vec4Cross(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vec4Cross3D(arg1, arg2);
 	result = vecResult == vecPrediction;
@@ -979,9 +979,9 @@ bool VectorFunctionsTester::testVector4()
 	arg1 = Vector4(1, -2, 5, 7);
 	arg2 = Vector4(0, 1, 2, 9);
 	vecPrediction = Vector4(1, -144, -279, - 1271);
-	//XMStoreFloat4((XMFLOAT4*)static_cast<const float*>(vecPrediction),
-	//	XMVector4Reflect(XMLoadFloat4((XMFLOAT4*)static_cast<const float*>(arg1)),
-	//		XMLoadFloat4((XMFLOAT4*)static_cast<const float*>(arg2))));
+	//XMStoreFloat4((XMFLOAT4*)static_cast<const Float*>(vecPrediction),
+	//	XMVector4Reflect(XMLoadFloat4((XMFLOAT4*)static_cast<const Float*>(arg1)),
+	//		XMLoadFloat4((XMFLOAT4*)static_cast<const Float*>(arg2))));
 	std::cout << "TEST #13: vec4Reflect(" << arg1 << ", " << arg2 << ") == " << vecPrediction << std::endl;
 	vecResult = vec4Reflect(arg1, arg2);
 	result = vecResult == vecPrediction;
@@ -1170,12 +1170,12 @@ bool VectorFunctionsTester::testVector4()
 	return true;
 }
 
-bool VectorFunctionsTester::testVectorF2D()
+Bool VectorFunctionsTester::testVectorF2D()
 {
 	VectorF arg1, arg2, arg3, arg4, vecResult, vecPrediction;
-	float value, valueResult, valuePrediction;
-	bool boolResult, boolPrediction;
-	bool result;
+	Float value, valueResult, valuePrediction;
+	Bool boolResult, boolPrediction;
+	Bool result;
 
 	// TEST #1
 	arg1 = VectorF(1, 2, 3, 4);
@@ -1551,12 +1551,12 @@ bool VectorFunctionsTester::testVectorF2D()
 	return true;
 }
 
-bool VectorFunctionsTester::testVectorF3D()
+Bool VectorFunctionsTester::testVectorF3D()
 {
 	VectorF arg1, arg2, arg3, arg4, vecResult, vecPrediction;
-	float value, valueResult, valuePrediction;
-	bool boolResult, boolPrediction;
-	bool result;
+	Float value, valueResult, valuePrediction;
+	Bool boolResult, boolPrediction;
+	Bool result;
 
 	// TEST #1
 	arg1 = VectorF(1, 2, 3, 4);
@@ -1932,12 +1932,12 @@ bool VectorFunctionsTester::testVectorF3D()
 	return true;
 }
 
-bool VectorFunctionsTester::testVectorF4D()
+Bool VectorFunctionsTester::testVectorF4D()
 {
 	VectorF arg1, arg2, arg3, arg4, vecResult, vecPrediction;
-	float value, valueResult, valuePrediction;
-	bool boolResult, boolPrediction;
-	bool result;
+	Float value, valueResult, valuePrediction;
+	Bool boolResult, boolPrediction;
+	Bool result;
 
 	// TEST #1
 	arg1 = VectorF(1, 2, 3, 4);
@@ -2235,12 +2235,12 @@ bool VectorFunctionsTester::testVectorF4D()
 	return true;
 }
 
-bool VectorFunctionsTester::testDoubleVectorF2D()
+Bool VectorFunctionsTester::testDoubleVectorF2D()
 {
 	DoubleVectorF arg1, arg2, arg3, arg4, vecResult, vecPrediction;
-	float value, valueResult, valueResult2, valuePrediction, valuePrediction2;
-	bool boolResult, boolResult2, boolPrediction, boolPrediction2;
-	bool result;
+	Float value, valueResult, valueResult2, valuePrediction, valuePrediction2;
+	Bool boolResult, boolResult2, boolPrediction, boolPrediction2;
+	Bool result;
 
 	// TEST #1
 	arg1 = DoubleVectorF(1, 2, 3, 4, 1, 2, 3, 4);
@@ -2636,12 +2636,12 @@ bool VectorFunctionsTester::testDoubleVectorF2D()
 	return true;
 }
 
-bool VectorFunctionsTester::testDoubleVectorF3D()
+Bool VectorFunctionsTester::testDoubleVectorF3D()
 {
 	DoubleVectorF arg1, arg2, arg3, arg4, vecResult, vecPrediction;
-	float value, valueResult, valueResult2, valuePrediction, valuePrediction2;
-	bool boolResult, boolResult2, boolPrediction, boolPrediction2;
-	bool result;
+	Float value, valueResult, valueResult2, valuePrediction, valuePrediction2;
+	Bool boolResult, boolResult2, boolPrediction, boolPrediction2;
+	Bool result;
 
 	// TEST #1
 	arg1 = DoubleVectorF(1, 2, 3, 4, 1, 2, 3, 4);
@@ -3038,12 +3038,12 @@ bool VectorFunctionsTester::testDoubleVectorF3D()
 	return true;
 }
 
-bool VectorFunctionsTester::testDoubleVectorF4D()
+Bool VectorFunctionsTester::testDoubleVectorF4D()
 {
 	DoubleVectorF arg1, arg2, arg3, arg4, vecResult, vecPrediction;
-	float value, valueResult, valueResult2, valuePrediction, valuePrediction2;
-	bool boolResult, boolResult2, boolPrediction, boolPrediction2;
-	bool result;
+	Float value, valueResult, valueResult2, valuePrediction, valuePrediction2;
+	Bool boolResult, boolResult2, boolPrediction, boolPrediction2;
+	Bool result;
 
 
 	// TEST #1

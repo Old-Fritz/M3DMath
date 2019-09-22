@@ -98,13 +98,13 @@ void VECCALL DoubleVectorF::sincos(DoubleVectorF& sin, DoubleVectorF& cos) const
 }
 
 // functions 2d
-void VECCALL DoubleVectorF::length2D(float& len1, float& len2) const
+void VECCALL DoubleVectorF::length2D(Float& len1, Float& len2) const
 {
 	DoubleVectorF length = lengthVec2D();
 	len1 = length.get(0);
 	len2 = length.get(4);
 }
-void VECCALL DoubleVectorF::sqrLength2D(float& len1, float& len2) const
+void VECCALL DoubleVectorF::sqrLength2D(Float& len1, Float& len2) const
 {
 	DoubleVectorF length = sqrLengthVec2D();
 	len1 = length.get(0);
@@ -135,13 +135,13 @@ DoubleVectorF VECCALL DoubleVectorF::normalizedFast2D() const
 }
 
 // functions 3d
-void VECCALL DoubleVectorF::length3D(float& len1, float& len2) const
+void VECCALL DoubleVectorF::length3D(Float& len1, Float& len2) const
 {
 	DoubleVectorF length = lengthVec3D();
 	len1 = length.get(0);
 	len2 = length.get(4);
 }
-void VECCALL DoubleVectorF::sqrLength3D(float& len1, float& len2) const
+void VECCALL DoubleVectorF::sqrLength3D(Float& len1, Float& len2) const
 {
 	DoubleVectorF length = sqrLengthVec3D();
 	len1 = length.get(0);
@@ -154,11 +154,11 @@ DoubleVectorF VECCALL DoubleVectorF::normalized3D() const
 DoubleVectorF VECCALL DoubleVectorF::orthogonal3D() const
 {
 	DoubleVectorF resultVec;
-	ALIGN(32) float data[8];
+	ALIGN(32) Float data[8];
 	DoubleVectorF mask = DoubleVectorF(0, 0, 0, FNAN, 0, 0, 0, FNAN);
 	store(data);
-	float value1 = -data[0] - data[1];
-	float value2 = -data[4] - data[5];
+	Float value1 = -data[0] - data[1];
+	Float value2 = -data[4] - data[5];
 
 	resultVec = _mm256_shuffle_ps(m_data, m_data, 0b11101010);
 	resultVec.set(2, value1);
@@ -190,13 +190,13 @@ DoubleVectorF VECCALL DoubleVectorF::normalizedFast3D() const
 }
 
 // functions 4d
-void VECCALL DoubleVectorF::length4D(float& len1, float& len2) const
+void VECCALL DoubleVectorF::length4D(Float& len1, Float& len2) const
 {
 	DoubleVectorF length = lengthVec4D();
 	len1 = length.get(0);
 	len2 = length.get(4);
 }
-void VECCALL DoubleVectorF::sqrLength4D(float& len1, float& len2) const
+void VECCALL DoubleVectorF::sqrLength4D(Float& len1, Float& len2) const
 {
 	DoubleVectorF length = sqrLengthVec4D();
 	len1 = length.get(0);

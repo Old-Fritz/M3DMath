@@ -2,9 +2,9 @@
 
 using namespace M3DM;
 
-bool VectorOperationsTester::testAll()
+Bool VectorOperationsTester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------VECTOR OPERATIONS TEST------" << std::endl;
 	std::cout << "--Test Vector2 and Vector3--" << std::endl;
 	result = testVector2And3();
@@ -30,11 +30,11 @@ bool VectorOperationsTester::testAll()
 	return true;
 }
 
-bool VectorOperationsTester::testVector2And3()
+Bool VectorOperationsTester::testVector2And3()
 {
 	Vector3 arg1, prediction, resultVec;
 	Vector2 arg2;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector3(1, 2, 3);
@@ -143,11 +143,11 @@ bool VectorOperationsTester::testVector2And3()
 	return true;
 }
 
-bool VectorOperationsTester::testVector2And4()
+Bool VectorOperationsTester::testVector2And4()
 {
 	Vector4 arg1, prediction, resultVec;
 	Vector2 arg2;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector4(1, 2, 3, 4);
@@ -256,11 +256,11 @@ bool VectorOperationsTester::testVector2And4()
 	return true;
 }
 
-bool VectorOperationsTester::testVector3And4()
+Bool VectorOperationsTester::testVector3And4()
 {
 	Vector4 arg1, prediction, resultVec;
 	Vector3 arg2;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector4(1, 2, 3, 4);
@@ -369,13 +369,13 @@ bool VectorOperationsTester::testVector3And4()
 	return true;
 }
 
-bool VectorOperationsTester::testScalarOperations()
+Bool VectorOperationsTester::testScalarOperations()
 {
 	Vector2 vec2, predictionVec2, resultVec2;
 	Vector3 vec3, predictionVec3, resultVec3;
 	Vector4 vec4, predictionVec4, resultVec4;
-	float scalar;
-	bool result;
+	Float scalar;
+	Bool result;
 
 	// TEST #1
 	vec2 = Vector2(1, 2);

@@ -243,19 +243,19 @@ Vector4 M3DM::operator-(const Vector3& vector1, const Vector4& vector2)
 }
 
 // Scalar operations
-Vector2 M3DM::operator*(float scale, const Vector2& vector)
+Vector2 M3DM::operator*(Float scale, const Vector2& vector)
 {
 	return vector*scale;
 }
-Vector3 M3DM::operator*(float scale, const Vector3& vector)
+Vector3 M3DM::operator*(Float scale, const Vector3& vector)
 {
 	return vector*scale;
 }
-Vector4 M3DM::operator*(float scale, const Vector4& vector)
+Vector4 M3DM::operator*(Float scale, const Vector4& vector)
 {
 	return vector*scale;
 }
-Vector2 M3DM::operator/(float scale, const Vector2& vector)
+Vector2 M3DM::operator/(Float scale, const Vector2& vector)
 {
 	Vector2 vectorRes;
 	vectorRes.x = scale / vector.x;
@@ -263,7 +263,7 @@ Vector2 M3DM::operator/(float scale, const Vector2& vector)
 
 	return vectorRes;
 }
-Vector3 M3DM::operator/(float scale, const Vector3& vector)
+Vector3 M3DM::operator/(Float scale, const Vector3& vector)
 {
 	Vector3 vectorRes;
 	vectorRes.x = scale / vector.x;
@@ -272,7 +272,7 @@ Vector3 M3DM::operator/(float scale, const Vector3& vector)
 
 	return vectorRes;
 }
-Vector4 M3DM::operator/(float scale, const Vector4& vector)
+Vector4 M3DM::operator/(Float scale, const Vector4& vector)
 {
 	Vector4 vectorRes;
 	vectorRes.x = scale / vector.x;

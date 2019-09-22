@@ -6,13 +6,13 @@
 using namespace M3DM;
 
 // Conversions
-Vector4::operator float*()
+Vector4::operator Float*()
 {
-	return reinterpret_cast<float*>(this);
+	return reinterpret_cast<Float*>(this);
 }
-Vector4::operator float const*() const
+Vector4::operator Float const*() const
 {
-	return reinterpret_cast<float const*>(this);
+	return reinterpret_cast<Float const*>(this);
 }
 
 // Operators
@@ -56,7 +56,7 @@ Vector4 Vector4::operator/(const Vector4& vector) const
 
 	return vectorRes;
 }
-Vector4 Vector4::operator*(float scale) const
+Vector4 Vector4::operator*(Float scale) const
 {
 	Vector4 vectorRes;
 	vectorRes.x = this->x * scale;
@@ -66,7 +66,7 @@ Vector4 Vector4::operator*(float scale) const
 
 	return vectorRes;
 }
-Vector4 Vector4::operator/(float scale) const
+Vector4 Vector4::operator/(Float scale) const
 {
 	Vector4 vectorRes;
 	vectorRes.x = this->x / scale;
@@ -112,7 +112,7 @@ Vector4& Vector4::operator/=(const Vector4& vector)
 
 	return *this;
 }
-Vector4& Vector4::operator*=(float scale)
+Vector4& Vector4::operator*=(Float scale)
 {
 	this->x *= scale;
 	this->y *= scale;
@@ -121,7 +121,7 @@ Vector4& Vector4::operator*=(float scale)
 
 	return *this;
 }
-Vector4& Vector4::operator/=(float scale)
+Vector4& Vector4::operator/=(Float scale)
 {
 	this->x /= scale;
 	this->y /= scale;
@@ -142,31 +142,31 @@ Vector4 Vector4::operator-() const
 }
 
 // Compare functions
-bool Vector4::operator==(const Vector4& vector) const
+Bool Vector4::operator==(const Vector4& vector) const
 {
 	return x == vector.x && y == vector.y && z == vector.z && w == vector.w;
 }
-bool Vector4::operator<(const Vector4& vector) const
+Bool Vector4::operator<(const Vector4& vector) const
 {
 	return x < vector.x&& y < vector.y&& z < vector.z&& w < vector.w;
 }
-bool Vector4::operator>(const Vector4& vector) const
+Bool Vector4::operator>(const Vector4& vector) const
 {
 	return vector < *this;
 }
-bool Vector4::operator<=(const Vector4& vector) const
+Bool Vector4::operator<=(const Vector4& vector) const
 {
 	return x <= vector.x && y <= vector.y && z <= vector.z && w <= vector.w;
 }
-bool Vector4::operator>=(const Vector4& vector) const
+Bool Vector4::operator>=(const Vector4& vector) const
 {
 	return vector <= *this;
 }
-bool Vector4::isEqualPrec(const Vector4& vector, float precision) const
+Bool Vector4::isEqualPrec(const Vector4& vector, Float precision) const
 {
 	return fabsf(vector.x - x) <= precision && fabsf(vector.y - y) <= precision && fabsf(vector.z - z) <= precision && fabsf(vector.w - w) <= precision;
 }
-bool Vector4::isEqualPrec(const Vector4& vector, const Vector4& precision) const
+Bool Vector4::isEqualPrec(const Vector4& vector, const Vector4& precision) const
 {
 	return fabsf(vector.x - x) <= precision.x && fabsf(vector.y - y) <= precision.y && fabsf(vector.z - z) <= precision.z && fabs(vector.w - w) <= precision.w;
 }

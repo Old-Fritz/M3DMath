@@ -5,7 +5,7 @@ using namespace M3DM;
 
 /// Implementation of Vector2  functions
 
-float M3DM::vec2Distance(const Vector2& vec1, const Vector2& vec2)
+Float M3DM::vec2Distance(const Vector2& vec1, const Vector2& vec2)
 {
 	return (vec1 - vec2).length();
 }
@@ -44,9 +44,9 @@ Vector2 M3DM::vec2IntersectLines(const Vector2& l1p1, const Vector2& l1p2, const
 	Vector2 line1Vec = l1p2 - l1p1;
 	Vector2 line2Vec = l2p2 - l2p1;
 	Vector2 r = l2p1 - l1p1;
-	float lineCross = vec2Cross(line2Vec, line1Vec);
-	float rCross = vec2Cross(line2Vec, r);
-	float shift = rCross / lineCross;
+	Float lineCross = vec2Cross(line2Vec, line1Vec);
+	Float rCross = vec2Cross(line2Vec, r);
+	Float shift = rCross / lineCross;
 	Vector2 point = l1p1 + line1Vec * shift;
 
 	return point;
@@ -58,10 +58,10 @@ Vector2 M3DM::vec2Reflect(const Vector2& vec, const Vector2& normal)
 	return vec - 2 * vec2Dot(vec, normal) * normal;
 }
 
-Vector2 M3DM::vec2Refract(const Vector2& vec, const Vector2& normal, float refractionIndex)
+Vector2 M3DM::vec2Refract(const Vector2& vec, const Vector2& normal, Float refractionIndex)
 {
-	float dot = vec2Dot(vec, normal);
-	float ref = 1 - refractionIndex * refractionIndex * (1 - dot * dot);
+	Float dot = vec2Dot(vec, normal);
+	Float ref = 1 - refractionIndex * refractionIndex * (1 - dot * dot);
 
 	// total reflection
 	if (ref < 0)
@@ -80,7 +80,7 @@ Vector2 M3DM::vec2Pow(const Vector2& vec, const Vector2& pow)
 	return vectorRes;
 }
 
-Vector2 M3DM::vec2Pow(const Vector2& vec, float pow)
+Vector2 M3DM::vec2Pow(const Vector2& vec, Float pow)
 {
 	Vector2 vectorRes;
 
@@ -90,42 +90,42 @@ Vector2 M3DM::vec2Pow(const Vector2& vec, float pow)
 	return vectorRes;
 }
 
-Vector2 M3DM::vec2Lerp(const Vector2& vec1, const Vector2& vec2, float value)
+Vector2 M3DM::vec2Lerp(const Vector2& vec1, const Vector2& vec2, Float value)
 {
 	return vec1 * value + vec2 * (1 - value);
 }
 
-float M3DM::vec2Dot(const Vector2& vec1, const Vector2& vec2)
+Float M3DM::vec2Dot(const Vector2& vec1, const Vector2& vec2)
 {
 	return vec1.x* vec2.x + vec1.y * vec2.y;
 }
 
-float M3DM::vec2Cross(const Vector2& vec1, const Vector2& vec2)
+Float M3DM::vec2Cross(const Vector2& vec1, const Vector2& vec2)
 {
 	return vec1.x* vec2.y - vec1.y * vec2.x;
 }
 
-float M3DM::vec2LinePointDistance(const Vector2& linePoint1, const Vector2& linePoint2, const Vector2& point)
+Float M3DM::vec2LinePointDistance(const Vector2& linePoint1, const Vector2& linePoint2, const Vector2& point)
 {
 	Vector2 lineVec = linePoint2 - linePoint1;
 	Vector2 lineToPointVec = linePoint1 - point;
 
-	float distance = abs(vec2Cross(lineVec, lineToPointVec)) / lineVec.length();
+	Float distance = abs(vec2Cross(lineVec, lineToPointVec)) / lineVec.length();
 
 	return distance;
 }
 
-float M3DM::vec2AngleBetween(const Vector2& vec1, const Vector2& vec2)
+Float M3DM::vec2AngleBetween(const Vector2& vec1, const Vector2& vec2)
 {
 	return acosf(vec2Dot(vec1, vec2)/(vec1.length()*vec2.length()));
 }
 
-float M3DM::vec2AngleBetweenNormals(const Vector2& vec1, const Vector2& vec2)
+Float M3DM::vec2AngleBetweenNormals(const Vector2& vec1, const Vector2& vec2)
 {
 	return acosf(vec2Dot(vec1, vec2) / (vec1.length() * vec2.length()));
 }
 
-bool M3DM::vec2InBound(const Vector2& vec, const Vector2& left, const Vector2& right)
+Bool M3DM::vec2InBound(const Vector2& vec, const Vector2& left, const Vector2& right)
 {
 	return vec <= right && vec >= left;
 }

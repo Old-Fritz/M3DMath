@@ -6,13 +6,13 @@
 using namespace M3DM;
 
 // Conversions
-MatrixScalar::operator float* ()
+MatrixScalar::operator Float* ()
 {
-	return reinterpret_cast<float*>(this);
+	return reinterpret_cast<Float*>(this);
 }
-MatrixScalar::operator float const* () const
+MatrixScalar::operator Float const* () const
 {
-	return reinterpret_cast<float const*>(this);
+	return reinterpret_cast<Float const*>(this);
 }
 
 
@@ -21,12 +21,12 @@ MatrixScalar MatrixScalar::operator+(const MatrixScalar& matrix) const
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
-	float* resultArray = matrixResult;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
+	Float* resultArray = matrixResult;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		resultArray[i] = matrix1Array[i] + matrix2Array[i];
 
 	return matrixResult;
@@ -35,12 +35,12 @@ MatrixScalar MatrixScalar::operator-(const MatrixScalar& matrix) const
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
-	float* resultArray = matrixResult;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
+	Float* resultArray = matrixResult;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		resultArray[i] = matrix1Array[i] - matrix2Array[i];
 
 	return matrixResult;
@@ -49,9 +49,9 @@ MatrixScalar MatrixScalar::operator*(const MatrixScalar& matrix) const
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
-	float* resultArray = matrixResult;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
+	Float* resultArray = matrixResult;
 
 	// calculate result
 	resultArray[0] = matrix1Array[0] * matrix2Array[0] + matrix1Array[1] * matrix2Array[4] + matrix1Array[2] * matrix2Array[8 ] + matrix1Array[3] * matrix2Array[12];
@@ -76,28 +76,28 @@ MatrixScalar MatrixScalar::operator*(const MatrixScalar& matrix) const
 
 	return matrixResult;
 }
-MatrixScalar MatrixScalar::operator*(float scale) const
+MatrixScalar MatrixScalar::operator*(Float scale) const
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
-	const float* matrix1Array = *this;
-	float* resultArray = matrixResult;
+	const Float* matrix1Array = *this;
+	Float* resultArray = matrixResult;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		resultArray[i] = matrix1Array[i] * scale;
 
 	return matrixResult;
 }
-MatrixScalar MatrixScalar::operator/(float scale) const
+MatrixScalar MatrixScalar::operator/(Float scale) const
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
-	const float* matrix1Array = *this;
-	float* resultArray = matrixResult;
+	const Float* matrix1Array = *this;
+	Float* resultArray = matrixResult;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		resultArray[i] = matrix1Array[i] / scale;
 
 	return matrixResult;
@@ -105,11 +105,11 @@ MatrixScalar MatrixScalar::operator/(float scale) const
 MatrixScalar& MatrixScalar:: operator+=(const MatrixScalar& matrix)
 {
 	// convert to arrays
-	float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
+	Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		matrix1Array[i] = matrix1Array[i] + matrix2Array[i];
 
 	return *this;
@@ -117,11 +117,11 @@ MatrixScalar& MatrixScalar:: operator+=(const MatrixScalar& matrix)
 MatrixScalar& MatrixScalar::operator-=(const MatrixScalar& matrix)
 {
 	// convert to arrays
-	float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
+	Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		matrix1Array[i] = matrix1Array[i] - matrix2Array[i];
 
 	return *this;
@@ -131,24 +131,24 @@ MatrixScalar& MatrixScalar::operator*=(const MatrixScalar& matrix)
 	*this = *this * matrix;
 	return *this;
 }
-MatrixScalar& MatrixScalar::operator*=(float scale)
+MatrixScalar& MatrixScalar::operator*=(Float scale)
 {
 	// convert to arrays
-	float* matrix1Array = *this;
+	Float* matrix1Array = *this;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		matrix1Array[i] = matrix1Array[i] * scale;
 
 	return *this;
 }
-MatrixScalar& MatrixScalar::operator/=(float scale)
+MatrixScalar& MatrixScalar::operator/=(Float scale)
 {
 	// convert to arrays
-	float* matrix1Array = *this;
+	Float* matrix1Array = *this;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		matrix1Array[i] = matrix1Array[i] / scale;
 
 	return *this;
@@ -157,132 +157,132 @@ MatrixScalar MatrixScalar::operator-() const
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
-	const float* matrix1Array = *this;
-	float* resultArray = matrixResult;
+	const Float* matrix1Array = *this;
+	Float* resultArray = matrixResult;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		matrixResult[i] = -matrix1Array[i];
 
 	return matrixResult;
 }
 
 // additional operations
-MatrixScalar M3DM::operator*(float scale, const MatrixScalar& matrix)
+MatrixScalar M3DM::operator*(Float scale, const MatrixScalar& matrix)
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
-	const float* matrix1Array = matrix;
-	float* resultArray = matrixResult;
+	const Float* matrix1Array = matrix;
+	Float* resultArray = matrixResult;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		resultArray[i] = matrix1Array[i] * scale;
 
 	return matrixResult;
 }
-MatrixScalar M3DM::operator/(float scale, const MatrixScalar& matrix)
+MatrixScalar M3DM::operator/(Float scale, const MatrixScalar& matrix)
 {
 	MatrixScalar matrixResult;
 	// convert to arrays
-	const float* matrix1Array = matrix;
-	float* resultArray = matrixResult;
+	const Float* matrix1Array = matrix;
+	Float* resultArray = matrixResult;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		resultArray[i] = scale / matrix1Array[i];
 
 	return matrixResult;
 }
 
 // compare
-bool MatrixScalar::operator==(const MatrixScalar& matrix) const
+Bool MatrixScalar::operator==(const MatrixScalar& matrix) const
 {
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		if (matrix1Array[i] != matrix2Array[i])
 			return false;
 
 	return true;
 }
-bool MatrixScalar::operator<(const MatrixScalar& matrix) const
+Bool MatrixScalar::operator<(const MatrixScalar& matrix) const
 {
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		if (matrix1Array[i] >= matrix2Array[i])
 			return false;
 
 	return true;
 }
-bool MatrixScalar::operator>(const MatrixScalar& matrix) const
+Bool MatrixScalar::operator>(const MatrixScalar& matrix) const
 {
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		if (matrix1Array[i] <= matrix2Array[i])
 			return false;
 
 	return true;
 }
-bool MatrixScalar::operator<=(const MatrixScalar& matrix) const
+Bool MatrixScalar::operator<=(const MatrixScalar& matrix) const
 {
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		if (matrix1Array[i] > matrix2Array[i])
 			return false;
 
 	return true;
 }
-bool MatrixScalar::operator>=(const MatrixScalar& matrix) const
+Bool MatrixScalar::operator>=(const MatrixScalar& matrix) const
 {
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		if (matrix1Array[i] < matrix2Array[i])
 			return false;
 
 	return true;
 }
-bool MatrixScalar::isEqualPrec(const MatrixScalar& matrix, float precision) const
+Bool MatrixScalar::isEqualPrec(const MatrixScalar& matrix, Float precision) const
 {
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		if (fabs(matrix1Array[i] - matrix2Array[i]) > precision)
 			return false;
 
 	return true;
 }
-bool MatrixScalar::isEqualPrec(const MatrixScalar& matrix, const MatrixScalar& precision) const
+Bool MatrixScalar::isEqualPrec(const MatrixScalar& matrix, const MatrixScalar& precision) const
 {
 	// convert to arrays
-	const float* matrix1Array = *this;
-	const float* matrix2Array = matrix;
-	const float* precisionArray = precision;
+	const Float* matrix1Array = *this;
+	const Float* matrix2Array = matrix;
+	const Float* precisionArray = precision;
 
 	// calcuate
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		if (fabs(matrix1Array[i] - matrix2Array[i]) > precisionArray[i])
 			return false;
 
@@ -321,7 +321,7 @@ MatrixScalar MatrixScalar::transpose() const
 MatrixScalar MatrixScalar::inverse() const
 {
 	MatrixScalar resultMatrix;
-	float det = determinant();
+	Float det = determinant();
 	if (!det)
 	{
 		return matrixScalarInfinity();
@@ -348,9 +348,9 @@ MatrixScalar MatrixScalar::inverse() const
 
 	return resultMatrix;
 }
-float MatrixScalar::determinant() const
+Float MatrixScalar::determinant() const
 {
-	float det1, det2, det3, det4;
+	Float det1, det2, det3, det4;
 
 	/*
 	// calculate determinant by first row
@@ -389,9 +389,9 @@ float MatrixScalar::determinant() const
 }
 
 //functions
-float M3DM::matrixScalar3Determinant(float m11, float m12, float m13,
-	float m21, float m22, float m23,
-	float m31, float m32, float m33)
+Float M3DM::matrixScalar3Determinant(Float m11, Float m12, Float m13,
+	Float m21, Float m22, Float m23,
+	Float m31, Float m32, Float m33)
 {
 	return m11 * m22* m33 -
 		m11 * m23 * m32 -

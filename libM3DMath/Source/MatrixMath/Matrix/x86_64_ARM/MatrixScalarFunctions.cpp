@@ -6,7 +6,7 @@
 using namespace M3DM;
 
 // Transforms
-MatrixScalar M3DM::matrixScalarScaling(float x, float y, float z)
+MatrixScalar M3DM::matrixScalarScaling(Float x, Float y, Float z)
 {
 	MatrixScalar matrixResult;
 
@@ -29,11 +29,11 @@ MatrixScalar M3DM::matrixScalarScaling(Vector3 scale)
 	return matrixResult;
 }
 
-MatrixScalar M3DM::matrixScalarRotationX(float angle)
+MatrixScalar M3DM::matrixScalarRotationX(Float angle)
 {
 	MatrixScalar matrixResult;
 
-	float cos, sin;
+	Float cos, sin;
 	sin = sinf(-angle);
 	cos = cosf(-angle);
 
@@ -46,11 +46,11 @@ MatrixScalar M3DM::matrixScalarRotationX(float angle)
 
 	return matrixResult;
 }
-MatrixScalar M3DM::matrixScalarRotationY(float angle)
+MatrixScalar M3DM::matrixScalarRotationY(Float angle)
 {
 	MatrixScalar matrixResult;
 
-	float cos, sin;
+	Float cos, sin;
 	sin = sinf(-angle);
 	cos = cosf(-angle);
 
@@ -63,11 +63,11 @@ MatrixScalar M3DM::matrixScalarRotationY(float angle)
 
 	return matrixResult;
 }
-MatrixScalar M3DM::matrixScalarRotationZ(float angle)
+MatrixScalar M3DM::matrixScalarRotationZ(Float angle)
 {
 	MatrixScalar matrixResult;
 
-	float cos, sin;
+	Float cos, sin;
 	sin = sinf(-angle);
 	cos = cosf(-angle);
 
@@ -80,14 +80,14 @@ MatrixScalar M3DM::matrixScalarRotationZ(float angle)
 
 	return matrixResult;
 }
-MatrixScalar M3DM::matrixScalarRotationAxis(Vector3 axis, float angle)
+MatrixScalar M3DM::matrixScalarRotationAxis(Vector3 axis, Float angle)
 {
 	return matrixScalarRotationNormal(axis.normalized(),angle);
 }
-MatrixScalar M3DM::matrixScalarRotationNormal(Vector3 normal, float angle)
+MatrixScalar M3DM::matrixScalarRotationNormal(Vector3 normal, Float angle)
 {
 	MatrixScalar matrixResult;
-	float cos, sin, x, y, z;
+	Float cos, sin, x, y, z;
 
 	x = normal.x;
 	y = normal.y;
@@ -111,7 +111,7 @@ MatrixScalar M3DM::matrixScalarRotationNormal(Vector3 normal, float angle)
 
 	return matrixResult;
 }
-MatrixScalar M3DM::matrixScalarRotationYawPitchRoll(float yaw, float pitch, float roll)
+MatrixScalar M3DM::matrixScalarRotationYawPitchRoll(Float yaw, Float pitch, Float roll)
 {
 	MatrixScalar matrixResult;
 	MatrixScalar yawMatrix, pitchMatrix, rollMatrix;
@@ -129,7 +129,7 @@ MatrixScalar M3DM::matrixScalarRotationYawPitchRoll(Vector3 yawPitchRoll)
 	return matrixScalarRotationYawPitchRoll(yawPitchRoll.x, yawPitchRoll.y, yawPitchRoll.z);
 }
 
-MatrixScalar M3DM::matrixScalarTranslation(float x, float y, float z)
+MatrixScalar M3DM::matrixScalarTranslation(Float x, Float y, Float z)
 {
 	MatrixScalar matrixResult;
 
@@ -175,7 +175,7 @@ Vector4 M3DM::matrixScalarTransform(Vector4 vector, MatrixScalar matrix)
 }
 
 // special matricies LH
-MatrixScalar M3DM::matrixScalarOrthoLH(float width, float height, float minZ, float maxZ)
+MatrixScalar M3DM::matrixScalarOrthoLH(Float width, Float height, Float minZ, Float maxZ)
 {
 	MatrixScalar matrixResult;
 	
@@ -188,7 +188,7 @@ MatrixScalar M3DM::matrixScalarOrthoLH(float width, float height, float minZ, fl
 
 	return matrixResult;
 }
-MatrixScalar M3DM::matrixScalarPerspectiveLH(float width, float height, float minZ, float maxZ)
+MatrixScalar M3DM::matrixScalarPerspectiveLH(Float width, Float height, Float minZ, Float maxZ)
 {
 	MatrixScalar matrixResult;
 
@@ -203,9 +203,9 @@ MatrixScalar M3DM::matrixScalarPerspectiveLH(float width, float height, float mi
 
 	return matrixResult;
 }
-MatrixScalar M3DM::matrixScalarPerspectiveFovLH(float fov, float aspect, float minZ, float maxZ)
+MatrixScalar M3DM::matrixScalarPerspectiveFovLH(Float fov, Float aspect, Float minZ, Float maxZ)
 {
-	float width, height;
+	Float width, height;
 
 	height = 2 * minZ * tanf(fov / 2);
 	width = height * aspect;

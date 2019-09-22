@@ -6,12 +6,12 @@
 using namespace M3DM;
 
 
-float Vector4::length() const
+Float Vector4::length() const
 {
 	return sqrtf(x * x + y * y + z * z + w * w);
 }
 
-float Vector4::sqrLength() const
+Float Vector4::sqrLength() const
 {
 	return x * x + y * y + z * z + w * w;
 }
@@ -19,7 +19,7 @@ float Vector4::sqrLength() const
 Vector4 Vector4::normalized() const
 {
 	Vector4 resultVec;
-	float len = length();
+	Float len = length();
 	resultVec.x = x / len;
 	resultVec.y = y / len;
 	resultVec.z = z / len;

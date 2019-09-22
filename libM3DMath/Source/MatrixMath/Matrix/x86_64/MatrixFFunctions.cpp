@@ -6,7 +6,7 @@
 using namespace M3DM;
 
 // Transforms
-MatrixF M3DM::matrixFScaling(float x, float y, float z)
+MatrixF M3DM::matrixFScaling(Float x, Float y, Float z)
 {
 	return matrixFScaling(VectorF(x,y,z,0));
 }
@@ -26,7 +26,7 @@ MatrixF M3DM::matrixFScaling(VectorF scale)
 	return matrixResult;
 }
 
-MatrixF M3DM::matrixFRotationX(float angle)
+MatrixF M3DM::matrixFRotationX(Float angle)
 {
 	return matrixFRotationX(VectorF(angle));
 }
@@ -47,7 +47,7 @@ MatrixF M3DM::matrixFRotationX(VectorF angle)
 
 	return matrixResult;
 }
-MatrixF M3DM::matrixFRotationY(float angle)
+MatrixF M3DM::matrixFRotationY(Float angle)
 {
 	return matrixFRotationY(VectorF(angle));
 }
@@ -68,7 +68,7 @@ MatrixF M3DM::matrixFRotationY(VectorF angle)
 
 	return matrixResult;
 }
-MatrixF M3DM::matrixFRotationZ(float angle)
+MatrixF M3DM::matrixFRotationZ(Float angle)
 {
 	return matrixFRotationZ(VectorF(angle));
 }
@@ -91,7 +91,7 @@ MatrixF M3DM::matrixFRotationZ(VectorF angle)
 
 	return matrixResult;
 }
-MatrixF M3DM::matrixFRotationAxis(VectorF axis, float angle)
+MatrixF M3DM::matrixFRotationAxis(VectorF axis, Float angle)
 {
 	return matrixFRotationAxis(axis, VectorF(angle));
 }
@@ -99,7 +99,7 @@ MatrixF M3DM::matrixFRotationAxis(VectorF axis, VectorF angle)
 {
 	return matrixFRotationNormal(axis.normalized3D(), angle);
 }
-MatrixF M3DM::matrixFRotationNormal(VectorF normal, float angle)
+MatrixF M3DM::matrixFRotationNormal(VectorF normal, Float angle)
 {
 	return matrixFRotationNormal(normal, VectorF(angle));
 }
@@ -146,7 +146,7 @@ MatrixF M3DM::matrixFRotationNormal(VectorF normal, VectorF angle)
 
 	return matrixResult;
 }
-MatrixF M3DM::matrixFRotationYawPitchRoll(float yaw, float pitch, float roll)
+MatrixF M3DM::matrixFRotationYawPitchRoll(Float yaw, Float pitch, Float roll)
 {
 	return matrixFRotationYawPitchRoll(VectorF(yaw, pitch, roll, 0));
 }
@@ -171,7 +171,7 @@ MatrixF M3DM::matrixFRotationYawPitchRoll(VectorF yawPitchRoll)
 	return matrixResult;
 }
 
-MatrixF M3DM::matrixFTranslation(float x, float y, float z)
+MatrixF M3DM::matrixFTranslation(Float x, Float y, Float z)
 {
 	return matrixFTranslation(VectorF(x,y,z, 0));
 }
@@ -255,15 +255,15 @@ VectorF M3DM::matrixFTransform(VectorF vector, MatrixF matrix)
 }
 
 // special matricies LH
-MatrixF M3DM::matrixFOrthoLH(float width, float height, float minZ, float maxZ)
+MatrixF M3DM::matrixFOrthoLH(Float width, Float height, Float minZ, Float maxZ)
 {
 	return matrixFOrthoLH(VectorF(width), VectorF(height), VectorF(minZ), VectorF(maxZ));
 }
-MatrixF M3DM::matrixFPerspectiveLH(float width, float height, float minZ, float maxZ)
+MatrixF M3DM::matrixFPerspectiveLH(Float width, Float height, Float minZ, Float maxZ)
 {
 	return matrixFPerspectiveLH(VectorF(width), VectorF(height), VectorF(minZ), VectorF(maxZ));
 }
-MatrixF M3DM::matrixFPerspectiveFovLH(float fov, float aspect, float minZ, float maxZ)
+MatrixF M3DM::matrixFPerspectiveFovLH(Float fov, Float aspect, Float minZ, Float maxZ)
 {
 	return matrixFPerspectiveFovLH(VectorF(fov), VectorF(aspect), VectorF(minZ), VectorF(maxZ));
 }

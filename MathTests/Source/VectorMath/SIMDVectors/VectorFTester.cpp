@@ -3,9 +3,9 @@
 
 using namespace M3DM;
 
-bool VectorFTester::testAll()
+Bool VectorFTester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------VECTOR SIMD TEST------" << std::endl;
 	std::cout << "--Test equal--" << std::endl;
 	result = testEqual();
@@ -60,11 +60,11 @@ bool VectorFTester::testAll()
 	return true;
 }
 
-bool VectorFTester::testEqual()
+Bool VectorFTester::testEqual()
 {
 	VectorF v1, v2, vecPrecision, resultVec, prediction;
-	float precision;
-	bool result, resultPrediciton;
+	Float precision;
+	Bool result, resultPrediciton;
 
 	// ==
 	// TEST #1
@@ -363,10 +363,10 @@ bool VectorFTester::testEqual()
 	return true;
 }
 
-bool VectorFTester::testCmp()
+Bool VectorFTester::testCmp()
 {
 	VectorF v1, v2;
-	bool result, resultPrediciton;
+	Bool result, resultPrediciton;
 
 	// TEST #1
 	v1 = VectorF(1.5, 2.5, 3.5, 4.5);
@@ -515,17 +515,17 @@ bool VectorFTester::testCmp()
 	return true;
 }
 
-bool VectorFTester::testConversions()
+Bool VectorFTester::testConversions()
 {
-	ALIGN(16) float pArray[4];
-	ALIGN(16) float* pArrayRes;
-	float value;
+	ALIGN(16) Float pArray[4];
+	ALIGN(16) Float* pArrayRes;
+	Float value;
 	Vector2 vec21, vec22;
 	Vector3 vec3;
 	Vector4 vec4;
 	VectorF resultVec;
 	VectorF prediction;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	pArray[0] = 1;
@@ -607,10 +607,10 @@ bool VectorFTester::testConversions()
 	return true;
 }
 
-bool VectorFTester::testAdd()
+Bool VectorFTester::testAdd()
 {
 	VectorF arg1, arg2, prediction, resultVec;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = VectorF(1, 2, 3, 4);
@@ -641,10 +641,10 @@ bool VectorFTester::testAdd()
 	return true;
 }
 
-bool VectorFTester::testSub()
+Bool VectorFTester::testSub()
 {
 	VectorF arg1, arg2, prediction, resultVec;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = VectorF(1, 2, 3, 4);
@@ -687,11 +687,11 @@ bool VectorFTester::testSub()
 	return true;
 }
 
-bool VectorFTester::testMul()
+Bool VectorFTester::testMul()
 {
 	VectorF arg1, arg2, prediction, resultVec;
-	float scale;
-	bool result;
+	Float scale;
+	Bool result;
 
 	// TEST #1
 	arg1 = VectorF(1, 2, 3, 4);
@@ -748,11 +748,11 @@ bool VectorFTester::testMul()
 	return true;
 }
 
-bool VectorFTester::testDiv()
+Bool VectorFTester::testDiv()
 {
 	VectorF arg1, arg2, prediction, resultVec;
-	float scale;
-	bool result;
+	Float scale;
+	Bool result;
 
 	// TEST #1
 	arg1 = VectorF(1, 2, 3, 4);
@@ -810,16 +810,16 @@ bool VectorFTester::testDiv()
 	return true;
 }
 
-bool VectorFTester::testStore()
+Bool VectorFTester::testStore()
 {
-	float x, y, z, w, xPrediction, yPrediction, zPrediction, wPrediction;
-	ALIGN(16) float pArray[4];
-	ALIGN(16) float pArrayPrediction[4];
+	Float x, y, z, w, xPrediction, yPrediction, zPrediction, wPrediction;
+	ALIGN(16) Float pArray[4];
+	ALIGN(16) Float pArrayPrediction[4];
 	Vector2 vec21, vec22, vec21Prediction, vec22Prediction;
 	Vector3 vec3, vec3Prediction;
 	Vector4 vec4, vec4Prediction;
 	VectorF vec;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	vec = VectorF(1, 2, 3, 4);
@@ -905,12 +905,12 @@ bool VectorFTester::testStore()
 	return true;
 }
 
-bool VectorFTester::testGetSet()
+Bool VectorFTester::testGetSet()
 {
 	VectorF vec, vecPrediction;
-	float valuef, valuefResult, valuefPrediction;
-	int ind, valuei, valueiResult, valueiPrediction;
-	bool result;
+	Float valuef, valuefResult, valuefPrediction;
+	Int32 ind, valuei, valueiResult, valueiPrediction;
+	Bool result;
 
 	// TEST #1
 	vec = VectorF(1, 2, 3, 4);
@@ -1024,11 +1024,11 @@ bool VectorFTester::testGetSet()
 	return true;
 }
 
-bool VectorFTester::testFunctions()
+Bool VectorFTester::testFunctions()
 {
 	VectorF vec, vecPrediction, vecPrediction2, vecResult, vecResult2;
-	float value, valueResult, valuePrediction;
-	bool result;
+	Float value, valueResult, valuePrediction;
+	Bool result;
 
 	// TEST #1
 	vec = VectorF(1, 2, 3, 4);

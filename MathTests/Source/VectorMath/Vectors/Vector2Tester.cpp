@@ -2,9 +2,9 @@
 #include <cmath>
 using namespace M3DM;
 
-bool Vector2Tester::testAll()
+Bool Vector2Tester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------VECTOR 2 TEST------" << std::endl;
 	std::cout << "--Test equal--" << std::endl;
 	result = testEqual();
@@ -49,11 +49,11 @@ bool Vector2Tester::testAll()
 	return true;
 }
 
-bool Vector2Tester::testEqual()
+Bool Vector2Tester::testEqual()
 {
 	Vector2 v1, v2, vecPrecision, resultVec, prediction;
-	float precision;
-	bool result, resultPrediciton;
+	Float precision;
+	Bool result, resultPrediciton;
 
 	// ==
 	// TEST #1
@@ -340,10 +340,10 @@ bool Vector2Tester::testEqual()
 	return true;
 }
 
-bool Vector2Tester::testCmp()
+Bool Vector2Tester::testCmp()
 {
 	Vector2 v1, v2;
-	bool result, resultPrediciton;
+	Bool result, resultPrediciton;
 
 	// TEST #1
 	v1 = Vector2(1.5, 2.5);
@@ -492,16 +492,16 @@ bool Vector2Tester::testCmp()
 	return true;
 }
 
-bool Vector2Tester::testConversions()
+Bool Vector2Tester::testConversions()
 {
-	float pArray[2], pArrayPrediction[2];
-	float* pArrayRes;
-	float value;
+	Float pArray[2], pArrayPrediction[2];
+	Float* pArrayRes;
+	Float value;
 	Vector3 vec3;
 	Vector4 vec4;
 	Vector2 resultVec;
 	Vector2 prediction;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	pArray[0] = 1;
@@ -544,7 +544,7 @@ bool Vector2Tester::testConversions()
 	resultVec = Vector2(1, 2);
 	pArrayPrediction[0] = 1;
 	pArrayPrediction[1] = 2;
-	std::cout << "TEST #4: float*(" << resultVec << ") == {" << pArrayPrediction[0] << ", " << pArrayPrediction[1] << "}" << std::endl;
+	std::cout << "TEST #4: Float*(" << resultVec << ") == {" << pArrayPrediction[0] << ", " << pArrayPrediction[1] << "}" << std::endl;
 	pArrayRes = resultVec;
 	result = pArrayRes[0] == pArrayPrediction[0] && pArrayRes[1] == pArrayPrediction[1];
 	if (!result)
@@ -568,10 +568,10 @@ bool Vector2Tester::testConversions()
 	return true;
 }
 
-bool Vector2Tester::testAdd()
+Bool Vector2Tester::testAdd()
 {
 	Vector2 arg1, arg2, prediction, resultVec;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector2(1, 2);
@@ -602,10 +602,10 @@ bool Vector2Tester::testAdd()
 	return true;
 }
 
-bool Vector2Tester::testSub()
+Bool Vector2Tester::testSub()
 {
 	Vector2 arg1, arg2, prediction, resultVec;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector2(1, 2);
@@ -648,11 +648,11 @@ bool Vector2Tester::testSub()
 	return true;
 }
 
-bool Vector2Tester::testMul()
+Bool Vector2Tester::testMul()
 {
 	Vector2 arg1, arg2, prediction, resultVec;
-	float scale;
-	bool result;
+	Float scale;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector2(1, 2);
@@ -696,11 +696,11 @@ bool Vector2Tester::testMul()
 	return true;
 }
 
-bool Vector2Tester::testDiv()
+Bool Vector2Tester::testDiv()
 {
 	Vector2 arg1, arg2, prediction, resultVec;
-	float scale;
-	bool result;
+	Float scale;
+	Bool result;
 
 	// TEST #1
 	arg1 = Vector2(1, 2);
@@ -744,11 +744,11 @@ bool Vector2Tester::testDiv()
 	return true;
 }
 
-bool Vector2Tester::testFunctions()
+Bool Vector2Tester::testFunctions()
 {
 	Vector2 vec, vecPrediction, vecPrediction2, vecResult, vecResult2;
-	float value, valueResult, valuePrediction;
-	bool result;
+	Float value, valueResult, valuePrediction;
+	Bool result;
 
 	// TEST #1
 	vec = Vector2(1, 2);

@@ -36,13 +36,13 @@ using namespace M3DM;
 // constructors
 MatrixF::MatrixF()
 {
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		m_rows[i] = __m128();
 }
-MatrixF::MatrixF(float m11, float m12, float m13, float m14,
-	float m21, float m22, float m23, float m24,
-	float m31, float m32, float m33, float m34,
-	float m41, float m42, float m43, float m44)
+MatrixF::MatrixF(Float m11, Float m12, Float m13, Float m14,
+	Float m21, Float m22, Float m23, Float m24,
+	Float m31, Float m32, Float m33, Float m34,
+	Float m41, Float m42, Float m43, Float m44)
 {
 	load(m11, m12, m13, m14,
 		m21, m22, m23, m24,
@@ -51,7 +51,7 @@ MatrixF::MatrixF(float m11, float m12, float m13, float m14,
 }
 
 // convertions
-MatrixF::MatrixF(const float* pArray)
+MatrixF::MatrixF(const Float* pArray)
 {
 	load(pArray);
 }
@@ -67,7 +67,7 @@ MatrixF::MatrixF(VectorF row1, VectorF row2, VectorF row3, VectorF row4)
 #ifdef DIRECTX
 MatrixF::MatrixF(DirectX::XMMATRIX matrix)
 {
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		m_rows[i] = matrix.r[i];
 }
 DirectX::XMMATRIX VECCALL MatrixF::XMMatrix()
@@ -81,27 +81,27 @@ DirectX::XMMATRIX VECCALL MatrixF::XMMatrix()
 #endif
 
 // getters and setters
-float VECCALL MatrixF::get(char  ind) const
+Float VECCALL MatrixF::get(Char  ind) const
 {
-	int row = ind / 4;
+	Int32 row = ind / 4;
 	return VectorF(m_rows[row]).get(ind % 4);
 }
 
-void VECCALL MatrixF::set(char ind, float value)
+void VECCALL MatrixF::set(Char ind, Float value)
 {
-	int row = ind / 4;
+	Int32 row = ind / 4;
 	VectorF tmp(m_rows[row]);
 	tmp.set(ind % 4, value);
 	m_rows[row] = tmp.getData();
 }
-int VECCALL MatrixF::getInt(char ind) const
+Int32 VECCALL MatrixF::getInt(Char ind) const
 {
-	int row = ind / 4;
+	Int32 row = ind / 4;
 	return VectorF(m_rows[row]).getInt(ind % 4);
 }
-void VECCALL MatrixF::setInt(char ind, int value)
+void VECCALL MatrixF::setInt(Char ind, Int32 value)
 {
-	int row = ind / 4;
+	Int32 row = ind / 4;
 	VectorF tmp(m_rows[row]);
 	tmp.setInt(ind % 4, value);
 	m_rows[row] = tmp.getData();
@@ -113,7 +113,7 @@ MatrixF VECCALL MatrixF::operator+(MatrixF matrix) const
 {
 	MatrixF matrixResult;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		matrixResult.m_rows[i] = _mm_add_ps(m_rows[i], matrix.m_rows[i]);
 
 	return matrixResult;
@@ -122,7 +122,7 @@ MatrixF VECCALL MatrixF::operator-(MatrixF matrix) const
 {
 	MatrixF matrixResult;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		matrixResult.m_rows[i] = _mm_sub_ps(m_rows[i], matrix.m_rows[i]);
 
 	return matrixResult;
@@ -172,20 +172,20 @@ MatrixF VECCALL MatrixF::operator*(MatrixF matrix) const
 
 	return matrixResult;
 }
-MatrixF VECCALL MatrixF::operator*(float scale) const
+MatrixF VECCALL MatrixF::operator*(Float scale) const
 {
 	MatrixF matrixResult;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		matrixResult.m_rows[i] = _mm_mul_ps(m_rows[i], _mm_set_ps1(scale));
 
 	return matrixResult;
 }
-MatrixF VECCALL MatrixF::operator/(float scale) const
+MatrixF VECCALL MatrixF::operator/(Float scale) const
 {
 	MatrixF matrixResult;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		matrixResult.m_rows[i] = _mm_div_ps(m_rows[i], _mm_set_ps1(scale));
 
 	return matrixResult;
@@ -193,14 +193,14 @@ MatrixF VECCALL MatrixF::operator/(float scale) const
 MatrixF& VECCALL MatrixF::operator+=(MatrixF matrix)
 {
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		m_rows[i] = _mm_add_ps(m_rows[i], matrix.m_rows[i]);
 
 	return *this;
 }
 MatrixF& VECCALL MatrixF::operator-=(MatrixF matrix)
 {
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		m_rows[i] = _mm_sub_ps(m_rows[i], matrix.m_rows[i]);
 
 	return *this;
@@ -211,16 +211,16 @@ MatrixF& VECCALL MatrixF::operator*=(MatrixF matrix)
 
 	return *this;
 }
-MatrixF& VECCALL MatrixF::operator*=(float scale)
+MatrixF& VECCALL MatrixF::operator*=(Float scale)
 {
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		m_rows[i] = _mm_mul_ps(m_rows[i], _mm_set_ps1(scale));
 
 	return *this;
 }
-MatrixF& VECCALL MatrixF::operator/=(float scale)
+MatrixF& VECCALL MatrixF::operator/=(Float scale)
 {
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		m_rows[i] = _mm_div_ps(m_rows[i], _mm_set_ps1(scale));
 
 	return *this;
@@ -229,103 +229,103 @@ MatrixF VECCALL MatrixF::operator-() const
 {
 	MatrixF matrixResult;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		matrixResult.m_rows[i] = _mm_sub_ps(__m128(), m_rows[i]);
 
 	return matrixResult;
 }
 
 // additional operations
-MatrixF VECCALL M3DM::operator*(float scale, MatrixF matrix)
+MatrixF VECCALL M3DM::operator*(Float scale, MatrixF matrix)
 {
 	MatrixF matrixResult;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		matrixResult.m_rows[i] = _mm_mul_ps(matrix.m_rows[i], _mm_set_ps1(scale));
 
 	return matrixResult;
 }
-MatrixF VECCALL M3DM::operator/(float scale, MatrixF matrix)
+MatrixF VECCALL M3DM::operator/(Float scale, MatrixF matrix)
 {
 	MatrixF matrixResult;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		matrixResult.m_rows[i] = _mm_div_ps(_mm_set_ps1(scale), matrix.m_rows[i]);
 
 	return matrixResult;
 }
 
 // compare
-bool VECCALL MatrixF::operator==(MatrixF matrix) const
+Bool VECCALL MatrixF::operator==(MatrixF matrix) const
 {
-	bool result = true;
+	Bool result = true;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		result = result && (VectorF(m_rows[i]) == VectorF(matrix.m_rows[i]));
 
 	return result;
 }
-bool VECCALL MatrixF::operator<(MatrixF matrix) const
+Bool VECCALL MatrixF::operator<(MatrixF matrix) const
 {
-	bool result = true;
+	Bool result = true;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		result = result && (VectorF(m_rows[i]) < VectorF(matrix.m_rows[i]));
 
 	return result;
 }
-bool VECCALL MatrixF::operator>(MatrixF matrix) const
+Bool VECCALL MatrixF::operator>(MatrixF matrix) const
 {
-	bool result = true;
+	Bool result = true;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		result = result && (VectorF(m_rows[i]) > VectorF(matrix.m_rows[i]));
 
 	return result;
 }
-bool VECCALL MatrixF::operator<=(MatrixF matrix) const
+Bool VECCALL MatrixF::operator<=(MatrixF matrix) const
 {
-	bool result = true;
+	Bool result = true;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		result = result && (VectorF(m_rows[i]) <= VectorF(matrix.m_rows[i]));
 
 	return result;
 }
-bool VECCALL MatrixF::operator>=(MatrixF matrix) const
+Bool VECCALL MatrixF::operator>=(MatrixF matrix) const
 {
-	bool result = true;
+	Bool result = true;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		result = result && (VectorF(m_rows[i]) >= VectorF(matrix.m_rows[i]));
 
 	return result;
 }
-bool VECCALL MatrixF::isEqualPrec(MatrixF matrix, float precision) const
+Bool VECCALL MatrixF::isEqualPrec(MatrixF matrix, Float precision) const
 {
 
-	bool result = true;
+	Bool result = true;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		result = result && (VectorF(m_rows[i]).isEqualPrec(VectorF(matrix.m_rows[i]), precision));
 
 	return result;
 }
-bool VECCALL MatrixF::isEqualPrec(MatrixF matrix, MatrixF precision) const
+Bool VECCALL MatrixF::isEqualPrec(MatrixF matrix, MatrixF precision) const
 {
-	bool result = true;
+	Bool result = true;
 
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 		result = result && (VectorF(m_rows[i]).isEqualPrec(VectorF(matrix.m_rows[i]), VectorF(precision.m_rows[i])));
 
 	return result;
 }
 
 // store/load
-void VECCALL MatrixF::load(float m11, float m12, float m13, float m14,
-	float m21, float m22, float m23, float m24,
-	float m31, float m32, float m33, float m34,
-	float m41, float m42, float m43, float m44)
+void VECCALL MatrixF::load(Float m11, Float m12, Float m13, Float m14,
+	Float m21, Float m22, Float m23, Float m24,
+	Float m31, Float m32, Float m33, Float m34,
+	Float m41, Float m42, Float m43, Float m44)
 {
 	
 
@@ -334,7 +334,7 @@ void VECCALL MatrixF::load(float m11, float m12, float m13, float m14,
 	m_rows[2] = _mm_setr_ps(m31, m32, m33, m34);
 	m_rows[3] = _mm_setr_ps(m41, m42, m43, m44);
 }
-void VECCALL MatrixF::load(const float* pArray)
+void VECCALL MatrixF::load(const Float* pArray)
 {
 	m_rows[0] = _mm_load_ps(pArray);
 	m_rows[1] = _mm_load_ps(pArray + 4);
@@ -356,17 +356,17 @@ void VECCALL MatrixF::load(VectorF row1, VectorF row2, VectorF row3, VectorF row
 	m_rows[3] = row4.getData();
 }
 
-void VECCALL MatrixF::store(float& m11, float& m12, float& m13, float& m14,
-	float& m21, float& m22, float& m23, float& m24,
-	float& m31, float& m32, float& m33, float& m34,
-	float& m41, float& m42, float& m43, float& m44) const
+void VECCALL MatrixF::store(Float& m11, Float& m12, Float& m13, Float& m14,
+	Float& m21, Float& m22, Float& m23, Float& m24,
+	Float& m31, Float& m32, Float& m33, Float& m34,
+	Float& m41, Float& m42, Float& m43, Float& m44) const
 {
 	VectorF(m_rows[0]).store(m11, m12, m13, m14);
 	VectorF(m_rows[1]).store(m21, m22, m23, m24);
 	VectorF(m_rows[2]).store(m31, m32, m33, m34);
 	VectorF(m_rows[3]).store(m41, m42, m43, m44);
 }
-void VECCALL MatrixF::store(float* pArray) const
+void VECCALL MatrixF::store(Float* pArray) const
 {
 	VectorF(m_rows[0]).store(pArray);
 	VectorF(m_rows[1]).store(pArray + 4);
@@ -470,7 +470,7 @@ VectorF VECCALL MatrixF::determinantVec() const
 
 	return vectorResult;
 }
-float VECCALL MatrixF::determinant() const
+Float VECCALL MatrixF::determinant() const
 {
 	return determinantVec().get(0);
 }
@@ -607,7 +607,7 @@ VectorF VECCALL M3DM::matrixF3DeterminantVec(VectorF vec1, VectorF vec2, VectorF
 {
 	return vecFDotVec3D(vecFCross3D(vec1, vec2), vec3);
 }
-float VECCALL M3DM::matrixF3Determinant(VectorF vec1, VectorF vec2, VectorF vec3)
+Float VECCALL M3DM::matrixF3Determinant(VectorF vec1, VectorF vec2, VectorF vec3)
 {
 	return vecFDot3D(vecFCross3D(vec1, vec2), vec3);
 }

@@ -2,9 +2,9 @@
 #include <cmath>
 using namespace M3DM;
 
-bool MatrixScalarFunctionsTester::testAll()
+Bool MatrixScalarFunctionsTester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------MATRIX FUNCTIONS SCALAR TEST------" << std::endl;
 
 	std::cout << "--Test scale--" << std::endl;
@@ -40,12 +40,12 @@ bool MatrixScalarFunctionsTester::testAll()
 	return true;
 }
 
-bool MatrixScalarFunctionsTester::testScale()
+Bool MatrixScalarFunctionsTester::testScale()
 {
 	MatrixScalar matrixResult, matrixPrediction;
-	float x, y, z;
+	Float x, y, z;
 	Vector3 scale;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	x = 3;
@@ -82,12 +82,12 @@ bool MatrixScalarFunctionsTester::testScale()
 	return true;
 }
 
-bool MatrixScalarFunctionsTester::testRotation()
+Bool MatrixScalarFunctionsTester::testRotation()
 {
 	MatrixScalar matrixResult, matrixPrediction;
-	float x, y, z, angle;
+	Float x, y, z, angle;
 	Vector3 vector;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	angle = 50;
@@ -201,12 +201,12 @@ bool MatrixScalarFunctionsTester::testRotation()
 	return true;
 }
 
-bool MatrixScalarFunctionsTester::testTranslation()
+Bool MatrixScalarFunctionsTester::testTranslation()
 {
 	MatrixScalar matrixResult, matrixPrediction;
-	float x, y, z;
+	Float x, y, z;
 	Vector3 vector;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	x = 3;
@@ -243,12 +243,12 @@ bool MatrixScalarFunctionsTester::testTranslation()
 	return true;
 }
 
-bool MatrixScalarFunctionsTester::testTransform()
+Bool MatrixScalarFunctionsTester::testTransform()
 {
 	MatrixScalar matrix;
 	Vector3 vector3, vector3Result, vector3Prediction;
 	Vector4 vector4, vector4Result, vector4Prediction;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	vector3 = Vector3(1, 2, 3);
@@ -317,12 +317,12 @@ bool MatrixScalarFunctionsTester::testTransform()
 	return true;
 }
 
-bool MatrixScalarFunctionsTester::testSpecialLH()
+Bool MatrixScalarFunctionsTester::testSpecialLH()
 {
 	MatrixScalar matrixResult, matrixPrediction;
-	float height, width, fov, aspect, minZ, maxZ;
+	Float height, width, fov, aspect, minZ, maxZ;
 	Vector3 eye, at, up;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	height = 1080;
@@ -398,7 +398,7 @@ bool MatrixScalarFunctionsTester::testSpecialLH()
 	return true;
 }
 
-bool MatrixScalarFunctionsTester::testSpecialRH()
+Bool MatrixScalarFunctionsTester::testSpecialRH()
 {
 	return true;
 }

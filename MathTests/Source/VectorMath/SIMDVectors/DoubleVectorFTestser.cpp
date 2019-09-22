@@ -3,9 +3,9 @@
 
 using namespace M3DM;
 
-bool DoubleVectorFTester::testAll()
+Bool DoubleVectorFTester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------DOUBLE VECTOR SIMD TEST------" << std::endl;
 	std::cout << "--Test equal--" << std::endl;
 	result = testEqual();
@@ -60,11 +60,11 @@ bool DoubleVectorFTester::testAll()
 	return true;
 }
 
-bool DoubleVectorFTester::testEqual()
+Bool DoubleVectorFTester::testEqual()
 {
 	DoubleVectorF v1, v2, vecPrecision, resultVec, prediction;
-	float precision;
-	bool result, resultPrediciton;
+	Float precision;
+	Bool result, resultPrediciton;
 
 	// ==
 	// TEST #1
@@ -363,10 +363,10 @@ bool DoubleVectorFTester::testEqual()
 	return true;
 }
 
-bool DoubleVectorFTester::testCmp()
+Bool DoubleVectorFTester::testCmp()
 {
 	DoubleVectorF v1, v2;
-	bool result, resultPrediciton;
+	Bool result, resultPrediciton;
 
 	// TEST #1
 	v1 = DoubleVectorF(1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5);
@@ -515,18 +515,18 @@ bool DoubleVectorFTester::testCmp()
 	return true;
 }
 
-bool DoubleVectorFTester::testConversions()
+Bool DoubleVectorFTester::testConversions()
 {
-	ALIGN(32) float pArray[8];
-	ALIGN(32) float* pArrayRes;
-	float value;
+	ALIGN(32) Float pArray[8];
+	ALIGN(32) Float* pArrayRes;
+	Float value;
 	Vector2 vec21, vec22, vec23, vec24;
 	Vector3 vec31, vec32;
 	Vector4 vec41, vec42;
 	VectorF vecF1, vecF2;
 	DoubleVectorF resultVec;
 	DoubleVectorF prediction;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	pArray[0] = 1;
@@ -678,10 +678,10 @@ bool DoubleVectorFTester::testConversions()
 	return true;
 }
 
-bool DoubleVectorFTester::testAdd()
+Bool DoubleVectorFTester::testAdd()
 {
 	DoubleVectorF arg1, arg2, prediction, resultVec;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
@@ -712,10 +712,10 @@ bool DoubleVectorFTester::testAdd()
 	return true;
 }
 
-bool DoubleVectorFTester::testSub()
+Bool DoubleVectorFTester::testSub()
 {
 	DoubleVectorF arg1, arg2, prediction, resultVec;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	arg1 = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
@@ -758,11 +758,11 @@ bool DoubleVectorFTester::testSub()
 	return true;
 }
 
-bool DoubleVectorFTester::testMul()
+Bool DoubleVectorFTester::testMul()
 {
 	DoubleVectorF arg1, arg2, prediction, resultVec;
-	float scale;
-	bool result;
+	Float scale;
+	Bool result;
 
 	// TEST #1
 	arg1 = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
@@ -819,11 +819,11 @@ bool DoubleVectorFTester::testMul()
 	return true;
 }
 
-bool DoubleVectorFTester::testDiv()
+Bool DoubleVectorFTester::testDiv()
 {
 	DoubleVectorF arg1, arg2, prediction, resultVec;
-	float scale;
-	bool result;
+	Float scale;
+	Bool result;
 
 	// TEST #1
 	arg1 = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
@@ -880,19 +880,19 @@ bool DoubleVectorFTester::testDiv()
 	return true;
 }
 
-bool DoubleVectorFTester::testStore()
+Bool DoubleVectorFTester::testStore()
 {
-	float x1, y1, z1, w1, x2, y2, z2, w2,
+	Float x1, y1, z1, w1, x2, y2, z2, w2,
 	x1Prediction, y1Prediction, z1Prediction, w1Prediction, x2Prediction, y2Prediction, z2Prediction, w2Prediction;
-	ALIGN(32) float pArray[8];
-	ALIGN(32) float pArrayPrediction[8];
+	ALIGN(32) Float pArray[8];
+	ALIGN(32) Float pArrayPrediction[8];
 	Vector2 vec21, vec22, vec23, vec24,
 	vec21Prediction, vec22Prediction, vec23Prediction, vec24Prediction;
 	Vector3 vec31, vec32, vec31Prediction, vec32Prediction;
 	Vector4 vec41, vec42, vec41Prediction, vec42Prediction;
 	VectorF vecF1, vecF2, vecF1Prediction, vecF2Prediction;
 	DoubleVectorF vec;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
@@ -1057,12 +1057,12 @@ bool DoubleVectorFTester::testStore()
 	return true;
 }
 
-bool DoubleVectorFTester::testGetSet()
+Bool DoubleVectorFTester::testGetSet()
 {
 	DoubleVectorF vec, vecPrediction;
-	float valuef, valuefResult, valuefPrediction;
-	int ind, valuei, valueiResult, valueiPrediction;
-	bool result;
+	Float valuef, valuefResult, valuefPrediction;
+	Int32 ind, valuei, valueiResult, valueiPrediction;
+	Bool result;
 
 	// TEST #1
 	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);
@@ -1176,11 +1176,11 @@ bool DoubleVectorFTester::testGetSet()
 	return true;
 }
 
-bool DoubleVectorFTester::testFunctions()
+Bool DoubleVectorFTester::testFunctions()
 {
 	DoubleVectorF vec, vecPrediction, vecPrediction2, vecResult, vecResult2;
-	float value, valueResult, value2Result, valuePrediction, value2Prediction;
-	bool result;
+	Float value, valueResult, value2Result, valuePrediction, value2Prediction;
+	Bool result;
 
 	// TEST #1
 	vec = DoubleVectorF(1, 2, 3, 4, 5, 6, 7, 8);

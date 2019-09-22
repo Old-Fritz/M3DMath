@@ -16,13 +16,13 @@ Vector2::Vector2(const Vector4& vector)
 	x = vector.x;
 	y = vector.y;
 }
-Vector2::operator float*()
+Vector2::operator Float*()
 {
-	return reinterpret_cast<float*>(this);
+	return reinterpret_cast<Float*>(this);
 }
-Vector2::operator float const*() const
+Vector2::operator Float const*() const
 {
-	return reinterpret_cast<float const*>(this);
+	return reinterpret_cast<Float const*>(this);
 }
 
 // Operators
@@ -58,7 +58,7 @@ Vector2 Vector2::operator/(const Vector2& vector) const
 
 	return vectorRes;
 }
-Vector2 Vector2::operator*(float scale) const
+Vector2 Vector2::operator*(Float scale) const
 {
 	Vector2 vectorRes;
 	vectorRes.x = this->x  * scale;
@@ -66,7 +66,7 @@ Vector2 Vector2::operator*(float scale) const
 
 	return vectorRes;
 }
-Vector2 Vector2::operator/(float scale) const
+Vector2 Vector2::operator/(Float scale) const
 {
 	Vector2 vectorRes;
 	vectorRes.x = this->x / scale;
@@ -102,14 +102,14 @@ Vector2& Vector2::operator/=(const Vector2& vector)
 
 	return *this;
 }
-Vector2& Vector2::operator*=(float scale)
+Vector2& Vector2::operator*=(Float scale)
 {
 	this->x *= scale;
 	this->y *= scale;
 
 	return *this;
 }
-Vector2& Vector2::operator/=(float scale)
+Vector2& Vector2::operator/=(Float scale)
 {
 	this->x /= scale;
 	this->y /= scale;
@@ -128,31 +128,31 @@ Vector2 Vector2::operator-()  const
 
 // Compare functions
 
-bool Vector2::operator==(const Vector2& vector) const
+Bool Vector2::operator==(const Vector2& vector) const
 {
 	return x == vector.x && y == vector.y;
 }
-bool Vector2::operator<(const Vector2& vector) const
+Bool Vector2::operator<(const Vector2& vector) const
 {
 	return x < vector.x&& y < vector.y;
 }
-bool Vector2::operator>(const Vector2& vector) const
+Bool Vector2::operator>(const Vector2& vector) const
 {
 	return vector < *this;
 }
-bool Vector2::operator<=(const Vector2& vector) const
+Bool Vector2::operator<=(const Vector2& vector) const
 {
 	return x <= vector.x && y <= vector.y;
 }
-bool Vector2::operator>=(const Vector2& vector) const
+Bool Vector2::operator>=(const Vector2& vector) const
 {
 	return vector <= *this;
 }
-bool Vector2::isEqualPrec(const Vector2& vector, float precision) const
+Bool Vector2::isEqualPrec(const Vector2& vector, Float precision) const
 {
 	return fabsf(vector.x - x) <= precision && fabsf(vector.y - y) <= precision;
 }
-bool Vector2::isEqualPrec(const Vector2& vector, const Vector2& precision) const
+Bool Vector2::isEqualPrec(const Vector2& vector, const Vector2& precision) const
 {
 	return fabsf(vector.x - x) <= precision.x && fabsf(vector.y - y) <= precision.y;
 }

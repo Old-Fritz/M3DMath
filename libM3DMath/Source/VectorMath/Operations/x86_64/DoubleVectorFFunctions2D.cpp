@@ -21,7 +21,7 @@ DoubleVectorF VECCALL M3DM::doubleVecFReflect2D(DoubleVectorF vec, DoubleVectorF
 	DoubleVectorF ind = normal * doubleVecFDotVec2D(vec, normal);
 	return vec - ind - ind;
 }
-DoubleVectorF VECCALL M3DM::doubleVecFRefract2D(DoubleVectorF vec, DoubleVectorF normal, float refractionIndex)
+DoubleVectorF VECCALL M3DM::doubleVecFRefract2D(DoubleVectorF vec, DoubleVectorF normal, Float refractionIndex)
 {
 	DoubleVectorF dot = doubleVecFDotVec2D(vec, normal);
 	DoubleVectorF one = DoubleVectorF(1);
@@ -94,38 +94,38 @@ DoubleVectorF VECCALL M3DM::doubleVecFAngleBetweenNormalsVec2D(DoubleVectorF vec
 }
 
 
-void VECCALL M3DM::doubleVecFDistance2D(DoubleVectorF vec1, DoubleVectorF vec2, float& dist1, float& dist2)
+void VECCALL M3DM::doubleVecFDistance2D(DoubleVectorF vec1, DoubleVectorF vec2, Float& dist1, Float& dist2)
 {
 	(vec1 - vec2).length2D(dist1, dist2);
 }
-void VECCALL M3DM::doubleVecFDot2D(DoubleVectorF vec1, DoubleVectorF vec2, float& dot1, float& dot2)
+void VECCALL M3DM::doubleVecFDot2D(DoubleVectorF vec1, DoubleVectorF vec2, Float& dot1, Float& dot2)
 {
 	DoubleVectorF result = doubleVecFDotVec2D(vec1, vec2);
 	dot1 = result.get(0);
 	dot2 = result.get(4);
 }
-void VECCALL M3DM::doubleVecFAngleBetween2D(DoubleVectorF vec1, DoubleVectorF vec2, float& angle1, float& angle2)
+void VECCALL M3DM::doubleVecFAngleBetween2D(DoubleVectorF vec1, DoubleVectorF vec2, Float& angle1, Float& angle2)
 {
 	DoubleVectorF result = doubleVecFAngleBetweenVec2D(vec1, vec2);
 	angle1 = result.get(0);
 	angle2 = result.get(4);
 }
-void VECCALL M3DM::doubleVecFAngleBetweenNormals2D(DoubleVectorF vec1, DoubleVectorF vec2, float& angle1, float& angle2)
+void VECCALL M3DM::doubleVecFAngleBetweenNormals2D(DoubleVectorF vec1, DoubleVectorF vec2, Float& angle1, Float& angle2)
 {
 	DoubleVectorF result = doubleVecFAngleBetweenNormalsVec2D(vec1, vec2);
 	angle1 = result.get(0);
 	angle2 = result.get(4);
 }
-void VECCALL M3DM::doubleVecFLinePointDistance2D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point, float& dist1, float& dist2)
+void VECCALL M3DM::doubleVecFLinePointDistance2D(DoubleVectorF linePoint1, DoubleVectorF linePoint2, DoubleVectorF point, Float& dist1, Float& dist2)
 {
 	DoubleVectorF result = doubleVecFLinePointDistanceVec2D(linePoint1, linePoint2, point);
 	dist1 = result.get(0);
 	dist2 = result.get(4);
 }
-void VECCALL M3DM::doubleVecFCmp2D(DoubleVectorF vec1, DoubleVectorF vec2, int type, bool& result1, bool& result2)
+void VECCALL M3DM::doubleVecFCmp2D(DoubleVectorF vec1, DoubleVectorF vec2, Int32 type, bool& result1, bool& result2)
 {
 	// create mask 1 1 0 0
-	int mask = 0b0011;
+	Int32 mask = 0b0011;
 	__m256 cmpResult;
 	// cmp
 	switch(type)
@@ -149,13 +149,13 @@ void VECCALL M3DM::doubleVecFCmp2D(DoubleVectorF vec1, DoubleVectorF vec2, int t
 		cmpResult = __m256();
 		break;
 	}
-	int resultMask = _mm256_movemask_ps(cmpResult);
+	Int32 resultMask = _mm256_movemask_ps(cmpResult);
 	result1 = (resultMask & mask) == mask;
 	result2 = ((resultMask >> 4) & mask) == mask;
 }
 void VECCALL M3DM::doubleVecFInBound2D(DoubleVectorF vec, DoubleVectorF left, DoubleVectorF right, bool& result1, bool& result2)
 {
-	bool tempResLE1, tempResLE2, tempResGE1, tempResGE2;
+	Bool tempResLE1, tempResLE2, tempResGE1, tempResGE2;
 	doubleVecFCmp2D(vec, right, CMP_LE, tempResLE1, tempResLE2);
 	doubleVecFCmp2D(vec, left, CMP_GE, tempResGE1, tempResGE2);
 	result1 = tempResLE1 && tempResGE1;

@@ -2,9 +2,9 @@
 #include <cmath>
 using namespace M3DM;
 
-bool MatrixFFunctionsTester::testAll()
+Bool MatrixFFunctionsTester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------MATRIX FUNCTIONS SIMD TEST------" << std::endl;
 
 	std::cout << "--Test scale--" << std::endl;
@@ -40,12 +40,12 @@ bool MatrixFFunctionsTester::testAll()
 	return true;
 }
 
-bool MatrixFFunctionsTester::testScale()
+Bool MatrixFFunctionsTester::testScale()
 {
 	MatrixF matrixResult, matrixPrediction;
-	float x, y, z;
+	Float x, y, z;
 	VectorF scale;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	x = 3;
@@ -82,12 +82,12 @@ bool MatrixFFunctionsTester::testScale()
 	return true;
 }
 
-bool MatrixFFunctionsTester::testRotation()
+Bool MatrixFFunctionsTester::testRotation()
 {
 	MatrixF matrixResult, matrixPrediction;
-	float x, y, z, angle;
+	Float x, y, z, angle;
 	VectorF vector, vectorAngle;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	angle = 50;
@@ -279,12 +279,12 @@ bool MatrixFFunctionsTester::testRotation()
 	return true;
 }
 
-bool MatrixFFunctionsTester::testTranslation()
+Bool MatrixFFunctionsTester::testTranslation()
 {
 	MatrixF matrixResult, matrixPrediction;
-	float x, y, z;
+	Float x, y, z;
 	VectorF vector;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	x = 3;
@@ -321,11 +321,11 @@ bool MatrixFFunctionsTester::testTranslation()
 	return true;
 }
 
-bool MatrixFFunctionsTester::testTransform()
+Bool MatrixFFunctionsTester::testTransform()
 {
 	MatrixF matrix;
 	VectorF vector, vectorResult, vectorPrediction;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	vector = VectorF(1, 2, 3, 1);
@@ -394,13 +394,13 @@ bool MatrixFFunctionsTester::testTransform()
 	return true;
 }
 
-bool MatrixFFunctionsTester::testSpecialLH()
+Bool MatrixFFunctionsTester::testSpecialLH()
 {
 	MatrixF matrixResult, matrixPrediction;
-	float height, width, fov, aspect, minZ, maxZ;
+	Float height, width, fov, aspect, minZ, maxZ;
 	VectorF heightVector, widthVector, fovVector, aspectVector, minZVector, maxZVector;
 	VectorF eye, at, up;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	height = 1080;
@@ -530,7 +530,7 @@ bool MatrixFFunctionsTester::testSpecialLH()
 	return true;
 }
 
-bool MatrixFFunctionsTester::testSpecialRH()
+Bool MatrixFFunctionsTester::testSpecialRH()
 {
 	return true;
 }

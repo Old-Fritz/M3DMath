@@ -21,7 +21,7 @@ VectorF VECCALL M3DM::vecFReflect2D(VectorF vec, VectorF normal)
 	VectorF ind = normal * vecFDotVec2D(vec, normal);
 	return vec - ind - ind;
 }
-VectorF VECCALL M3DM::vecFRefract2D(VectorF vec, VectorF normal, float refractionIndex)
+VectorF VECCALL M3DM::vecFRefract2D(VectorF vec, VectorF normal, Float refractionIndex)
 {
 	VectorF dot = vecFDotVec2D(vec, normal);
 	VectorF one = VectorF(1);
@@ -94,30 +94,30 @@ VectorF VECCALL M3DM::vecFAngleBetweenNormalsVec2D(VectorF vec1, VectorF vec2)
 }
 
 
-float VECCALL M3DM::vecFDistance2D(VectorF vec1, VectorF vec2)
+Float VECCALL M3DM::vecFDistance2D(VectorF vec1, VectorF vec2)
 {
 	return (vec1 - vec2).length2D();
 }
-float VECCALL M3DM::vecFDot2D(VectorF vec1, VectorF vec2)
+Float VECCALL M3DM::vecFDot2D(VectorF vec1, VectorF vec2)
 {
 	return vecFDotVec2D(vec1, vec2).get(0);
 }
-float VECCALL M3DM::vecFAngleBetween2D(VectorF vec1, VectorF vec2)
+Float VECCALL M3DM::vecFAngleBetween2D(VectorF vec1, VectorF vec2)
 {
 	return acosf(vecFDot2D(vec1, vec2) / (vec1.length2D() * vec2.length2D()));
 }
-float VECCALL M3DM::vecFAngleBetweenNormals2D(VectorF vec1, VectorF vec2)
+Float VECCALL M3DM::vecFAngleBetweenNormals2D(VectorF vec1, VectorF vec2)
 {
 	return acosf(vecFDot2D(vec1, vec2));
 }
-float VECCALL M3DM::vecFLinePointDistance2D(VectorF linePoint1, VectorF linePoint2, VectorF point)
+Float VECCALL M3DM::vecFLinePointDistance2D(VectorF linePoint1, VectorF linePoint2, VectorF point)
 {
 	return vecFLinePointDistanceVec2D(linePoint1, linePoint2, point).get(0);
 }
-bool VECCALL M3DM::vecFCmp2D(VectorF vec1, VectorF vec2, int type)
+Bool VECCALL M3DM::vecFCmp2D(VectorF vec1, VectorF vec2, Int32 type)
 {
 	// create mask 1 1 0 0
-	int mask = 0b0011;
+	Int32 mask = 0b0011;
 	__m128 cmpResult;
 	// cmp
 	switch(type)
@@ -143,7 +143,7 @@ bool VECCALL M3DM::vecFCmp2D(VectorF vec1, VectorF vec2, int type)
 	}
 	return (_mm_movemask_ps(cmpResult) & mask) == mask;
 }
-bool VECCALL M3DM::vecFInBound2D(VectorF vec, VectorF left, VectorF right)
+Bool VECCALL M3DM::vecFInBound2D(VectorF vec, VectorF left, VectorF right)
 {
 	return vecFCmp2D(vec, right, CMP_LE) && vecFCmp2D(vec, left, CMP_GE);
 }

@@ -93,11 +93,11 @@ void VECCALL VectorF::sincos(VectorF& sin, VectorF& cos) const
 }
 
 // functions 2d
-float VECCALL VectorF::length2D() const
+Float VECCALL VectorF::length2D() const
 {
 	return lengthVec2D().get(0);
 }
-float VECCALL VectorF::sqrLength2D() const
+Float VECCALL VectorF::sqrLength2D() const
 {
 	return sqrLengthVec2D().get(0);
 }
@@ -126,11 +126,11 @@ VectorF VECCALL VectorF::normalizedFast2D() const
 }
 
 // functions 3d
-float VECCALL VectorF::length3D() const
+Float VECCALL VectorF::length3D() const
 {
 	return lengthVec3D().get(0);
 }
-float VECCALL VectorF::sqrLength3D() const
+Float VECCALL VectorF::sqrLength3D() const
 {
 	return sqrLengthVec3D().get(0);
 }
@@ -144,7 +144,7 @@ VectorF VECCALL VectorF::orthogonal3D() const
 	Vector4 data;
 	VectorF mask = VectorF(0, 0, 0, FNAN);
 	store(data);
-	float value = -data.x - data.y;
+	Float value = -data.x - data.y;
 
 	resultVec = _mm_shuffle_ps(m_data, m_data, 0b11101010);
 	resultVec.set(2, value);
@@ -174,11 +174,11 @@ VectorF VECCALL VectorF::normalizedFast3D() const
 
 
 // functions 4d
-float VECCALL VectorF::length4D() const
+Float VECCALL VectorF::length4D() const
 {
 	return lengthVec4D().get(0);
 }
-float VECCALL VectorF::sqrLength4D() const
+Float VECCALL VectorF::sqrLength4D() const
 {
 	return sqrLengthVec4D().get(0);
 }

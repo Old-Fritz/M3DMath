@@ -2,9 +2,9 @@
 #include <cmath>
 using namespace M3DM;
 
-bool MatrixFTester::testAll()
+Bool MatrixFTester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------MATRIX SIMD TEST------" << std::endl;
 	std::cout << "--Test equal--" << std::endl;
 	result = testEqual();
@@ -65,11 +65,11 @@ bool MatrixFTester::testAll()
 }
 
 
-bool MatrixFTester::testEqual()
+Bool MatrixFTester::testEqual()
 {
 	MatrixF m1, m2, matrixPrecision, matrixResult, matrixPrediction;
-	float precision;
-	bool result, boolPrediciton;
+	Float precision;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	m1 = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -198,10 +198,10 @@ bool MatrixFTester::testEqual()
 	return true;
 }
 
-bool MatrixFTester::testCmp()
+Bool MatrixFTester::testCmp()
 {
 	MatrixF m1, m2;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	m1 = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -326,22 +326,22 @@ bool MatrixFTester::testCmp()
 	return true;
 }
 
-bool MatrixFTester::testLoad()
+Bool MatrixFTester::testLoad()
 {
-	float pArray[16];
+	Float pArray[16];
 	MatrixScalar matrixScalar;
 	VectorF row1, row2, row3, row4;
 	MatrixF matrixResult;
 	MatrixF matrixPrediction;
-	bool result;
+	Bool result;
 
 	// TEST #1
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		pArray[i] = i + 1;
 	matrixPrediction = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
 	matrixResult = MatrixF();
 	std::cout << "TEST #1: " << matrixResult << ".load(";
-	for (int i = 0; i < 15; i++)
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArray[i] << ", ";
 	std::cout << pArray[15];
 	std::cout << ") == " << matrixPrediction << std::endl;
@@ -357,12 +357,12 @@ bool MatrixFTester::testLoad()
 	}
 
 	// TEST #2
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		pArray[i] = i + 1;
 	matrixPrediction = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
 	matrixResult = MatrixF();
 	std::cout << "TEST #2: " << matrixResult << ".load({";
-	for (int i = 0; i < 15; i++)
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArray[i] << ", ";
 	std::cout << pArray[15];
 	std::cout << "}) == " << matrixPrediction << std::endl;
@@ -406,25 +406,25 @@ bool MatrixFTester::testLoad()
 	return true;
 }
 
-bool MatrixFTester::testStore()
+Bool MatrixFTester::testStore()
 {
-	float pArrayResult[16], pArrayPrediction[16];
+	Float pArrayResult[16], pArrayPrediction[16];
 	MatrixScalar matrixScalarResult, matrixScalarPrediction;
 	VectorF row1Result, row2Result, row3Result, row4Result, row1Prediction, row2Prediction, row3Prediction, row4Prediction;
 	MatrixF matrix;
-	bool result;
+	Bool result;
 
 	// TEST #1
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		pArrayPrediction[i] = i + 1;
 	matrix = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
 
 	std::cout << "TEST #1: " << matrix << ".store(";
-	for (int i = 0; i < 15; i++)
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArrayResult[i] << ", ";
 	std::cout << pArrayResult[15];
 	std::cout << ") == ";
-	for (int i = 0; i < 15; i++)
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArrayPrediction[i] << ", ";
 	std::cout << pArrayPrediction[15] << std::endl;
 
@@ -433,39 +433,39 @@ bool MatrixFTester::testStore()
 		pArrayResult[8], pArrayResult[9], pArrayResult[10], pArrayResult[11],
 		pArrayResult[12], pArrayResult[13], pArrayResult[14], pArrayResult[15]);
 	result = true;
-	for(int i = 0; i < 16; i++)
+	for(Int32 i = 0; i < 16; i++)
 	result = result && (pArrayResult[i] == pArrayPrediction[i]);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: ";
-		for (int i = 0; i < 15; i++)
+		for (Int32 i = 0; i < 15; i++)
 			std::cout << pArrayPrediction[i] << ", ";
 		std::cout << pArrayPrediction[15] << std::endl;
 		return false;
 	}
 
 	// TEST #2
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		pArrayPrediction[i] = i + 1;
 	matrix = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
 
 	std::cout << "TEST #2: " << matrix << ".store({";
-	for (int i = 0; i < 15; i++)
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArrayResult[i] << ", ";
 	std::cout << pArrayResult[15];
 	std::cout << "}) == {";
-	for (int i = 0; i < 15; i++)
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArrayPrediction[i] << ", ";
 	std::cout << pArrayPrediction[15] << "}" << std::endl;
 
 	matrix.store(pArrayResult);
 	result = true;
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		result = result && (pArrayResult[i] == pArrayPrediction[i]);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: {";
-		for (int i = 0; i < 15; i++)
+		for (Int32 i = 0; i < 15; i++)
 			std::cout << pArrayPrediction[i] << ", ";
 		std::cout << pArrayPrediction[15] << "}" << std::endl;
 		return false;
@@ -504,12 +504,12 @@ bool MatrixFTester::testStore()
 	return true;
 }
 
-bool MatrixFTester::testGetSet()
+Bool MatrixFTester::testGetSet()
 {
 	MatrixF matrix, matrixPrediction;
-	float valuef, valuefResult, valuefPrediction;
-	int ind, valuei, valueiResult, valueiPrediction;
-	bool result;
+	Float valuef, valuefResult, valuefPrediction;
+	Int32 ind, valuei, valueiResult, valueiPrediction;
+	Bool result;
 
 	// TEST #1
 	matrix = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -622,21 +622,21 @@ bool MatrixFTester::testGetSet()
 	return true;
 }
 
-bool MatrixFTester::testConversions()
+Bool MatrixFTester::testConversions()
 {
-	float pArray[16];
+	Float pArray[16];
 	MatrixScalar matrixScalar;
 	VectorF row1, row2, row3, row4;
 	MatrixF matrixResult;
 	MatrixF matrixPrediction;
-	bool result;
+	Bool result;
 
 	// TEST #1
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		pArray[i] = i + 1;
 	matrixPrediction = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
 	std::cout << "TEST #1: MatrixF({";
-	for (int i = 0; i < 15; i++)
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArray[i] << ", ";
 	std::cout << pArray[15];
 	std::cout << "}) == " << matrixPrediction << std::endl;
@@ -692,10 +692,10 @@ bool MatrixFTester::testConversions()
 	return true;
 }
 
-bool MatrixFTester::testAdd()
+Bool MatrixFTester::testAdd()
 {
 	MatrixF m1, m2, prediction, matrixResult;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	m1 = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -726,10 +726,10 @@ bool MatrixFTester::testAdd()
 	return true;
 }
 
-bool MatrixFTester::testSub()
+Bool MatrixFTester::testSub()
 {
 	MatrixF m1, m2, prediction, matrixResult;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	m1 = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -760,11 +760,11 @@ bool MatrixFTester::testSub()
 	return true;
 }
 
-bool MatrixFTester::testMul()
+Bool MatrixFTester::testMul()
 {
 	MatrixF m1, m2, prediction, matrixResult;
-	float value;
-	bool result;
+	Float value;
+	Bool result;
 
 	// TEST #1
 	m1 = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -860,11 +860,11 @@ bool MatrixFTester::testMul()
 	return true;
 }
 
-bool MatrixFTester::testDiv()
+Bool MatrixFTester::testDiv()
 {
 	MatrixF m1, prediction, matrixResult;
-	float value;
-	bool result;
+	Float value;
+	Bool result;
 
 	// TEST #1
 	m1 = MatrixF(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -908,13 +908,13 @@ bool MatrixFTester::testDiv()
 	return true;
 }
 
-bool MatrixFTester::testFunctions()
+Bool MatrixFTester::testFunctions()
 {
 	
 	MatrixF matrix, matrixPrediction, matrixResult;
-	float valueResult, valuePrediction;
+	Float valueResult, valuePrediction;
 	VectorF vecResult, vecPrediction;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	matrixPrediction = MatrixF(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);

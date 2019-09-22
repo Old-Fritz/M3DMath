@@ -2,9 +2,9 @@
 #include <cmath>
 using namespace M3DM;
 
-bool MatrixScalarTester::testAll()
+Bool MatrixScalarTester::testAll()
 {
-	bool result;
+	Bool result;
 	std::cout << "------MATRIX SCALAR TEST------" << std::endl;
 	std::cout << "--Test equal--" << std::endl;
 	result = testEqual();
@@ -49,11 +49,11 @@ bool MatrixScalarTester::testAll()
 	return true;
 }
 
-bool MatrixScalarTester::testEqual()
+Bool MatrixScalarTester::testEqual()
 {
 	MatrixScalar m1, m2, matrixPrecision, matrixResult, matrixPrediction;
-	float precision;
-	bool result, boolPrediciton;
+	Float precision;
+	Bool result, boolPrediciton;
 	
 	// TEST #1
 	m1 = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -182,10 +182,10 @@ bool MatrixScalarTester::testEqual()
 	return true;
 }
 
-bool MatrixScalarTester::testCmp()
+Bool MatrixScalarTester::testCmp()
 {
 	MatrixScalar m1, m2;
-	bool result, boolPrediciton;
+	Bool result, boolPrediciton;
 
 	// TEST #1
 	m1 = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -311,20 +311,20 @@ bool MatrixScalarTester::testCmp()
 	return true;
 }
 
-bool MatrixScalarTester::testConversions()
+Bool MatrixScalarTester::testConversions()
 {
-	float pArray[16], pArrayPrediction[16];
-	float* pArrayRes;
+	Float pArray[16], pArrayPrediction[16];
+	Float* pArrayRes;
 	MatrixScalar matrixResult;
 	MatrixScalar matrixPrediction;
-	bool result;
+	Bool result;
 
 	// TEST #1
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		pArray[i] = i+1;
 	matrixPrediction = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
 	std::cout << "TEST #1: MatrixScalar({";
-	for (int i = 0; i < 15; i++)
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArray[i] << ", ";
 	std::cout << pArray[15];
 	std::cout << "}) == " << matrixPrediction << std::endl;
@@ -338,21 +338,21 @@ bool MatrixScalarTester::testConversions()
 
 	// TEST #2
 	matrixResult = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		pArrayPrediction[i] = i + 1;
-	std::cout << "TEST #2: float*(" << matrixResult << ") == {";
-	for (int i = 0; i < 15; i++)
+	std::cout << "TEST #2: Float*(" << matrixResult << ") == {";
+	for (Int32 i = 0; i < 15; i++)
 		std::cout << pArrayPrediction[i] << ", ";
 	std::cout << pArrayPrediction[15];
 	std::cout << "}" << std::endl;
 	pArrayRes = matrixResult;
 	result = 1;
-	for (int i = 0; i < 16; i++)
+	for (Int32 i = 0; i < 16; i++)
 		result = result & (pArrayRes[i] == pArrayPrediction[i]);
 	if (!result)
 	{
 		std::cout << "Failed. Computed value: {";
-		for (int i = 0; i < 15; i++)
+		for (Int32 i = 0; i < 15; i++)
 			std::cout << pArrayRes[i] << ", ";
 		std::cout << pArrayRes[15];
 		std::cout << "}" << std::endl;
@@ -364,10 +364,10 @@ bool MatrixScalarTester::testConversions()
 	return true;
 }
 
-bool MatrixScalarTester::testAdd()
+Bool MatrixScalarTester::testAdd()
 {
 	MatrixScalar m1, m2, prediction, matrixResult;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	m1 = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -398,10 +398,10 @@ bool MatrixScalarTester::testAdd()
 	return true;
 }
 
-bool MatrixScalarTester::testSub()
+Bool MatrixScalarTester::testSub()
 {
 	MatrixScalar m1, m2, prediction, matrixResult;
-	bool result;
+	Bool result;
 
 	// TEST #1
 	m1 = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -432,11 +432,11 @@ bool MatrixScalarTester::testSub()
 	return true;
 }
 
-bool MatrixScalarTester::testMul()
+Bool MatrixScalarTester::testMul()
 {
 	MatrixScalar m1, m2, prediction, matrixResult;
-	float value;
-	bool result;
+	Float value;
+	Bool result;
 
 	// TEST #1
 	m1 = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -513,11 +513,11 @@ bool MatrixScalarTester::testMul()
 	return true;
 }
 
-bool MatrixScalarTester::testDiv()
+Bool MatrixScalarTester::testDiv()
 {
 	MatrixScalar m1, prediction, matrixResult;
-	float value;
-	bool result;
+	Float value;
+	Bool result;
 
 	// TEST #1
 	m1 = MatrixScalar(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16);
@@ -561,11 +561,11 @@ bool MatrixScalarTester::testDiv()
 	return true;
 }
 
-bool MatrixScalarTester::testFunctions()
+Bool MatrixScalarTester::testFunctions()
 {
 	MatrixScalar matrix, matrixPrediction, matrixResult;
-	float valueResult, valuePrediction;
-	bool result;
+	Float valueResult, valuePrediction;
+	Bool result;
 
 	// TEST #1
 	matrixPrediction = MatrixScalar(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1);

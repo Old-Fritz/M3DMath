@@ -3,6 +3,8 @@
 #include "M3DMath.h"
 #include <iostream>
 
+using namespace M3DM;
+
 inline std::ostream& operator<<(std::ostream& stream, const M3DM::Vector2& vector2)
 {
 	stream << "(" << vector2.x << ", " << vector2.y << ")";
@@ -23,7 +25,7 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::Vector4& vecto
 
 inline std::ostream& operator<<(std::ostream& stream, const M3DM::VectorF& vectorF)
 {
-	ALIGN(16) float pArray[4];
+	ALIGN(16) Float pArray[4];
 	vectorF.store(pArray);
 	stream << "[" << pArray[0] << ", " << pArray[1] << ", " << pArray[2] << ", " << pArray[3] << "]";
 	return stream;
@@ -31,7 +33,7 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::VectorF& vecto
 
 inline std::ostream& operator<<(std::ostream& stream, const M3DM::DoubleVectorF& dVectorF)
 {
-	ALIGN(32) float pArray[8];
+	ALIGN(32) Float pArray[8];
 	dVectorF.store(pArray);
 	stream << "[" << pArray[0] << ", " << pArray[1] << ", " << pArray[2] << ", " << pArray[3] << ", " << pArray[4] << ", " << pArray[5] << ", " << pArray[6] << ", " << pArray[7] << "]";
 	return stream;
@@ -39,12 +41,12 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::DoubleVectorF&
 
 inline std::ostream& operator<<(std::ostream& stream, const M3DM::MatrixScalar& matrix)
 {
-	const float* pArray = matrix;
+	const Float* pArray = matrix;
 	stream << std::endl;
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 	{
 		stream << "| ";
-		for (int j = 0; j < 4; j++)
+		for (Int32 j = 0; j < 4; j++)
 		{
 			stream << pArray[ i*4 + j] << "\t";
 		}
@@ -55,13 +57,13 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::MatrixScalar& 
 
 inline std::ostream& operator<<(std::ostream& stream, const M3DM::MatrixF& matrix)
 {
-	float pArray[16];
+	Float pArray[16];
 	matrix.store(pArray);
 	stream << std::endl;
-	for (int i = 0; i < 4; i++)
+	for (Int32 i = 0; i < 4; i++)
 	{
 		stream << "| ";
-		for (int j = 0; j < 4; j++)
+		for (Int32 j = 0; j < 4; j++)
 		{
 			stream << pArray[i * 4 + j] << "\t";
 		}
@@ -73,164 +75,164 @@ inline std::ostream& operator<<(std::ostream& stream, const M3DM::MatrixF& matri
 class Vector2Tester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testEqual();
-	bool testCmp();
-	bool testConversions();
-	bool testAdd();
-	bool testSub();
-	bool testMul();
-	bool testDiv();
-	bool testFunctions();
+	Bool testEqual();
+	Bool testCmp();
+	Bool testConversions();
+	Bool testAdd();
+	Bool testSub();
+	Bool testMul();
+	Bool testDiv();
+	Bool testFunctions();
 };
 
 class Vector3Tester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testEqual();
-	bool testCmp();
-	bool testConversions();
-	bool testAdd();
-	bool testSub();
-	bool testMul();
-	bool testDiv();
-	bool testFunctions();
+	Bool testEqual();
+	Bool testCmp();
+	Bool testConversions();
+	Bool testAdd();
+	Bool testSub();
+	Bool testMul();
+	Bool testDiv();
+	Bool testFunctions();
 };
 
 class Vector4Tester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testEqual();
-	bool testCmp();
-	bool testConversions();
-	bool testAdd();
-	bool testSub();
-	bool testMul();
-	bool testDiv();
-	bool testFunctions();
+	Bool testEqual();
+	Bool testCmp();
+	Bool testConversions();
+	Bool testAdd();
+	Bool testSub();
+	Bool testMul();
+	Bool testDiv();
+	Bool testFunctions();
 };
 
 class VectorOperationsTester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testVector2And3();
-	bool testVector2And4();
-	bool testVector3And4();
-	bool testScalarOperations();
+	Bool testVector2And3();
+	Bool testVector2And4();
+	Bool testVector3And4();
+	Bool testScalarOperations();
 };
 
 class VectorFTester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testEqual();
-	bool testCmp();
-	bool testConversions();
-	bool testAdd();
-	bool testSub();
-	bool testMul();
-	bool testDiv();
-	bool testStore();
-	bool testGetSet();
-	bool testFunctions();
+	Bool testEqual();
+	Bool testCmp();
+	Bool testConversions();
+	Bool testAdd();
+	Bool testSub();
+	Bool testMul();
+	Bool testDiv();
+	Bool testStore();
+	Bool testGetSet();
+	Bool testFunctions();
 };
 
 class DoubleVectorFTester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testEqual();
-	bool testCmp();
-	bool testConversions();
-	bool testAdd();
-	bool testSub();
-	bool testMul();
-	bool testDiv();
-	bool testStore();
-	bool testGetSet();
-	bool testFunctions();
+	Bool testEqual();
+	Bool testCmp();
+	Bool testConversions();
+	Bool testAdd();
+	Bool testSub();
+	Bool testMul();
+	Bool testDiv();
+	Bool testStore();
+	Bool testGetSet();
+	Bool testFunctions();
 };
 
 class VectorFunctionsTester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testVector2();
-	bool testVector3();
-	bool testVector4();
-	bool testVectorF2D();
-	bool testVectorF3D();
-	bool testVectorF4D();
-	bool testDoubleVectorF2D();
-	bool testDoubleVectorF3D();
-	bool testDoubleVectorF4D();
+	Bool testVector2();
+	Bool testVector3();
+	Bool testVector4();
+	Bool testVectorF2D();
+	Bool testVectorF3D();
+	Bool testVectorF4D();
+	Bool testDoubleVectorF2D();
+	Bool testDoubleVectorF3D();
+	Bool testDoubleVectorF4D();
 };
 
 class MatrixScalarTester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testEqual();
-	bool testCmp();
-	bool testConversions();
-	bool testAdd();
-	bool testSub();
-	bool testMul();
-	bool testDiv();
-	bool testFunctions();
+	Bool testEqual();
+	Bool testCmp();
+	Bool testConversions();
+	Bool testAdd();
+	Bool testSub();
+	Bool testMul();
+	Bool testDiv();
+	Bool testFunctions();
 };
 
 class MatrixFTester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testEqual();
-	bool testCmp();
-	bool testLoad();
-	bool testStore();
-	bool testGetSet();
-	bool testConversions();
-	bool testAdd();
-	bool testSub();
-	bool testMul();
-	bool testDiv();
-	bool testFunctions();
+	Bool testEqual();
+	Bool testCmp();
+	Bool testLoad();
+	Bool testStore();
+	Bool testGetSet();
+	Bool testConversions();
+	Bool testAdd();
+	Bool testSub();
+	Bool testMul();
+	Bool testDiv();
+	Bool testFunctions();
 };
 
 class MatrixScalarFunctionsTester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testScale();
-	bool testRotation();
-	bool testTranslation();
-	bool testTransform();
-	bool testSpecialLH();
-	bool testSpecialRH();
+	Bool testScale();
+	Bool testRotation();
+	Bool testTranslation();
+	Bool testTransform();
+	Bool testSpecialLH();
+	Bool testSpecialRH();
 };
 
 class MatrixFFunctionsTester
 {
 public:
-	bool testAll();
+	Bool testAll();
 
-	bool testScale();
-	bool testRotation();
-	bool testTranslation();
-	bool testTransform();
-	bool testSpecialLH();
-	bool testSpecialRH();
+	Bool testScale();
+	Bool testRotation();
+	Bool testTranslation();
+	Bool testTransform();
+	Bool testSpecialLH();
+	Bool testSpecialRH();
 };

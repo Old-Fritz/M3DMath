@@ -14,14 +14,14 @@
 
 using namespace M3DM;
 
-bool makeMatrixTests()
+Bool makeMatrixTests()
 {
 	MatrixScalarTester matrixScalarTester;
 	MatrixFTester matrixFTester;
 	MatrixScalarFunctionsTester matrixScalarFunctionsTester;
 	MatrixFFunctionsTester matrixFFunctionsTester;
 
-	bool result;
+	Bool result;
 
 	result = matrixScalarTester.testAll();
 	if (!result)
@@ -42,7 +42,7 @@ bool makeMatrixTests()
 	return true;
 }
 
-bool makeVectorTests()
+Bool makeVectorTests()
 {
 	Vector2Tester vector2Tester;
 	Vector3Tester vector3Tester;
@@ -52,7 +52,7 @@ bool makeVectorTests()
 	DoubleVectorFTester doubleVectorFTester;
 	VectorFunctionsTester vectorFunctionsTester;
 
-	bool result;
+	Bool result;
 
 	result = vector2Tester.testAll();
 	if (!result)
@@ -86,9 +86,9 @@ bool makeVectorTests()
 	return true;
 }
 
-bool makeTests()
+Bool makeTests()
 {
-	bool result;
+	Bool result;
 
 	//result = makeVectorTests();
 	//if (!result)
@@ -101,9 +101,9 @@ bool makeTests()
 	return true;
 }
 
-int main()
+Int32 main()
 {
-	bool result = makeTests();
+	Bool result = makeTests();
 	if (result)
 		std::cout << "----------ALL TESTS PASSED----------" << std::endl;
 	else

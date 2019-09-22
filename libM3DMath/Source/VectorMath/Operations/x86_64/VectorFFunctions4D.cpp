@@ -15,11 +15,11 @@ VectorF VECCALL M3DM::vecFPow(VectorF vec, VectorF pow)
 {
 	return _mm_pow_ps(vec.getData(), pow.getData());
 }
-VectorF VECCALL M3DM::vecFPow(VectorF vec, float pow)
+VectorF VECCALL M3DM::vecFPow(VectorF vec, Float pow)
 {
 	return _mm_pow_ps(vec.getData(), _mm_set_ps1(pow));
 }
-VectorF VECCALL M3DM::vecFLerp(VectorF vec1, VectorF vec2, float value)
+VectorF VECCALL M3DM::vecFLerp(VectorF vec1, VectorF vec2, Float value)
 {
 	VectorF one = VectorF(1);
 	VectorF valueVec = VectorF(value);
@@ -37,7 +37,7 @@ VectorF VECCALL M3DM::vecFReflect4D(VectorF vec, VectorF normal)
 	VectorF ind = normal * vecFDotVec4D(vec, normal);
 	return vec - ind - ind;
 }
-VectorF VECCALL M3DM::vecFRefract4D(VectorF vec, VectorF normal, float refractionIndex)
+VectorF VECCALL M3DM::vecFRefract4D(VectorF vec, VectorF normal, Float refractionIndex)
 {
 	VectorF dot = vecFDotVec4D(vec, normal);
 	VectorF one = VectorF(1);
@@ -82,26 +82,26 @@ VectorF VECCALL M3DM::vecFAngleBetweenNormalsVec4D(VectorF vec1, VectorF vec2)
 	return vecFDotVec4D(vec1, vec2).acos();
 }
 
-float VECCALL M3DM::vecFDistance4D(VectorF vec1, VectorF vec2)
+Float VECCALL M3DM::vecFDistance4D(VectorF vec1, VectorF vec2)
 {
 	return vecFDistanceVec4D(vec1, vec2).get(0);
 }
-float VECCALL M3DM::vecFDot4D(VectorF vec1, VectorF vec2)
+Float VECCALL M3DM::vecFDot4D(VectorF vec1, VectorF vec2)
 {
 	return vecFDotVec4D(vec1, vec2).get(0);
 }
-float VECCALL M3DM::vecFAngleBetween4D(VectorF vec1, VectorF vec2)
+Float VECCALL M3DM::vecFAngleBetween4D(VectorF vec1, VectorF vec2)
 {
 	return vecFAngleBetweenVec4D(vec1, vec2).get(0);
 }
-float VECCALL M3DM::vecFAngleBetweenNormals4D(VectorF vec1, VectorF vec2)
+Float VECCALL M3DM::vecFAngleBetweenNormals4D(VectorF vec1, VectorF vec2)
 {
 	return vecFAngleBetweenNormalsVec4D(vec1, vec2).get(0);
 }
-bool VECCALL M3DM::vecFCmp4D(VectorF vec1, VectorF vec2, int type)
+Bool VECCALL M3DM::vecFCmp4D(VectorF vec1, VectorF vec2, Int32 type)
 {
 	// create mask 1 1 1 1
-	int mask = 0b1111;
+	Int32 mask = 0b1111;
 	__m128 cmpResult;
 	// cmp
 	switch (type)
@@ -127,7 +127,7 @@ bool VECCALL M3DM::vecFCmp4D(VectorF vec1, VectorF vec2, int type)
 	}
 	return (_mm_movemask_ps(cmpResult) & mask) == mask;
 }
-bool VECCALL M3DM::vecFInBound4D(VectorF vec, VectorF left, VectorF right)
+Bool VECCALL M3DM::vecFInBound4D(VectorF vec, VectorF left, VectorF right)
 {
 	return vecFCmp4D(vec, right, CMP_LE) && vecFCmp4D(vec, left, CMP_GE);
 }

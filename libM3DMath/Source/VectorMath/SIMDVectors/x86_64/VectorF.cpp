@@ -6,15 +6,15 @@ using namespace M3DM;
 
 
 // Conversions
-VectorF::VectorF(float value)
+VectorF::VectorF(Float value)
 {
 	load(value);
 }
-VectorF::VectorF(float x, float y, float z, float w)
+VectorF::VectorF(Float x, Float y, Float z, Float w)
 {
 	load(x, y, z, w);
 }
-VectorF::VectorF(const float* pArray)
+VectorF::VectorF(const Float* pArray)
 {
 	load(pArray);
 }
@@ -36,7 +36,7 @@ VectorF::VectorF(const Vector2& vector1, const Vector2& vector2)
 }
 
 // getters and setters
-float VECCALL VectorF::get(const char ind)  const
+Float VECCALL VectorF::get(const Char ind)  const
 {
 	switch (ind%4)
 	{
@@ -55,7 +55,7 @@ float VECCALL VectorF::get(const char ind)  const
 	}
 	
 }
-void VECCALL VectorF::set(char ind, float value)
+void VECCALL VectorF::set(Char ind, Float value)
 {
 	switch (ind % 4)
 	{
@@ -74,7 +74,7 @@ void VECCALL VectorF::set(char ind, float value)
 	}
 	
 }
-int VECCALL VectorF::getInt(char ind)  const
+Int32 VECCALL VectorF::getInt(Char ind)  const
 {
 	switch (ind % 4)
 	{
@@ -93,7 +93,7 @@ int VECCALL VectorF::getInt(char ind)  const
 	}
 	
 }
-void VECCALL VectorF::setInt(char ind, int value)
+void VECCALL VectorF::setInt(Char ind, Int32 value)
 {
 	switch (ind % 4)
 	{
@@ -130,12 +130,12 @@ VectorF VECCALL VectorF::operator/(VectorF vector) const
 {
 	return _mm_div_ps(m_data, vector.m_data);
 }
-VectorF VECCALL VectorF::operator*(float scale) const
+VectorF VECCALL VectorF::operator*(Float scale) const
 {
 	__m128 data2 = _mm_set_ps1(scale);
 	return _mm_mul_ps(m_data, data2);
 }
-VectorF VECCALL VectorF::operator/(float scale) const
+VectorF VECCALL VectorF::operator/(Float scale) const
 {
 	__m128 data2 = _mm_set_ps1(scale);
 	return _mm_div_ps(m_data, data2);
@@ -160,13 +160,13 @@ VectorF& VECCALL VectorF::operator/=(VectorF vector)
 	m_data = _mm_div_ps(m_data, vector.m_data);
 	return *this;
 }
-VectorF& VECCALL VectorF::operator*=(float scale)
+VectorF& VECCALL VectorF::operator*=(Float scale)
 {
 	__m128 data2 = _mm_set_ps1(scale);
 	m_data = _mm_mul_ps(m_data, data2);
 	return *this;
 }
-VectorF& VECCALL VectorF::operator/=(float scale)
+VectorF& VECCALL VectorF::operator/=(Float scale)
 {
 	__m128 data2 = _mm_set_ps1(scale);
 	m_data = _mm_div_ps(m_data, data2);
@@ -177,11 +177,11 @@ VectorF VECCALL VectorF::operator-() const
 	return _mm_sub_ps(__m128(), m_data);
 }
 
-VectorF VECCALL M3DM::operator*(float scale, VectorF vector)
+VectorF VECCALL M3DM::operator*(Float scale, VectorF vector)
 {
 	return vector * scale;
 }
-VectorF VECCALL  M3DM::operator/(float scale, VectorF vector)
+VectorF VECCALL  M3DM::operator/(Float scale, VectorF vector)
 {
 	__m128 data2 = _mm_set_ps1(scale);
 	return _mm_div_ps(data2, vector.m_data);
@@ -189,39 +189,39 @@ VectorF VECCALL  M3DM::operator/(float scale, VectorF vector)
 
 
 // Compare functions
-bool VECCALL VectorF::operator==(VectorF vector) const
+Bool VECCALL VectorF::operator==(VectorF vector) const
 {
 	__m128 dataEqual = _mm_castsi128_ps(_mm_cmpeq_epi32(_mm_castps_si128(m_data), _mm_castps_si128(vector.m_data)));
 	//__m128 dataEqual = _mm_cmpeq_(m_data, vector.m_data);
 	return _mm_test_all_ones(_mm_castps_si128(dataEqual));
 }
-bool VECCALL VectorF::operator<(VectorF vector) const
+Bool VECCALL VectorF::operator<(VectorF vector) const
 {
 	__m128 dataCmp = _mm_cmplt_ps(m_data, vector.m_data);
 	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
 }
-bool VECCALL VectorF::operator>(VectorF vector) const
+Bool VECCALL VectorF::operator>(VectorF vector) const
 {
 	__m128 dataCmp = _mm_cmpgt_ps(m_data, vector.m_data);
 	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
 }
-bool VECCALL VectorF::operator<=(VectorF vector) const
+Bool VECCALL VectorF::operator<=(VectorF vector) const
 {
 	__m128 dataCmp = _mm_cmple_ps(m_data, vector.m_data);
 	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
 }
-bool VECCALL VectorF::operator>=(VectorF vector) const
+Bool VECCALL VectorF::operator>=(VectorF vector) const
 {
 	__m128 dataCmp = _mm_cmpge_ps(m_data, vector.m_data);
 	return _mm_test_all_ones(_mm_castps_si128(dataCmp));
 }
-bool VECCALL VectorF::isEqualPrec(VectorF vector, float precision, int mask) const
+Bool VECCALL VectorF::isEqualPrec(VectorF vector, Float precision, Int32 mask) const
 {
 	__m128 delta = (*this - vector).abs().getData();
 	__m128 dataCmp = _mm_cmple_ps(delta, _mm_set_ps1(precision));
 	return (_mm_movemask_ps(dataCmp) & mask) == mask;
 }
-bool VECCALL VectorF::isEqualPrec(VectorF vector, VectorF precision, int mask) const
+Bool VECCALL VectorF::isEqualPrec(VectorF vector, VectorF precision, Int32 mask) const
 {
 	__m128 delta = (*this - vector).abs().getData();
 	__m128 dataCmp = _mm_cmple_ps(delta, precision.getData());
@@ -238,15 +238,15 @@ VectorF VECCALL VectorF::isEqualPrecVec(VectorF vector, VectorF precision) const
 }
 
 // Load/store
-void VECCALL VectorF::load(float value)
+void VECCALL VectorF::load(Float value)
 {
 	m_data = _mm_set_ps1(value);
 }
-void VECCALL VectorF::load(float x, float y, float z, float w)
+void VECCALL VectorF::load(Float x, Float y, Float z, Float w)
 {
 	m_data = _mm_setr_ps(x, y, z, w);
 }
-void VECCALL VectorF::load(const float* pArray)
+void VECCALL VectorF::load(const Float* pArray)
 {
 	m_data = _mm_load_ps(pArray);
 }
@@ -268,28 +268,28 @@ void VECCALL VectorF::load(const Vector2& vector1, const Vector2& vector2)
 	m_data = _mm_load_ps(Vector4(vector1, vector2));
 }
 
-void VECCALL VectorF::store(float& x, float& y, float& z, float& w) const
+void VECCALL VectorF::store(Float& x, Float& y, Float& z, Float& w) const
 {
-	alignas(16) float vector[4];
+	alignas(16) Float vector[4];
 	_mm_store_ps(vector, m_data);
 	x = vector[0];
 	y = vector[1];
 	z = vector[2];
 	w = vector[3];
 }
-void VECCALL VectorF::store(float* pArray) const
+void VECCALL VectorF::store(Float* pArray) const
 {
 	_mm_store_ps(pArray, m_data);
 }
 void VECCALL VectorF::store(Vector2& vector) const
 {
-	alignas(16) float vectorData[4];
+	alignas(16) Float vectorData[4];
 	_mm_store_ps(vectorData, m_data);
 	vector = Vector2(vectorData);
 }
 void VECCALL VectorF::store(Vector3& vector) const
 {
-	alignas(16) float vectorData[4];
+	alignas(16) Float vectorData[4];
 	_mm_store_ps(vectorData, m_data);
 	vector = Vector3(vectorData);
 }
@@ -299,7 +299,7 @@ void VECCALL VectorF::store(Vector4& vector) const
 }
 void VECCALL VectorF::store(Vector2& vector1, Vector2& vector2) const
 {
-	alignas(16) float vectorData[4];
+	alignas(16) Float vectorData[4];
 	_mm_store_ps(vectorData, m_data);
 	vector1 = Vector2(vectorData);
 	vector2 = Vector2(vectorData + 2);
